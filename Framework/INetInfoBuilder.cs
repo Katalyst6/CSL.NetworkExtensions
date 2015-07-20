@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using ColossalFramework;
 using ColossalFramework.Globalization;
 using ColossalFramework.UI;
 using NetworkExtensions.Framework.Extensions;
@@ -45,73 +46,63 @@ namespace NetworkExtensions.Framework
         {
             var newNetInfos = new List<NetInfo>();
 
-            var thumbnails = builder.LoadThumbnails();
-            var infoTips = builder.LoadInfoTooltip();
 
-            // Ground version
-            var mainInfo = ToolsCSL.CloneNetInfo(builder.GetPrefabNameForVersion(NetInfoVersion.Ground), builder.Name);
-
+            // Ground version--------------------------------------------------
+            var mainInfo = builder.BuildVersion(NetInfoVersion.Ground, null, newNetInfos);
             mainInfo.m_UIPriority = builder.Priority;
-            mainInfo.m_Atlas = thumbnails;
-            mainInfo.m_Thumbnail = thumbnails.name;
-            mainInfo.m_InfoTooltipAtlas = infoTips;
-            mainInfo.m_InfoTooltipThumbnail = infoTips.name;
 
-            mainInfo.SetUICategory(builder.UICategory);
-            builder.BuildUp(mainInfo, NetInfoVersion.Ground);
-            
-            newNetInfos.Add(mainInfo);
+            if (!builder.CodeName.IsNullOrWhiteSpace() && !builder.ThumbnailsPath.IsNullOrWhiteSpace())
+            {
+                var thumbnails = ToolsUnity.LoadThumbnails(builder.CodeName, builder.ThumbnailsPath);
+                mainInfo.m_Atlas = thumbnails;
+                mainInfo.m_Thumbnail = thumbnails.name;
+            }
+
+            if (!builder.CodeName.IsNullOrWhiteSpace() && !builder.InfoTooltipPath.IsNullOrWhiteSpace())
+            {
+                var infoTips = ToolsUnity.LoadInfoTooltip(builder.CodeName, builder.InfoTooltipPath);
+                mainInfo.m_InfoTooltipAtlas = infoTips;
+                mainInfo.m_InfoTooltipThumbnail = infoTips.name;
+            }
+
+
+            // Other versions -------------------------------------------------
 
             var mainInfoAI = mainInfo.GetComponent<RoadAI>();
 
-
-            if (builder.SupportedVersions.HasFlag(NetInfoVersion.Elevated))
-            {
-                var elevatedInfo = ToolsCSL.CloneNetInfo(builder.GetPrefabNameForVersion(NetInfoVersion.Elevated), builder.Name + " " + NetInfoVersion.Elevated);
-
-                elevatedInfo.SetUICategory(builder.UICategory);
-                builder.BuildUp(elevatedInfo, NetInfoVersion.Elevated);
-
-                mainInfoAI.m_elevatedInfo = elevatedInfo;
-                newNetInfos.Add(elevatedInfo);
-            }
-
-            if (builder.SupportedVersions.HasFlag(NetInfoVersion.Bridge))
-            {
-                var bridgedInfo = ToolsCSL.CloneNetInfo(builder.GetPrefabNameForVersion(NetInfoVersion.Bridge), builder.Name + " " + NetInfoVersion.Bridge);
-
-                bridgedInfo.SetUICategory(builder.UICategory);
-                builder.BuildUp(bridgedInfo, NetInfoVersion.Bridge);
-
-                mainInfoAI.m_bridgeInfo = bridgedInfo;
-                newNetInfos.Add(bridgedInfo);
-            }
-
-            if (builder.SupportedVersions.HasFlag(NetInfoVersion.Tunnel))
-            {
-                var tunnelInfo = ToolsCSL.CloneNetInfo(builder.GetPrefabNameForVersion(NetInfoVersion.Tunnel), builder.Name + " " + NetInfoVersion.Tunnel);
-
-                tunnelInfo.SetUICategory(builder.UICategory);
-                builder.BuildUp(tunnelInfo, NetInfoVersion.Tunnel);
-
-                mainInfoAI.m_tunnelInfo = tunnelInfo;
-                newNetInfos.Add(tunnelInfo);
-            }
-
-            if (builder.SupportedVersions.HasFlag(NetInfoVersion.Slope))
-            {
-                var slopeInfo = ToolsCSL.CloneNetInfo(builder.GetPrefabNameForVersion(NetInfoVersion.Slope), builder.Name + " " + NetInfoVersion.Slope);
-
-                slopeInfo.SetUICategory(builder.UICategory);
-                builder.BuildUp(slopeInfo, NetInfoVersion.Slope);
-
-                mainInfoAI.m_slopeInfo = slopeInfo;
-                newNetInfos.Add(slopeInfo);
-            }
-
+            builder.BuildVersion(NetInfoVersion.Elevated, info => mainInfoAI.m_elevatedInfo = info, newNetInfos);
+            builder.BuildVersion(NetInfoVersion.Bridge,   info => mainInfoAI.m_bridgeInfo = info, newNetInfos);
+            builder.BuildVersion(NetInfoVersion.Tunnel,   info => mainInfoAI.m_tunnelInfo = info, newNetInfos);
+            builder.BuildVersion(NetInfoVersion.Slope,    info => mainInfoAI.m_slopeInfo = info, newNetInfos);
+            
             Debug.Log(string.Format("NExt: Initialized {0}", builder.Name));
 
             return newNetInfos;
+        }
+
+        private static NetInfo BuildVersion(this INetInfoBuilder builder, NetInfoVersion version, Action<NetInfo> assign, ICollection<NetInfo> holdingCollection)
+        {
+            if (builder.SupportedVersions.HasFlag(version))
+            {
+                var completePrefabName = builder.GetPrefabInfoVersionCompleteName(version);
+                var completeName = builder.GetNewInfoVersionCompleteName(version);
+
+                var info = ToolsCSL.CloneNetInfo(completePrefabName, completeName);
+
+                info.SetUICategory(builder.UICategory);
+                builder.BuildUp(info, version);
+
+                if (assign != null)
+                {
+                    assign(info);
+                }
+
+                holdingCollection.Add(info);
+
+                return info;
+            }
+
+            return null;
         }
 
         public static void DefineLocalization(this INetInfoBuilder builder, Locale locale)
@@ -129,17 +120,7 @@ namespace NetworkExtensions.Framework
             }, builder.Description);
         }
 
-        private static UITextureAtlas LoadThumbnails(this INetInfoBuilder builder)
-        {
-            return ToolsUnity.LoadThumbnails(builder.CodeName, builder.ThumbnailsPath);
-        }
-
-        private static UITextureAtlas LoadInfoTooltip(this INetInfoBuilder builder)
-        {
-            return ToolsUnity.LoadInfoTooltip(builder.CodeName, builder.InfoTooltipPath);
-        }
-
-        private static string GetPrefabNameForVersion(this INetInfoBuilder builder, NetInfoVersion version)
+        private static string GetPrefabInfoVersionCompleteName(this INetInfoBuilder builder, NetInfoVersion version)
         {
             switch (version)
             {
@@ -160,6 +141,18 @@ namespace NetworkExtensions.Framework
 
                 default:
                     throw new ArgumentOutOfRangeException("version");
+            }
+        }
+
+        private static string GetNewInfoVersionCompleteName(this INetInfoBuilder builder, NetInfoVersion version)
+        {
+            switch (version)
+            {
+                case NetInfoVersion.Ground:
+                    return builder.Name;
+
+                default:
+                    return builder.Name + " " + version;
             }
         }
     }
