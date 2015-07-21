@@ -11,20 +11,25 @@ namespace NetworkExtensions.Framework
 {
     public static class Tools
     {
-        public static T ShallowCopy<T>(this T source)
+        public static T ShallowClone<T>(this T source, params string[] omitMembers)
             where T : new()
         {
             var clone = new T();
 
             foreach (FieldInfo f in typeof(T).GetAllFields())
             {
+                if (omitMembers.Contains(f.Name))
+                {
+                    continue;
+                }
+
                 f.SetValue(clone, f.GetValue(source));
             }
 
             return clone;
         }
 
-        public static T CopyMembersFrom<T>(this T destination, T source, params string[] omitMembers)
+        public static T CloneMembersFrom<T>(this T destination, T source, params string[] omitMembers)
             where T : new()
         {
             foreach (FieldInfo f in destination.GetType().GetAllFields(true))
@@ -61,7 +66,7 @@ namespace NetworkExtensions.Framework
             typeof(Enum),
         };
 
-        public static T CopySimpleMembersFrom<T>(this T destination, T source)
+        public static T CloneSimpleMembersFrom<T>(this T destination, T source)
             where T : new()
         {
 

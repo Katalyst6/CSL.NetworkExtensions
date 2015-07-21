@@ -206,7 +206,7 @@ namespace NetworkExtensions.NewNetwork.Highway6L
 
                     if (p.m_prop == speedLimit65)
                     {
-                        var newP = p.ShallowCopy();
+                        var newP = p.ShallowClone();
                         newP.m_prop = speedLimit100;
                         newP.m_finalProp = speedLimit100;
 

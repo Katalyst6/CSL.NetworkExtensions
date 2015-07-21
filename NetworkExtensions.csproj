@@ -52,7 +52,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Framework\Extensions\CloningExtensions.cs" />
     <Compile Include="Framework\Extensions\EnumExtensions.cs" />
+    <Compile Include="Framework\Extensions\ExpressionExtensions.cs" />
+    <Compile Include="Framework\Selector.cs" />
     <Compile Include="Framework\TextureManager.cs" />
     <Compile Include="ModBehaviour.CustomPanel.cs" />
     <Compile Include="Framework\Loading.cs" />
