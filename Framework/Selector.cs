@@ -34,5 +34,15 @@ namespace NetworkExtensions.Framework
         {
             return new MemberSelector<NetInfo, TProperty>(propertySelector);
         }
+
+        public static IMemberSelector NetAI<TProperty>(Expression<Func<NetAI, TProperty>> propertySelector)
+        {
+            return new MemberSelector<NetAI, TProperty>(propertySelector);
+        }
+
+        public static IMemberSelector RoadAI<TProperty>(Expression<Func<RoadAI, TProperty>> propertySelector)
+        {
+            return new MemberSelector<RoadAI, TProperty>(propertySelector);
+        }
     }
 }

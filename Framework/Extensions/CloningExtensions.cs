@@ -55,6 +55,8 @@ namespace NetworkExtensions.Framework
             var info = gameObject.AddComponent<NetInfo>();
 
             info.CloneMembersFrom(originalPrefab, s_netInfoUnclonedMembers);
+            info.name = newName;
+            info.m_prefabInitialized = false;
 
             //info.m_availableIn = originalPrefab.m_availableIn;
             //info.m_color = originalPrefab.m_color;
@@ -99,28 +101,7 @@ namespace NetworkExtensions.Framework
             {
                 info.m_lanes = originalPrefab
                     .m_lanes
-                    .Select(originalNetInfoLane =>
-                    {
-                        var netInfoLane = originalNetInfoLane.ShallowClone();
-
-                        if (originalNetInfoLane.m_laneProps != null)
-                        {
-                            var originalProps = originalNetInfoLane.m_laneProps;
-                            var props = ScriptableObject.CreateInstance<NetLaneProps>();
-                            props.CloneMembersFrom(originalProps);
-
-                            if (originalProps.m_props != null)
-                            {
-                                props.m_props = originalProps
-                                    .m_props
-                                    .Select(propsProp => propsProp.ShallowClone())
-                                    .ToArray();
-                            }
-
-                            netInfoLane.m_laneProps = props;
-                        }
-                        return netInfoLane;
-                    })
+                    .Select(originalNetInfoLane => originalNetInfoLane.Clone())
                     .ToArray();
             }
 
@@ -128,61 +109,98 @@ namespace NetworkExtensions.Framework
             // NetAI ----------------------------
             if (originalPrefab.m_netAI != null)
             {
-                Debug.Log(String.Format("NExt: Cloning {0} AI", originalPrefab.name));
-
-                var originNetAI = originalPrefab.m_netAI;
-                var netAI = (NetAI)gameObject.AddComponent(originNetAI.GetType());
-                //netAI.CopyMembersFrom(originalPrefab.m_netAI, 
-                //    "m_info", 
-                //    "gameObject", 
-                //    "transform",
-                //    "tag"
-                //    ,
-                //    "m_elevatedInfo",
-                //    "m_bridgeInfo",
-                //    "m_slopeInfo",
-                //    "m_tunnelInfo"
-                //    );
-                netAI.name = newName;
-                netAI.m_info = info;
-                netAI.transform.SetParent(info.transform);
-
-                if (originNetAI is RoadAI && netAI is RoadAI)
-                {
-                    var originalRoadAI = originNetAI as RoadAI;
-                    var roadAI = netAI as RoadAI;
-
-                    if (originalRoadAI.m_elevatedInfo != null)
-                    {
-                        roadAI.m_elevatedInfo = originalRoadAI.m_elevatedInfo.CloneII(newName + " Elevated");
-                        roadAI.m_elevatedInfo.transform.SetParent(netAI.transform);
-                    }
-
-                    if (originalRoadAI.m_bridgeInfo != null)
-                    {
-                        roadAI.m_bridgeInfo = originalRoadAI.m_bridgeInfo.CloneII(newName + " Bridge");
-                        roadAI.m_bridgeInfo.transform.SetParent(netAI.transform);
-                    }
-
-                    if (originalRoadAI.m_slopeInfo != null)
-                    {
-                        roadAI.m_slopeInfo = originalRoadAI.m_slopeInfo.CloneII(newName + " Slope");
-                        roadAI.m_slopeInfo.transform.SetParent(netAI.transform);
-                    }
-
-                    if (originalRoadAI.m_tunnelInfo != null)
-                    {
-                        roadAI.m_tunnelInfo = originalRoadAI.m_tunnelInfo.CloneII(newName + " Tunnel");
-                        roadAI.m_tunnelInfo.transform.SetParent(netAI.transform);
-                    }
-                }
+                info.m_netAI = originalPrefab.m_netAI.Clone(info, newName);
             }
-
-            info.name = newName;
-            info.m_prefabInitialized = false;
 
             Debug.Log(String.Format("NExt: Cloning completed {0} -> {1}", originalPrefab.name, newName));
             return info;
+        }
+
+        private static readonly string[] s_netAIUnclonedMembers = new[]
+            {
+                Selector.NetAI(nai => nai.gameObject),
+                Selector.NetAI(nai => nai.transform),
+                Selector.NetAI(nai => nai.m_info),
+                Selector.NetAI(nai => nai.tag),
+                Selector.RoadAI(rai => rai.m_elevatedInfo),
+                Selector.RoadAI(rai => rai.m_bridgeInfo),
+                Selector.RoadAI(rai => rai.m_slopeInfo),
+                Selector.RoadAI(rai => rai.m_tunnelInfo),
+            }
+            .Select(s => s.MemberName)
+            .ToArray();
+
+        public static NetAI Clone(this NetAI originNetAI, NetInfo newInfo, string newName)
+        {
+            Debug.Log(String.Format("NExt: Cloning {0} AI", originNetAI.name));
+
+            var netAI = (NetAI)newInfo.gameObject.AddComponent(originNetAI.GetType());
+            netAI.CloneMembersFrom(originNetAI, s_netAIUnclonedMembers);
+            netAI.name = newInfo.name;
+            netAI.m_info = newInfo;
+
+            netAI.transform.SetParent(newInfo.transform);
+
+            if (originNetAI is RoadAI && netAI is RoadAI)
+            {
+                (netAI as RoadAI).CloneMembersFrom(originNetAI as RoadAI, newName);
+            }
+
+            return netAI;
+        }
+
+        private static void CloneMembersFrom(this RoadAI roadAI, RoadAI originalRoadAI, string newName)
+        {
+            if (originalRoadAI.m_elevatedInfo != null)
+            {
+                roadAI.m_elevatedInfo = originalRoadAI.m_elevatedInfo.CloneII(newName + " Elevated");
+                roadAI.m_elevatedInfo.transform.SetParent(roadAI.transform);
+            }
+
+            if (originalRoadAI.m_bridgeInfo != null)
+            {
+                roadAI.m_bridgeInfo = originalRoadAI.m_bridgeInfo.CloneII(newName + " Bridge");
+                roadAI.m_bridgeInfo.transform.SetParent(roadAI.transform);
+            }
+
+            if (originalRoadAI.m_slopeInfo != null)
+            {
+                roadAI.m_slopeInfo = originalRoadAI.m_slopeInfo.CloneII(newName + " Slope");
+                roadAI.m_slopeInfo.transform.SetParent(roadAI.transform);
+            }
+
+            if (originalRoadAI.m_tunnelInfo != null)
+            {
+                roadAI.m_tunnelInfo = originalRoadAI.m_tunnelInfo.CloneII(newName + " Tunnel");
+                roadAI.m_tunnelInfo.transform.SetParent(roadAI.transform);
+            }
+        }
+
+        public static NetInfo.Lane Clone(this NetInfo.Lane originalNetInfoLane)
+        {
+            var netInfoLane = originalNetInfoLane.ShallowClone();
+
+            if (originalNetInfoLane.m_laneProps != null)
+            {
+                netInfoLane.m_laneProps = originalNetInfoLane.m_laneProps.Clone();
+            }
+            return netInfoLane;
+        }
+
+        public static NetLaneProps Clone(this NetLaneProps originalNetLaneProps)
+        {
+            var props = ScriptableObject.CreateInstance<NetLaneProps>();
+            props.CloneMembersFrom(originalNetLaneProps);
+
+            if (originalNetLaneProps.m_props != null)
+            {
+                props.m_props = originalNetLaneProps
+                    .m_props
+                    .Select(propsProp => propsProp.ShallowClone())
+                    .ToArray();
+            }
+
+            return props;
         }
     }
 }
