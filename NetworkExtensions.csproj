@@ -55,7 +55,7 @@
     <Compile Include="Framework\Extensions\EnumExtensions.cs" />
     <Compile Include="Framework\TextureManager.cs" />
     <Compile Include="ModBehaviour.CustomPanel.cs" />
-    <Compile Include="Framework\ToolsCSL.Loading.cs" />
+    <Compile Include="Framework\Loading.cs" />
     <Compile Include="Framework\ToolsCSL.cs" />
     <Compile Include="Framework\ToolsUnity.cs" />
     <Compile Include="Framework\INetInfoBuilder.cs" />

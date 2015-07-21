@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -33,6 +34,45 @@ namespace NetworkExtensions.Framework
                     continue;
                 }
 
+                f.SetValue(destination, f.GetValue(source));
+            }
+
+            return destination;
+        }
+
+        private static readonly IEnumerable<Type> s_simpleTypes = new HashSet<Type>
+        {
+            typeof(bool),
+            typeof(byte),
+            typeof(sbyte),
+            typeof(char),
+            typeof(decimal),
+            typeof(double),
+            typeof(float),
+            typeof(int),
+            typeof(uint),
+            typeof(long),
+            typeof(ulong),
+            typeof(short),
+            typeof(ushort),
+            typeof(string),
+            //typeof(UIntPtr),
+            typeof(Guid),
+            typeof(Enum),
+        };
+
+        public static T CopySimpleMembersFrom<T>(this T destination, T source)
+            where T : new()
+        {
+
+            foreach (FieldInfo f in destination.GetType().GetAllFields(true).OrderBy(x => x.Name))
+            {
+                if (s_simpleTypes.Contains(f.FieldType))
+                {
+                    continue;
+                }
+
+                Debug.Log(String.Format("NExt: Cloning info.{0}", f.Name));
                 f.SetValue(destination, f.GetValue(source));
             }
 

@@ -26,7 +26,7 @@ namespace NetworkExtensions
 
         void Start()
         {
-            ToolsCSL.Loading.QueueAction(TextureManager.Instance.FindAndLoadAllTextures);
+            Loading.QueueAction(TextureManager.Instance.FindAndLoadAllTextures);
         }
 
         void Awake()
@@ -122,7 +122,7 @@ namespace NetworkExtensions
             {
                 if (ValidateNetworkPrerequisites())
                 {
-                    ToolsCSL.Loading.QueueAction(() =>
+                    Loading.QueueAction(() =>
                     {
                         try
                         {

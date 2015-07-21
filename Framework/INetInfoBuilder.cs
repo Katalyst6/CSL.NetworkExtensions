@@ -65,15 +65,15 @@ namespace NetworkExtensions.Framework
             }
 
 
-            // Other versions -------------------------------------------------
+            //// Other versions -------------------------------------------------
 
-            var mainInfoAI = mainInfo.GetComponent<RoadAI>();
+            //var mainInfoAI = mainInfo.GetComponent<RoadAI>();
 
-            builder.BuildVersion(parentObject, NetInfoVersion.Elevated, info => mainInfoAI.m_elevatedInfo = info, newNetInfos);
-            builder.BuildVersion(parentObject, NetInfoVersion.Bridge,   info => mainInfoAI.m_bridgeInfo = info, newNetInfos);
-            builder.BuildVersion(parentObject, NetInfoVersion.Tunnel,   info => mainInfoAI.m_tunnelInfo = info, newNetInfos);
-            builder.BuildVersion(parentObject, NetInfoVersion.Slope,    info => mainInfoAI.m_slopeInfo = info, newNetInfos);
-            
+            //builder.BuildVersion(parentObject, NetInfoVersion.Elevated, info => mainInfoAI.m_elevatedInfo = info, newNetInfos);
+            //builder.BuildVersion(parentObject, NetInfoVersion.Bridge,   info => mainInfoAI.m_bridgeInfo = info, newNetInfos);
+            //builder.BuildVersion(parentObject, NetInfoVersion.Tunnel,   info => mainInfoAI.m_tunnelInfo = info, newNetInfos);
+            //builder.BuildVersion(parentObject, NetInfoVersion.Slope,    info => mainInfoAI.m_slopeInfo = info, newNetInfos);
+
             Debug.Log(string.Format("NExt: Initialized {0}", builder.Name));
 
             return newNetInfos;
@@ -86,11 +86,13 @@ namespace NetworkExtensions.Framework
                 var completePrefabName = builder.GetPrefabInfoVersionCompleteName(version);
                 var completeName = builder.GetNewInfoVersionCompleteName(version);
 
-                var info = ToolsCSL.CloneNetInfo(completePrefabName, completeName);
-                info.gameObject.transform.SetParent(parentObject.transform);
+                var info = ToolsCSL
+                    .FindPrefab<NetInfo>(completePrefabName)
+                    .Clone(completeName);
 
+                info.gameObject.transform.SetParent(parentObject.transform);
                 info.SetUICategory(builder.UICategory);
-                builder.BuildUp(info, version);
+                //builder.BuildUp(info, version);
 
                 if (assign != null)
                 {
@@ -98,6 +100,12 @@ namespace NetworkExtensions.Framework
                 }
 
                 holdingCollection.Add(info);
+
+                var mainInfoAI = info.GetComponent<RoadAI>();
+                holdingCollection.Add(mainInfoAI.m_elevatedInfo);
+                holdingCollection.Add(mainInfoAI.m_bridgeInfo);
+                holdingCollection.Add(mainInfoAI.m_tunnelInfo);
+                holdingCollection.Add(mainInfoAI.m_slopeInfo);
 
                 return info;
             }

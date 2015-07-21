@@ -80,6 +80,9 @@ namespace NetworkExtensions.NewNetwork.Highway6L
             info.m_hasParkingSpaces = false;
             info.m_hasPedestrianLanes = false;
 
+
+            // TODO: Set unlock milestone = Highway
+
             // Test 
             //info.m_surfaceLevel = 0;
 
