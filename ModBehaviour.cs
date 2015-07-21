@@ -132,7 +132,7 @@ namespace NetworkExtensions
 
                             foreach (var builder in NetInfoBuilders)
                             {
-                                newInfos.AddRange(builder.Build());
+                                newInfos.AddRange(builder.Build(gameObject));
                             }
 
                             if (newInfos.Count > 0)
