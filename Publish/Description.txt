@@ -1,14 +1,14 @@
 An addition of highways and roads
-v. 0.0.0.5 (BETA)
+v. 0.0.0.5 (BETA) 
 ONLY FOR TEST - STABLE VERSION COMING SOON - USE AT YOUR OWN RISK!
 
 
--Support of the 6 lanes highway
--Framework for new roads!
+[h1][b]Current support:[/b][/h1] 
+-6 lanes highway
+-Framework for new roads! (for devs.)
 
 
-
-Upcoming:
+[h1][b]Upcoming:[/b][/h1] 
 -2 lanes highway (upgrade from Some Road mod)
 -4 lanes highway
 -4 lanes one way
@@ -17,13 +17,11 @@ Upcoming:
 ... and more
 
 
-
-Known bugs:
+[h1][b]Known bugs:[/b][/h1] 
 -Some performance issues since 1.1.1c (should be fixed very soon)
 
 
-
-Help required:
+[h1][b]Help required:[/b][/h1] 
 -Anyone who wants to code (...and maybe provide perf advices)
 -Anyone who wants code new roads
 -Anyone can provide/create textures
@@ -33,8 +31,7 @@ Help required:
 
 
 
-
-Special thanks to:
+[h1][b]Special thanks to:[/b][/h1] 
 jfarias' Traffic++
 https://steamcommunity.com/sharedfiles/filedetails/?id=409184143&searchtext=
 
@@ -43,3 +40,7 @@ https://steamcommunity.com/sharedfiles/filedetails/?id=413687519
 
 Jonathan Bailey's medium OneWay road
 https://github.com/Jon889/CS-Medium-One-Way-Roads
+
+
+[h1][b]Source code:[/b][/h1] 
+Coming soon.
