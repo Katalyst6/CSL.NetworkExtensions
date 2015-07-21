@@ -5,7 +5,6 @@ using System.Linq;
 using System.Reflection;
 using ColossalFramework;
 using ColossalFramework.UI;
-using NetworkExtensions.Framework.Extensions;
 using UnityEngine;
 using Object = UnityEngine.Object;
 

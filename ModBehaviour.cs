@@ -5,7 +5,6 @@ using System.Reflection;
 using ColossalFramework;
 using ColossalFramework.Globalization;
 using NetworkExtensions.Framework;
-using NetworkExtensions.Framework.Extensions;
 using UnityEngine;
 
 #if DEBUG

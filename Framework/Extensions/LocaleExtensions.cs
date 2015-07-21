@@ -1,6 +1,6 @@
 ﻿using ColossalFramework.Globalization;
 
-namespace NetworkExtensions.Framework.Extensions
+namespace NetworkExtensions.Framework
 {
     public static class LocaleExtensions
     {

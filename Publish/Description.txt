@@ -1,0 +1,45 @@
+An addition of highways and roads
+v. 0.0.0.5 (BETA)
+ONLY FOR TEST - STABLE VERSION COMING SOON - USE AT YOUR OWN RISK!
+
+
+-Support of the 6 lanes highway
+-Framework for new roads!
+
+
+
+Upcoming:
+-2 lanes highway (upgrade from Some Road mod)
+-4 lanes highway
+-4 lanes one way
+-4 lanes small road
+-2 way avenues with suicide lanes
+... and more
+
+
+
+Known bugs:
+-Some performance issues since 1.1.1c (should be fixed very soon)
+
+
+
+Help required:
+-Anyone who wants to code (...and maybe provide perf advices)
+-Anyone who wants code new roads
+-Anyone can provide/create textures
+(Roads, thumbnails and tooltips)
+-Anyone can provide/create meshes!!!!
+-Every new ideas will be taken in consideration =)
+
+
+
+
+Special thanks to:
+jfarias' Traffic++
+https://steamcommunity.com/sharedfiles/filedetails/?id=409184143&searchtext=
+
+some danny's Some Road
+https://steamcommunity.com/sharedfiles/filedetails/?id=413687519
+
+Jonathan Bailey's medium OneWay road
+https://github.com/Jon889/CS-Medium-One-Way-Roads

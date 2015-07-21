@@ -8,7 +8,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "References", "References", 
 		References\Assembly-CSharp.dll = References\Assembly-CSharp.dll
 		References\ColossalManaged.dll = References\ColossalManaged.dll
 		References\ICities.dll = References\ICities.dll
-		References\ICSharpCode.SharpZipLib.dll = References\ICSharpCode.SharpZipLib.dll
 		References\UnityEngine.dll = References\UnityEngine.dll
 	EndProjectSection
 EndProject

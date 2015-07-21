@@ -3,65 +3,64 @@ using System.Collections.Generic;
 using System.Linq;
 using ColossalFramework.UI;
 using NetworkExtensions.Framework;
-using NetworkExtensions.Framework.Extensions;
 using UnityEngine;
 
 #if DEBUG
 using Debug = NetworkExtensions.Framework.Debug;
 #endif
 
-namespace NetworkExtensions.NewNetwork.XLargeHighway
+namespace NetworkExtensions.NewNetwork.Highway6L
 {
-    public class XLargeHighwayBuilder : INetInfoBuilder
+    public class Highway6LBuilder : INetInfoBuilder
     {
-        public int Priority { get { return 15; } }
+        public int Priority { get { return 16; } }
 
         public string PrefabName  { get { return "Large Oneway"; } }
         public string Name        { get { return "Large Highway"; } }
-        public string CodeName    { get { return "XL_HIGHWAY"; } }
+        public string CodeName    { get { return "HIGHWAY_6L"; } }
         public string Description { get { return "An highway with six lanes (100% more than the original)."; } }
         public string UICategory  { get { return "RoadsHighway"; } }
 
-        public string ThumbnailsPath  { get { return @"NewNetwork\XLargeHighway\thumbnails.png"; } }
-        public string InfoTooltipPath { get { return @"NewNetwork\XLargeHighway\infotooltip.png"; } }
+        public string ThumbnailsPath  { get { return @"NewNetwork\Highway6L\thumbnails.png"; } }
+        public string InfoTooltipPath { get { return @"NewNetwork\Highway6L\infotooltip.png"; } }
 
         public NetInfoVersion SupportedVersions
         {
             get { return NetInfoVersion.All; }
         }
 
-        public void BuildUp(NetInfo info, NetInfoVersion version)
+        public void BuildUp (NetInfo info, NetInfoVersion version)
         {
             ///////////////////////////
-            // Texturings
+            // Texturing             //
             ///////////////////////////
             switch (version)
             {
                 case NetInfoVersion.Ground:
                     info.SetSegmentsTexture(
-                        @"NewNetwork\XLargeHighway\Ground\Segments\_MainTex.png",
-                        @"NewNetwork\XLargeHighway\Ground\Segments\_XYSMap.png",
-                        @"NewNetwork\XLargeHighway\Ground\Segments\_APRMap.png");
+                        @"NewNetwork\Highway6L\Ground\Segments\_MainTex.png",
+                        @"NewNetwork\Highway6L\Ground\Segments\_XYSMap.png",
+                        @"NewNetwork\Highway6L\Ground\Segments\_APRMap.png");
                     info.SetNodesTexture(
-                        @"NewNetwork\XLargeHighway\Ground\Nodes\_MainTex.png",
-                        @"NewNetwork\XLargeHighway\Ground\Nodes\_APRMap.png");
+                        @"NewNetwork\Highway6L\Ground\Nodes\_MainTex.png",
+                        @"NewNetwork\Highway6L\Ground\Nodes\_APRMap.png");
                     break;
 
                 case NetInfoVersion.Elevated:
                 case NetInfoVersion.Bridge:
                     info.SetSegmentsTexture(
-                        @"NewNetwork\XLargeHighway\Elevated\Segments\_MainTex.png",
+                        @"NewNetwork\Highway6L\Elevated\Segments\_MainTex.png",
                         null,
-                        @"NewNetwork\XLargeHighway\Elevated\Segments\_APRMap.png");
+                        @"NewNetwork\Highway6L\Elevated\Segments\_APRMap.png");
                     info.SetNodesTexture(
-                        @"NewNetwork\XLargeHighway\Elevated\Nodes\_MainTex.png",
-                        @"NewNetwork\XLargeHighway\Elevated\Nodes\_APRMap.png");
+                        @"NewNetwork\Highway6L\Elevated\Nodes\_MainTex.png",
+                        @"NewNetwork\Highway6L\Elevated\Nodes\_APRMap.png");
                     break;
 
                 case NetInfoVersion.Slope:
                     info.SetNodesTexture(
-                        @"NewNetwork\XLargeHighway\Slope\Nodes\_MainTex.png",
-                        @"NewNetwork\XLargeHighway\Slope\Nodes\_APRMap.png");
+                        @"NewNetwork\Highway6L\Slope\Nodes\_MainTex.png",
+                        @"NewNetwork\Highway6L\Slope\Nodes\_APRMap.png");
                     break;
 
                 case NetInfoVersion.Tunnel:
@@ -73,7 +72,7 @@ namespace NetworkExtensions.NewNetwork.XLargeHighway
 
 
             ///////////////////////////
-            // Properties
+            // Set up                //
             ///////////////////////////
             info.m_createPavement = false;
             info.m_createGravel = (version == NetInfoVersion.Ground);

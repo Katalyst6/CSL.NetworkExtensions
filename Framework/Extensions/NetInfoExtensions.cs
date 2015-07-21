@@ -6,7 +6,7 @@ using UnityEngine;
 using Debug = NetworkExtensions.Framework.Debug;
 #endif
 
-namespace NetworkExtensions.Framework.Extensions
+namespace NetworkExtensions.Framework
 {
     internal static class NetInfoExtensions
     {

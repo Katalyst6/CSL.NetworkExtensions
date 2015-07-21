@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace NetworkExtensions.Framework.Extensions
+namespace NetworkExtensions.Framework
 {
     public static class EnumExtensions
     {

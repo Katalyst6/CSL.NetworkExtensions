@@ -4,7 +4,6 @@ using System.Linq;
 using ColossalFramework;
 using ColossalFramework.Globalization;
 using ColossalFramework.UI;
-using NetworkExtensions.Framework.Extensions;
 using UnityEngine;
 using Object = UnityEngine.Object;
 
