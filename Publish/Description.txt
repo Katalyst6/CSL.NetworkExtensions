@@ -4,7 +4,8 @@ ONLY FOR TEST - STABLE VERSION COMING SOON - USE AT YOUR OWN RISK!
 
 
 [h1][b]Current support:[/b][/h1] 
--6 lanes highway
+-6 lanes highway 
+(Basicly, an upgraded 6 lanes OneWay with a 100km/h speed limit, without the building possibility)
 -Framework for new roads! (for devs.)
 
 
@@ -30,7 +31,6 @@ ONLY FOR TEST - STABLE VERSION COMING SOON - USE AT YOUR OWN RISK!
 -Every new ideas will be taken in consideration =)
 
 
-
 [h1][b]Special thanks to:[/b][/h1] 
 jfarias' Traffic++
 https://steamcommunity.com/sharedfiles/filedetails/?id=409184143&searchtext=
@@ -43,4 +43,4 @@ https://github.com/Jon889/CS-Medium-One-Way-Roads
 
 
 [h1][b]Source code:[/b][/h1] 
-Coming soon.
+https://github.com/Katalyst6/CSL.NetworkExtensions
