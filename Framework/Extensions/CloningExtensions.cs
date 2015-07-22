@@ -50,6 +50,7 @@ namespace NetworkExtensions.Framework
         public static NetInfo CloneII(this NetInfo originalPrefab, string newName)
         {
             Debug.Log(String.Format("NExt: Cloning {0} -> {1}", originalPrefab.name, newName));
+            Debug.Log(String.Format("NExt: Ignoring members {0}", string.Join(", ", s_netInfoUnclonedMembers)));
 
             var gameObject = new GameObject(newName);
             var info = gameObject.AddComponent<NetInfo>();
@@ -179,28 +180,63 @@ namespace NetworkExtensions.Framework
         public static NetInfo.Lane Clone(this NetInfo.Lane originalNetInfoLane)
         {
             var netInfoLane = originalNetInfoLane.ShallowClone();
+            netInfoLane.m_laneProps = null;
 
             if (originalNetInfoLane.m_laneProps != null)
             {
                 netInfoLane.m_laneProps = originalNetInfoLane.m_laneProps.Clone();
             }
+
             return netInfoLane;
         }
 
+        private static IDictionary<int, int> _originalToClonedNLP = new Dictionary<int, int>();
+        private static IDictionary<int, NetLaneProps> _clonedNLP = new Dictionary<int, NetLaneProps>();
+
+        //public static NetLaneProps Clone(this NetLaneProps originalNetLaneProps)
+        //{
+        //    Debug.Log(String.Format("NExt: NetLaneProps Id {0}", originalNetLaneProps.GetInstanceID()));
+        //    Debug.Log(String.Format("NExt: NetLaneProps Hash {0}", originalNetLaneProps.GetHashCode()));
+        //    var props = ScriptableObject.CreateInstance<NetLaneProps>();
+        //    props.CloneMembersFrom(originalNetLaneProps, "m_props");
+
+        //    if (originalNetLaneProps.m_props != null)
+        //    {
+        //        props.m_props = originalNetLaneProps
+        //            .m_props
+        //            .Select(propsProp => propsProp.ShallowClone())
+        //            .ToArray();
+        //    }
+
+        //    return props;
+        //}
         public static NetLaneProps Clone(this NetLaneProps originalNetLaneProps)
         {
-            var props = ScriptableObject.CreateInstance<NetLaneProps>();
-            props.CloneMembersFrom(originalNetLaneProps);
+            var nlpId = originalNetLaneProps.GetInstanceID();
 
-            if (originalNetLaneProps.m_props != null)
+            if (!_originalToClonedNLP.ContainsKey(nlpId))
             {
-                props.m_props = originalNetLaneProps
-                    .m_props
-                    .Select(propsProp => propsProp.ShallowClone())
-                    .ToArray();
+                var props = ScriptableObject.CreateInstance<NetLaneProps>(); // This is ok
+                props.DebugCloneMembersFrom(originalNetLaneProps, "m_props"); // This is not required
+
+                // This is lagging!
+                //if (originalNetLaneProps.m_props != null)
+                //{
+                //    props.m_props = originalNetLaneProps
+                //        .m_props
+                //        //.Select(propsProp => propsProp.ShallowClone())
+                //        .ToArray();
+                //}
+                // This is lagging! 
+
+                Debug.Log(String.Format("NExt: NetLaneProps Id {0}", nlpId));
+                Debug.Log(String.Format("NExt: NewNetLaneProps Id {0}", props.GetInstanceID()));
+
+                _originalToClonedNLP[nlpId] = props.GetInstanceID();
+                _clonedNLP[props.GetInstanceID()] = props;
             }
 
-            return props;
+            return _clonedNLP[_originalToClonedNLP[nlpId]];
         }
     }
 }

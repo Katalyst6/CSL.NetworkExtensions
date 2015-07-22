@@ -13,8 +13,8 @@ namespace NetworkExtensions.Framework
 
     public class MemberSelector<T, TProperty> : IMemberSelector
     {
-        private Expression<Func<T, TProperty>> _memberSelector;
-        private string _memberName;
+        private readonly Expression<Func<T, TProperty>> _memberSelector;
+        private readonly string _memberName;
 
         public MemberSelector(Expression<Func<T, TProperty>> memberSelector)
         {
@@ -24,7 +24,7 @@ namespace NetworkExtensions.Framework
 
         public string MemberName
         {
-            get { throw new NotImplementedException(); }
+            get { return _memberName; }
         }
     }
 
