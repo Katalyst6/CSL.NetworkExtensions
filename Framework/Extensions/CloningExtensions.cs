@@ -50,7 +50,7 @@ namespace NetworkExtensions.Framework
         public static NetInfo CloneII(this NetInfo originalPrefab, string newName)
         {
             Debug.Log(String.Format("NExt: Cloning {0} -> {1}", originalPrefab.name, newName));
-            Debug.Log(String.Format("NExt: Ignoring members {0}", string.Join(", ", s_netInfoUnclonedMembers)));
+            //Debug.Log(String.Format("NExt: Ignoring members {0}", string.Join(", ", s_netInfoUnclonedMembers)));
 
             var gameObject = new GameObject(newName);
             var info = gameObject.AddComponent<NetInfo>();
@@ -219,15 +219,41 @@ namespace NetworkExtensions.Framework
                 var props = ScriptableObject.CreateInstance<NetLaneProps>(); // This is ok
                 props.DebugCloneMembersFrom(originalNetLaneProps, "m_props"); // This is not required
 
-                // This is lagging!
-                //if (originalNetLaneProps.m_props != null)
-                //{
-                //    props.m_props = originalNetLaneProps
-                //        .m_props
-                //        //.Select(propsProp => propsProp.ShallowClone())
-                //        .ToArray();
-                //}
-                // This is lagging! 
+                if (originalNetLaneProps.m_props != null)
+                {
+                    Debug.Log(String.Format("NExt: Cloning NetLaneProps.Prop ({0} props)", originalNetLaneProps.m_props.Count()));
+                    props.m_props = originalNetLaneProps
+                        .m_props
+                        .Select(propsProp =>
+                        {
+                            //var newPropsProp = propsProp.ShallowClone();
+
+                            var newPropsProp = new NetLaneProps.Prop();
+                            newPropsProp.m_angle = propsProp.m_angle;
+                            newPropsProp.m_colorMode = propsProp.m_colorMode;
+                            newPropsProp.m_cornerAngle = propsProp.m_cornerAngle;
+                            newPropsProp.m_endFlagsForbidden = propsProp.m_endFlagsForbidden;
+                            newPropsProp.m_endFlagsRequired = propsProp.m_endFlagsRequired;
+                            newPropsProp.m_flagsForbidden = propsProp.m_flagsForbidden;
+                            newPropsProp.m_flagsRequired = propsProp.m_flagsRequired;
+                            newPropsProp.m_minLength = propsProp.m_minLength;
+                            newPropsProp.m_position = propsProp.m_position;
+                            newPropsProp.m_probability = propsProp.m_probability;
+                            newPropsProp.m_repeatDistance = propsProp.m_repeatDistance;
+                            newPropsProp.m_segmentOffset = propsProp.m_segmentOffset;
+                            newPropsProp.m_startFlagsForbidden = propsProp.m_startFlagsForbidden;
+                            newPropsProp.m_startFlagsRequired = propsProp.m_startFlagsRequired;
+
+                            // This is the laggy part - Why?
+                            newPropsProp.m_finalProp = propsProp.m_finalProp;
+                            newPropsProp.m_prop = propsProp.m_prop;
+                            newPropsProp.m_finalTree = propsProp.m_finalTree;
+                            newPropsProp.m_tree = propsProp.m_tree;
+
+                            return newPropsProp;
+                        })
+                        .ToArray();
+                }
 
                 Debug.Log(String.Format("NExt: NetLaneProps Id {0}", nlpId));
                 Debug.Log(String.Format("NExt: NewNetLaneProps Id {0}", props.GetInstanceID()));
