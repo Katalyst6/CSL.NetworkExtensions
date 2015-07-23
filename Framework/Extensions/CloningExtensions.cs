@@ -17,7 +17,7 @@ namespace NetworkExtensions.Framework
         public static NetInfo Clone(this NetInfo originalPrefab, string newName)
         {
             // TODO: Perf issue with Object.Instantiate
-            return CloneII(originalPrefab, newName);
+            //return CloneII(originalPrefab, newName);
 
             Debug.Log(String.Format("NExt: Cloning {0} -> {1}", originalPrefab.name, newName));
 
@@ -29,7 +29,27 @@ namespace NetworkExtensions.Framework
 
             Debug.Log(String.Format("NExt: Cloning completed {0} -> {1}", originalPrefab.name, newName));
 
+            info.CleanupProps();
+
+            Debug.Log(String.Format("NExt: Props cleanup completed {0} -> {1}", originalPrefab.name, newName));
+
             return info;
+        }
+
+        private static void CleanupProps(this NetInfo netInfo)
+        {
+            // Cleaning up laggy props
+
+            foreach (var lane in netInfo.m_lanes)
+            {
+                if (lane.m_laneProps != null)
+                {
+                    lane.m_laneProps.m_props = new NetLaneProps.Prop[]{};
+
+                    Object.Destroy(lane.m_laneProps);
+                    lane.m_laneProps = null;
+                }
+            }
         }
 
         private static readonly string[] s_netInfoUnclonedMembers = new[]
