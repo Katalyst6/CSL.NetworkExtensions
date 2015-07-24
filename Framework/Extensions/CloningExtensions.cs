@@ -27,6 +27,8 @@ namespace NetworkExtensions.Framework
             var info = gameObject.GetComponent<NetInfo>();
             info.m_prefabInitialized = false;
 
+            Debug.Log(String.Format("NExt: Original name:  {0}", originalPrefab.gameObject.name));
+            Debug.Log(String.Format("NExt: Original parent:  {0}", originalPrefab.gameObject.name));
             Debug.Log(String.Format("NExt: Cloning completed {0} -> {1}", originalPrefab.name, newName));
 
             info.CleanupProps();
@@ -39,16 +41,9 @@ namespace NetworkExtensions.Framework
         private static void CleanupProps(this NetInfo netInfo)
         {
             // Cleaning up laggy props
-
             foreach (var lane in netInfo.m_lanes)
             {
-                if (lane.m_laneProps != null)
-                {
-                    lane.m_laneProps.m_props = new NetLaneProps.Prop[]{};
-
-                    Object.Destroy(lane.m_laneProps);
-                    lane.m_laneProps = null;
-                }
+                lane.m_laneProps = null;
             }
         }
 

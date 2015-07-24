@@ -67,12 +67,12 @@ namespace NetworkExtensions.Framework
 
             //// Other versions -------------------------------------------------
 
-            //var mainInfoAI = mainInfo.GetComponent<RoadAI>();
+            var mainInfoAI = mainInfo.GetComponent<RoadAI>();
 
-            //builder.BuildVersion(parentObject, NetInfoVersion.Elevated, info => mainInfoAI.m_elevatedInfo = info, newNetInfos);
-            //builder.BuildVersion(parentObject, NetInfoVersion.Bridge,   info => mainInfoAI.m_bridgeInfo = info, newNetInfos);
-            //builder.BuildVersion(parentObject, NetInfoVersion.Tunnel,   info => mainInfoAI.m_tunnelInfo = info, newNetInfos);
-            //builder.BuildVersion(parentObject, NetInfoVersion.Slope,    info => mainInfoAI.m_slopeInfo = info, newNetInfos);
+            builder.BuildVersion(parentObject, NetInfoVersion.Elevated, info => mainInfoAI.m_elevatedInfo = info, newNetInfos);
+            builder.BuildVersion(parentObject, NetInfoVersion.Bridge, info => mainInfoAI.m_bridgeInfo = info, newNetInfos);
+            builder.BuildVersion(parentObject, NetInfoVersion.Tunnel, info => mainInfoAI.m_tunnelInfo = info, newNetInfos);
+            builder.BuildVersion(parentObject, NetInfoVersion.Slope, info => mainInfoAI.m_slopeInfo = info, newNetInfos);
 
             Debug.Log(string.Format("NExt: Initialized {0}", builder.Name));
 
@@ -101,11 +101,11 @@ namespace NetworkExtensions.Framework
 
                 holdingCollection.Add(info);
 
-                var mainInfoAI = info.GetComponent<RoadAI>();
-                holdingCollection.Add(mainInfoAI.m_elevatedInfo);
-                holdingCollection.Add(mainInfoAI.m_bridgeInfo);
-                holdingCollection.Add(mainInfoAI.m_tunnelInfo);
-                holdingCollection.Add(mainInfoAI.m_slopeInfo);
+                //var mainInfoAI = info.GetComponent<RoadAI>();
+                //holdingCollection.Add(mainInfoAI.m_elevatedInfo);
+                //holdingCollection.Add(mainInfoAI.m_bridgeInfo);
+                //holdingCollection.Add(mainInfoAI.m_tunnelInfo);
+                //holdingCollection.Add(mainInfoAI.m_slopeInfo);
 
                 return info;
             }

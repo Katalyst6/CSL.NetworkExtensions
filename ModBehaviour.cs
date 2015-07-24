@@ -141,6 +141,7 @@ namespace NetworkExtensions
                                 newRoadCollection.m_prefabs = newInfos.ToArray();
 
                                 PrefabCollection<NetInfo>.InitializePrefabs(newRoadCollection.name, newRoadCollection.m_prefabs, new string[] { });
+                                PrefabCollection<NetInfo>.BindPrefabs();
                             }
 
                             Debug.Log("NExt: Finished installing components");
