@@ -132,7 +132,7 @@ namespace NetworkExtensions
 
                             foreach (var builder in NetInfoBuilders)
                             {
-                                newInfos.AddRange(builder.Build(gameObject));
+                                newInfos.AddRange(builder.Build());
                             }
 
                             if (newInfos.Count > 0)
@@ -163,6 +163,28 @@ namespace NetworkExtensions
                 _initializedNetworkInfo &&
                 _initializedLocalization;
 
+        }
+
+        private NetCollection NewRoadsNetCollection
+        {
+            get
+            {
+                var thisNetColls = gameObject.GetComponents<NetCollection>();
+                if (thisNetColls == null)
+                {
+                    return null;
+                }
+
+                foreach (var col in thisNetColls)
+                {
+                    if (col.name == NEWROADS_NETCOLLECTION)
+                    {
+                        return col;
+                    }
+                }
+
+                return null;
+            }
         }
 
         private bool ValidateNetworkPrerequisites()
@@ -214,28 +236,6 @@ namespace NetworkExtensions
             }
 
             return true;
-        }
-
-        private NetCollection NewRoadsNetCollection
-        {
-            get
-            {
-                var thisNetColls = gameObject.GetComponents<NetCollection>();
-                if (thisNetColls == null)
-                {
-                    return null;
-                }
-
-                foreach (var col in thisNetColls)
-                {
-                    if (col.name == NEWROADS_NETCOLLECTION)
-                    {
-                        return col;
-                    }
-                }
-
-                return null;
-            }
         }
 
         private bool ValidateLocalizationPrerequisites()
