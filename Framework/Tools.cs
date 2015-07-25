@@ -45,23 +45,6 @@ namespace NetworkExtensions.Framework
             return destination;
         }
 
-        public static T DebugCloneMembersFrom<T>(this T destination, T source, params string[] omitMembers)
-            where T : new()
-        {
-            foreach (FieldInfo f in destination.GetType().GetAllFields(true))
-            {
-                if (omitMembers.Contains(f.Name))
-                {
-                    continue;
-                }
-
-                Debug.Log(String.Format("NExt: Cloning field {0}", f.Name));
-                //f.SetValue(destination, f.GetValue(source));
-            }
-
-            return destination;
-        }
-
         private static readonly IEnumerable<Type> s_simpleTypes = new HashSet<Type>
         {
             typeof(bool),

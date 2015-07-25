@@ -5,10 +5,18 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetworkExtensions", "Networ
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "References", "References", "{FC5D316C-D7B8-4986-9E91-D3784D4A8CBB}"
 	ProjectSection(SolutionItems) = preProject
+		References\Assembly-CSharp-firstpass.dll = References\Assembly-CSharp-firstpass.dll
 		References\Assembly-CSharp.dll = References\Assembly-CSharp.dll
+		References\Assembly-UnityScript-firstpass.dll = References\Assembly-UnityScript-firstpass.dll
 		References\ColossalManaged.dll = References\ColossalManaged.dll
 		References\ICities.dll = References\ICities.dll
+		References\Mono.Posix.dll = References\Mono.Posix.dll
+		References\Mono.Security.dll = References\Mono.Security.dll
+		References\UnityEngine.Analytics.dll = References\UnityEngine.Analytics.dll
 		References\UnityEngine.dll = References\UnityEngine.dll
+		References\UnityEngine.Networking.dll = References\UnityEngine.Networking.dll
+		References\UnityEngine.UI.dll = References\UnityEngine.UI.dll
+		References\UnityEngine.xml = References\UnityEngine.xml
 	EndProjectSection
 EndProject
 Global
