@@ -71,17 +71,19 @@ namespace NetworkExtensions.NewNetwork.Highway6L
             }
 
 
+
             ///////////////////////////
             // Set up                //
             ///////////////////////////
+            var highwayInfo = ToolsCSL.FindPrefab<NetInfo>("Highway");
+            
             info.m_createPavement = false;
             info.m_createGravel = (version == NetInfoVersion.Ground);
             info.m_averageVehicleLaneSpeed = 2f;
             info.m_hasParkingSpaces = false;
             info.m_hasPedestrianLanes = false;
 
-
-            // TODO: Set unlock milestone = Highway
+            info.m_UnlockMilestone = highwayInfo.m_UnlockMilestone;
 
             // Test 
             //info.m_surfaceLevel = 0;
