@@ -52,11 +52,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Framework\Extensions\CloningExtensions.cs" />
     <Compile Include="Framework\Extensions\EnumExtensions.cs" />
     <Compile Include="Framework\Extensions\ExpressionExtensions.cs" />
+    <Compile Include="Framework\Extensions\MaterialExtensions.cs" />
     <Compile Include="Framework\Selector.cs" />
     <Compile Include="Framework\TextureManager.cs" />
+    <Compile Include="Framework\TexturesSet.cs" />
     <Compile Include="ModBehaviour.CustomPanel.cs" />
     <Compile Include="Framework\Loading.cs" />
     <Compile Include="Framework\ToolsCSL.cs" />
@@ -79,6 +80,15 @@
     <Content Include="NewNetwork\Highway2L\Ground\Nodes\_MainTex.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="NewNetwork\Highway6L\Elevated\LOD\Nodes\_APRMap.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="NewNetwork\Highway6L\Elevated\LOD\Nodes\_MainTex.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="NewNetwork\Highway6L\Elevated\LOD\Nodes\_XYSMap.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="NewNetwork\Highway6L\Elevated\Nodes\_APRMap.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -89,6 +99,15 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="NewNetwork\Highway6L\Elevated\Segments\_MainTex.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="NewNetwork\Highway6L\Ground\LOD\Nodes\_APRMap.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="NewNetwork\Highway6L\Ground\LOD\Nodes\_MainTex.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="NewNetwork\Highway6L\Ground\LOD\Nodes\_XYSMap.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="NewNetwork\Highway6L\Ground\Nodes\_APRMap.png">

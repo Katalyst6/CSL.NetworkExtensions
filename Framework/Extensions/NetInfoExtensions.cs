@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
+using NetworkExtensions.Framework.Extensions;
 using UnityEngine;
 using Object = UnityEngine.Object;
 #if DEBUG
@@ -19,7 +20,7 @@ namespace NetworkExtensions.Framework
             Debug.Log(String.Format("NExt: Cloning {0} -> {1}", originalNetInfo.name, newName));
 
             var gameObject = Object.Instantiate(originalNetInfo.gameObject);
-            gameObject.transform.parent = originalNetInfo.gameObject.transform;
+            gameObject.transform.parent = originalNetInfo.gameObject.transform; // N.B. This line is evil and removing it is killoing the game's performances
             gameObject.name = newName;
 
             var info = gameObject.GetComponent<NetInfo>();
@@ -111,6 +112,21 @@ namespace NetworkExtensions.Framework
                 }
 
                 info.m_nodes[i].m_material = material;
+            }
+
+            return info;
+        }
+
+        public static NetInfo SetNodesTexture(this NetInfo info, TexturesSet newTextures, TexturesSet newLODTextures = null)
+        {
+            foreach (var node in info.m_nodes)
+            {
+                node.m_material = node.m_material.Clone(newTextures);
+
+                if (newLODTextures != null)
+                {
+                    node.m_lodMaterial = node.m_lodMaterial.Clone(newLODTextures);
+                }
             }
 
             return info;
