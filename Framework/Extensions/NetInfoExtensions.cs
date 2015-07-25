@@ -14,6 +14,22 @@ namespace NetworkExtensions.Framework
 {
     public static class NetInfoExtensions
     {
+        public static NetInfo Clone(this NetInfo originalNetInfo, string newName)
+        {
+            Debug.Log(String.Format("NExt: Cloning {0} -> {1}", originalNetInfo.name, newName));
+
+            var gameObject = Object.Instantiate(originalNetInfo.gameObject);
+            gameObject.transform.parent = originalNetInfo.gameObject.transform;
+            gameObject.name = newName;
+
+            var info = gameObject.GetComponent<NetInfo>();
+            info.m_prefabInitialized = false;
+
+            Debug.Log(String.Format("NExt: Cloning completed {0} -> {1}", originalNetInfo.name, newName));
+
+            return info;
+        }
+
         public static void DisplayLaneProps(this NetInfo info)
         {
             foreach (var propInfo in info.m_lanes
