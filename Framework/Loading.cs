@@ -10,19 +10,16 @@ using UnityEngine;
 
 namespace NetworkExtensions.Framework
 {
-    public static partial class ToolsCSL
+    public static class Loading
     {
-        public static class Loading
+        public static void QueueAction(IEnumerator ienum)
         {
-            public static void QueueAction(IEnumerator ienum)
-            {
-                Singleton<LoadingManager>.instance.QueueLoadingAction(ienum);
-            }
+            Singleton<LoadingManager>.instance.QueueLoadingAction(ienum);
+        }
 
-            public static void QueueAction(Action a)
-            {
-                Singleton<LoadingManager>.instance.QueueLoadingAction(a.AsEnumerator());
-            }
+        public static void QueueAction(Action a)
+        {
+            Singleton<LoadingManager>.instance.QueueLoadingAction(a.AsEnumerator());
         }
 
         private static IEnumerator AsEnumerator(this Action a)

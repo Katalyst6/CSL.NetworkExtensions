@@ -1,15 +1,35 @@
-﻿using System.Linq;
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
+using System.Linq.Expressions;
 using System.Reflection;
 using UnityEngine;
-
+using Object = UnityEngine.Object;
 #if DEBUG
 using Debug = NetworkExtensions.Framework.Debug;
 #endif
 
 namespace NetworkExtensions.Framework
 {
-    internal static class NetInfoExtensions
+    public static class NetInfoExtensions
     {
+        public static NetInfo Clone(this NetInfo originalNetInfo, string newName)
+        {
+            Debug.Log(String.Format("NExt: Cloning {0} -> {1}", originalNetInfo.name, newName));
+
+            var gameObject = Object.Instantiate(originalNetInfo.gameObject);
+            gameObject.transform.parent = originalNetInfo.gameObject.transform;
+            gameObject.name = newName;
+
+            var info = gameObject.GetComponent<NetInfo>();
+            info.m_prefabInitialized = false;
+
+            Debug.Log(String.Format("NExt: Cloning completed {0} -> {1}", originalNetInfo.name, newName));
+
+            return info;
+        }
+
         public static void DisplayLaneProps(this NetInfo info)
         {
             foreach (var propInfo in info.m_lanes
@@ -21,7 +41,7 @@ namespace NetworkExtensions.Framework
                 .Where(pi => pi != null)
                 .Distinct())
             {
-                Debug.Log(string.Format("NExt: Prop info name {0}", propInfo.name));
+                Debug.Log(String.Format("NExt: Prop info name {0}", propInfo.name));
             }
         }
 

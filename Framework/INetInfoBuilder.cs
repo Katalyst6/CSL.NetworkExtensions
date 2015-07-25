@@ -41,13 +41,13 @@ namespace NetworkExtensions.Framework
 
     public static class NetInfoBuilderExtensions
     {
-        public static IEnumerable<NetInfo> Build(this INetInfoBuilder builder, GameObject parentObject)
+        public static IEnumerable<NetInfo> Build(this INetInfoBuilder builder)
         {
             var newNetInfos = new List<NetInfo>();
 
 
             // Ground version--------------------------------------------------
-            var mainInfo = builder.BuildVersion(parentObject, NetInfoVersion.Ground, null, newNetInfos);
+            var mainInfo = builder.BuildVersion(NetInfoVersion.Ground, null, newNetInfos);
             mainInfo.m_UIPriority = builder.Priority;
 
             if (!builder.CodeName.IsNullOrWhiteSpace() && !builder.ThumbnailsPath.IsNullOrWhiteSpace())
@@ -65,29 +65,30 @@ namespace NetworkExtensions.Framework
             }
 
 
-            // Other versions -------------------------------------------------
+            //// Other versions -------------------------------------------------
 
             var mainInfoAI = mainInfo.GetComponent<RoadAI>();
 
-            builder.BuildVersion(parentObject, NetInfoVersion.Elevated, info => mainInfoAI.m_elevatedInfo = info, newNetInfos);
-            builder.BuildVersion(parentObject, NetInfoVersion.Bridge,   info => mainInfoAI.m_bridgeInfo = info, newNetInfos);
-            builder.BuildVersion(parentObject, NetInfoVersion.Tunnel,   info => mainInfoAI.m_tunnelInfo = info, newNetInfos);
-            builder.BuildVersion(parentObject, NetInfoVersion.Slope,    info => mainInfoAI.m_slopeInfo = info, newNetInfos);
-            
+            builder.BuildVersion(NetInfoVersion.Elevated, info => mainInfoAI.m_elevatedInfo = info, newNetInfos);
+            builder.BuildVersion(NetInfoVersion.Bridge, info => mainInfoAI.m_bridgeInfo = info, newNetInfos);
+            builder.BuildVersion(NetInfoVersion.Tunnel, info => mainInfoAI.m_tunnelInfo = info, newNetInfos);
+            builder.BuildVersion(NetInfoVersion.Slope, info => mainInfoAI.m_slopeInfo = info, newNetInfos);
+
             Debug.Log(string.Format("NExt: Initialized {0}", builder.Name));
 
             return newNetInfos;
         }
 
-        private static NetInfo BuildVersion(this INetInfoBuilder builder, GameObject parentObject, NetInfoVersion version, Action<NetInfo> assign, ICollection<NetInfo> holdingCollection)
+        private static NetInfo BuildVersion(this INetInfoBuilder builder, NetInfoVersion version, Action<NetInfo> assign, ICollection<NetInfo> holdingCollection)
         {
             if (builder.SupportedVersions.HasFlag(version))
             {
                 var completePrefabName = builder.GetPrefabInfoVersionCompleteName(version);
                 var completeName = builder.GetNewInfoVersionCompleteName(version);
 
-                var info = ToolsCSL.CloneNetInfo(completePrefabName, completeName);
-                info.gameObject.transform.SetParent(parentObject.transform);
+                var info = ToolsCSL
+                    .FindPrefab<NetInfo>(completePrefabName)
+                    .Clone(completeName);
 
                 info.SetUICategory(builder.UICategory);
                 builder.BuildUp(info, version);
