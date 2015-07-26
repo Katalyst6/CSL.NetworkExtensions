@@ -91,30 +91,31 @@ namespace NetworkExtensions
             {
                 if (ValidateLocalizationPrerequisites())
                 {
-                    try
+                    Loading.QueueAction(() =>
                     {
-                        Debug.Log("NExt: Localization");
-                        var localeManager = SingletonLite<LocaleManager>.instance;
-                        var localeField = typeof(LocaleManager).GetFieldByName("m_Locale");
-                        var locale = (Locale)localeField.GetValue(localeManager);
-
-                        locale.AddCategoryLocalizedString();
-
-                        foreach (var builder in NetInfoBuilders)
+                        try
                         {
-                            builder.DefineLocalization(locale);
+                            Debug.Log("NExt: Localization");
+                            var localeManager = SingletonLite<LocaleManager>.instance;
+                            var localeField = typeof(LocaleManager).GetFieldByName("m_Locale");
+                            var locale = (Locale)localeField.GetValue(localeManager);
+
+                            locale.AddCategoryLocalizedString();
+
+                            foreach (var builder in NetInfoBuilders)
+                            {
+                                builder.DefineLocalization(locale);
+                            }
                         }
-                    }
-                    catch (Exception ex)
-                    {
-                        Debug.Log("NExt: Crashed-Localization");
-                        Debug.Log("NExt: " + ex.Message);
-                        Debug.Log("NExt: " + ex.ToString());
-                    }
-                    finally
-                    {
-                        _initializedLocalization = true;
-                    }
+                        catch (Exception ex)
+                        {
+                            Debug.Log("NExt: Crashed-Localization");
+                            Debug.Log("NExt: " + ex.Message);
+                            Debug.Log("NExt: " + ex.ToString());
+                        }
+                    });
+
+                    _initializedLocalization = true;
                 }
             }
 

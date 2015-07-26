@@ -25,7 +25,7 @@ namespace NetworkExtensions
 
         public string Description
         {
-            get { return "A new addition of highways and roads"; }
+            get { return "An addition of highways and roads"; }
         }
 
         private static GameObject s_container = null;

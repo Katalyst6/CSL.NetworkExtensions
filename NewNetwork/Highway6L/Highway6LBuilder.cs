@@ -38,9 +38,10 @@ namespace NetworkExtensions.NewNetwork.Highway6L
             {
                 case NetInfoVersion.Ground:
                     info.SetSegmentsTexture(
-                        @"NewNetwork\Highway6L\Ground\Segments\_MainTex.png",
-                        @"NewNetwork\Highway6L\Ground\Segments\_XYSMap.png",
-                        @"NewNetwork\Highway6L\Ground\Segments\_APRMap.png");
+                        new TexturesSet(
+                            @"NewNetwork\Highway6L\Ground\Segments\_MainTex.png",
+                            @"NewNetwork\Highway6L\Ground\Segments\_XYSMap.png",
+                            @"NewNetwork\Highway6L\Ground\Segments\_APRMap.png"));
                     info.SetNodesTexture(
                         new TexturesSet
                            (@"NewNetwork\Highway6L\Ground\Nodes\_MainTex.png", 
@@ -99,6 +100,9 @@ namespace NetworkExtensions.NewNetwork.Highway6L
 
             info.m_UnlockMilestone = highwayInfo.m_UnlockMilestone;
 
+            // Activate with a new mesh
+            //info.m_class = highwayInfo.m_class;
+
             // Test 
             //info.m_surfaceLevel = 0;
 
@@ -139,6 +143,21 @@ namespace NetworkExtensions.NewNetwork.Highway6L
             }
 
 
+            if (version == NetInfoVersion.Ground)
+            {
+                var hwPlayerNetAI = highwayInfo.GetComponent<PlayerNetAI>();
+                var playerNetAI = info.GetComponent<PlayerNetAI>();
+
+                if (hwPlayerNetAI != null && playerNetAI != null)
+                {
+                    playerNetAI.m_constructionCost = hwPlayerNetAI.m_constructionCost * 2;
+                    playerNetAI.m_maintenanceCost = hwPlayerNetAI.m_maintenanceCost * 2;
+                }
+            }
+            else // Same as the original oneway
+            {
+
+            }
 
             var roadBaseAI = info.GetComponent<RoadBaseAI>();
 
