@@ -56,10 +56,10 @@ namespace NetworkExtensions
         public static string GetPath()
         {
             var localPath = DataLocation.modsPath + "/NetworkExtensions";
-            Debug.Log("NExt: " + localPath);
+            //Debug.Log("NExt: " + localPath);
             if (System.IO.Directory.Exists(localPath))
             {
-                Debug.Log("NExt: Local path exists, looking for assets here: " + localPath);
+                //Debug.Log("NExt: Local path exists, looking for assets here: " + localPath);
                 return localPath;
             }
 
@@ -68,7 +68,7 @@ namespace NetworkExtensions
                 if (mod.AsUInt64 == WORKSHOP_ID)
                 {
                     var workshopPath = Steam.workshop.GetSubscribedItemPath(mod);
-                    Debug.Log("NExt: Workshop path: " + workshopPath);
+                    //Debug.Log("NExt: Workshop path: " + workshopPath);
                     return workshopPath;
                 }
             }

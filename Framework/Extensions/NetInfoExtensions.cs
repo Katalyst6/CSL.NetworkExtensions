@@ -33,16 +33,23 @@ namespace NetworkExtensions.Framework
 
         public static void DisplayLaneProps(this NetInfo info)
         {
-            foreach (var propInfo in info.m_lanes
-                .Select(l => l.m_laneProps)
-                .Where(lpi => lpi != null)
-                .SelectMany(lp => lp.m_props)
-                .Where(p => p != null)
-                .Select(p => p.m_prop)
-                .Where(pi => pi != null)
-                .Distinct())
+            foreach (var lane in info.m_lanes)
             {
-                Debug.Log(String.Format("NExt: Prop info name {0}", propInfo.name));
+                if (lane.m_laneProps != null)
+                {
+                    Debug.Log(string.Format("NExt: Lane name {0}", lane.m_laneProps.name));
+
+                    if (lane.m_laneProps.m_props != null)
+                    {
+                        foreach (var prop in lane.m_laneProps.m_props)
+                        {
+                            if (prop.m_prop != null)
+                            {
+                                Debug.Log(string.Format("NExt:     Prop name {0}", prop.m_prop.name));
+                            }
+                        }
+                    }
+                }
             }
         }
 

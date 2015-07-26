@@ -117,10 +117,6 @@ namespace NetworkExtensions.NewNetwork.Highway6L
                 }
             }
 
-            // Test 
-            //info.m_lanes[i] = null;
-            //Tools.RemoveNull(ref info.m_lanes);
-
             var notNoneLanes = info.m_lanes
                 .Where(l => l.m_laneType != NetInfo.LaneType.None)
                 .OrderBy(l => l.m_similarLaneIndex)
@@ -160,75 +156,107 @@ namespace NetworkExtensions.NewNetwork.Highway6L
                 roadAI.m_trafficLights = false;
             }
 
-            RemoveRandomStreetProp(info);
-            SetSpeedLimitSigns(info);
+            SetHighwayProps(info, highwayInfo);
+            TrimProps(info);
         }
 
-        private void RemoveRandomStreetProp(NetInfo info)
+        private static void SetHighwayProps(NetInfo info, NetInfo highwayInfo)
         {
-            var rds = ToolsCSL.FindPrefab<PropInfo>("Random Street Prop");
+            var leftHwLane = highwayInfo
+                .m_lanes
+                .Where(l => l != null && l.m_laneProps != null && l.m_laneProps.name != null && l.m_laneProps.m_props != null)
+                .FirstOrDefault(l => l.m_laneProps.name.ToLower().Contains("left"));
 
-            if (rds == null)
+            var rightHwLane = highwayInfo
+                .m_lanes
+                .Where(l => l != null && l.m_laneProps != null && l.m_laneProps.name != null && l.m_laneProps.m_props != null)
+                .FirstOrDefault(l => l.m_laneProps.name.ToLower().Contains("right"));
+
+            foreach (var lane in info.m_lanes)
+            {
+                if (lane.m_laneProps != null && lane.m_laneProps.name != null)
+                {
+                    if (leftHwLane != null)
+                    {
+                        if (lane.m_laneProps.name.ToLower().Contains("left"))
+                        {
+                            Debug.Log(string.Format("NExt: Setting {0} props", lane.m_laneProps.name));
+
+                            var newProps = ScriptableObject.CreateInstance<NetLaneProps>();
+                            newProps.name = "Highway6L Left Props";
+
+                            newProps.m_props = leftHwLane
+                                .m_laneProps
+                                .m_props
+                                .Select(p => p.ShallowClone())
+                                .ToArray();
+
+                            lane.m_laneProps = newProps;
+                        }
+                    }
+
+                    if (rightHwLane != null)
+                    {
+                        if (lane.m_laneProps.name.ToLower().Contains("right"))
+                        {
+                            Debug.Log(string.Format("NExt: Setting {0} props", lane.m_laneProps.name));
+
+                            var newProps = ScriptableObject.CreateInstance<NetLaneProps>();
+                            newProps.name = "Highway6L Right Props";
+
+                            newProps.m_props = rightHwLane
+                                .m_laneProps
+                                .m_props
+                                .Select(p => p.ShallowClone())
+                                .ToArray();
+
+                            lane.m_laneProps = newProps;
+                        }
+                    }
+                }
+            }
+        }
+
+        private static void TrimProps(NetInfo info)
+        {
+            var randomProp = ToolsCSL.FindPrefab<PropInfo>("Random Street Prop", false);
+            var streetLight = ToolsCSL.FindPrefab<PropInfo>("New Street Light", false);
+            var manhole = ToolsCSL.FindPrefab<PropInfo>("Manhole", false);
+
+            if (randomProp == null)
             {
                return;
             }
 
-            foreach (var lp in info.m_lanes.Select(l => l.m_laneProps).Where(lpi => lpi != null))
+            foreach (var laneProps in info.m_lanes.Select(l => l.m_laneProps).Where(lpi => lpi != null))
             {
-                for (int i = 0; i < lp.m_props.Length; i++)
+                var remainingProp = new List<NetLaneProps.Prop>();
+
+                foreach (var prop in laneProps.m_props)
                 {
-                    var p = lp.m_props[i];
-
-                    if (p == null)
+                    if (prop.m_prop != null)
                     {
-                        continue;
-                    }
+                        if (prop.m_prop == randomProp)
+                        {
+                            continue;
+                        }
 
-                    if (p.m_prop == rds)
-                    {
-                        lp.m_props[i] = null;
+                        if (prop.m_prop == manhole)
+                        {
+                            continue;
+                        }
+
+                        if (prop.m_prop == streetLight &&
+                            laneProps.name.Contains("Left"))
+                        {
+                            continue;
+                        }
+
+                        remainingProp.Add(prop);
                     }
                 }
 
-                Tools.RemoveNull(ref lp.m_props);
-            }
-        }
-
-        private void SetSpeedLimitSigns(NetInfo info)
-        {
-            var speedLimit65 = ToolsCSL.FindPrefab<PropInfo>("60 Speed Limit");
-            var speedLimit100 = ToolsCSL.FindPrefab<PropInfo>("100 Speed Limit");
-
-            if (speedLimit65 == null)
-            {
-                return;
-            }
-
-            if (speedLimit100 == null)
-            {
-                return;
-            }
-
-            foreach (var lp in info.m_lanes.Select(l => l.m_laneProps).Where(lpi => lpi != null))
-            {
-                for (int i = 0; i < lp.m_props.Length; i++)
-                {
-                    var p = lp.m_props[i];
-
-                    if (p == null)
-                    {
-                        continue;
-                    }
-
-                    if (p.m_prop == speedLimit65)
-                    {
-                        var newP = p.ShallowClone();
-                        newP.m_prop = speedLimit100;
-                        newP.m_finalProp = speedLimit100;
-
-                        lp.m_props[i] = newP;
-                    }
-                }
+                laneProps.m_props = remainingProp.ToArray();
             }
         }
     }
