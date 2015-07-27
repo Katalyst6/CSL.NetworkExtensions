@@ -60,41 +60,6 @@ namespace NetworkExtensions.Framework
             return info;
         }
 
-        public static NetInfo SetSegmentsTexture(this NetInfo info, string mainTexPath, string xysMapPath = null, string aprMapPath = null)
-        {
-            var mainTex = TextureManager.Instance.GetTexture(mainTexPath);
-            var xysMap = TextureManager.Instance.GetTexture(xysMapPath);
-            var aprMap = TextureManager.Instance.GetTexture(aprMapPath);
-
-            SetSegmentsTexture(info, mainTex, xysMap, aprMap);
-
-            return info;
-        }
-
-        public static NetInfo SetSegmentsTexture(this NetInfo info, Texture mainTex, Texture xysMap, Texture aprMap)
-        {
-            for (int i = 0; i < info.m_segments.Length; i++)
-            {
-                var material = new Material(info.m_segments[i].m_material);
-
-                material.SetTexture("_MainTex", mainTex);
-
-                if (xysMap != null)
-                {
-                    material.SetTexture("_XYSMap", xysMap);
-                }
-
-                if (aprMap != null)
-                {
-                    material.SetTexture("_APRMap", aprMap);
-                }
-
-                info.m_segments[i].m_material = material;
-            }
-
-            return info;
-        }
-
         public static NetInfo SetSegmentsTexture(this NetInfo info, TexturesSet newTextures, TexturesSet newLODTextures = null)
         {
             foreach (var segment in info.m_segments)

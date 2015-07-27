@@ -56,9 +56,10 @@ namespace NetworkExtensions.NewNetwork.Highway6L
                 case NetInfoVersion.Elevated:
                 case NetInfoVersion.Bridge:
                     info.SetSegmentsTexture(
-                        @"NewNetwork\Highway6L\Elevated\Segments\_MainTex.png",
-                        null,
-                        @"NewNetwork\Highway6L\Elevated\Segments\_APRMap.png");
+                        new TexturesSet(
+                            @"NewNetwork\Highway6L\Elevated\Segments\_MainTex.png",
+                            null,
+                            @"NewNetwork\Highway6L\Elevated\Segments\_APRMap.png"));
                     info.SetNodesTexture(
                         new TexturesSet
                            (@"NewNetwork\Highway6L\Elevated\Nodes\_MainTex.png",
@@ -107,34 +108,35 @@ namespace NetworkExtensions.NewNetwork.Highway6L
             //info.m_surfaceLevel = 0;
 
 
-            // Filtering out unwanted lanes
-            for (int i = 0; i < info.m_lanes.Length; ++i)
+            // Disabling Parkings and Peds
+            foreach (var l in info.m_lanes)
             {
-                var l = info.m_lanes[i];
-                if (l.m_laneType == NetInfo.LaneType.Parking)
+                switch (l.m_laneType)
                 {
-                    l.m_laneType = NetInfo.LaneType.None;
-                }
-                else if (l.m_laneType == NetInfo.LaneType.Pedestrian)
-                {
-                    l.m_laneType = NetInfo.LaneType.None;
+                    case NetInfo.LaneType.Parking:
+                        l.m_laneType = NetInfo.LaneType.None;
+                        break;
+                    case NetInfo.LaneType.Pedestrian:
+                        l.m_laneType = NetInfo.LaneType.None;
+                        break;
                 }
             }
 
-            var notNoneLanes = info.m_lanes
+            // Setting up lanes
+            var vehiculeLanes = info.m_lanes
                 .Where(l => l.m_laneType != NetInfo.LaneType.None)
                 .OrderBy(l => l.m_similarLaneIndex)
                 .ToArray();
-            var nbLanes = notNoneLanes.Count(); // Supposed to be 6
+            var nbLanes = vehiculeLanes.Count(); // Supposed to be 6
 
             const float laneWidth = 2f; // TODO: Make it 2.5 with new texture
             const float laneWidthPad = 1f;
             const float laneWidthTotal = laneWidth + laneWidthPad;
             var positionStart = (laneWidthTotal * ((1f - nbLanes) / 2f));
 
-            for (int i = 0; i < notNoneLanes.Length; i++)
+            for (int i = 0; i < vehiculeLanes.Length; i++)
             {
-                var l = notNoneLanes[i];
+                var l = vehiculeLanes[i];
                 l.m_allowStop = false;
                 l.m_speedLimit = 2f;
                 //l.m_verticalOffset = 0f;
@@ -175,108 +177,8 @@ namespace NetworkExtensions.NewNetwork.Highway6L
                 roadAI.m_trafficLights = false;
             }
 
-            SetHighwayProps(info, highwayInfo);
-            TrimProps(info);
-        }
-
-        private static void SetHighwayProps(NetInfo info, NetInfo highwayInfo)
-        {
-            var leftHwLane = highwayInfo
-                .m_lanes
-                .Where(l => l != null && l.m_laneProps != null && l.m_laneProps.name != null && l.m_laneProps.m_props != null)
-                .FirstOrDefault(l => l.m_laneProps.name.ToLower().Contains("left"));
-
-            var rightHwLane = highwayInfo
-                .m_lanes
-                .Where(l => l != null && l.m_laneProps != null && l.m_laneProps.name != null && l.m_laneProps.m_props != null)
-                .FirstOrDefault(l => l.m_laneProps.name.ToLower().Contains("right"));
-
-            foreach (var lane in info.m_lanes)
-            {
-                if (lane.m_laneProps != null && lane.m_laneProps.name != null)
-                {
-                    if (leftHwLane != null)
-                    {
-                        if (lane.m_laneProps.name.ToLower().Contains("left"))
-                        {
-                            Debug.Log(string.Format("NExt: Setting {0} props", lane.m_laneProps.name));
-
-                            var newProps = ScriptableObject.CreateInstance<NetLaneProps>();
-                            newProps.name = "Highway6L Left Props";
-
-                            newProps.m_props = leftHwLane
-                                .m_laneProps
-                                .m_props
-                                .Select(p => p.ShallowClone())
-                                .ToArray();
-
-                            lane.m_laneProps = newProps;
-                        }
-                    }
-
-                    if (rightHwLane != null)
-                    {
-                        if (lane.m_laneProps.name.ToLower().Contains("right"))
-                        {
-                            Debug.Log(string.Format("NExt: Setting {0} props", lane.m_laneProps.name));
-
-                            var newProps = ScriptableObject.CreateInstance<NetLaneProps>();
-                            newProps.name = "Highway6L Right Props";
-
-                            newProps.m_props = rightHwLane
-                                .m_laneProps
-                                .m_props
-                                .Select(p => p.ShallowClone())
-                                .ToArray();
-
-                            lane.m_laneProps = newProps;
-                        }
-                    }
-                }
-            }
-        }
-
-        private static void TrimProps(NetInfo info)
-        {
-            var randomProp = ToolsCSL.FindPrefab<PropInfo>("Random Street Prop", false);
-            var streetLight = ToolsCSL.FindPrefab<PropInfo>("New Street Light", false);
-            var manhole = ToolsCSL.FindPrefab<PropInfo>("Manhole", false);
-
-            if (randomProp == null)
-            {
-               return;
-            }
-
-            foreach (var laneProps in info.m_lanes.Select(l => l.m_laneProps).Where(lpi => lpi != null))
-            {
-                var remainingProp = new List<NetLaneProps.Prop>();
-
-                foreach (var prop in laneProps.m_props)
-                {
-                    if (prop.m_prop != null)
-                    {
-                        if (prop.m_prop == randomProp)
-                        {
-                            continue;
-                        }
-
-                        if (prop.m_prop == manhole)
-                        {
-                            continue;
-                        }
-
-                        if (prop.m_prop == streetLight &&
-                            laneProps.name.Contains("Left"))
-                        {
-                            continue;
-                        }
-
-                        remainingProp.Add(prop);
-                    }
-                }
-
-                laneProps.m_props = remainingProp.ToArray();
-            }
+            info.SetHighwayProps(highwayInfo);
+            info.TrimHighwayProps();
         }
     }
 }
