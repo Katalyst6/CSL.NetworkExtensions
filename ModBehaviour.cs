@@ -125,34 +125,34 @@ namespace NetworkExtensions
                 {
                     Loading.QueueAction(() =>
                     {
-                        try
+                        Debug.Log("NExt: Build NetworkExtensions");
+
+                        var newInfos = new List<NetInfo>();
+
+                        foreach (var builder in NetInfoBuilders)
                         {
-                            Debug.Log("NExt: Build NetworkExtensions");
-
-                            var newInfos = new List<NetInfo>();
-
-                            foreach (var builder in NetInfoBuilders)
+                            try
                             {
                                 newInfos.AddRange(builder.Build());
                             }
-
-                            if (newInfos.Count > 0)
+                            catch (Exception ex)
                             {
-                                var newRoadCollection = NewRoadsNetCollection;
-                                newRoadCollection.m_prefabs = newInfos.ToArray();
-
-                                PrefabCollection<NetInfo>.InitializePrefabs(newRoadCollection.name, newRoadCollection.m_prefabs, new string[] { });
-                                PrefabCollection<NetInfo>.BindPrefabs();
+                                Debug.Log(string.Format("NExt: Crashed-Network {0}", builder.Name));
+                                Debug.Log("NExt: " + ex.Message);
+                                Debug.Log("NExt: " + ex.ToString());
                             }
+                        }
 
-                            Debug.Log("NExt: Finished installing components");
-                        }
-                        catch (Exception ex)
+                        if (newInfos.Count > 0)
                         {
-                            Debug.Log("NExt: Crashed-Network");
-                            Debug.Log("NExt: " + ex.Message);
-                            Debug.Log("NExt: " + ex.ToString());
+                            var newRoadCollection = NewRoadsNetCollection;
+                            newRoadCollection.m_prefabs = newInfos.ToArray();
+
+                            PrefabCollection<NetInfo>.InitializePrefabs(newRoadCollection.name, newRoadCollection.m_prefabs, new string[] { });
+                            PrefabCollection<NetInfo>.BindPrefabs();
                         }
+
+                        Debug.Log("NExt: Finished installing components");
                     });
 
 

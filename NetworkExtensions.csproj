@@ -81,6 +81,12 @@
     <Content Include="NewNetwork\Highway2L\Ground\Nodes\_MainTex.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="NewNetwork\Highway2L\Ground\Segments\_APRMap.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="NewNetwork\Highway2L\thumbnails.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="NewNetwork\Highway6L\Elevated\LOD\Nodes\_APRMap.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

@@ -24,6 +24,7 @@ namespace NetworkExtensions.Framework
         string InfoTooltipPath { get; }
 
         NetInfoVersion SupportedVersions { get; }
+        string GetPrefabName(NetInfoVersion version);
 
         void BuildUp(NetInfo info, NetInfoVersion version);
     }
@@ -65,8 +66,7 @@ namespace NetworkExtensions.Framework
             }
 
 
-            //// Other versions -------------------------------------------------
-
+            // Other versions -------------------------------------------------
             var mainInfoAI = mainInfo.GetComponent<RoadAI>();
 
             builder.BuildVersion(NetInfoVersion.Elevated, info => mainInfoAI.m_elevatedInfo = info, newNetInfos);
@@ -83,8 +83,8 @@ namespace NetworkExtensions.Framework
         {
             if (builder.SupportedVersions.HasFlag(version))
             {
-                var completePrefabName = builder.GetPrefabInfoVersionCompleteName(version);
-                var completeName = builder.GetNewInfoVersionCompleteName(version);
+                var completePrefabName = builder.GetPrefabName(version);
+                var completeName = builder.GetNewName(version);
 
                 var info = ToolsCSL
                     .FindPrefab<NetInfo>(completePrefabName)
@@ -121,31 +121,7 @@ namespace NetworkExtensions.Framework
             }, builder.Description);
         }
 
-        private static string GetPrefabInfoVersionCompleteName(this INetInfoBuilder builder, NetInfoVersion version)
-        {
-            switch (version)
-            {
-                case NetInfoVersion.Ground:
-                    return builder.PrefabName;
-
-                case NetInfoVersion.Elevated:
-                    return builder.PrefabName + " " + NetInfoVersion.Elevated;
-
-                case NetInfoVersion.Bridge:
-                    return builder.PrefabName + " " + NetInfoVersion.Bridge;
-
-                case NetInfoVersion.Tunnel:
-                    return builder.PrefabName + " Road Tunnel";
-
-                case NetInfoVersion.Slope:
-                    return builder.PrefabName + " Road Slope";
-
-                default:
-                    throw new ArgumentOutOfRangeException("version");
-            }
-        }
-
-        private static string GetNewInfoVersionCompleteName(this INetInfoBuilder builder, NetInfoVersion version)
+        private static string GetNewName(this INetInfoBuilder builder, NetInfoVersion version)
         {
             switch (version)
             {

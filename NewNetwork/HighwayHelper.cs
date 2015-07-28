@@ -4,7 +4,10 @@ using System.Linq;
 using System.Text;
 using NetworkExtensions.Framework;
 using UnityEngine;
+
+#if DEBUG
 using Debug = NetworkExtensions.Framework.Debug;
+#endif
 
 namespace NetworkExtensions.NewNetwork
 {

@@ -10,18 +10,36 @@ namespace NetworkExtensions.NewNetwork.Highway2L
     {
         public int Priority { get { return 15; } }
 
-        public string PrefabName  { get { return "Oneway Road"; } }
-        public string Name        { get { return "Small Highway"; } }
+        public string PrefabName  { get { return "HighwayRamp"; } }
+        public string Name        { get { return "Rural Highway"; } }
         public string CodeName    { get { return "HIGHWAY_2L"; } }
         public string Description { get { return "An highway with two lanes (33% less than the original)."; } }
         public string UICategory  { get { return "RoadsHighway"; } }
 
-        public string ThumbnailsPath  { get { return string.Empty; } }
+        public string ThumbnailsPath { get { return @"NewNetwork\Highway2L\thumbnails.png"; } }
         public string InfoTooltipPath { get { return string.Empty; } }
 
         public NetInfoVersion SupportedVersions
         {
             get { return NetInfoVersion.All; }
+        }
+
+        public string GetPrefabName(NetInfoVersion version)
+        {
+            switch (version)
+            {
+                case NetInfoVersion.Ground:
+                    return PrefabName;
+                case NetInfoVersion.Elevated:
+                case NetInfoVersion.Bridge:
+                    return PrefabName + NetInfoVersion.Elevated;
+                case NetInfoVersion.Tunnel:
+                    return PrefabName + " " + NetInfoVersion.Tunnel;
+                case NetInfoVersion.Slope:
+                    return PrefabName + " " + NetInfoVersion.Slope;
+                default:
+                    throw new NotImplementedException();
+            }
         }
 
         public void BuildUp(NetInfo info, NetInfoVersion version)
@@ -34,7 +52,8 @@ namespace NetworkExtensions.NewNetwork.Highway2L
                 case NetInfoVersion.Ground:
                     info.SetSegmentsTexture(
                         new TexturesSet(
-                            @"NewNetwork\Highway2L\Ground\Segments\_MainTex.png"));
+                            @"NewNetwork\Highway2L\Ground\Segments\_MainTex.png",
+                            @"NewNetwork\Highway2L\Ground\Segments\_APRMap.png"));
                     info.SetNodesTexture(
                         new TexturesSet(
                             @"NewNetwork\Highway2L\Ground\Nodes\_MainTex.png"));
