@@ -10,7 +10,7 @@ namespace NetworkExtensions.NewNetwork.Highway2L
     {
         public int Priority { get { return 15; } }
 
-        public string PrefabName  { get { return "HighwayRamp"; } }
+        public string PrefabName  { get { return "Oneway Road"; } }
         public string Name        { get { return "Rural Highway"; } }
         public string CodeName    { get { return "HIGHWAY_2L"; } }
         public string Description { get { return "An highway with two lanes (33% less than the original)."; } }
@@ -31,8 +31,9 @@ namespace NetworkExtensions.NewNetwork.Highway2L
                 case NetInfoVersion.Ground:
                     return PrefabName;
                 case NetInfoVersion.Elevated:
+                    return PrefabName + " " + NetInfoVersion.Elevated;
                 case NetInfoVersion.Bridge:
-                    return PrefabName + NetInfoVersion.Elevated;
+                    return PrefabName + " " + NetInfoVersion.Bridge;
                 case NetInfoVersion.Tunnel:
                     return PrefabName + " " + NetInfoVersion.Tunnel;
                 case NetInfoVersion.Slope:
@@ -47,27 +48,27 @@ namespace NetworkExtensions.NewNetwork.Highway2L
             ///////////////////////////
             // Texturing             //
             ///////////////////////////
-            switch (version)
-            {
-                case NetInfoVersion.Ground:
-                    info.SetSegmentsTexture(
-                        new TexturesSet(
-                            @"NewNetwork\Highway2L\Ground\Segments\_MainTex.png",
-                            @"NewNetwork\Highway2L\Ground\Segments\_APRMap.png"));
-                    info.SetNodesTexture(
-                        new TexturesSet(
-                            @"NewNetwork\Highway2L\Ground\Nodes\_MainTex.png"));
-                    break;
-                case NetInfoVersion.Elevated:
-                case NetInfoVersion.Bridge:
-                case NetInfoVersion.Tunnel:
-                case NetInfoVersion.Slope:
-                case NetInfoVersion.All:
-                    // TODO: Remove crossings
-                    break;
-                default:
-                    throw new ArgumentOutOfRangeException("version");
-            }
+            //switch (version)
+            //{
+            //    case NetInfoVersion.Ground:
+            //        info.SetSegmentsTexture(
+            //            new TexturesSet(
+            //                @"NewNetwork\Highway2L\Ground\Segments\_MainTex.png",
+            //                @"NewNetwork\Highway2L\Ground\Segments\_APRMap.png"));
+            //        info.SetNodesTexture(
+            //            new TexturesSet(
+            //                @"NewNetwork\Highway2L\Ground\Nodes\_MainTex.png"));
+            //        break;
+            //    case NetInfoVersion.Elevated:
+            //    case NetInfoVersion.Bridge:
+            //    case NetInfoVersion.Tunnel:
+            //    case NetInfoVersion.Slope:
+            //    case NetInfoVersion.All:
+            //        // TODO: Remove crossings
+            //        break;
+            //    default:
+            //        throw new ArgumentOutOfRangeException("version");
+            //}
 
 
             ///////////////////////////
