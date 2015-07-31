@@ -93,7 +93,7 @@ namespace NetworkExtensions.NewNetwork.Highway6L
                 case NetInfoVersion.Slope:
                     info.SetNodesTexture(
                         new TexturesSet
-                           (@"NewNetwork\Highway6L\Textures\Slope_Node__APRMap.png",
+                           (@"NewNetwork\Highway6L\Textures\Slope_Node__MainTex.png",
                             null,
                             @"NewNetwork\Highway6L\Textures\Slope_Node__APRMap.png"));
                     break;
