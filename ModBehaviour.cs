@@ -22,7 +22,7 @@ namespace NetworkExtensions
 
         private bool _doneWithInit = false;
         private bool _initializedNetworkInfo = false;
-        private bool _initializedLocalization = false;
+        private static bool s_initializedLocalization = false; //Only one localization throughout the application
 
         void Start()
         {
@@ -87,7 +87,7 @@ namespace NetworkExtensions
 #endif
 
 
-            if (!_initializedLocalization)
+            if (!s_initializedLocalization)
             {
                 if (ValidateLocalizationPrerequisites())
                 {
@@ -115,7 +115,7 @@ namespace NetworkExtensions
                         }
                     });
 
-                    _initializedLocalization = true;
+                    s_initializedLocalization = true;
                 }
             }
 
@@ -162,7 +162,7 @@ namespace NetworkExtensions
 
             _doneWithInit =
                 _initializedNetworkInfo &&
-                _initializedLocalization;
+                s_initializedLocalization;
 
         }
 
