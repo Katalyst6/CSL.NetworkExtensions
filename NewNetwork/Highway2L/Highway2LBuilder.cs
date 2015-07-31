@@ -48,27 +48,61 @@ namespace NetworkExtensions.NewNetwork.Highway2L
             ///////////////////////////
             // Texturing             //
             ///////////////////////////
-            //switch (version)
-            //{
-            //    case NetInfoVersion.Ground:
-            //        info.SetSegmentsTexture(
-            //            new TexturesSet(
-            //                @"NewNetwork\Highway2L\Ground\Segments\_MainTex.png",
-            //                @"NewNetwork\Highway2L\Ground\Segments\_APRMap.png"));
-            //        info.SetNodesTexture(
-            //            new TexturesSet(
-            //                @"NewNetwork\Highway2L\Ground\Nodes\_MainTex.png"));
-            //        break;
-            //    case NetInfoVersion.Elevated:
-            //    case NetInfoVersion.Bridge:
-            //    case NetInfoVersion.Tunnel:
-            //    case NetInfoVersion.Slope:
-            //    case NetInfoVersion.All:
-            //        // TODO: Remove crossings
-            //        break;
-            //    default:
-            //        throw new ArgumentOutOfRangeException("version");
-            //}
+            switch (version)
+            {
+                case NetInfoVersion.Ground:
+                    //info.SetSegmentsTexture(
+                    //    new TexturesSet(
+                    //        @"NewNetwork\Highway2L\Textures\Ground_Segment__MainTex.png",
+                    //        @"NewNetwork\Highway2L\Textures\Ground_Segment__XYS.png",
+                    //        @"NewNetwork\Highway2L\Textures\Ground_Segment__AlphaMap.png"));
+                    info.SetNodesTexture(
+                        new TexturesSet
+                           (@"NewNetwork\Highway2L\Textures\Ground_Node__MainTex.png",
+                            null,
+                            @"NewNetwork\Highway2L\Textures\Ground_Node__AlphaMap.png"),
+                        new TexturesSet
+                           (@"NewNetwork\Highway2L\Textures\Ground_NodeLOD__MainTex.dxt.png",
+                            @"NewNetwork\Highway2L\Textures\Ground_NodeLOD__XYS.dxt.png",
+                            @"NewNetwork\Highway2L\Textures\Ground_NodeLOD__AlphaMap.dxt.png"));
+                    break;
+
+                case NetInfoVersion.Elevated:
+                case NetInfoVersion.Bridge:
+                    //info.SetSegmentsTexture(
+                    //    new TexturesSet(
+                    //        @"NewNetwork\Highway2L\Textures\Elevated_Segment__MainTex.png",
+                    //        null,
+                    //        @"NewNetwork\Highway2L\Textures\Elevated_Segment__AlphaMap.png"));
+                    info.SetNodesTexture(
+                        new TexturesSet
+                           (@"NewNetwork\Highway2L\Textures\Elevated_Node__MainTex.png",
+                            null,
+                            @"NewNetwork\Highway2L\Textures\Elevated_Node__AlphaMap.png"),
+                        new TexturesSet
+                           (@"NewNetwork\Highway2L\Textures\Elevated_NodeLOD__MainTex.png",
+                            null,
+                            @"NewNetwork\Highway2L\Textures\Elevated_NodeLOD__AlphaMap.png"));
+                    break;
+
+                case NetInfoVersion.Slope:
+                    info.SetNodesTexture(
+                        new TexturesSet
+                           (@"NewNetwork\Highway2L\Textures\Slope_Node__MainTex.png",
+                            null,
+                            @"NewNetwork\Highway2L\Textures\Slope_Node__AlphaMap.png"));
+                        //new TexturesSet
+                        //   (@"NewNetwork\Highway2L\Textures\Slope_NodeLOD__MainTex.png",
+                        //    null,
+                        //    @"NewNetwork\Highway2L\Textures\Slope_NodeLOD__AlphaMap.png"));
+                    break;
+
+                case NetInfoVersion.Tunnel:
+                    break;
+
+                default:
+                    break;
+            }
 
 
             ///////////////////////////

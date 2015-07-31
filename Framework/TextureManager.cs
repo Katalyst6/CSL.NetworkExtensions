@@ -39,13 +39,31 @@ namespace NetworkExtensions.Framework
                 {
                     continue;
                 }
-                _allTextures[relativePath] = LoadTexture(textureFile.FullName);
+
+                if (textureFile.FullName.ToLower().Contains(".dxt"))
+                {
+                    _allTextures[relativePath] = LoadTextureDXT(textureFile.FullName);
+                }
+                else
+                {
+                    _allTextures[relativePath] = LoadTexture(textureFile.FullName);
+                }
             }
         }
 
         private static Texture2D LoadTexture(string fullPath)
         {
             var texture = new Texture2D(1, 1);
+            texture.LoadImage(File.ReadAllBytes(fullPath));
+            texture.anisoLevel = 8;
+            texture.filterMode = FilterMode.Trilinear;
+
+            return texture;
+        }
+
+        private static Texture2D LoadTextureDXT(string fullPath)
+        {
+            var texture = new Texture2D(1, 1, TextureFormat.DXT1, false);
             texture.LoadImage(File.ReadAllBytes(fullPath));
             texture.anisoLevel = 8;
             texture.filterMode = FilterMode.Trilinear;
