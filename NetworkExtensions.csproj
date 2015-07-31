@@ -64,8 +64,9 @@
     <Compile Include="Framework\ToolsUnity.cs" />
     <Compile Include="Framework\INetInfoBuilder.cs" />
     <Compile Include="Framework\Extensions\LocaleExtensions.cs" />
+    <Compile Include="NewNetwork\SmallRoad4L\SmallRoad4LBuilder.cs" />
     <Compile Include="NewNetwork\HighwayHelper.cs" />
-    <Compile Include="NewNetwork\OneWay4L\MediumOneWayBuilder.cs" />
+    <Compile Include="NewNetwork\OneWay4L\OneWay4LBuilder.cs" />
     <Compile Include="NewNetwork\Highway2L\Highway2LBuilder.cs" />
     <Compile Include="OldModBehaviour.cs" />
     <Compile Include="Framework\Debug.cs" />

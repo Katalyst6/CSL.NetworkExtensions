@@ -6,9 +6,9 @@
 //using Debug = NetworkExtensions.Framework.Debug;
 //#endif
 
-//namespace NetworkExtensions.NewNetwork.MediumOneWay
+//namespace NetworkExtensions.NewNetwork.OneWay4L
 //{
-//    public class MediumOneWayBuilder : INetInfoBuilder
+//    public class OneWay4LBuilder : INetInfoBuilder
 //    {
 //        public int Priority { get { return 99; } }
 
