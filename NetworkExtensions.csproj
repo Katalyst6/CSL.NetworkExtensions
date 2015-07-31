@@ -234,9 +234,7 @@
     <Content Include="NewNetwork\planning_road_2_lanes.png" />
     <Content Include="NewNetwork\play_street.png" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="NewNetwork\Highway2L\Textures\Test\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>rd /s /q  "%25LOCALAPPDATA%25\Colossal Order\Cities_Skylines\Addons\Mods\$(ProjectName)"
