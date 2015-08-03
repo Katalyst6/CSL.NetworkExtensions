@@ -30,5 +30,20 @@ namespace NetworkExtensions.Framework.Extensions
 
             return material;
         }
+
+        public static Texture2D Clone(this Texture2D original)
+        {
+            var destTex = new Texture2D(original.width, original.height, original.format, false);
+            destTex.anisoLevel = destTex.anisoLevel;
+            destTex.filterMode = destTex.filterMode;
+            destTex.hideFlags = destTex.hideFlags;
+            destTex.mipMapBias = destTex.mipMapBias;
+            destTex.name = destTex.name + " (Clone)";
+            destTex.wrapMode = destTex.wrapMode;
+            destTex.LoadRawTextureData(original.GetRawTextureData());
+            destTex.Apply();
+
+            return destTex;
+        }
     }
 }
