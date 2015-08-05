@@ -13,12 +13,12 @@ namespace NetworkExtensions.NewNetwork.Highway6L
 {
     public class Highway6LBuilder : INetInfoBuilder
     {
-        public int Priority { get { return 16; } }
+        public int Priority { get { return 14; } }
 
         public string PrefabName  { get { return "Large Oneway"; } }
         public string Name        { get { return "Large Highway"; } }
         public string CodeName    { get { return "HIGHWAY_6L"; } }
-        public string Description { get { return "An highway with six lanes (100% more than the original)."; } }
+        public string Description { get { return "A six-lane, one-way road suitable for very high and dense traffic between metropolitan areas. Lanes going the opposite direction need to be built separately. Highway does not allow zoning next to it!"; } }
         public string UICategory  { get { return "RoadsHighway"; } }
 
         public string ThumbnailsPath  { get { return @"NewNetwork\Highway6L\thumbnails.png"; } }
@@ -48,7 +48,7 @@ namespace NetworkExtensions.NewNetwork.Highway6L
             }
         }
 
-        public void BuildUp (NetInfo info, NetInfoVersion version)
+        public void BuildUp(NetInfo info, NetInfoVersion version)
         {
             ///////////////////////////
             // Texturing             //

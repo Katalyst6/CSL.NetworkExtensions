@@ -8,12 +8,12 @@ namespace NetworkExtensions.NewNetwork.Highway2L
 {
     public class Highway2LBuilder : INetInfoBuilder
     {
-        public int Priority { get { return 15; } }
+        public int Priority { get { return 10; } }
 
         public string PrefabName  { get { return "Oneway Road"; } }
         public string Name        { get { return "Rural Highway"; } }
         public string CodeName    { get { return "HIGHWAY_2L"; } }
-        public string Description { get { return "An highway with two lanes (33% less than the original)."; } }
+        public string Description { get { return "A two-lane, one-way road suitable for low to medium traffic between rural areas. Lanes going the opposite direction need to be built separately. Highway does not allow zoning next to it!"; } }
         public string UICategory  { get { return "RoadsHighway"; } }
 
         public string ThumbnailsPath { get { return @"NewNetwork\Highway2L\thumbnails.png"; } }
@@ -62,9 +62,9 @@ namespace NetworkExtensions.NewNetwork.Highway2L
                             null,
                             @"NewNetwork\Highway2L\Textures\Ground_Node__AlphaMap.png"),
                         new TexturesSet
-                           (@"NewNetwork\Highway2L\Textures\Ground_NodeLOD__MainTex.dxt.png",
-                            @"NewNetwork\Highway2L\Textures\Ground_NodeLOD__XYS.dxt.png",
-                            @"NewNetwork\Highway2L\Textures\Ground_NodeLOD__AlphaMap.dxt.png"));
+                           (@"NewNetwork\Highway2L\Textures\Ground_NodeLOD__MainTex.dds",
+                            @"NewNetwork\Highway2L\Textures\Ground_NodeLOD__XYS.dds",
+                            @"NewNetwork\Highway2L\Textures\Ground_NodeLOD__AlphaMap.dds"));
                     break;
 
                 case NetInfoVersion.Elevated:
@@ -91,10 +91,11 @@ namespace NetworkExtensions.NewNetwork.Highway2L
                            (@"NewNetwork\Highway2L\Textures\Slope_Node__MainTex.png",
                             null,
                             @"NewNetwork\Highway2L\Textures\Slope_Node__AlphaMap.png"));
+                        // Those texture doesnt seem to be used
                         //new TexturesSet
-                        //   (@"NewNetwork\Highway2L\Textures\Slope_NodeLOD__MainTex.png",
-                        //    null,
-                        //    @"NewNetwork\Highway2L\Textures\Slope_NodeLOD__AlphaMap.png"));
+                        //   (@"NewNetwork\Highway2L\Textures\Slope_NodeLOD__MainTex.dds",
+                        //    @"NewNetwork\Highway2L\Textures\Slope_NodeLOD__XYS.dds",
+                        //    @"NewNetwork\Highway2L\Textures\Slope_NodeLOD__AlphaMap.dds"));
                     break;
 
                 case NetInfoVersion.Tunnel:

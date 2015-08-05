@@ -152,6 +152,12 @@ namespace NetworkExtensions
                             PrefabCollection<NetInfo>.BindPrefabs();
                         }
 
+                        {
+                            // Modifying the existing network
+                            var highwayRampInfo = ToolsCSL.FindPrefab<NetInfo>("HighwayRamp");
+                            highwayRampInfo.m_UIPriority = highwayRampInfo.m_UIPriority + 1;
+                        }
+
                         Debug.Log("NExt: Finished installing components");
                     });
 

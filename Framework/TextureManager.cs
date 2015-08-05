@@ -31,7 +31,11 @@ namespace NetworkExtensions.Framework
             var modPath = Mod.GetPath().Replace("/", "\\");
             var modDirectory = new DirectoryInfo(modPath);
 
-            foreach (var textureFile in modDirectory.GetFiles("*.png", SearchOption.AllDirectories))
+            var files = new List<FileInfo>();
+            files.AddRange(modDirectory.GetFiles("*.png", SearchOption.AllDirectories));
+            files.AddRange(modDirectory.GetFiles("*.dds", SearchOption.AllDirectories));
+
+            foreach (var textureFile in files)
             {
                 var relativePath = textureFile.FullName.Replace(modPath, "").TrimStart('\\');
 
@@ -40,18 +44,18 @@ namespace NetworkExtensions.Framework
                     continue;
                 }
 
-                if (textureFile.FullName.ToLower().Contains(".dxt"))
+                if (textureFile.Extension.ToLower() == ".dds")
                 {
-                    _allTextures[relativePath] = LoadTextureDXT(textureFile.FullName);
+                    _allTextures[relativePath] = LoadTextureDDS(textureFile.FullName);
                 }
                 else
                 {
-                    _allTextures[relativePath] = LoadTexture(textureFile.FullName);
+                    _allTextures[relativePath] = LoadTexturePNG(textureFile.FullName);
                 }
             }
         }
 
-        private static Texture2D LoadTexture(string fullPath)
+        private static Texture2D LoadTexturePNG(string fullPath)
         {
             var texture = new Texture2D(1, 1);
             texture.LoadImage(File.ReadAllBytes(fullPath));
@@ -61,15 +65,32 @@ namespace NetworkExtensions.Framework
             return texture;
         }
 
-        private static Texture2D LoadTextureDXT(string fullPath)
+        private static Texture2D LoadTextureDDS(string fullPath)
         {
-            var texture = new Texture2D(1, 1, TextureFormat.DXT1, false);
-            texture.LoadImage(File.ReadAllBytes(fullPath));
+            var ddsBytes = File.ReadAllBytes(fullPath);
+
+            var ddsSizeCheck = ddsBytes[4];
+            if (ddsSizeCheck != 124)
+                throw new Exception("Invalid DDS DXTn texture. Unable to read");  //this header byte should be 124 for DDS image files
+
+            var height = ddsBytes[13] * 256 + ddsBytes[12];
+            var width = ddsBytes[17] * 256 + ddsBytes[16];
+
+            const int DDS_HEADER_SIZE = 128;
+            var dxtBytes = new byte[ddsBytes.Length - DDS_HEADER_SIZE];
+            Buffer.BlockCopy(ddsBytes, DDS_HEADER_SIZE, dxtBytes, 0, ddsBytes.Length - DDS_HEADER_SIZE);
+
+            //var aa = new TextAsset()
+
+            var texture = new Texture2D(width, height, TextureFormat.DXT1, true);
             texture.anisoLevel = 8;
             texture.filterMode = FilterMode.Trilinear;
+            texture.LoadRawTextureData(dxtBytes);
+            texture.Apply();
 
             return texture;
         }
+
 
         public Texture2D GetTexture(string path)
         {
@@ -82,7 +103,7 @@ namespace NetworkExtensions.Framework
 
             if (!_allTextures.ContainsKey(trimmedPath))
             {
-                throw new Exception(string.Format("NExt: Texture {0} not found", trimmedPath));
+                throw new Exception(String.Format("NExt: Texture {0} not found", trimmedPath));
             }
 
             return _allTextures[trimmedPath];

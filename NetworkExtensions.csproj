@@ -52,6 +52,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Framework\INetInfoModifier.cs" />
     <Compile Include="Framework\Extensions\EnumExtensions.cs" />
     <Compile Include="Framework\Extensions\ExpressionExtensions.cs" />
     <Compile Include="Framework\Extensions\MaterialExtensions.cs" />
@@ -109,15 +110,6 @@
     <Content Include="NewNetwork\Highway2L\Textures\Elevated_Segment__MainTex.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="NewNetwork\Highway2L\Textures\Ground_NodeLOD__AlphaMap.dxt.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="NewNetwork\Highway2L\Textures\Ground_NodeLOD__MainTex.dxt.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="NewNetwork\Highway2L\Textures\Ground_NodeLOD__XYS.dxt.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <Content Include="NewNetwork\Highway2L\Textures\Ground_Node__AlphaMap.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -142,19 +134,10 @@
     <Content Include="NewNetwork\Highway2L\Textures\Ground_Segment__XYS.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="NewNetwork\Highway2L\Textures\Slope_NodeLOD__AlphaMap.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="NewNetwork\Highway2L\Textures\Slope_NodeLOD__MainTex.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <Content Include="NewNetwork\Highway2L\Textures\Slope_Node__AlphaMap.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="NewNetwork\Highway2L\Textures\Slope_Node__MainTex.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="NewNetwork\Highway2L\Textures\Slope_NodeLOD__XYS.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="NewNetwork\Highway2L\Textures\Slope_SegmentLOD__AlphaMap.png">
@@ -235,7 +218,17 @@
     <Content Include="NewNetwork\planning_road_2_lanes.png" />
     <Content Include="NewNetwork\play_street.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="NewNetwork\Highway2L\Textures\Ground_NodeLOD__AlphaMap.dds">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="NewNetwork\Highway2L\Textures\Ground_NodeLOD__MainTex.dds">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="NewNetwork\Highway2L\Textures\Ground_NodeLOD__XYS.dds">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>rd /s /q  "%25LOCALAPPDATA%25\Colossal Order\Cities_Skylines\Addons\Mods\$(ProjectName)"
