@@ -51,11 +51,11 @@ namespace NetworkExtensions.NewNetwork.Highway2L
             switch (version)
             {
                 case NetInfoVersion.Ground:
-                    //info.SetSegmentsTexture(
-                    //    new TexturesSet(
-                    //        @"NewNetwork\Highway2L\Textures\Ground_Segment__MainTex.png",
-                    //        @"NewNetwork\Highway2L\Textures\Ground_Segment__XYS.png",
-                    //        @"NewNetwork\Highway2L\Textures\Ground_Segment__AlphaMap.png"));
+                    info.SetSegmentsTexture(
+                        new TexturesSet(
+                            @"NewNetwork\Highway2L\Textures\Ground_Segment__MainTex.png",
+                            @"NewNetwork\Highway2L\Textures\Ground_Segment__XYS.png",
+                            @"NewNetwork\Highway2L\Textures\Ground_Segment__AlphaMap.png"));
                     info.SetNodesTexture(
                         new TexturesSet
                            (@"NewNetwork\Highway2L\Textures\Ground_Node__MainTex.png",
