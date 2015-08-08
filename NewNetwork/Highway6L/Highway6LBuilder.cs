@@ -59,17 +59,16 @@ namespace NetworkExtensions.NewNetwork.Highway6L
                     info.SetSegmentsTexture(
                         new TexturesSet(
                             @"NewNetwork\Highway6L\Textures\Ground_Segment__MainTex.png",
-                            @"NewNetwork\Highway6L\Textures\Ground_Segment__XYSMap.png",
-                            @"NewNetwork\Highway6L\Textures\Ground_Segment__APRMap.png"));
+                            @"NewNetwork\Highway6L\Textures\Ground_Segment__APRMap.png",
+                            @"NewNetwork\Highway6L\Textures\Ground_Segment__XYSMap.png"));
                     info.SetNodesTexture(
                         new TexturesSet
                            (@"NewNetwork\Highway6L\Textures\Ground_Node__MainTex.png",
-                            null,
                             @"NewNetwork\Highway6L\Textures\Ground_Node__APRMap.png"),
                         new TexturesSet
                            (@"NewNetwork\Highway6L\Textures\Ground_NodeLOD__MainTex.png",
-                            @"NewNetwork\Highway6L\Textures\Ground_NodeLOD__XYSMap.png",
-                            @"NewNetwork\Highway6L\Textures\Ground_NodeLOD__APRMap.png"));
+                            @"NewNetwork\Highway6L\Textures\Ground_NodeLOD__APRMap.png",
+                            @"NewNetwork\Highway6L\Textures\Ground_NodeLOD__XYSMap.png"));
                     break;
 
                 case NetInfoVersion.Elevated:
@@ -77,24 +76,21 @@ namespace NetworkExtensions.NewNetwork.Highway6L
                     info.SetSegmentsTexture(
                         new TexturesSet(
                             @"NewNetwork\Highway6L\Textures\Elevated_Segment__MainTex.png",
-                            null,
                             @"NewNetwork\Highway6L\Textures\Elevated_Segment__APRMap.png"));
                     info.SetNodesTexture(
                         new TexturesSet
                            (@"NewNetwork\Highway6L\Textures\Elevated_Node__MainTex.png",
-                            null,
                             @"NewNetwork\Highway6L\Textures\Elevated_Node__APRMap.png"),
                         new TexturesSet
                            (@"NewNetwork\Highway6L\Textures\Elevated_NodeLOD__MainTex.png",
-                            @"NewNetwork\Highway6L\Textures\Elevated_NodeLOD__XYSMap.png",
-                            @"NewNetwork\Highway6L\Textures\Elevated_NodeLOD__APRMap.png"));
+                            @"NewNetwork\Highway6L\Textures\Elevated_NodeLOD__APRMap.png",
+                            @"NewNetwork\Highway6L\Textures\Elevated_NodeLOD__XYSMap.png"));
                     break;
 
                 case NetInfoVersion.Slope:
                     info.SetNodesTexture(
                         new TexturesSet
                            (@"NewNetwork\Highway6L\Textures\Slope_Node__MainTex.png",
-                            null,
                             @"NewNetwork\Highway6L\Textures\Slope_Node__APRMap.png"));
                     break;
 

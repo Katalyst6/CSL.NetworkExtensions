@@ -89,40 +89,13 @@
     <Content Include="NewNetwork\Highway2L\Textures\Elevated_NodeLOD__MainTex.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="NewNetwork\Highway2L\Textures\Elevated_NodeLOD__XYS.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <Content Include="NewNetwork\Highway2L\Textures\Elevated_Node__AlphaMap.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="NewNetwork\Highway2L\Textures\Elevated_Node__MainTex.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="NewNetwork\Highway2L\Textures\Elevated_SegmentLOD__AlphaMap.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="NewNetwork\Highway2L\Textures\Elevated_SegmentLOD__MainTex.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="NewNetwork\Highway2L\Textures\Elevated_SegmentLOD__XYS.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="NewNetwork\Highway2L\Textures\Elevated_Segment__AlphaMap.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="NewNetwork\Highway2L\Textures\Elevated_Segment__MainTex.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <Content Include="NewNetwork\Highway2L\Textures\Ground_Node__AlphaMap.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="NewNetwork\Highway2L\Textures\Ground_SegmentLOD__AlphaMap.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="NewNetwork\Highway2L\Textures\Ground_SegmentLOD__MainTex.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="NewNetwork\Highway2L\Textures\Ground_SegmentLOD__XYS.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="NewNetwork\Highway2L\Textures\Ground_Segment__AlphaMap.png">
@@ -138,21 +111,6 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="NewNetwork\Highway2L\Textures\Slope_Node__MainTex.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="NewNetwork\Highway2L\Textures\Slope_SegmentLOD__AlphaMap.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="NewNetwork\Highway2L\Textures\Slope_SegmentLOD__MainTex.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="NewNetwork\Highway2L\Textures\Slope_SegmentLOD__XYS.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="NewNetwork\Highway2L\Textures\Slope_Segment__AlphaMap.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="NewNetwork\Highway2L\Textures\Slope_Segment__MainTex.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="NewNetwork\Highway2L\thumbnails.png">
@@ -219,13 +177,7 @@
     <Content Include="NewNetwork\play_street.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="NewNetwork\Highway2L\Textures\Ground_NodeLOD__AlphaMap.dds">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
     <None Include="NewNetwork\Highway2L\Textures\Ground_NodeLOD__MainTex.dds">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="NewNetwork\Highway2L\Textures\Ground_NodeLOD__XYS.dds">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>

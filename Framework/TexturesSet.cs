@@ -26,23 +26,6 @@ namespace NetworkExtensions.Framework
             }
         }
 
-        private Texture2D _xysMap;
-        public Texture2D XYSMap
-        {
-            get
-            {
-                if (_xysMap == null)
-                {
-                    if (!_xysMapPath.IsNullOrWhiteSpace())
-                    {
-                        _xysMap = TextureManager.instance.GetTexture(_xysMapPath);
-                    }
-                }
-
-                return _xysMap;
-            }
-        }
-
         private Texture2D _aprMap;
         public Texture2D APRMap
         {
@@ -60,15 +43,32 @@ namespace NetworkExtensions.Framework
             }
         }
 
-        private readonly string _mainTexPath;
-        private readonly string _xysMapPath;
-        private readonly string _aprMapPath;
+        private Texture2D _xysMap;
+        public Texture2D XYSMap
+        {
+            get
+            {
+                if (_xysMap == null)
+                {
+                    if (!_xysMapPath.IsNullOrWhiteSpace())
+                    {
+                        _xysMap = TextureManager.instance.GetTexture(_xysMapPath);
+                    }
+                }
 
-        public TexturesSet(string mainTexPath, string xysMapPath = null, string aprMapPath = null)
+                return _xysMap;
+            }
+        }
+
+        private readonly string _mainTexPath;
+        private readonly string _aprMapPath;
+        private readonly string _xysMapPath;
+
+        public TexturesSet(string mainTexPath, string aprMapPath = null, string xysMapPath = null)
         {
             _mainTexPath = mainTexPath;
-            _xysMapPath = xysMapPath;
             _aprMapPath = aprMapPath;
+            _xysMapPath = xysMapPath;
         }
     }
 }

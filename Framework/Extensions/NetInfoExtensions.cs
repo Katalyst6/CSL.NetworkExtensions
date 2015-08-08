@@ -64,11 +64,11 @@ namespace NetworkExtensions.Framework
         {
             foreach (var segment in info.m_segments)
             {
-                segment.m_material = segment.m_material.Clone(newTextures);
+                segment.m_material.SetTextures(newTextures);
 
                 if (newLODTextures != null)
                 {
-                    segment.m_lodMaterial = segment.m_lodMaterial.Clone(newLODTextures);
+                    segment.m_lodMaterial.SetTextures(newLODTextures);
                 }
             }
 
@@ -79,11 +79,11 @@ namespace NetworkExtensions.Framework
         {
             foreach (var node in info.m_nodes)
             {
-                node.m_material = node.m_material.Clone(newTextures);
+                node.m_material.SetTextures(newTextures);
 
                 if (newLODTextures != null)
                 {
-                    node.m_lodMaterial = node.m_lodMaterial.Clone(newLODTextures);
+                    node.m_lodMaterial.SetTextures(newLODTextures);
                 }
             }
 

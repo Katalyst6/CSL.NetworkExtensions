@@ -52,19 +52,16 @@ namespace NetworkExtensions.NewNetwork.Highway2L
             {
                 case NetInfoVersion.Ground:
                     info.SetSegmentsTexture(
-                        new TexturesSet(
-                            @"NewNetwork\Highway2L\Textures\Ground_Segment__MainTex.png",
-                            @"NewNetwork\Highway2L\Textures\Ground_Segment__XYS.png",
-                            @"NewNetwork\Highway2L\Textures\Ground_Segment__AlphaMap.png"));
+                        new TexturesSet
+                           (@"NewNetwork\Highway2L\Textures\Ground_Segment__MainTex.png",
+                            @"NewNetwork\Highway2L\Textures\Ground_Segment__AlphaMap.png",
+                            @"NewNetwork\Highway2L\Textures\Ground_Segment__XYS.png"));
                     info.SetNodesTexture(
                         new TexturesSet
                            (@"NewNetwork\Highway2L\Textures\Ground_Segment__MainTex.png",
-                            null,
                             @"NewNetwork\Highway2L\Textures\Ground_Node__AlphaMap.png"),
                         new TexturesSet
-                           (@"NewNetwork\Highway2L\Textures\Ground_NodeLOD__MainTex.dds",
-                            @"NewNetwork\Highway2L\Textures\Ground_NodeLOD__XYS.dds",
-                            @"NewNetwork\Highway2L\Textures\Ground_NodeLOD__AlphaMap.dds"));
+                            (@"NewNetwork\Highway2L\Textures\Ground_NodeLOD__MainTex.dds"));
                     break;
 
                 case NetInfoVersion.Elevated:
@@ -72,16 +69,13 @@ namespace NetworkExtensions.NewNetwork.Highway2L
                     //info.SetSegmentsTexture(
                     //    new TexturesSet(
                     //        @"NewNetwork\Highway2L\Textures\Elevated_Segment__MainTex.png",
-                    //        null,
                     //        @"NewNetwork\Highway2L\Textures\Elevated_Segment__AlphaMap.png"));
                     info.SetNodesTexture(
                         new TexturesSet
                            (@"NewNetwork\Highway2L\Textures\Elevated_Node__MainTex.png",
-                            null,
                             @"NewNetwork\Highway2L\Textures\Elevated_Node__AlphaMap.png"),
                         new TexturesSet
                            (@"NewNetwork\Highway2L\Textures\Elevated_NodeLOD__MainTex.png",
-                            null,
                             @"NewNetwork\Highway2L\Textures\Elevated_NodeLOD__AlphaMap.png"));
                     break;
 
@@ -89,13 +83,12 @@ namespace NetworkExtensions.NewNetwork.Highway2L
                     info.SetNodesTexture(
                         new TexturesSet
                            (@"NewNetwork\Highway2L\Textures\Slope_Node__MainTex.png",
-                            null,
                             @"NewNetwork\Highway2L\Textures\Slope_Node__AlphaMap.png"));
                         // Those texture doesnt seem to be used
                         //new TexturesSet
                         //   (@"NewNetwork\Highway2L\Textures\Slope_NodeLOD__MainTex.dds",
-                        //    @"NewNetwork\Highway2L\Textures\Slope_NodeLOD__XYS.dds",
-                        //    @"NewNetwork\Highway2L\Textures\Slope_NodeLOD__AlphaMap.dds"));
+                        //    @"NewNetwork\Highway2L\Textures\Slope_NodeLOD__AlphaMap.dds",
+                        //    @"NewNetwork\Highway2L\Textures\Slope_NodeLOD__XYS.dds"));
                     break;
 
                 case NetInfoVersion.Tunnel:

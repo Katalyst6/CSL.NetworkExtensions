@@ -9,26 +9,22 @@ namespace NetworkExtensions.Framework.Extensions
 {
     public static class MaterialExtensions
     {
-        public static Material Clone(this Material originalMaterial, TexturesSet newTextures = null)
+        public static void SetTextures(this Material originalMaterial, TexturesSet newTextures)
         {
-            var material = new Material(originalMaterial);
-
             if (newTextures != null)
             {
-                material.SetTexture("_MainTex", newTextures.MainTex);
+                originalMaterial.SetTexture("_MainTex", newTextures.MainTex);
 
                 if (newTextures.XYSMap != null)
                 {
-                    material.SetTexture("_XYSMap", newTextures.XYSMap);
+                    originalMaterial.SetTexture("_XYSMap", newTextures.XYSMap);
                 }
 
                 if (newTextures.APRMap != null)
                 {
-                    material.SetTexture("_APRMap", newTextures.APRMap);
+                    originalMaterial.SetTexture("_APRMap", newTextures.APRMap);
                 }
             }
-
-            return material;
         }
     }
 }
