@@ -53,27 +53,22 @@ namespace NetworkExtensions.Framework
 
         private static Texture2D LoadTextureDDS(string fullPath)
         {
-            var ddsBytes = File.ReadAllBytes(fullPath);
+            var numArray = File.ReadAllBytes(fullPath);
+            var width = BitConverter.ToInt32(numArray, 16);
+            var height = BitConverter.ToInt32(numArray, 12);
 
-            var ddsSizeCheck = ddsBytes[4];
-            if (ddsSizeCheck != 124)
-                throw new Exception("Invalid DDS DXTn texture. Unable to read");  //this header byte should be 124 for DDS image files
+            var texture = new Texture2D(width, height, TextureFormat.DXT5, true);
+            var list = new List<byte>();
 
-            var height = ddsBytes[13] * 256 + ddsBytes[12];
-            var width = ddsBytes[17] * 256 + ddsBytes[16];
+            for (int index = 0; index < numArray.Length; ++index)
+            {
+                if (index > (int)sbyte.MaxValue)
+                    list.Add(numArray[index]);
+            }
 
-            const int DDS_HEADER_SIZE = 128;
-            var dxtBytes = new byte[ddsBytes.Length - DDS_HEADER_SIZE];
-            Buffer.BlockCopy(ddsBytes, DDS_HEADER_SIZE, dxtBytes, 0, ddsBytes.Length - DDS_HEADER_SIZE);
-
-            //var aa = new TextAsset()
-
-            var texture = new Texture2D(width, height, TextureFormat.DXT1, true);
-            texture.anisoLevel = 8;
-            texture.filterMode = FilterMode.Trilinear;
-            texture.LoadRawTextureData(dxtBytes);
+            texture.LoadRawTextureData(list.ToArray());
             texture.Apply();
-
+            texture.anisoLevel = 8;
             return texture;
         }
 
