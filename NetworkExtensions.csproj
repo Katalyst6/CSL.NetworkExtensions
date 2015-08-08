@@ -116,9 +116,6 @@
     <Content Include="NewNetwork\Highway2L\Textures\Ground_Node__AlphaMap.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="NewNetwork\Highway2L\Textures\Ground_Node__MainTex.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <Content Include="NewNetwork\Highway2L\Textures\Ground_SegmentLOD__AlphaMap.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
