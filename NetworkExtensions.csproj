@@ -80,6 +80,9 @@
     <Compile Include="NewNetwork\Highway6L\Highway6LBuilder.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="NewNetwork\Highway2L\infotooltip.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="NewNetwork\Highway2L\Textures\Elevated_NodeLOD__AlphaMap.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

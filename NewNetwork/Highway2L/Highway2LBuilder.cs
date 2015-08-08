@@ -17,7 +17,7 @@ namespace NetworkExtensions.NewNetwork.Highway2L
         public string UICategory  { get { return "RoadsHighway"; } }
 
         public string ThumbnailsPath { get { return @"NewNetwork\Highway2L\thumbnails.png"; } }
-        public string InfoTooltipPath { get { return string.Empty; } }
+        public string InfoTooltipPath { get { return @"NewNetwork\Highway2L\infotooltip.png"; } }
 
         public NetInfoVersion SupportedVersions
         {
