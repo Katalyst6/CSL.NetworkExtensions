@@ -66,10 +66,6 @@ namespace NetworkExtensions.NewNetwork.Highway2L
 
                 case NetInfoVersion.Elevated:
                 case NetInfoVersion.Bridge:
-                    //info.SetSegmentsTexture(
-                    //    new TexturesSet(
-                    //        @"NewNetwork\Highway2L\Textures\Elevated_Segment__MainTex.png",
-                    //        @"NewNetwork\Highway2L\Textures\Elevated_Segment__AlphaMap.png"));
                     info.SetNodesTexture(
                         new TexturesSet
                            (@"NewNetwork\Highway2L\Textures\Elevated_Node__MainTex.png",
@@ -84,17 +80,9 @@ namespace NetworkExtensions.NewNetwork.Highway2L
                         new TexturesSet
                            (@"NewNetwork\Highway2L\Textures\Slope_Node__MainTex.png",
                             @"NewNetwork\Highway2L\Textures\Slope_Node__AlphaMap.png"));
-                        // Those texture doesnt seem to be used
-                        //new TexturesSet
-                        //   (@"NewNetwork\Highway2L\Textures\Slope_NodeLOD__MainTex.dds",
-                        //    @"NewNetwork\Highway2L\Textures\Slope_NodeLOD__AlphaMap.dds",
-                        //    @"NewNetwork\Highway2L\Textures\Slope_NodeLOD__XYS.dds"));
                     break;
 
                 case NetInfoVersion.Tunnel:
-                    break;
-
-                default:
                     break;
             }
 
@@ -104,7 +92,7 @@ namespace NetworkExtensions.NewNetwork.Highway2L
             ///////////////////////////
             var highwayInfo = ToolsCSL.FindPrefab<NetInfo>("Highway");
 
-            info.m_createPavement = false;
+            info.m_createPavement = (version != NetInfoVersion.Ground);;
             info.m_createGravel = (version == NetInfoVersion.Ground);
             info.m_averageVehicleLaneSpeed = 2f;
             info.m_hasParkingSpaces = false;

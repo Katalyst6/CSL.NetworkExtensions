@@ -66,25 +66,17 @@ namespace NetworkExtensions.NewNetwork.Highway6L
                            (@"NewNetwork\Highway6L\Textures\Ground_Node__MainTex.png",
                             @"NewNetwork\Highway6L\Textures\Ground_Node__APRMap.png"),
                         new TexturesSet
-                           (@"NewNetwork\Highway6L\Textures\Ground_NodeLOD__MainTex.png",
-                            @"NewNetwork\Highway6L\Textures\Ground_NodeLOD__APRMap.png",
-                            @"NewNetwork\Highway6L\Textures\Ground_NodeLOD__XYSMap.png"));
+                           (@"NewNetwork\Highway6L\Textures\Ground_NodeLOD__MainTex.png"));
                     break;
 
                 case NetInfoVersion.Elevated:
                 case NetInfoVersion.Bridge:
-                    info.SetSegmentsTexture(
-                        new TexturesSet(
-                            @"NewNetwork\Highway6L\Textures\Elevated_Segment__MainTex.png",
-                            @"NewNetwork\Highway6L\Textures\Elevated_Segment__APRMap.png"));
                     info.SetNodesTexture(
                         new TexturesSet
                            (@"NewNetwork\Highway6L\Textures\Elevated_Node__MainTex.png",
                             @"NewNetwork\Highway6L\Textures\Elevated_Node__APRMap.png"),
                         new TexturesSet
-                           (@"NewNetwork\Highway6L\Textures\Elevated_NodeLOD__MainTex.png",
-                            @"NewNetwork\Highway6L\Textures\Elevated_NodeLOD__APRMap.png",
-                            @"NewNetwork\Highway6L\Textures\Elevated_NodeLOD__XYSMap.png"));
+                           (@"NewNetwork\Highway6L\Textures\Elevated_NodeLOD__MainTex.png"));
                     break;
 
                 case NetInfoVersion.Slope:
@@ -96,9 +88,6 @@ namespace NetworkExtensions.NewNetwork.Highway6L
 
                 case NetInfoVersion.Tunnel:
                     break;
-
-                default:
-                    break;
             }
 
 
@@ -107,8 +96,8 @@ namespace NetworkExtensions.NewNetwork.Highway6L
             // Set up                //
             ///////////////////////////
             var highwayInfo = ToolsCSL.FindPrefab<NetInfo>("Highway");
-            
-            info.m_createPavement = false;
+
+            info.m_createPavement = (version != NetInfoVersion.Ground);
             info.m_createGravel = (version == NetInfoVersion.Ground);
             info.m_averageVehicleLaneSpeed = 2f;
             info.m_hasParkingSpaces = false;
