@@ -8,22 +8,8 @@ using UnityEngine;
 
 namespace NetworkExtensions.Framework
 {
-    public class TextureManager
+    public class TextureManager : Singleton<TextureManager>
     {
-        private static TextureManager s_instance;
-        public static TextureManager Instance
-        {
-            get
-            {
-                if (s_instance == null)
-                {
-                    s_instance = new TextureManager();
-                }
-
-                return s_instance;
-            }
-        }
-
         readonly IDictionary<string, Texture2D> _allTextures = new Dictionary<string, Texture2D>();
 
         public void FindAndLoadAllTextures()

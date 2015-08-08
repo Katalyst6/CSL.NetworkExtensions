@@ -11,6 +11,6 @@ namespace NetworkExtensions.Framework
 {
     public interface INetInfoModifier
     {
-        void ModifyNetInfo();
+        void ModifyExistingNetInfo();
     }
 }

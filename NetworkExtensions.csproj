@@ -59,7 +59,7 @@
     <Compile Include="Framework\Selector.cs" />
     <Compile Include="Framework\TextureManager.cs" />
     <Compile Include="Framework\TexturesSet.cs" />
-    <Compile Include="ModBehaviour.CustomPanel.cs" />
+    <Compile Include="ModInitializer.CustomPanel.cs" />
     <Compile Include="Framework\Loading.cs" />
     <Compile Include="Framework\ToolsCSL.cs" />
     <Compile Include="Framework\ToolsUnity.cs" />
@@ -75,7 +75,7 @@
     <Compile Include="Framework\Extensions\TypeExtensions.cs" />
     <Compile Include="Mod.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ModBehaviour.cs" />
+    <Compile Include="ModInitializer.cs" />
     <Compile Include="Framework\Tools.cs" />
     <Compile Include="NewNetwork\Highway6L\Highway6LBuilder.cs" />
   </ItemGroup>

@@ -11,7 +11,7 @@ using Debug = NetworkExtensions.Framework.Debug;
 
 namespace NetworkExtensions.NewNetwork.Highway6L
 {
-    public class Highway6LBuilder : INetInfoBuilder
+    public class Highway6LBuilder : INetInfoBuilder, INetInfoModifier
     {
         public int Priority { get { return 14; } }
 
@@ -198,6 +198,12 @@ namespace NetworkExtensions.NewNetwork.Highway6L
 
             info.SetHighwayProps(highwayInfo);
             info.TrimHighwayProps();
+        }
+
+        public void ModifyExistingNetInfo()
+        {
+            var highwayRampInfo = ToolsCSL.FindPrefab<NetInfo>("HighwayRamp");
+            highwayRampInfo.m_UIPriority = highwayRampInfo.m_UIPriority + 1;
         }
     }
 }

@@ -10,7 +10,7 @@ using Debug = NetworkExtensions.Framework.Debug;
 
 namespace NetworkExtensions
 {
-    public partial class ModBehaviour
+    public partial class ModInitializer
     {
         //private void Initialize()
         //{

@@ -18,7 +18,7 @@ namespace NetworkExtensions.Framework
                 {
                     if (!_mainTexPath.IsNullOrWhiteSpace())
                     {
-                        _mainTex = TextureManager.Instance.GetTexture(_mainTexPath);
+                        _mainTex = TextureManager.instance.GetTexture(_mainTexPath);
                     }
                 }
 
@@ -35,7 +35,7 @@ namespace NetworkExtensions.Framework
                 {
                     if (!_xysMapPath.IsNullOrWhiteSpace())
                     {
-                        _xysMap = TextureManager.Instance.GetTexture(_xysMapPath);
+                        _xysMap = TextureManager.instance.GetTexture(_xysMapPath);
                     }
                 }
 
@@ -52,7 +52,7 @@ namespace NetworkExtensions.Framework
                 {
                     if (!_aprMapPath.IsNullOrWhiteSpace())
                     {
-                        _aprMap = TextureManager.Instance.GetTexture(_aprMapPath);
+                        _aprMap = TextureManager.instance.GetTexture(_aprMapPath);
                     }
                 }
 
