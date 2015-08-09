@@ -59,8 +59,7 @@ namespace NetworkExtensions.NewNetwork.Highway6L
                     info.SetSegmentsTexture(
                         new TexturesSet(
                             @"NewNetwork\Highway6L\Textures\Ground_Segment__MainTex.png",
-                            @"NewNetwork\Highway6L\Textures\Ground_Segment__APRMap.png",
-                            @"NewNetwork\Highway6L\Textures\Ground_Segment__XYSMap.png"));
+                            @"NewNetwork\Highway6L\Textures\Ground_Segment__APRMap.png"));
                     info.SetNodesTexture(
                         new TexturesSet
                            (@"NewNetwork\Highway6L\Textures\Ground_Node__MainTex.png",

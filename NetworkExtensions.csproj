@@ -65,6 +65,7 @@
     <Compile Include="Framework\ToolsUnity.cs" />
     <Compile Include="Framework\INetInfoBuilder.cs" />
     <Compile Include="Framework\Extensions\LocaleExtensions.cs" />
+    <Compile Include="NewNetwork\Highway1L\Highway1LBuilder.cs" />
     <Compile Include="NewNetwork\SmallRoad4L\SmallRoad4LBuilder.cs" />
     <Compile Include="NewNetwork\HighwayHelper.cs" />
     <Compile Include="NewNetwork\OneWay4L\OneWay4LBuilder.cs" />
@@ -80,6 +81,15 @@
     <Compile Include="NewNetwork\Highway6L\Highway6LBuilder.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="NewNetwork\Highway1L\Textures\Ground_Node__AlphaMap.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="NewNetwork\Highway1L\Textures\Ground_Segment__AlphaMap.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="NewNetwork\Highway1L\Textures\Ground_Segment__MainTex.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="NewNetwork\Highway2L\infotooltip.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -102,9 +112,6 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="NewNetwork\Highway2L\Textures\Ground_Segment__MainTex.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="NewNetwork\Highway2L\Textures\Ground_Segment__XYS.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="NewNetwork\Highway2L\Textures\Slope_Node__AlphaMap.png">
@@ -143,9 +150,6 @@
     <Content Include="NewNetwork\Highway6L\Textures\Ground_Segment__MainTex.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="NewNetwork\Highway6L\Textures\Ground_Segment__XYSMap.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <Content Include="NewNetwork\Highway6L\Textures\Slope_Node__APRMap.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -159,6 +163,7 @@
     <Content Include="NewNetwork\play_street.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="NewNetwork\Highway1L\Textures\Ground_Segment.psd" />
     <None Include="NewNetwork\Highway2L\Textures\Ground_NodeLOD__MainTex.dds">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

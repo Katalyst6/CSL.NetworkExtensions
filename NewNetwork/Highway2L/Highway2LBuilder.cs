@@ -1,6 +1,4 @@
-﻿ //TODO: COMING SOON
-
-using System;
+﻿using System;
 using System.Linq;
 using NetworkExtensions.Framework;
 
@@ -54,8 +52,7 @@ namespace NetworkExtensions.NewNetwork.Highway2L
                     info.SetSegmentsTexture(
                         new TexturesSet
                            (@"NewNetwork\Highway2L\Textures\Ground_Segment__MainTex.png",
-                            @"NewNetwork\Highway2L\Textures\Ground_Segment__AlphaMap.png",
-                            @"NewNetwork\Highway2L\Textures\Ground_Segment__XYS.png"));
+                            @"NewNetwork\Highway2L\Textures\Ground_Segment__AlphaMap.png"));
                     info.SetNodesTexture(
                         new TexturesSet
                            (@"NewNetwork\Highway2L\Textures\Ground_Segment__MainTex.png",

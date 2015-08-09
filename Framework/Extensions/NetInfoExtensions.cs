@@ -60,6 +60,36 @@ namespace NetworkExtensions.Framework
             return info;
         }
 
+        public static NetInfo CloneSegmentsMaterials(this NetInfo info, bool alsoLOD = false)
+        {
+            foreach (var segment in info.m_segments)
+            {
+                segment.m_material = segment.m_material.Clone();
+
+                if (alsoLOD)
+                {
+                    segment.m_lodMaterial = segment.m_lodMaterial.Clone();
+                }
+            }
+
+            return info;
+        }
+
+        public static NetInfo CloneNodesMaterials(this NetInfo info, bool alsoLOD = false)
+        {
+            foreach (var node in info.m_nodes)
+            {
+                node.m_material = node.m_material.Clone();
+
+                if (alsoLOD)
+                {
+                    node.m_lodMaterial = node.m_lodMaterial.Clone();
+                }
+            }
+
+            return info;
+        }
+
         public static NetInfo SetSegmentsTexture(this NetInfo info, TexturesSet newTextures, TexturesSet newLODTextures = null)
         {
             foreach (var segment in info.m_segments)
