@@ -66,7 +66,6 @@
     <Compile Include="Framework\INetInfoBuilder.cs" />
     <Compile Include="Framework\Extensions\LocaleExtensions.cs" />
     <Compile Include="NewNetwork\Highway1L\Highway1LBuilder.cs" />
-    <Compile Include="NewNetwork\Highway2L\Highway2LBuilderTest.cs" />
     <Compile Include="NewNetwork\SmallRoad4L\SmallRoad4LBuilder.cs" />
     <Compile Include="NewNetwork\HighwayHelper.cs" />
     <Compile Include="NewNetwork\OneWay4L\OneWay4LBuilder.cs" />
@@ -100,6 +99,9 @@
     <Content Include="NewNetwork\Highway2L\Textures\Elevated_NodeLOD__MainTex.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="NewNetwork\Highway2L\Textures\Elevated_NodeLOD__XYSMap.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="NewNetwork\Highway2L\Textures\Elevated_Node__AlphaMap.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -112,7 +114,7 @@
     <Content Include="NewNetwork\Highway2L\Textures\Ground_NodeLOD__MainTex.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="NewNetwork\Highway2L\Textures\Ground_NodeLOD__XYS.png">
+    <Content Include="NewNetwork\Highway2L\Textures\Ground_NodeLOD__XYSMap.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="NewNetwork\Highway2L\Textures\Ground_Node__AlphaMap.png">
@@ -122,6 +124,15 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="NewNetwork\Highway2L\Textures\Ground_Segment__MainTex.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="NewNetwork\Highway2L\Textures\Slope_NodeLOD__AlphaMap.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="NewNetwork\Highway2L\Textures\Slope_NodeLOD__MainTex.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="NewNetwork\Highway2L\Textures\Slope_NodeLOD__XYSMap.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="NewNetwork\Highway2L\Textures\Slope_Node__AlphaMap.png">

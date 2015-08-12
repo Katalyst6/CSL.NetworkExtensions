@@ -60,7 +60,7 @@ namespace NetworkExtensions.NewNetwork.Highway2L
                         new TexturesSet
                            (@"NewNetwork\Highway2L\Textures\Ground_NodeLOD__MainTex.png",
                             @"NewNetwork\Highway2L\Textures\Ground_NodeLOD__AlphaMap.png",
-                            @"NewNetwork\Highway2L\Textures\Ground_NodeLOD__XYS.png"));
+                            @"NewNetwork\Highway2L\Textures\Ground_NodeLOD__XYSMap.png"));
                     break;
 
                 case NetInfoVersion.Elevated:
@@ -71,19 +71,25 @@ namespace NetworkExtensions.NewNetwork.Highway2L
                             @"NewNetwork\Highway2L\Textures\Elevated_Node__AlphaMap.png"),
                         new TexturesSet
                            (@"NewNetwork\Highway2L\Textures\Elevated_NodeLOD__MainTex.png",
-                            @"NewNetwork\Highway2L\Textures\Elevated_NodeLOD__AlphaMap.png"));
+                            @"NewNetwork\Highway2L\Textures\Elevated_NodeLOD__AlphaMap.png",
+                            @"NewNetwork\Highway2L\Textures\Elevated_NodeLOD__XYSMap.png"));
                     break;
 
                 case NetInfoVersion.Slope:
                     info.SetNodesTexture(
                         new TexturesSet
                            (@"NewNetwork\Highway2L\Textures\Slope_Node__MainTex.png",
-                            @"NewNetwork\Highway2L\Textures\Slope_Node__AlphaMap.png"));
+                            @"NewNetwork\Highway2L\Textures\Slope_Node__AlphaMap.png"),
+                        new TexturesSet
+                           (@"NewNetwork\Highway2L\Textures\Slope_NodeLOD__MainTex.png",
+                            @"NewNetwork\Highway2L\Textures\Slope_NodeLOD__AlphaMap.png",
+                            @"NewNetwork\Highway2L\Textures\Slope_NodeLOD__XYSMap.png"));
                     break;
 
                 case NetInfoVersion.Tunnel:
                     break;
             }
+
 
 
             ///////////////////////////
