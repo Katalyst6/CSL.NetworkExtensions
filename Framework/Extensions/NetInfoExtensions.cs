@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
+using ColossalFramework;
 using NetworkExtensions.Framework.Extensions;
 using UnityEngine;
 using Object = UnityEngine.Object;
@@ -60,45 +61,26 @@ namespace NetworkExtensions.Framework
             return info;
         }
 
-        public static NetInfo CloneSegmentsMaterials(this NetInfo info, bool alsoLOD = false)
-        {
-            foreach (var segment in info.m_segments)
-            {
-                segment.m_material = segment.m_material.Clone();
-
-                if (alsoLOD)
-                {
-                    segment.m_lodMaterial = segment.m_lodMaterial.Clone();
-                }
-            }
-
-            return info;
-        }
-
-        public static NetInfo CloneNodesMaterials(this NetInfo info, bool alsoLOD = false)
-        {
-            foreach (var node in info.m_nodes)
-            {
-                node.m_material = node.m_material.Clone();
-
-                if (alsoLOD)
-                {
-                    node.m_lodMaterial = node.m_lodMaterial.Clone();
-                }
-            }
-
-            return info;
-        }
-
         public static NetInfo SetSegmentsTexture(this NetInfo info, TexturesSet newTextures, TexturesSet newLODTextures = null)
         {
             foreach (var segment in info.m_segments)
             {
-                segment.m_material.SetTextures(newTextures);
-
-                if (newLODTextures != null)
+                if (segment.m_material != null)
                 {
-                    segment.m_lodMaterial.SetTextures(newLODTextures);
+                    segment.m_material = segment.m_material.Clone(newTextures);
+                }
+
+                if (segment.m_segmentMaterial != null)
+                {
+                    segment.m_segmentMaterial = segment.m_segmentMaterial.Clone(newTextures);
+                }
+
+                if (segment.m_lodMaterial != null)
+                {
+                    if (newLODTextures != null)
+                    {
+                        segment.m_lodMaterial = segment.m_lodMaterial.Clone(newLODTextures);
+                    }
                 }
             }
 
@@ -109,11 +91,22 @@ namespace NetworkExtensions.Framework
         {
             foreach (var node in info.m_nodes)
             {
-                node.m_material.SetTextures(newTextures);
-
-                if (newLODTextures != null)
+                if (node.m_material != null)
                 {
-                    node.m_lodMaterial.SetTextures(newLODTextures);
+                    node.m_material = node.m_material.Clone(newTextures);
+                }
+
+                if (node.m_nodeMaterial != null)
+                {
+                    node.m_nodeMaterial = node.m_nodeMaterial.Clone(newTextures);
+                }
+
+                if (node.m_lodMaterial != null)
+                {
+                    if (newLODTextures != null)
+                    {
+                        node.m_lodMaterial = node.m_lodMaterial.Clone(newLODTextures);
+                    }
                 }
             }
 

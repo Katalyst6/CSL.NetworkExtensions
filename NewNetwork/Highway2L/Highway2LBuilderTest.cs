@@ -4,12 +4,12 @@ using NetworkExtensions.Framework;
 
 namespace NetworkExtensions.NewNetwork.Highway2L
 {
-    public class Highway2LBuilder : INetInfoBuilder
+    public class Highway2LBuilderTest : INetInfoBuilder
     {
-        public int Priority { get { return 10; } }
+        public int Priority { get { return 9; } }
 
         public string PrefabName  { get { return "Oneway Road"; } }
-        public string Name        { get { return "Rural Highway"; } }
+        public string Name        { get { return "Rural Highway II"; } }
         public string CodeName    { get { return "HIGHWAY_2L"; } }
         public string Description { get { return "A two-lane, one-way road suitable for low to medium traffic between rural areas. Lanes going the opposite direction need to be built separately. Highway does not allow zoning next to it!"; } }
         public string UICategory  { get { return "RoadsHighway"; } }
@@ -46,44 +46,42 @@ namespace NetworkExtensions.NewNetwork.Highway2L
             ///////////////////////////
             // Texturing             //
             ///////////////////////////
-            switch (version)
-            {
-                case NetInfoVersion.Ground:
-                    info.SetSegmentsTexture(
-                        new TexturesSet
-                           (@"NewNetwork\Highway2L\Textures\Ground_Segment__MainTex.png",
-                            @"NewNetwork\Highway2L\Textures\Ground_Segment__AlphaMap.png"));
-                    info.SetNodesTexture(
-                        new TexturesSet
-                           (@"NewNetwork\Highway2L\Textures\Ground_Segment__MainTex.png",
-                            @"NewNetwork\Highway2L\Textures\Ground_Node__AlphaMap.png"),
-                        new TexturesSet
-                           (@"NewNetwork\Highway2L\Textures\Ground_NodeLOD__MainTex.png",
-                            @"NewNetwork\Highway2L\Textures\Ground_NodeLOD__AlphaMap.png",
-                            @"NewNetwork\Highway2L\Textures\Ground_NodeLOD__XYS.png"));
-                    break;
+            //switch (version)
+            //{
+            //    case NetInfoVersion.Ground:
+            //        info.SetSegmentsTexture(
+            //            new TexturesSet
+            //               (@"NewNetwork\Highway2L\Textures\Ground_Segment__MainTex.png",
+            //                @"NewNetwork\Highway2L\Textures\Ground_Segment__AlphaMap.png"));
+            //        info.SetNodesTexture(
+            //            new TexturesSet
+            //               (@"NewNetwork\Highway2L\Textures\Ground_Segment__MainTex.png",
+            //                @"NewNetwork\Highway2L\Textures\Ground_Node__AlphaMap.png"),
+            //            new TexturesSet
+            //                (@"NewNetwork\Highway2L\Textures\Ground_NodeLOD__MainTex.dds"));
+            //        break;
 
-                case NetInfoVersion.Elevated:
-                case NetInfoVersion.Bridge:
-                    info.SetNodesTexture(
-                        new TexturesSet
-                           (@"NewNetwork\Highway2L\Textures\Elevated_Node__MainTex.png",
-                            @"NewNetwork\Highway2L\Textures\Elevated_Node__AlphaMap.png"),
-                        new TexturesSet
-                           (@"NewNetwork\Highway2L\Textures\Elevated_NodeLOD__MainTex.png",
-                            @"NewNetwork\Highway2L\Textures\Elevated_NodeLOD__AlphaMap.png"));
-                    break;
+            //    case NetInfoVersion.Elevated:
+            //    case NetInfoVersion.Bridge:
+            //        info.SetNodesTexture(
+            //            new TexturesSet
+            //               (@"NewNetwork\Highway2L\Textures\Elevated_Node__MainTex.png",
+            //                @"NewNetwork\Highway2L\Textures\Elevated_Node__AlphaMap.png"),
+            //            new TexturesSet
+            //               (@"NewNetwork\Highway2L\Textures\Elevated_NodeLOD__MainTex.png",
+            //                @"NewNetwork\Highway2L\Textures\Elevated_NodeLOD__AlphaMap.png"));
+            //        break;
 
-                case NetInfoVersion.Slope:
-                    info.SetNodesTexture(
-                        new TexturesSet
-                           (@"NewNetwork\Highway2L\Textures\Slope_Node__MainTex.png",
-                            @"NewNetwork\Highway2L\Textures\Slope_Node__AlphaMap.png"));
-                    break;
+            //    case NetInfoVersion.Slope:
+            //        info.SetNodesTexture(
+            //            new TexturesSet
+            //               (@"NewNetwork\Highway2L\Textures\Slope_Node__MainTex.png",
+            //                @"NewNetwork\Highway2L\Textures\Slope_Node__AlphaMap.png"));
+            //        break;
 
-                case NetInfoVersion.Tunnel:
-                    break;
-            }
+            //    case NetInfoVersion.Tunnel:
+            //        break;
+            //}
 
 
             ///////////////////////////

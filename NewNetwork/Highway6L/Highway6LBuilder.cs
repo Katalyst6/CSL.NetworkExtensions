@@ -65,7 +65,9 @@ namespace NetworkExtensions.NewNetwork.Highway6L
                            (@"NewNetwork\Highway6L\Textures\Ground_Node__MainTex.png",
                             @"NewNetwork\Highway6L\Textures\Ground_Node__APRMap.png"),
                         new TexturesSet
-                           (@"NewNetwork\Highway6L\Textures\Ground_NodeLOD__MainTex.png"));
+                           (@"NewNetwork\Highway6L\Textures\Ground_NodeLOD__MainTex.png",
+                            @"NewNetwork\Highway6L\Textures\Ground_NodeLOD__APRMap.png",
+                            @"NewNetwork\Highway6L\Textures\Ground_NodeLOD__XYSMap.png"));
                     break;
 
                 case NetInfoVersion.Elevated:
@@ -75,14 +77,20 @@ namespace NetworkExtensions.NewNetwork.Highway6L
                            (@"NewNetwork\Highway6L\Textures\Elevated_Node__MainTex.png",
                             @"NewNetwork\Highway6L\Textures\Elevated_Node__APRMap.png"),
                         new TexturesSet
-                           (@"NewNetwork\Highway6L\Textures\Elevated_NodeLOD__MainTex.png"));
+                           (@"NewNetwork\Highway6L\Textures\Elevated_NodeLOD__MainTex.png",
+                            @"NewNetwork\Highway6L\Textures\Elevated_NodeLOD__APRMap.png",
+                            @"NewNetwork\Highway6L\Textures\Elevated_NodeLOD__XYSMap.png"));
                     break;
 
                 case NetInfoVersion.Slope:
                     info.SetNodesTexture(
                         new TexturesSet
                            (@"NewNetwork\Highway6L\Textures\Slope_Node__MainTex.png",
-                            @"NewNetwork\Highway6L\Textures\Slope_Node__APRMap.png"));
+                            @"NewNetwork\Highway6L\Textures\Slope_Node__APRMap.png"),
+                        new TexturesSet
+                           (@"NewNetwork\Highway6L\Textures\Slope_NodeLOD__MainTex.png",
+                            @"NewNetwork\Highway6L\Textures\Slope_NodeLOD__APRMap.png",
+                            @"NewNetwork\Highway6L\Textures\Slope_NodeLOD__XYSMap.png"));
                     break;
 
                 case NetInfoVersion.Tunnel:

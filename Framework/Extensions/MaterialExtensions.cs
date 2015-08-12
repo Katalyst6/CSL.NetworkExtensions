@@ -3,33 +3,56 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using UnityEngine;
-using Object = System.Object;
 
 namespace NetworkExtensions.Framework.Extensions
 {
     public static class MaterialExtensions
     {
-        public static Material Clone(this Material originalMaterial)
+        public static Material Clone(this Material originalMaterial, TexturesSet newTextures)
         {
-            return new Material(originalMaterial);
+            var material = UnityEngine.Object.Instantiate(originalMaterial);
+
+            {
+                material.ModifyTexture("_MainTex", newTextures.MainTex);
+            }
+
+            if (newTextures.XYSMap != null)
+            {
+                material.ModifyTexture("_XYSMap", newTextures.XYSMap);
+            }
+
+            if (newTextures.APRMap != null)
+            {
+                material.ModifyTexture("_APRMap", newTextures.APRMap);
+            }
+
+            return material;
         }
 
-        public static void SetTextures(this Material originalMaterial, TexturesSet newTextures)
+        private static void ModifyTexture(this Material material, string propertyName, Texture2D newTexture)
         {
-            if (newTextures != null)
+            var currentTexture = material.GetTexture(propertyName) as Texture2D;
+
+            if (currentTexture == null)
             {
-                originalMaterial.SetTexture("_MainTex", newTextures.MainTex);
-
-                if (newTextures.XYSMap != null)
-                {
-                    originalMaterial.SetTexture("_XYSMap", newTextures.XYSMap);
-                }
-
-                if (newTextures.APRMap != null)
-                {
-                    originalMaterial.SetTexture("_APRMap", newTextures.APRMap);
-                }
+                return;
             }
+
+            var needCompression = currentTexture.format == TextureFormat.DXT1 ||
+                                  currentTexture.format == TextureFormat.DXT5;
+
+            if (!needCompression)
+            {
+                needCompression = newTexture.format != TextureFormat.DXT1 &&
+                                  newTexture.format != TextureFormat.DXT5;
+            }
+
+            if (needCompression)
+            {
+                newTexture.Compress(false);
+            }
+
+            material.SetTexture(propertyName, newTexture);
         }
     }
 }
