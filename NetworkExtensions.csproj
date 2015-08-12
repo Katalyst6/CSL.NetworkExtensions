@@ -52,6 +52,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Mod.Loading.cs" />
     <Compile Include="Framework\INetInfoModifier.cs" />
     <Compile Include="Framework\Extensions\EnumExtensions.cs" />
     <Compile Include="Framework\Extensions\ExpressionExtensions.cs" />
@@ -70,7 +71,6 @@
     <Compile Include="NewNetwork\HighwayHelper.cs" />
     <Compile Include="NewNetwork\OneWay4L\OneWay4LBuilder.cs" />
     <Compile Include="NewNetwork\Highway2L\Highway2LBuilder.cs" />
-    <Compile Include="OldModBehaviour.cs" />
     <Compile Include="Framework\Debug.cs" />
     <Compile Include="Framework\Extensions\NetInfoExtensions.cs" />
     <Compile Include="Framework\Extensions\TypeExtensions.cs" />
@@ -206,6 +206,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="NewNetwork\Highway1L\Textures\Ground_Segment.psd" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="CompatibilityTests\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

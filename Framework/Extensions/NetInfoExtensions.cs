@@ -18,7 +18,7 @@ namespace NetworkExtensions.Framework
     {
         public static NetInfo Clone(this NetInfo originalNetInfo, string newName)
         {
-            Debug.Log(String.Format("NExt: Cloning {0} -> {1}", originalNetInfo.name, newName));
+            //Debug.Log(String.Format("NExt: Cloning {0} -> {1}", originalNetInfo.name, newName));
 
             var gameObject = Object.Instantiate(originalNetInfo.gameObject);
             gameObject.transform.parent = originalNetInfo.gameObject.transform; // N.B. This line is evil and removing it is killoing the game's performances
@@ -27,7 +27,7 @@ namespace NetworkExtensions.Framework
             var info = gameObject.GetComponent<NetInfo>();
             info.m_prefabInitialized = false;
 
-            Debug.Log(String.Format("NExt: Cloning completed {0} -> {1}", originalNetInfo.name, newName));
+            //Debug.Log(String.Format("NExt: Cloning completed {0} -> {1}", originalNetInfo.name, newName));
 
             return info;
         }
