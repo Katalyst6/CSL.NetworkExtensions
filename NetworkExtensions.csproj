@@ -79,6 +79,10 @@
     <Compile Include="ModInitializer.cs" />
     <Compile Include="Framework\Tools.cs" />
     <Compile Include="NewNetwork\Highway6L\Highway6LBuilder.cs" />
+    <Compile Include="SomeNetwork\PlanningRoadLargeBuilder.cs" />
+    <Compile Include="SomeNetwork\PlanningRoadSmallBuilder.cs" />
+    <Compile Include="SomeNetwork\DarkBasicRoadBuilder.cs" />
+    <Compile Include="SomeNetwork\SomeRoads.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="NewNetwork\Highway1L\Textures\Ground_Node__AlphaMap.png">
@@ -203,6 +207,18 @@
     </Content>
     <Content Include="NewNetwork\planning_road_2_lanes.png" />
     <Content Include="NewNetwork\play_street.png" />
+    <Content Include="SomeNetwork\Textures\planning_road_2_lanes.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SomeNetwork\Textures\play_street.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SomeNetwork\Textures\road_small.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SomeNetwork\thumbnail_atlas.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <None Include="NewNetwork\Highway1L\Textures\Ground_Segment.psd" />

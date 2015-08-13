@@ -102,6 +102,13 @@ namespace NetworkExtensions.Framework
 
                 return info;
             }
+            else
+            {
+                if (assign != null)
+                {
+                    assign(null);
+                }
+            }
 
             return null;
         }
