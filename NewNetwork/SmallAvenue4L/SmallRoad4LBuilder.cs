@@ -110,7 +110,7 @@ namespace NetworkExtensions.NewNetwork.SmallAvenue4L
             }
 
             // Setting up lanes
-            var vehiculeLaneTypes = new[]
+            var vehicleLaneTypes = new[]
             {
                 NetInfo.LaneType.Vehicle,
                 NetInfo.LaneType.PublicTransport,
@@ -118,28 +118,28 @@ namespace NetworkExtensions.NewNetwork.SmallAvenue4L
                 NetInfo.LaneType.TransportVehicle
             };
 
-            var vehiculeLanes = info.m_lanes
+            var vehicleLanes = info.m_lanes
                 .Where(l =>
                     l.m_laneType.HasFlag(NetInfo.LaneType.Parking) ||
-                    vehiculeLaneTypes.Contains(l.m_laneType))
+                    vehicleLaneTypes.Contains(l.m_laneType))
                 .OrderBy(l => l.m_position)
                 .ToArray();
 
-            for (int i = 0; i < vehiculeLanes.Length; i++)
+            for (int i = 0; i < vehicleLanes.Length; i++)
             {
-                var lane = vehiculeLanes[i];
+                var lane = vehicleLanes[i];
 
                 if (lane.m_laneType.HasFlag(NetInfo.LaneType.Parking))
                 {
-                    NetInfo.Lane closestVehiculeLane;
+                    NetInfo.Lane closestVehicleLane;
 
-                    if (i - 1 >= 0 && vehiculeLaneTypes.Contains(vehiculeLanes[i - 1].m_laneType))
+                    if (i - 1 >= 0 && vehicleLaneTypes.Contains(vehicleLanes[i - 1].m_laneType))
                     {
-                        closestVehiculeLane = vehiculeLanes[i - 1];
+                        closestVehicleLane = vehicleLanes[i - 1];
                     }
-                    else if (i + 1 < vehiculeLanes.Length && vehiculeLaneTypes.Contains(vehiculeLanes[i + 1].m_laneType))
+                    else if (i + 1 < vehicleLanes.Length && vehicleLaneTypes.Contains(vehicleLanes[i + 1].m_laneType))
                     {
-                        closestVehiculeLane = vehiculeLanes[i + 1];
+                        closestVehicleLane = vehicleLanes[i + 1];
                     }
                     else
                     {
@@ -147,7 +147,7 @@ namespace NetworkExtensions.NewNetwork.SmallAvenue4L
                         continue;
                     }
 
-                    SetLane(lane, closestVehiculeLane);
+                    SetLane(lane, closestVehicleLane);
 
                     if (lane.m_position < 0)
                     {
@@ -210,7 +210,7 @@ namespace NetworkExtensions.NewNetwork.SmallAvenue4L
             newLane.m_width = closestLane.m_width;
 
             // N.B. Don't modify the position
-            //lane.m_position = closestVehiculeLane.m_position;
+            //lane.m_position = closestLane.m_position;
 
             NetLaneProps templateLaneProps;
             if (closestLane.m_laneProps != null)
