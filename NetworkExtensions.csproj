@@ -209,6 +209,12 @@
     <Content Include="NewNetwork\Highway6L\thumbnails.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="NewNetwork\SmallRoad4L\Textures\Ground_Segment__AlphaMap.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="NewNetwork\SmallRoad4L\Textures\Ground_Segment__MainTex.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="SomeNetwork\Textures\planning_road_2_lanes.png" />
     <Content Include="SomeNetwork\thumbnail_atlas.png" />
   </ItemGroup>
