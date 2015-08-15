@@ -169,7 +169,6 @@ namespace NetworkExtensions.NewNetwork.Highway2L
             if (roadAI != null)
             {
                 roadAI.m_enableZoning = false;
-                roadAI.m_trafficLights = false;
             }
 
             info.SetHighwayProps(highwayInfo);
