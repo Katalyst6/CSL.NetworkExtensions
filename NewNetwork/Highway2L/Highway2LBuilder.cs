@@ -68,11 +68,12 @@ namespace NetworkExtensions.NewNetwork.Highway2L
                     info.SetNodesTexture(
                         new TexturesSet
                            (@"NewNetwork\Highway2L\Textures\Elevated_Node__MainTex.png",
-                            @"NewNetwork\Highway2L\Textures\Elevated_Node__AlphaMap.png"),
-                        new TexturesSet
-                           (@"NewNetwork\Highway2L\Textures\Elevated_NodeLOD__MainTex.png",
-                            @"NewNetwork\Highway2L\Textures\Elevated_NodeLOD__AlphaMap.png",
-                            @"NewNetwork\Highway2L\Textures\Elevated_NodeLOD__XYSMap.png"));
+                            @"NewNetwork\Highway2L\Textures\Elevated_Node__AlphaMap.png"));
+                        // Lets leave the crossings there until we have a fix
+                        //new TexturesSet
+                        //   (@"NewNetwork\Highway2L\Textures\Elevated_NodeLOD__MainTex.png",
+                        //    @"NewNetwork\Highway2L\Textures\Elevated_NodeLOD__AlphaMap.png",
+                        //    @"NewNetwork\Highway2L\Textures\Elevated_NodeLOD__XYSMap.png"));
                     break;
 
                 case NetInfoVersion.Slope:

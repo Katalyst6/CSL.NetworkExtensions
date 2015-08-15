@@ -75,11 +75,12 @@ namespace NetworkExtensions.NewNetwork.Highway6L
                     info.SetNodesTexture(
                         new TexturesSet
                            (@"NewNetwork\Highway6L\Textures\Elevated_Node__MainTex.png",
-                            @"NewNetwork\Highway6L\Textures\Elevated_Node__APRMap.png"),
-                        new TexturesSet
-                           (@"NewNetwork\Highway6L\Textures\Elevated_NodeLOD__MainTex.png",
-                            @"NewNetwork\Highway6L\Textures\Elevated_NodeLOD__APRMap.png",
-                            @"NewNetwork\Highway6L\Textures\Elevated_NodeLOD__XYSMap.png"));
+                            @"NewNetwork\Highway6L\Textures\Elevated_Node__APRMap.png"));
+                        // Lets leave the crossings there until we have a fix
+                        //new TexturesSet
+                        //   (@"NewNetwork\Highway6L\Textures\Elevated_NodeLOD__MainTex.png",
+                        //    @"NewNetwork\Highway6L\Textures\Elevated_NodeLOD__APRMap.png",
+                        //    @"NewNetwork\Highway6L\Textures\Elevated_NodeLOD__XYSMap.png"));
                     break;
 
                 case NetInfoVersion.Slope:
@@ -185,7 +186,6 @@ namespace NetworkExtensions.NewNetwork.Highway6L
             if (roadAI != null)
             {
                 roadAI.m_enableZoning = false;
-                roadAI.m_trafficLights = false;
             }
 
             info.SetHighwayProps(highwayInfo);
