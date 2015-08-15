@@ -49,41 +49,44 @@ namespace NetworkExtensions.NewNetwork.Highway2L
             switch (version)
             {
                 case NetInfoVersion.Ground:
-                    info.SetSegmentsTexture(
-                        new TexturesSet
-                           (@"NewNetwork\Highway2L\Textures\Ground_Segment__MainTex.png",
-                            @"NewNetwork\Highway2L\Textures\Ground_Segment__AlphaMap.png"));
-                    info.SetNodesTexture(
-                        new TexturesSet
-                           (@"NewNetwork\Highway2L\Textures\Ground_Segment__MainTex.png",
-                            @"NewNetwork\Highway2L\Textures\Ground_Node__AlphaMap.png"),
-                        new TexturesSet
-                           (@"NewNetwork\Highway2L\Textures\Ground_NodeLOD__MainTex.png",
-                            @"NewNetwork\Highway2L\Textures\Ground_NodeLOD__AlphaMap.png",
-                            @"NewNetwork\Highway2L\Textures\Ground_NodeLOD__XYSMap.png"));
+                    //info.SetSegmentsTexture(
+                    //    new TexturesSet
+                    //       (@"NewNetwork\Highway2L\Textures\Ground_Segment__MainTex.png",
+                    //        @"NewNetwork\Highway2L\Textures\Ground_Segment__AlphaMap.png"));
+                    //info.SetNodesTexture(
+                    //    new TexturesSet
+                    //       (@"NewNetwork\Highway2L\Textures\Ground_Segment__MainTex.png",
+                    //        @"NewNetwork\Highway2L\Textures\Ground_Node__AlphaMap.png"));
+                //,
+                //        new TexturesSet
+                //           (@"NewNetwork\Highway2L\Textures\Ground_NodeLOD__MainTex.png",
+                //            @"NewNetwork\Highway2L\Textures\Ground_NodeLOD__AlphaMap.png",
+                //            @"NewNetwork\Highway2L\Textures\Ground_NodeLOD__XYSMap.png"));
                     break;
 
                 case NetInfoVersion.Elevated:
                 case NetInfoVersion.Bridge:
                     info.SetNodesTexture(
+                        //new TexturesSet
+                        //   (@"NewNetwork\Highway2L\Textures\Elevated_Node__MainTex.png",
+                        //    @"NewNetwork\Highway2L\Textures\Elevated_Node__AlphaMap.png"),
+                        null,
                         new TexturesSet
-                           (@"NewNetwork\Highway2L\Textures\Elevated_Node__MainTex.png",
-                            @"NewNetwork\Highway2L\Textures\Elevated_Node__AlphaMap.png"),
-                        new TexturesSet
-                           (@"NewNetwork\Highway2L\Textures\Elevated_NodeLOD__MainTex.png",
-                            @"NewNetwork\Highway2L\Textures\Elevated_NodeLOD__AlphaMap.png",
-                            @"NewNetwork\Highway2L\Textures\Elevated_NodeLOD__XYSMap.png"));
+                           (@"NewNetwork\Highway2L\Textures\Elevated_NodeLOD__MainTex.dds",
+                            @"NewNetwork\Highway2L\Textures\Elevated_NodeLOD__AlphaMap.dds",
+                            @"NewNetwork\Highway2L\Textures\Elevated_NodeLOD__XYSMap.dds"));
                     break;
 
-                case NetInfoVersion.Slope:
-                    info.SetNodesTexture(
-                        new TexturesSet
-                           (@"NewNetwork\Highway2L\Textures\Slope_Node__MainTex.png",
-                            @"NewNetwork\Highway2L\Textures\Slope_Node__AlphaMap.png"),
-                        new TexturesSet
-                           (@"NewNetwork\Highway2L\Textures\Slope_NodeLOD__MainTex.png",
-                            @"NewNetwork\Highway2L\Textures\Slope_NodeLOD__AlphaMap.png",
-                            @"NewNetwork\Highway2L\Textures\Slope_NodeLOD__XYSMap.png"));
+                //case NetInfoVersion.Slope:
+                //    info.SetNodesTexture(
+                //        new TexturesSet
+                //           (@"NewNetwork\Highway2L\Textures\Slope_Node__MainTex.png",
+                //            @"NewNetwork\Highway2L\Textures\Slope_Node__AlphaMap.png"));
+                //,
+                //        new TexturesSet
+                //           (@"NewNetwork\Highway2L\Textures\Slope_NodeLOD__MainTex.png",
+                //            @"NewNetwork\Highway2L\Textures\Slope_NodeLOD__AlphaMap.png",
+                //            @"NewNetwork\Highway2L\Textures\Slope_NodeLOD__XYSMap.png"));
                     break;
 
                 case NetInfoVersion.Tunnel:

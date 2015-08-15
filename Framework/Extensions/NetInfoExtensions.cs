@@ -91,21 +91,24 @@ namespace NetworkExtensions.Framework
         {
             foreach (var node in info.m_nodes)
             {
-                if (node.m_material != null)
+                if (newTextures != null)
                 {
-                    node.m_material = node.m_material.Clone(newTextures);
-                }
+                    if (node.m_material != null)
+                    {
+                        node.m_material = node.m_material.Clone(newTextures);
+                    }
 
-                if (node.m_nodeMaterial != null)
-                {
-                    node.m_nodeMaterial = node.m_nodeMaterial.Clone(newTextures);
+                    if (node.m_nodeMaterial != null)
+                    {
+                        node.m_nodeMaterial = node.m_nodeMaterial.Clone(newTextures);
+                    }
                 }
 
                 if (node.m_lodMaterial != null)
                 {
                     if (newLODTextures != null)
                     {
-                        node.m_lodMaterial = node.m_lodMaterial.Clone(newLODTextures);
+                        node.m_lodMaterial = node.m_lodMaterial.Clone(newLODTextures, true);
                     }
                 }
             }

@@ -227,6 +227,17 @@
   <ItemGroup>
     <Folder Include="CompatibilityTests\" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="NewNetwork\Highway2L\Textures\Elevated_NodeLOD__AlphaMap.dds">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="NewNetwork\Highway2L\Textures\Elevated_NodeLOD__MainTex.dds">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="NewNetwork\Highway2L\Textures\Elevated_NodeLOD__XYSMap.dds">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>rd /s /q  "%25LOCALAPPDATA%25\Colossal Order\Cities_Skylines\Addons\Mods\$(ProjectName)"
