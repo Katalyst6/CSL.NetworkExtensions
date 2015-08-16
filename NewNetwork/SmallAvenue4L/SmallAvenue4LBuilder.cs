@@ -98,8 +98,7 @@ namespace NetworkExtensions.NewNetwork.SmallAvenue4L
                     }
                     else
                     {
-                        Debug.Log("NExt: Limbo lane");
-                        continue;
+                        continue; // Not supposed to happen
                     }
 
                     var closestVehicleLane = vehicleLanes[closestVehicleLaneId];

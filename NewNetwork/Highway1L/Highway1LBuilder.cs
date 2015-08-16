@@ -2,7 +2,10 @@
 using System.Linq;
 using NetworkExtensions.Framework;
 using UnityEngine;
+
+#if DEBUG
 using Debug = NetworkExtensions.Framework.Debug;
+#endif
 
 namespace NetworkExtensions.NewNetwork.Highway1L
 {
