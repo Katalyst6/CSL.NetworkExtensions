@@ -102,7 +102,6 @@ namespace NetworkExtensions.NewNetwork.SmallAvenue4L
                         continue;
                     }
 
-                    Debug.Log(string.Format("NExt: ParkingLaneId {0} ClosestVehicleLaneId {1}", i, closestVehicleLaneId));
                     var closestVehicleLane = vehicleLanes[closestVehicleLaneId];
 
                     SetLane(lane, closestVehicleLane);
