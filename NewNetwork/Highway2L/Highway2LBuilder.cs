@@ -4,7 +4,7 @@ using NetworkExtensions.Framework;
 
 namespace NetworkExtensions.NewNetwork.Highway2L
 {
-    public class Highway2LBuilder : INetInfoBuilder
+    public class Highway2LBuilder : NExtModPart, INetInfoBuilder
     {
         public int Priority { get { return 10; } }
 

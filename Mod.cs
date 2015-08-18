@@ -52,6 +52,28 @@ namespace NetworkExtensions
             return ".";
         }
 
+        private static IEnumerable<INExtModPart> s_parts;
+        public static IEnumerable<INExtModPart> Parts
+        {
+            get
+            {
+                if (s_parts == null)
+                {
+                    var builderType = typeof(INExtModPart);
+
+                    s_parts = typeof(ModInitializer)
+                        .Assembly
+                        .GetTypes()
+                        .Where(t => !t.IsAbstract && !t.IsInterface)
+                        .Where(builderType.IsAssignableFrom)
+                        .Select(t => (INExtModPart)Activator.CreateInstance(t))
+                        .ToArray();
+                }
+
+                return s_parts;
+            }
+        }
+
         private static IEnumerable<INetInfoBuilder> s_netInfoBuilders;
         public static IEnumerable<INetInfoBuilder> NetInfoBuilders
         {
@@ -59,14 +81,8 @@ namespace NetworkExtensions
             {
                 if (s_netInfoBuilders == null)
                 {
-                    var builderType = typeof(INetInfoBuilder);
-
-                    s_netInfoBuilders = typeof(ModInitializer)
-                        .Assembly
-                        .GetTypes()
-                        .Where(t => !t.IsAbstract && !t.IsInterface)
-                        .Where(builderType.IsAssignableFrom)
-                        .Select(t => (INetInfoBuilder)Activator.CreateInstance(t))
+                    s_netInfoBuilders = s_parts
+                        .OfType<INetInfoBuilder>()
                         .ToArray();
                 }
 
@@ -81,14 +97,8 @@ namespace NetworkExtensions
             {
                 if (s_netInfoModifiers == null)
                 {
-                    var builderType = typeof(INetInfoBuilder);
-
-                    s_netInfoModifiers = typeof(ModInitializer)
-                        .Assembly
-                        .GetTypes()
-                        .Where(t => !t.IsAbstract && !t.IsInterface)
-                        .Where(builderType.IsAssignableFrom)
-                        .Select(t => (INetInfoModifier)Activator.CreateInstance(t))
+                    s_netInfoModifiers = s_parts
+                        .OfType<INetInfoModifier>()
                         .ToArray();
                 }
 

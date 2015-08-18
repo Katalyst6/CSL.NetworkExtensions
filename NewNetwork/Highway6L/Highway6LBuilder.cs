@@ -11,7 +11,7 @@ using Debug = NetworkExtensions.Framework.Debug;
 
 namespace NetworkExtensions.NewNetwork.Highway6L
 {
-    public class Highway6LBuilder : INetInfoBuilder, INetInfoModifier
+    public class Highway6LBuilder : NExtModPart, INetInfoBuilder, INetInfoModifier
     {
         public int Priority { get { return 14; } }
 

@@ -4,7 +4,7 @@ using NetworkExtensions.Framework;
 
 namespace NetworkExtensions.NewNetwork.SmallAvenue4L
 {
-    public class SmallAvenue4LBuilder : INetInfoBuilder
+    public class SmallAvenue4LBuilder : NExtModPart, INetInfoBuilder
     {
         public int Priority { get { return 5; } }
 
