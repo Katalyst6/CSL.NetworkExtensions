@@ -2,7 +2,10 @@
 using System.Linq;
 using NetworkExtensions.Framework;
 using UnityEngine;
+
+#if DEBUG
 using Debug = NetworkExtensions.Framework.Debug;
+#endif
 
 namespace NetworkExtensions.NewNetwork.Highway1L
 {
@@ -21,7 +24,7 @@ namespace NetworkExtensions.NewNetwork.Highway1L
 
         public NetInfoVersion SupportedVersions
         {
-            get { return NetInfoVersion.All; }
+            get { return NetInfoVersion.Ground; } // TODO: Fix the bugs with the elevated nodes texture for other supported versions
         }
 
         public string GetPrefabName(NetInfoVersion version)
@@ -70,11 +73,12 @@ namespace NetworkExtensions.NewNetwork.Highway1L
                     info.SetNodesTexture(
                         new TexturesSet
                            (@"NewNetwork\Highway2L\Textures\Elevated_Node__MainTex.png",
-                            @"NewNetwork\Highway2L\Textures\Elevated_Node__AlphaMap.png"),
-                        new TexturesSet
-                           (@"NewNetwork\Highway2L\Textures\Elevated_NodeLOD__MainTex.png",
-                            @"NewNetwork\Highway2L\Textures\Elevated_NodeLOD__AlphaMap.png",
-                            @"NewNetwork\Highway2L\Textures\Elevated_NodeLOD__XYSMap.png"));
+                            @"NewNetwork\Highway2L\Textures\Elevated_Node__AlphaMap.png"));
+                        // Lets leave the crossings there until we have a fix
+                        //new TexturesSet
+                        //   (@"NewNetwork\Highway2L\Textures\Elevated_NodeLOD__MainTex.png",
+                        //    @"NewNetwork\Highway2L\Textures\Elevated_NodeLOD__AlphaMap.png",
+                        //    @"NewNetwork\Highway2L\Textures\Elevated_NodeLOD__XYSMap.png"));
                     break;
 
                 case NetInfoVersion.Slope:
