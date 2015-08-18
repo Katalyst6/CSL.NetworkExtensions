@@ -69,6 +69,8 @@
     <Compile Include="Framework\INetInfoBuilder.cs" />
     <Compile Include="Framework\Extensions\LocaleExtensions.cs" />
     <Compile Include="NewNetwork\Highway1L\Highway1LBuilder.cs" />
+    <Compile Include="NewNetwork\Highway2L\Meshes\Highway2LNodeModel.cs" />
+    <Compile Include="NewNetwork\Highway2L\Meshes\Highway2LSegmentModel.cs" />
     <Compile Include="NewNetwork\Highway6L\Meshes\Highway6LNodeModel.cs" />
     <Compile Include="NewNetwork\Highway6L\Meshes\Highway6LSegmentModel.cs" />
     <Compile Include="NewNetwork\SmallRoad4L\SmallRoad4LBuilder.cs" />
