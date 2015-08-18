@@ -112,7 +112,7 @@ namespace NetworkExtensions.NewNetwork.Highway6L
             if (version == NetInfoVersion.Ground)
             {
                 info.m_surfaceLevel = 0;
-                info.m_class = highwayInfo.m_class;
+                //info.m_class = highwayInfo.m_class;
 
                 info.m_segments[0].m_mesh = info.m_segments[0].m_lodMesh;
                 info.m_nodes[0].m_mesh = info.m_nodes[0].m_lodMesh;
