@@ -52,6 +52,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="MeshWork\MeshAddendumModel.cs" />
+    <Compile Include="MeshWork\MeshAdder.cs" />
     <Compile Include="Mod.Loading.cs" />
     <Compile Include="Framework\INetInfoModifier.cs" />
     <Compile Include="Framework\Extensions\EnumExtensions.cs" />
@@ -67,6 +69,8 @@
     <Compile Include="Framework\INetInfoBuilder.cs" />
     <Compile Include="Framework\Extensions\LocaleExtensions.cs" />
     <Compile Include="NewNetwork\Highway1L\Highway1LBuilder.cs" />
+    <Compile Include="NewNetwork\Highway6L\Meshes\Highway6LNodeModel.cs" />
+    <Compile Include="NewNetwork\Highway6L\Meshes\Highway6LSegmentModel.cs" />
     <Compile Include="NewNetwork\SmallRoad4L\SmallRoad4LBuilder.cs" />
     <Compile Include="NewNetwork\HighwayHelper.cs" />
     <Compile Include="NewNetwork\OneWay4L\OneWay4LBuilder.cs" />
@@ -224,9 +228,9 @@
 mkdir "%25LOCALAPPDATA%25\Colossal Order\Cities_Skylines\Addons\Mods\$(ProjectName)"
 xcopy /y /e "$(ProjectDir)bin\$(ConfigurationName)" "%25LOCALAPPDATA%25\Colossal Order\Cities_Skylines\Addons\Mods\$(ProjectName)"
 rd /s /q  "%25LOCALAPPDATA%25\Colossal Order\Cities_Skylines\Addons\Mods\$(ProjectName)"
-rd /s /q  "D:\Jeux\Steam\SteamApps\workshop\content\255710\478820060"
-mkdir "D:\Jeux\Steam\SteamApps\workshop\content\255710\478820060"
-xcopy /y /e "$(ProjectDir)bin\$(ConfigurationName)" "D:\Jeux\Steam\SteamApps\workshop\content\255710\478820060"</PostBuildEvent>
+rd /s /q  "C:\Program Files (x86)\Steam\SteamApps\workshop\content\255710\478820060"
+mkdir "C:\Program Files (x86)\Steam\SteamApps\workshop\content\255710\478820060"
+xcopy /y /e "$(ProjectDir)bin\$(ConfigurationName)" "C:\Program Files (x86)\Steam\SteamApps\workshop\content\255710\478820060"</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
