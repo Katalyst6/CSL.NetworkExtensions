@@ -52,8 +52,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="MeshWork\MeshAddendumModel.cs" />
-    <Compile Include="MeshWork\MeshAdder.cs" />
+    <Compile Include="Framework\Extensions\MeshExtensions.cs" />
+    <Compile Include="Framework\MeshAddendumModel.cs" />
+    <Compile Include="Framework\MeshAdder.cs" />
     <Compile Include="Mod.Loading.cs" />
     <Compile Include="Framework\INetInfoModifier.cs" />
     <Compile Include="Framework\Extensions\EnumExtensions.cs" />

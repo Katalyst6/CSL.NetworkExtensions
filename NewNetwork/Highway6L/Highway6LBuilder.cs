@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using ColossalFramework.UI;
 using NetworkExtensions.Framework;
+using NetworkExtensions.NewNetwork.Highway6L.Meshes;
 using UnityEngine;
 
 #if DEBUG
@@ -50,6 +51,12 @@ namespace NetworkExtensions.NewNetwork.Highway6L
 
         public void BuildUp(NetInfo info, NetInfoVersion version)
         {
+            ///////////////////////////
+            // Template              //
+            ///////////////////////////
+            var highwayInfo = ToolsCSL.FindPrefab<NetInfo>("Highway");
+
+
             ///////////////////////////
             // Texturing             //
             ///////////////////////////
@@ -99,12 +106,25 @@ namespace NetworkExtensions.NewNetwork.Highway6L
             }
 
 
+            ///////////////////////////
+            // 3DModeling            //
+            ///////////////////////////
+            if (version == NetInfoVersion.Ground)
+            {
+                info.m_surfaceLevel = 0;
+                info.m_class = highwayInfo.m_class;
+
+                info.m_segments[0].m_mesh = info.m_segments[0].m_lodMesh;
+                info.m_nodes[0].m_mesh = info.m_nodes[0].m_lodMesh;
+
+                info.m_segments[0].m_mesh.Setup(Highway6LSegmentModel.BuildMesh(), "HW_6L_Segment0_Grnd");
+                info.m_nodes[0].m_mesh.Setup(Highway6LNodeModel.BuildMesh(), "HW_6L_Node0_Grnd");
+            }
+
 
             ///////////////////////////
             // Set up                //
             ///////////////////////////
-            var highwayInfo = ToolsCSL.FindPrefab<NetInfo>("Highway");
-
             info.m_createPavement = (version != NetInfoVersion.Ground);
             info.m_createGravel = (version == NetInfoVersion.Ground);
             info.m_averageVehicleLaneSpeed = 2f;
@@ -112,12 +132,6 @@ namespace NetworkExtensions.NewNetwork.Highway6L
             info.m_hasPedestrianLanes = false;
 
             info.m_UnlockMilestone = highwayInfo.m_UnlockMilestone;
-
-            // Activate with a new mesh
-            //info.m_class = highwayInfo.m_class;
-
-            // Test 
-            //info.m_surfaceLevel = 0;
 
 
             // Disabling Parkings and Peds
@@ -151,7 +165,12 @@ namespace NetworkExtensions.NewNetwork.Highway6L
                 var l = vehiculeLanes[i];
                 l.m_allowStop = false;
                 l.m_speedLimit = 2f;
-                //l.m_verticalOffset = 0f;
+
+                if (version == NetInfoVersion.Ground)
+                {
+                    l.m_verticalOffset = 0f;
+                }
+
                 l.m_width = laneWidthTotal;
                 l.m_position = positionStart + i * laneWidthTotal;
             }
