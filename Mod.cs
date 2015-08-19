@@ -6,6 +6,11 @@ using ColossalFramework.IO;
 using ColossalFramework.Steamworks;
 using ICities;
 using NetworkExtensions.Framework;
+using UnityEngine;
+
+#if DEBUG
+using Debug = NetworkExtensions.Framework.Debug;
+#endif
 
 namespace NetworkExtensions
 {
@@ -29,27 +34,50 @@ namespace NetworkExtensions
             get { return "An addition of highways and roads"; }
         }
 
+        public const string PATH_NOT_FOUND = "NOT_FOUND";
+
+        private static string s_path = null;
         public static string GetPath()
         {
+            if (s_path == null)
+            {
+                s_path = CheckForPath();
+                Debug.Log("NExt: Mod path " + s_path);
+            }
+
+            return s_path;
+        }
+
+        private static string CheckForPath()
+        {
+            // 1. Check Local path (CurrentUSer\Appdata\Local\Colossal Order\Cities_Skylines\Addons)
             var localPath = DataLocation.modsPath + "/NetworkExtensions";
-            //Debug.Log("NExt: " + localPath);
             if (Directory.Exists(localPath))
             {
-                //Debug.Log("NExt: Local path exists, looking for assets here: " + localPath);
                 return localPath;
             }
 
+            // 2. Check Steam
             foreach (var mod in Steam.workshop.GetSubscribedItems())
             {
                 if (mod.AsUInt64 == WORKSHOP_ID)
                 {
                     var workshopPath = Steam.workshop.GetSubscribedItemPath(mod);
-                    //Debug.Log("NExt: Workshop path: " + workshopPath);
-                    return workshopPath;
+                    if (Directory.Exists(workshopPath))
+                    {
+                        return workshopPath;
+                    }
                 }
             }
 
-            return ".";
+            // 3. Check Cities Skylines files folder
+            var csFolderPath = DataLocation.gameContentPath + "/Mods/NetworkExtensions";
+            if (Directory.Exists(csFolderPath))
+            {
+                return csFolderPath;
+            }
+
+            return PATH_NOT_FOUND;
         }
 
         private static IEnumerable<INExtModPart> s_parts;
