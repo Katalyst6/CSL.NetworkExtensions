@@ -28,6 +28,7 @@ namespace NetworkExtensions
 
         public readonly IDictionary<string, bool> PartsEnabled = new Dictionary<string, bool>();
 
+        public bool IsPartEnabled(IModPart part)
         {
             var partName = part.GetSerializableName();
 
@@ -131,4 +132,3 @@ namespace NetworkExtensions
         }
     }
 }
-
