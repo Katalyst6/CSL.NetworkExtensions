@@ -4,8 +4,9 @@ using NetworkExtensions.Framework;
 
 namespace NetworkExtensions.NewNetwork.SmallAvenue4L
 {
-    public class SmallAvenue4LBuilder : NExtModPart, INetInfoBuilder
+    public class SmallAvenue4LBuilder : ModPart, INetInfoBuilder
     {
+        public int OptionsPriority { get { return 1; } }
         public int Priority { get { return 5; } }
 
         public string PrefabName { get { return "Basic Road"; } }

@@ -80,21 +80,26 @@ namespace NetworkExtensions
             return PATH_NOT_FOUND;
         }
 
-        private static IEnumerable<INExtModPart> s_parts;
-        public static IEnumerable<INExtModPart> Parts
+        private static IEnumerable<IModPart> s_parts;
+        public static IEnumerable<IModPart> Parts
         {
             get
             {
                 if (s_parts == null)
                 {
-                    var builderType = typeof(INExtModPart);
+                    var builderType = typeof(IModPart);
 
                     s_parts = typeof(ModInitializer)
                         .Assembly
                         .GetTypes()
                         .Where(t => !t.IsAbstract && !t.IsInterface)
                         .Where(builderType.IsAssignableFrom)
-                        .Select(t => (INExtModPart)Activator.CreateInstance(t))
+                        .Select(t =>
+                        {
+                            var part = (IModPart) Activator.CreateInstance(t);
+                            part.IsEnabled = Options.Instance.IsPartEnabled(part);
+                            return part;
+                        })
                         .ToArray();
                 }
 
@@ -110,6 +115,7 @@ namespace NetworkExtensions
                 if (s_netInfoBuilders == null)
                 {
                     s_netInfoBuilders = s_parts
+                        .Where(p => p.IsEnabled)
                         .OfType<INetInfoBuilder>()
                         .ToArray();
                 }
@@ -126,6 +132,7 @@ namespace NetworkExtensions
                 if (s_netInfoModifiers == null)
                 {
                     s_netInfoModifiers = s_parts
+                        .Where(p => p.IsEnabled)
                         .OfType<INetInfoModifier>()
                         .ToArray();
                 }

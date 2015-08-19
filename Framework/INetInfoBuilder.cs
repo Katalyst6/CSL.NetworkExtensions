@@ -9,7 +9,7 @@ using Object = UnityEngine.Object;
 
 namespace NetworkExtensions.Framework
 {
-    public interface INetInfoBuilder : INExtModPart
+    public interface INetInfoBuilder : IModPart
     {
         int Priority { get; }
 

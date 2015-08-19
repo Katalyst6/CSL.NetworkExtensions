@@ -9,8 +9,9 @@ using Debug = NetworkExtensions.Framework.Debug;
 
 namespace NetworkExtensions.NewNetwork.Highway1L
 {
-    public class Highway1LBuilder : NExtModPart, INetInfoBuilder
+    public class Highway1LBuilder : ModPart, INetInfoBuilder
     {
+        public int OptionsPriority { get { return 2; } }
         public int Priority { get { return 9; } }
 
         public string PrefabName  { get { return "Basic Road"; } }

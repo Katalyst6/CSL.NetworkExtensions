@@ -46,16 +46,17 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Xml" />
     <Reference Include="UnityEngine">
       <HintPath>References\UnityEngine.dll</HintPath>
       <Private>False</Private>
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Configuration.cs" />
-    <Compile Include="Framework\INExtModPart.cs" />
-    <Compile Include="Framework\NExtModPart.cs" />
-    <Compile Include="Mod.Settings.cs" />
+    <Compile Include="Options.cs" />
+    <Compile Include="Framework\IModPart.cs" />
+    <Compile Include="Framework\ModPart.cs" />
+    <Compile Include="Mod.Options.cs" />
     <Compile Include="Mod.Loading.cs" />
     <Compile Include="Framework\INetInfoModifier.cs" />
     <Compile Include="Framework\Extensions\EnumExtensions.cs" />

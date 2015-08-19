@@ -11,8 +11,9 @@ using Debug = NetworkExtensions.Framework.Debug;
 
 namespace NetworkExtensions.NewNetwork.Highway6L
 {
-    public class Highway6LBuilder : NExtModPart, INetInfoBuilder, INetInfoModifier
+    public class Highway6LBuilder : ModPart, INetInfoBuilder, INetInfoModifier
     {
+        public int OptionsPriority { get { return 4; } }
         public int Priority { get { return 14; } }
 
         public string PrefabName  { get { return "Large Oneway"; } }

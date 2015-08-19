@@ -5,8 +5,8 @@ using System.Text;
 
 namespace NetworkExtensions.Framework
 {
-    public abstract class NExtModPart : INExtModPart
+    public abstract class ModPart
     {
-        public bool IsActive { get; set; }
+        public bool IsEnabled { get; set; }
     }
 }
