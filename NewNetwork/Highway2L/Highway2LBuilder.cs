@@ -4,8 +4,9 @@ using NetworkExtensions.Framework;
 
 namespace NetworkExtensions.NewNetwork.Highway2L
 {
-    public class Highway2LBuilder : INetInfoBuilder
+    public class Highway2LBuilder : ModPart, INetInfoBuilder
     {
+        public int OptionsPriority { get { return 3; } }
         public int Priority { get { return 10; } }
 
         public string PrefabName  { get { return "Oneway Road"; } }
