@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using UnityEngine;
 
-namespace NetworkExtensions.Framework.Extensions
+namespace NetworkExtensions.Framework
 {
     public static class MaterialExtensions
     {

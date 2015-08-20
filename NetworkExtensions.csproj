@@ -52,8 +52,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="MeshWork\MeshAddendumModel.cs" />
-    <Compile Include="MeshWork\MeshAdder.cs" />
+    <Compile Include="Framework\Extensions\MeshExtensions.cs" />
+    <Compile Include="Framework\MeshAddendumModel.cs" />
+    <Compile Include="Framework\MeshAdder.cs" />
     <Compile Include="Mod.Loading.cs" />
     <Compile Include="Framework\INetInfoModifier.cs" />
     <Compile Include="Framework\Extensions\EnumExtensions.cs" />
@@ -73,8 +74,6 @@
     <Compile Include="NewNetwork\Highway2L\Meshes\Highway2LSegmentModel.cs" />
     <Compile Include="NewNetwork\Highway6L\Meshes\Highway6LNodeModel.cs" />
     <Compile Include="NewNetwork\Highway6L\Meshes\Highway6LSegmentModel.cs" />
-    <Compile Include="NewNetwork\SmallAvenue4L\Meshes\SmallAvenue4LNodeModel.cs" />
-    <Compile Include="NewNetwork\SmallAvenue4L\Meshes\SmallAvenue4LSegmentModel.cs" />
     <Compile Include="NewNetwork\SmallAvenue4L\SmallAvenue4LBuilder.cs" />
     <Compile Include="NewNetwork\HighwayHelper.cs" />
     <Compile Include="NewNetwork\OneWay4L\OneWay4LBuilder.cs" />

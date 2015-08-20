@@ -5,7 +5,6 @@ using System.Reflection;
 using ColossalFramework;
 using ColossalFramework.Globalization;
 using NetworkExtensions.Framework;
-using NetworkExtensions.MeshWork;
 using UnityEngine;
 using NetworkExtensions.NewNetwork.Highway6L.Meshes;
 
@@ -213,7 +212,7 @@ namespace NetworkExtensions
 
                 if (newInfos.Count > 0)
                 {
-                    MeshAdder.BuildMeshes(newRoads,newInfos);
+                    newRoads.m_prefabs = newInfos.ToArray();
                     PrefabCollection<NetInfo>.InitializePrefabs(newRoads.name, newRoads.m_prefabs, new string[] { });
                     PrefabCollection<NetInfo>.BindPrefabs();
                 }
