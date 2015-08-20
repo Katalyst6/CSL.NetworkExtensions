@@ -99,7 +99,8 @@ namespace NetworkExtensions.NewNetwork.Highway2L
             ///////////////////////////
             var highwayInfo = ToolsCSL.FindPrefab<NetInfo>("Highway");
 
-            info.m_createPavement = (version != NetInfoVersion.Ground);
+            info.m_availableIn = ItemClass.Availability.All;
+            info.m_createPavement = (version == NetInfoVersion.Slope);
             info.m_createGravel = (version == NetInfoVersion.Ground);
             info.m_averageVehicleLaneSpeed = 2f;
             info.m_hasParkingSpaces = false;
