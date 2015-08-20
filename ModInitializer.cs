@@ -213,7 +213,7 @@ namespace NetworkExtensions
 
                 if (newInfos.Count > 0)
                 {
-                    MeshAdder.BuildMesh(newRoads,newInfos);
+                    MeshAdder.BuildMeshes(newRoads,newInfos);
                     PrefabCollection<NetInfo>.InitializePrefabs(newRoads.name, newRoads.m_prefabs, new string[] { });
                     PrefabCollection<NetInfo>.BindPrefabs();
                 }

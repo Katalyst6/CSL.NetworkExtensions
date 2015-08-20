@@ -73,6 +73,8 @@
     <Compile Include="NewNetwork\Highway2L\Meshes\Highway2LSegmentModel.cs" />
     <Compile Include="NewNetwork\Highway6L\Meshes\Highway6LNodeModel.cs" />
     <Compile Include="NewNetwork\Highway6L\Meshes\Highway6LSegmentModel.cs" />
+    <Compile Include="NewNetwork\SmallAvenue4L\Meshes\SmallAvenue4LNodeModel.cs" />
+    <Compile Include="NewNetwork\SmallAvenue4L\Meshes\SmallAvenue4LSegmentModel.cs" />
     <Compile Include="NewNetwork\SmallAvenue4L\SmallAvenue4LBuilder.cs" />
     <Compile Include="NewNetwork\HighwayHelper.cs" />
     <Compile Include="NewNetwork\OneWay4L\OneWay4LBuilder.cs" />
