@@ -19,16 +19,38 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "References", "References", 
 		References\UnityEngine.xml = References\UnityEngine.xml
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodePackager", "Packager\CodePackager.csproj", "{D56A934D-C909-4390-8216-94719D88EFCD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
+		Debug|Mixed Platforms = Debug|Mixed Platforms
+		Debug|x86 = Debug|x86
 		Release|Any CPU = Release|Any CPU
+		Release|Mixed Platforms = Release|Mixed Platforms
+		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{19FA21B2-39CC-4B90-BE7E-B6BDCCB09208}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{19FA21B2-39CC-4B90-BE7E-B6BDCCB09208}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{19FA21B2-39CC-4B90-BE7E-B6BDCCB09208}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{19FA21B2-39CC-4B90-BE7E-B6BDCCB09208}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{19FA21B2-39CC-4B90-BE7E-B6BDCCB09208}.Debug|x86.ActiveCfg = Debug|Any CPU
 		{19FA21B2-39CC-4B90-BE7E-B6BDCCB09208}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{19FA21B2-39CC-4B90-BE7E-B6BDCCB09208}.Release|Any CPU.Build.0 = Release|Any CPU
+		{19FA21B2-39CC-4B90-BE7E-B6BDCCB09208}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{19FA21B2-39CC-4B90-BE7E-B6BDCCB09208}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{19FA21B2-39CC-4B90-BE7E-B6BDCCB09208}.Release|x86.ActiveCfg = Release|Any CPU
+		{D56A934D-C909-4390-8216-94719D88EFCD}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{D56A934D-C909-4390-8216-94719D88EFCD}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
+		{D56A934D-C909-4390-8216-94719D88EFCD}.Debug|Mixed Platforms.Build.0 = Debug|x86
+		{D56A934D-C909-4390-8216-94719D88EFCD}.Debug|x86.ActiveCfg = Debug|x86
+		{D56A934D-C909-4390-8216-94719D88EFCD}.Debug|x86.Build.0 = Debug|x86
+		{D56A934D-C909-4390-8216-94719D88EFCD}.Release|Any CPU.ActiveCfg = Release|x86
+		{D56A934D-C909-4390-8216-94719D88EFCD}.Release|Mixed Platforms.ActiveCfg = Release|x86
+		{D56A934D-C909-4390-8216-94719D88EFCD}.Release|Mixed Platforms.Build.0 = Release|x86
+		{D56A934D-C909-4390-8216-94719D88EFCD}.Release|x86.ActiveCfg = Release|x86
+		{D56A934D-C909-4390-8216-94719D88EFCD}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
