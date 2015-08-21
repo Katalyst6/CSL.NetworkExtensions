@@ -42,7 +42,15 @@ namespace NetworkExtensions
             if (s_path == null)
             {
                 s_path = CheckForPath();
-                Debug.Log("NExt: Mod path " + s_path);
+
+                if (s_path != PATH_NOT_FOUND)
+                {
+                    Debug.Log("NExt: Mod path " + s_path);
+                }
+                else
+                {
+                    Debug.Log("NExt: Path not found");
+                }
             }
 
             return s_path;
@@ -50,7 +58,7 @@ namespace NetworkExtensions
 
         private static string CheckForPath()
         {
-            // 1. Check Local path (CurrentUSer\Appdata\Local\Colossal Order\Cities_Skylines\Addons)
+            // 1. Check Local path (CurrentUser\Appdata\Local\Colossal Order\Cities_Skylines\Addons\Mods)
             var localPath = DataLocation.modsPath + "/NetworkExtensions";
             if (Directory.Exists(localPath))
             {
