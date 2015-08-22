@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
-using NetworkExtensions.MeshWork;
+using NetworkExtensions.Framework;
 
 namespace NetworkExtensions.NewNetwork.SmallAvenue4L.Meshes
 {
