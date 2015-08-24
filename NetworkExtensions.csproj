@@ -221,6 +221,10 @@
     <Content Include="NewNetwork\Highway6L\thumbnails.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="NewNetwork\OneWay1L\infotooltip.png" />
+    <Content Include="NewNetwork\OneWay1L\Textures\Ground_Segment__AlphaMap.png" />
+    <Content Include="NewNetwork\OneWay1L\Textures\Ground_Segment__MainTex.png" />
+    <Content Include="NewNetwork\OneWay1L\thumbnails.png" />
     <Content Include="NewNetwork\SmallAvenue4L\infotooltip.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
