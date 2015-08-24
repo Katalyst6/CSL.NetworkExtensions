@@ -14,7 +14,7 @@ namespace NetworkExtensions.Framework
 
         public void FindAndLoadAllTextures()
         {
-            var modPath = Mod.GetPath().Replace("/", "\\");
+            var modPath = Mod.GetPath();
             var modDirectory = new DirectoryInfo(modPath);
 
             var files = new List<FileInfo>();
@@ -23,7 +23,10 @@ namespace NetworkExtensions.Framework
 
             foreach (var textureFile in files)
             {
-                var relativePath = textureFile.FullName.Replace(modPath, "").TrimStart('\\');
+                var relativePath = textureFile.FullName.Replace(modPath, "").TrimStart(new []{'\\', '/'});
+
+                Debug.Log(string.Format("NExt: Loading {0}", textureFile.FullName));
+                Debug.Log(string.Format("NExt: Relative Path {0}", relativePath));
 
                 if (_allTextures.ContainsKey(relativePath))
                 {
@@ -80,7 +83,7 @@ namespace NetworkExtensions.Framework
                 return null;
             }
 
-            var trimmedPath = path.Replace("/", "\\");
+            var trimmedPath = path.Replace('\\', Path.DirectorySeparatorChar);
 
             if (!_allTextures.ContainsKey(trimmedPath))
             {

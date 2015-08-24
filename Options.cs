@@ -1,9 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Xml;
 using ColossalFramework;
 using NetworkExtensions.Framework;
+using UnityEngine;
 
 namespace NetworkExtensions
 {
@@ -19,7 +21,7 @@ namespace NetworkExtensions
                 if (s_instance == null)
                 {
                     s_instance = Load();
-                    s_instance.UpdateAndSave();
+                    s_instance.Save();
                 }
 
                 return s_instance;
@@ -41,59 +43,50 @@ namespace NetworkExtensions
             return isEnabled;
         }
 
-        private void UpdateAndSave()
-        {
-            var isChanged = false;
-
-            foreach (var part in Mod.Parts.OrderBy(p => p.OptionsPriority))
-            {
-                var partName = part.GetSerializableName();
-
-                if (!PartsEnabled.ContainsKey(partName))
-                {
-                    PartsEnabled[partName] = part.IsEnabled = true;
-                    isChanged = true;
-                }
-            }
-
-            if (isChanged)
-            {
-                Save();
-            }
-        }
-
         public void Save()
         {
+            Debug.Log("NExt: Saving config");
             if (Mod.GetPath() == Mod.PATH_NOT_FOUND)
             {
                 return;
             }
 
-            var configPath = Mod.GetPath().Replace("/", "\\") + "\\" + FILENAME;
-            var xDoc = new XmlDocument();
-            var settings = xDoc.CreateElement("NetworkExtensionsSettings");
+            var configPath = Path.Combine(Mod.GetPath(), FILENAME);
+            Debug.Log(string.Format("NExt: Saving config at {0}", configPath));
 
-            xDoc.AppendChild(settings);
-
-            foreach (var part in PartsEnabled)
+            try
             {
-                var xmlElem = xDoc.CreateElement(part.Key);
-                xmlElem.InnerText = part.Value.ToString();
+                var xDoc = new XmlDocument();
+                var settings = xDoc.CreateElement("NetworkExtensionsSettings");
 
-                settings.AppendChild(xmlElem);
+                xDoc.AppendChild(settings);
+
+                foreach (var part in PartsEnabled)
+                {
+                    var xmlElem = xDoc.CreateElement(part.Key);
+                    xmlElem.InnerText = part.Value.ToString();
+
+                    settings.AppendChild(xmlElem);
+                }
+
+                xDoc.Save(configPath);
             }
-
-            xDoc.Save(configPath);
+            catch (Exception ex)
+            {
+                Debug.Log(string.Format("NExt: Crashed saving config at {0} {1}", configPath, ex));
+            }
         }
 
         private static Options Load()
         {
+            Debug.Log("NExt: Loading config" );
             if (Mod.GetPath() == Mod.PATH_NOT_FOUND)
             {
                 return new Options();
             }
 
-            var configPath = Mod.GetPath().Replace("/", "\\") + "\\" + FILENAME;
+            var configPath = Path.Combine(Mod.GetPath(), FILENAME);
+            Debug.Log(string.Format("NExt: Loading config at {0}", configPath));
             
             if (!File.Exists(configPath))
             {
@@ -125,8 +118,9 @@ namespace NetworkExtensions
 
                 return configuration;
             }
-            catch
+            catch (Exception ex)
             {
+                Debug.Log(string.Format("NExt: Crashed load config at {0} {1}", configPath, ex));
                 return new Options();
             }
         }

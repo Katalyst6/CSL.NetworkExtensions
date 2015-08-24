@@ -13,12 +13,19 @@ namespace NetworkExtensions
     {
         public void OnSettingsUI(UIHelperBase helper)
         {
-            UIHelperBase uIHelperBase = helper.AddGroup("Network Extensions Options");
+            var uIHelperBase = helper.AddGroup("Network Extensions Options");
+            var optionsChanged = false;
 
             foreach (var part in Parts.OrderBy(p => p.OptionsPriority))
             {
                 var partLocal = part;
                 var partName = part.GetSerializableName();
+
+                if (!Options.Instance.PartsEnabled.ContainsKey(partName))
+                {
+                    Options.Instance.PartsEnabled[partName] = true;
+                    optionsChanged = true;
+                }
 
                 uIHelperBase.AddCheckbox(
                     part.Name, 
@@ -31,6 +38,11 @@ namespace NetworkExtensions
                         s_netInfoBuilders = null;
                         s_netInfoModifiers = null;
                     });
+            }
+
+            if (optionsChanged)
+            {
+                Options.Instance.Save();
             }
         }
     }
