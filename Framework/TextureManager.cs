@@ -83,7 +83,9 @@ namespace NetworkExtensions.Framework
                 return null;
             }
 
-            var trimmedPath = path.Replace('\\', Path.DirectorySeparatorChar);
+            var trimmedPath = path
+                .Replace('\\', Path.DirectorySeparatorChar)
+                .Replace('/', Path.DirectorySeparatorChar);
 
             if (!_allTextures.ContainsKey(trimmedPath))
             {
@@ -92,5 +94,22 @@ namespace NetworkExtensions.Framework
 
             return _allTextures[trimmedPath];
         }
+
+        // Test that for mesh Import
+        //public static void TestFromBoFormer()
+        //{
+        //    // the default assets import path
+        //    var path = Path.Combine(DataLocation.addonsPath, "Import");
+        //    var modelName = "Test.fbx";
+
+        //    // load model
+        //    var importer = new SceneImporter();
+        //    importer.filePath = Path.Combine(path, modelName);
+        //    importer.importSkinMesh = true;
+        //    var importedModel = importer.Import();
+
+        //    // load textures
+        //    AssetImporterTextureLoader.LoadTextures(null, importedModel, results, path, modelName, false);
+        //}
     }
 }
