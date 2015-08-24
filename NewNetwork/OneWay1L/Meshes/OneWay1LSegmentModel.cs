@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using NetworkExtensions.Framework;
 
-namespace NetworkExtensions.NewNetwork.Highway2L.Meshes
+namespace NetworkExtensions.NewNetwork.OneWay1L.Meshes
 {
     public class OneWay1LSegmentModel
     {

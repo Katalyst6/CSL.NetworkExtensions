@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.IO;
 using NetworkExtensions.Framework;
 using NetworkExtensions.NewNetwork.OneWay1L.Meshes;
 
@@ -7,16 +8,16 @@ namespace NetworkExtensions.NewNetwork.OneWay1L
 {
     public class OneWay1LBuilder : INetInfoBuilder
     {
-        public int Priority { get { return 10; } }
+        public int Priority { get { return 30; } }
 
         public string PrefabName { get { return "Oneway Road"; } }
-        public string Name { get { return "1 Lane Oneway Road"; } }
+        public string Name { get { return "Small Oneway"; } }
         public string CodeName { get { return "ONEWAY_1L"; } }
-        public string Description { get { return "A one-lane, one-way road suitable for local traffic moving in one direction. This road is zonable"; } }
+        public string Description { get { return "A one-lane, one-way road suitable for local traffic moving in one direction. This road is zonable."; } }
         public string UICategory { get { return "RoadsSmall"; } }
 
-        public string ThumbnailsPath { get { return @"NewNetwork\Oneway1L\thumbnails.png"; } }
-        public string InfoTooltipPath { get { return @"NewNetwork\Oneway1L\infotooltip.png"; } }
+        public string ThumbnailsPath { get { return @"NewNetwork\OneWay1L\thumbnails.png"; } }
+        public string InfoTooltipPath { get { return @"NewNetwork\OneWay1L\infotooltip.png"; } }
 
 
         public NetInfoVersion SupportedVersions
@@ -45,6 +46,7 @@ namespace NetworkExtensions.NewNetwork.OneWay1L
 
         public void BuildUp(NetInfo info, NetInfoVersion version)
         {
+
             ///////////////////////////
             // Texturing             //
             ///////////////////////////
@@ -53,11 +55,10 @@ namespace NetworkExtensions.NewNetwork.OneWay1L
                 case NetInfoVersion.Ground:
                     info.SetSegmentsTexture(
                         new TexturesSet
-                           (@"NewNetwork\OneWay1L\Textures\Ground_Segment__MainTex.png",
+                           (@"NewNetwork\SmallAvenue4L\Textures\Ground_Segment__MainTex.png",
                             @"NewNetwork\OneWay1L\Textures\Ground_Segment__AlphaMap.png"));
                     break;
             }
-
             ///////////////////////////
             // 3DModeling            //
             ///////////////////////////
@@ -72,93 +73,92 @@ namespace NetworkExtensions.NewNetwork.OneWay1L
                 info.m_segments[0].m_mesh.Setup(OneWay1LSegmentModel.BuildMesh(), "OW_1L_Segment0_Grnd");
                 info.m_nodes[0].m_mesh.Setup(OneWay1LNodeModel.BuildMesh(), "OW_1L_Node0_Grnd");
             }
-
             ///////////////////////////
             // Set up                //
             ///////////////////////////
-            var basicRoadInfo = ToolsCSL.FindPrefab<NetInfo>("Basic Road");
+            //var basicRoadInfo = ToolsCSL.FindPrefab<NetInfo>("Oneway Road");
 
             info.m_hasParkingSpaces = false;
-
-            // Setting up lanes
+            info.m_halfWidth = 4.0f;
+            //Setting up lanes
             var vehicleLaneTypes = new[]
             {
-                NetInfo.LaneType.Vehicle,
-                NetInfo.LaneType.PublicTransport,
-                NetInfo.LaneType.CargoVehicle,
-                NetInfo.LaneType.TransportVehicle
-            };
+                    NetInfo.LaneType.Vehicle,
+                    NetInfo.LaneType.PublicTransport,
+                    NetInfo.LaneType.CargoVehicle,
+                    NetInfo.LaneType.TransportVehicle
+               };
 
-            var vehicleLanes = info.m_lanes
-                .Where(l =>
-                    l.m_laneType.HasFlag(NetInfo.LaneType.Parking) ||
-                    vehicleLaneTypes.Contains(l.m_laneType))
-                .OrderBy(l => l.m_position)
-                .ToArray();
+            //var vehicleLanes = info.m_lanes
+            //    .Where(l =>
+            //        l.m_laneType.HasFlag(NetInfo.LaneType.Parking) ||
+            //        vehicleLaneTypes.Contains(l.m_laneType))
+            //    .OrderBy(l => l.m_position)
+            //    .ToArray();
 
-            for (int i = 0; i < vehicleLanes.Length; i++)
-            {
-                var lane = vehicleLanes[i];
+            //for (int i = 0; i < vehicleLanes.Length; i++)
+            //{
+            //    var lane = vehicleLanes[i];
 
-                if (lane.m_laneType.HasFlag(NetInfo.LaneType.Parking))
-                {
-                    int closestVehicleLaneId;
+            //    if (lane.m_laneType.HasFlag(NetInfo.LaneType.Parking))
+            //    {
+            //        int closestVehicleLaneId;
 
-                    if (i - 1 >= 0 && vehicleLaneTypes.Contains(vehicleLanes[i - 1].m_laneType))
-                    {
-                        closestVehicleLaneId = i - 1;
-                    }
-                    else if (i + 1 < vehicleLanes.Length && vehicleLaneTypes.Contains(vehicleLanes[i + 1].m_laneType))
-                    {
-                        closestVehicleLaneId = i + 1;
-                    }
-                    else
-                    {
-                        continue; // Not supposed to happen
-                    }
+            //        if (i - 1 >= 0 && vehicleLaneTypes.Contains(vehicleLanes[i - 1].m_laneType))
+            //        {
+            //            closestVehicleLaneId = i - 1;
+            //        }
+            //        else if (i + 1 < vehicleLanes.Length && vehicleLaneTypes.Contains(vehicleLanes[i + 1].m_laneType))
+            //        {
+            //            closestVehicleLaneId = i + 1;
+            //        }
+            //        else
+            //        {
+            //            continue; // Not supposed to happen
+            //        }
 
-                    var closestVehicleLane = vehicleLanes[closestVehicleLaneId];
+            //        var closestVehicleLane = vehicleLanes[closestVehicleLaneId];
 
-                    SetLane(lane, closestVehicleLane);
+            //        SetLane(lane, closestVehicleLane);
 
-                    if (lane.m_position < 0)
-                    {
-                        lane.m_position += 0.3f;
-                    }
-                    else
-                    {
-                        lane.m_position -= 0.3f;
-                    }
-                }
-                else
-                {
-                    if (lane.m_position < 0)
-                    {
-                        lane.m_position += 0.2f;
-                    }
-                    else
-                    {
-                        lane.m_position -= 0.2f;
-                    }
-                }
-            }
+            //        if (lane.m_position < 0)
+            //        {
+            //            lane.m_position += 0.3f;
+            //        }
+            //        else
+            //        {
+            //            lane.m_position -= 0.3f;
+            //        }
+            //    }
+            //    else
+            //    {
+            //        if (lane.m_position < 0)
+            //        {
+            //            lane.m_position += 0.2f;
+            //        }
+            //        else
+            //        {
+            //            lane.m_position -= 0.2f;
+            //        }
+            //    }
+            //}
 
 
-            if (version == NetInfoVersion.Ground)
-            {
-                var brPlayerNetAI = basicRoadInfo.GetComponent<PlayerNetAI>();
-                var playerNetAI = info.GetComponent<PlayerNetAI>();
+            //if (version == NetInfoVersion.Ground)
+            //{
+            //    var brPlayerNetAI = basicRoadInfo.GetComponent<PlayerNetAI>();
+            //    var playerNetAI = info.GetComponent<PlayerNetAI>();
 
-                if (brPlayerNetAI != null && playerNetAI != null)
-                {
-                    playerNetAI.m_constructionCost = brPlayerNetAI.m_constructionCost * 12 / 10; // 20% increase
-                    playerNetAI.m_maintenanceCost = brPlayerNetAI.m_maintenanceCost * 12 / 10; // 20% increase
-                }
-            }
-            else // Same as the original basic road specs
-            {
+            //    if (brPlayerNetAI != null && playerNetAI != null)
+            //    {
+            //        playerNetAI.m_constructionCost = brPlayerNetAI.m_constructionCost * 12 / 10; // 20% increase
+            //        playerNetAI.m_maintenanceCost = brPlayerNetAI.m_maintenanceCost * 12 / 10; // 20% increase
+            //    }
+            //}
+            //else // Same as the original basic road specs
+            //{
 
-            }
+            //}
 
             // Should we put traffic lights?
             //var roadBaseAI = info.GetComponent<RoadBaseAI>();
@@ -167,6 +167,7 @@ namespace NetworkExtensions.NewNetwork.OneWay1L
             //{
             //    roadBaseAI.m_trafficLights = true;
             //}
+
         }
 
         private static void SetLane(NetInfo.Lane newLane, NetInfo.Lane closestLane)

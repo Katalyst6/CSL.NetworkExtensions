@@ -242,7 +242,9 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="CompatibilityTests\" />
-    <Folder Include="NewNetwork\OneWay1L\Textures\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassDiagram1.cd" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
