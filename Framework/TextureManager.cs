@@ -25,9 +25,6 @@ namespace NetworkExtensions.Framework
             {
                 var relativePath = textureFile.FullName.Replace(modPath, "").TrimStart(new []{'\\', '/'});
 
-                Debug.Log(string.Format("NExt: Loading {0}", textureFile.FullName));
-                Debug.Log(string.Format("NExt: Relative Path {0}", relativePath));
-
                 if (_allTextures.ContainsKey(relativePath))
                 {
                     continue;

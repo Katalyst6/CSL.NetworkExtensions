@@ -7,6 +7,10 @@ using ColossalFramework;
 using NetworkExtensions.Framework;
 using UnityEngine;
 
+#if DEBUG
+using Debug = NetworkExtensions.Framework.Debug;
+#endif
+
 namespace NetworkExtensions
 {
     public class Options
@@ -45,7 +49,6 @@ namespace NetworkExtensions
 
         public void Save()
         {
-            Debug.Log("NExt: Saving config");
             if (Mod.GetPath() == Mod.PATH_NOT_FOUND)
             {
                 return;
@@ -79,7 +82,6 @@ namespace NetworkExtensions
 
         private static Options Load()
         {
-            Debug.Log("NExt: Loading config" );
             if (Mod.GetPath() == Mod.PATH_NOT_FOUND)
             {
                 return new Options();
