@@ -113,9 +113,8 @@ namespace NetworkExtensions.NewNetwork.Highway6L
             {
                 info.m_surfaceLevel = 0;
                 //info.m_class = highwayInfo.m_class;
-
-                info.m_segments[0].m_mesh = info.m_segments[0].m_lodMesh;
-                info.m_nodes[0].m_mesh = info.m_nodes[0].m_lodMesh;
+                info.m_segments[0].m_mesh = (Mesh)Mesh.Instantiate(info.m_segments[0].m_lodMesh);
+                info.m_nodes[0].m_mesh = (Mesh)Mesh.Instantiate(info.m_nodes[0].m_lodMesh);
 
                 info.m_segments[0].m_mesh.Setup(Highway6LSegmentModel.BuildMesh(), "HW_6L_Segment0_Grnd");
                 info.m_nodes[0].m_mesh.Setup(Highway6LNodeModel.BuildMesh(), "HW_6L_Node0_Grnd");

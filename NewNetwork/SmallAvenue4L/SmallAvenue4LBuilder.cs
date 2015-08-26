@@ -60,17 +60,17 @@ namespace NetworkExtensions.NewNetwork.SmallAvenue4L
             ///////////////////////////
             // 3DModeling            //
             ///////////////////////////
-            if (version == NetInfoVersion.Ground)
-            {
-                info.m_surfaceLevel = 0;
-                //info.m_class = highwayInfo.m_class;
+            //if (version == NetInfoVersion.Ground)
+            //{
+            //    info.m_surfaceLevel = 0;
+            //    //info.m_class = highwayInfo.m_class;
 
-                info.m_segments[0].m_mesh = info.m_segments[0].m_lodMesh;
-                info.m_nodes[0].m_mesh = info.m_nodes[0].m_lodMesh;
+            //    info.m_segments[0].m_mesh = info.m_segments[0].m_lodMesh;
+            //    info.m_nodes[0].m_mesh = info.m_nodes[0].m_lodMesh;
 
-                info.m_segments[0].m_mesh.Setup(SmallAvenue4LSegmentModel.BuildMesh(), "Ave_Sm_4L_Segment0_Grnd");
-                info.m_nodes[0].m_mesh.Setup(SmallAvenue4LNodeModel.BuildMesh(), "Ave_Sm_4L_Node0_Grnd");
-            }
+            //    info.m_segments[0].m_mesh.Setup(SmallAvenue4LSegmentModel.BuildMesh(), "Ave_Sm_4L_Segment0_Grnd");
+            //    info.m_nodes[0].m_mesh.Setup(SmallAvenue4LNodeModel.BuildMesh(), "Ave_Sm_4L_Node0_Grnd");
+            //}
 
             ///////////////////////////
             // Set up                //

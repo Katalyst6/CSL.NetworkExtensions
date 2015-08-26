@@ -2,6 +2,7 @@
 using System.Linq;
 using NetworkExtensions.Framework;
 using NetworkExtensions.NewNetwork.Highway2L.Meshes;
+using UnityEngine;
 
 namespace NetworkExtensions.NewNetwork.Highway2L
 {
@@ -107,10 +108,10 @@ namespace NetworkExtensions.NewNetwork.Highway2L
                 info.m_surfaceLevel = 0;
                 //info.m_class = highwayInfo.m_class;
 
-                info.m_segments[0].m_mesh = info.m_segments[0].m_lodMesh;
-                info.m_nodes[0].m_mesh = info.m_nodes[0].m_lodMesh;
+                info.m_segments[0].m_mesh = (Mesh)Mesh.Instantiate(info.m_segments[0].m_lodMesh);
+                info.m_nodes[0].m_mesh = (Mesh)Mesh.Instantiate(info.m_nodes[0].m_lodMesh);
 
-                info.m_segments[0].m_mesh.Setup(Highway2LSegmentModel.BuildMesh(), "HW_2L_Segment0_Grnd");
+                info.m_segments[0].m_mesh.Setup( Highway2LSegmentModel.BuildMesh(), "HW_2L_Segment0_Grnd");
                 info.m_nodes[0].m_mesh.Setup(Highway2LNodeModel.BuildMesh(), "HW_2L_Node0_Grnd");
             }
 
