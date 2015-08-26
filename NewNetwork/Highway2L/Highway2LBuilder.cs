@@ -102,17 +102,17 @@ namespace NetworkExtensions.NewNetwork.Highway2L
             ///////////////////////////
             // 3DModeling            //
             ///////////////////////////
-            if (version == NetInfoVersion.Ground)
-            {
-                info.m_surfaceLevel = 0;
-                //info.m_class = highwayInfo.m_class;
+            //if (version == NetInfoVersion.Ground)
+            //{
+            //    info.m_surfaceLevel = 0;
+            //    //info.m_class = highwayInfo.m_class;
 
-                info.m_segments[0].m_mesh = info.m_segments[0].m_lodMesh;
-                info.m_nodes[0].m_mesh = info.m_nodes[0].m_lodMesh;
+            //    info.m_segments[0].m_mesh = info.m_segments[0].m_lodMesh;
+            //    info.m_nodes[0].m_mesh = info.m_nodes[0].m_lodMesh;
 
-                info.m_segments[0].m_mesh.Setup(Highway2LSegmentModel.BuildMesh(), "HW_2L_Segment0_Grnd");
-                info.m_nodes[0].m_mesh.Setup(Highway2LNodeModel.BuildMesh(), "HW_2L_Node0_Grnd");
-            }
+            //    info.m_segments[0].m_mesh.Setup(Highway2LSegmentModel.BuildMesh(), "HW_2L_Segment0_Grnd");
+            //    info.m_nodes[0].m_mesh.Setup(Highway2LNodeModel.BuildMesh(), "HW_2L_Node0_Grnd");
+            //}
 
 
             ///////////////////////////

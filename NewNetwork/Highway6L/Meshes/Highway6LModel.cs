@@ -5,9 +5,9 @@ using NetworkExtensions.Framework;
 
 namespace NetworkExtensions.NewNetwork.Highway6L.Meshes
 {
-    public class Highway6LSegmentModel
+    public partial class Highway6LModel
     {
-        public static MeshAddendumModel BuildMesh()
+        public static MeshAddendumModel BuildDefaultMesh()
         {
             Vector3[] vertices = new Vector3[] {
                 new Vector3 (-16.00000f, -0.00000f, 32.00000f),

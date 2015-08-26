@@ -27,7 +27,7 @@ namespace NetworkExtensions.NewNetwork.Highway6L
 
         public NetInfoVersion SupportedVersions
         {
-            get { return NetInfoVersion.All; }
+            get { return NetInfoVersion.Ground; }
         }
 
         public string GetPrefabName(NetInfoVersion version)
@@ -111,14 +111,24 @@ namespace NetworkExtensions.NewNetwork.Highway6L
             ///////////////////////////
             if (version == NetInfoVersion.Ground)
             {
-                info.m_surfaceLevel = 0;
-                //info.m_class = highwayInfo.m_class;
+                //info.m_surfaceLevel = 0;
+                info.m_class = ScriptableObject.CreateInstance<ItemClass>();
+                info.m_class.m_layer = highwayInfo.m_class.m_layer;
+                info.m_class.m_level = highwayInfo.m_class.m_level;
+                info.m_class.m_service = highwayInfo.m_class.m_service;
+                info.m_class.m_subService = highwayInfo.m_class.m_subService;
+                info.m_class.hideFlags = highwayInfo.m_class.hideFlags;
+                info.m_class.name = "LargeHighway";
 
                 info.m_segments[0].m_mesh = info.m_segments[0].m_lodMesh;
                 info.m_nodes[0].m_mesh = info.m_nodes[0].m_lodMesh;
 
-                info.m_segments[0].m_mesh.Setup(Highway6LSegmentModel.BuildMesh(), "HW_6L_Segment0_Grnd");
-                info.m_nodes[0].m_mesh.Setup(Highway6LNodeModel.BuildMesh(), "HW_6L_Node0_Grnd");
+                info.m_segments[0].m_mesh.Setup(Highway6LModel.BuildDefaultMesh(), "HW_6L_Segment0_Grnd");
+                info.m_nodes[0].m_mesh.Setup(Highway6LModel.BuildDefaultMesh(), "HW_6L_Segment0_Grnd");
+
+                // TODO: duplicate
+                info.m_nodes[1].m_mesh.Setup(Highway6LModel.BuildTransitionMesh(), "HW_6L_Node0_Grnd");
+                //info.m_nodes[0].m_flagsForbidden = NetNode.Flags.Transition;
             }
 
 
@@ -166,10 +176,10 @@ namespace NetworkExtensions.NewNetwork.Highway6L
                 l.m_allowStop = false;
                 l.m_speedLimit = 2f;
 
-                if (version == NetInfoVersion.Ground)
-                {
-                    l.m_verticalOffset = 0f;
-                }
+                //if (version == NetInfoVersion.Ground)
+                //{
+                //    l.m_verticalOffset = 0f;
+                //}
 
                 l.m_width = laneWidthTotal;
                 l.m_position = positionStart + i * laneWidthTotal;
