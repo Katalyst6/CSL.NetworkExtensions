@@ -6,8 +6,9 @@ using UnityEngine;
 
 namespace NetworkExtensions.NewNetwork.OneWay1L
 {
-    public class OneWay1LBuilder : INetInfoBuilder
+    public class OneWay1LBuilder : ModPart, INetInfoBuilder
     {
+        public int OptionsPriority { get { return 1; } }
         public int Priority { get { return 30; } }
 
         public string PrefabName { get { return "Oneway Road"; } }

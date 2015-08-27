@@ -14,7 +14,7 @@ namespace NetworkExtensions.Framework
 
         public void FindAndLoadAllTextures()
         {
-            var modPath = Mod.GetPath().Replace("/", "\\");
+            var modPath = Mod.GetPath();
             var modDirectory = new DirectoryInfo(modPath);
 
             var files = new List<FileInfo>();
@@ -23,7 +23,7 @@ namespace NetworkExtensions.Framework
 
             foreach (var textureFile in files)
             {
-                var relativePath = textureFile.FullName.Replace(modPath, "").TrimStart('\\');
+                var relativePath = textureFile.FullName.Replace(modPath, "").TrimStart(new []{'\\', '/'});
 
                 if (_allTextures.ContainsKey(relativePath))
                 {
@@ -80,7 +80,9 @@ namespace NetworkExtensions.Framework
                 return null;
             }
 
-            var trimmedPath = path.Replace("/", "\\");
+            var trimmedPath = path
+                .Replace('\\', Path.DirectorySeparatorChar)
+                .Replace('/', Path.DirectorySeparatorChar);
 
             if (!_allTextures.ContainsKey(trimmedPath))
             {
@@ -89,5 +91,22 @@ namespace NetworkExtensions.Framework
 
             return _allTextures[trimmedPath];
         }
+
+        // Test that for mesh Import
+        //public static void TestFromBoFormer()
+        //{
+        //    // the default assets import path
+        //    var path = Path.Combine(DataLocation.addonsPath, "Import");
+        //    var modelName = "Test.fbx";
+
+        //    // load model
+        //    var importer = new SceneImporter();
+        //    importer.filePath = Path.Combine(path, modelName);
+        //    importer.importSkinMesh = true;
+        //    var importedModel = importer.Import();
+
+        //    // load textures
+        //    AssetImporterTextureLoader.LoadTextures(null, importedModel, results, path, modelName, false);
+        //}
     }
 }

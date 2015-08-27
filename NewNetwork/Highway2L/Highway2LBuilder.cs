@@ -6,8 +6,9 @@ using UnityEngine;
 
 namespace NetworkExtensions.NewNetwork.Highway2L
 {
-    public class Highway2LBuilder : INetInfoBuilder
+    public class Highway2LBuilder : ModPart, INetInfoBuilder
     {
+        public int OptionsPriority { get { return 3; } }
         public int Priority { get { return 10; } }
 
         public string PrefabName  { get { return "Oneway Road"; } }
@@ -119,7 +120,8 @@ namespace NetworkExtensions.NewNetwork.Highway2L
             ///////////////////////////
             // Set up                //
             ///////////////////////////
-            info.m_createPavement = (version != NetInfoVersion.Ground);
+            info.m_availableIn = ItemClass.Availability.All;
+            info.m_createPavement = (version == NetInfoVersion.Slope);
             info.m_createGravel = (version == NetInfoVersion.Ground);
             info.m_averageVehicleLaneSpeed = 2f;
             info.m_hasParkingSpaces = false;

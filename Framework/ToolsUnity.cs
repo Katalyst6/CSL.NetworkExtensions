@@ -100,9 +100,7 @@ namespace NetworkExtensions.Framework
 
 
 
-            var path = Mod.GetPath() + "/" + thumbnailsPath;
-            var texture = new Texture2D(1, 1, TextureFormat.ARGB32, false);
-            texture.LoadImage(File.ReadAllBytes(path));
+            var texture = TextureManager.instance.GetTexture(thumbnailsPath);
             texture.FixTransparency();
 
             thumbnailAtlas.material.mainTexture = texture;
@@ -141,9 +139,7 @@ namespace NetworkExtensions.Framework
             var shader = Shader.Find("UI/Default UI Shader");
             if (shader != null) infoTooltipAtlas.material = new Material(shader);
 
-            var path = Mod.GetPath() + "/" + infoTooltipPath;
-            var texture = new Texture2D(1, 1, TextureFormat.ARGB32, false);
-            texture.LoadImage(File.ReadAllBytes(path));
+            var texture = TextureManager.instance.GetTexture(infoTooltipPath);
 
             infoTooltipAtlas.material.mainTexture = texture;
 

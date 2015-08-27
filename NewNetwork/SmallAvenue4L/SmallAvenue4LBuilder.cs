@@ -5,9 +5,10 @@ using NetworkExtensions.NewNetwork.SmallAvenue4L.Meshes;
 
 namespace NetworkExtensions.NewNetwork.SmallAvenue4L
 {
-    public class SmallAvenue4LBuilder : INetInfoBuilder
+    public class SmallAvenue4LBuilder : ModPart, INetInfoBuilder
     {
-        public int Priority { get { return 5; } }
+        public int OptionsPriority { get { return 1; } }
+        public int Priority { get { return 4; } }
 
         public string PrefabName { get { return "Basic Road"; } }
         public string Name { get { return "Small Avenue"; } }

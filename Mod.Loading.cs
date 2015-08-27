@@ -19,14 +19,17 @@ namespace NetworkExtensions
 
             if (_isReleased)
             {
-                _container = new GameObject(NEXT_OBJECT_NAME);
+                if (GetPath() != PATH_NOT_FOUND)
+                {
+                    _container = new GameObject(NEXT_OBJECT_NAME);
 
-                _newRoads = _container.AddComponent<NetCollection>();
-                _newRoads.name = NEWROADS_NETCOLLECTION;
+                    _newRoads = _container.AddComponent<NetCollection>();
+                    _newRoads.name = NEWROADS_NETCOLLECTION;
 
-                _initalizer = _container.AddComponent<ModInitializer>();
-                _initalizer.NewRoads = _newRoads;
-                _initalizer.InitializationCompleted += InitializationCompleted;
+                    _initalizer = _container.AddComponent<ModInitializer>();
+                    _initalizer.NewRoads = _newRoads;
+                    _initalizer.InitializationCompleted += InitializationCompleted;
+                }
 
                 _isReleased = false;
             }

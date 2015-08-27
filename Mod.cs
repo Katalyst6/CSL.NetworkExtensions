@@ -6,6 +6,11 @@ using ColossalFramework.IO;
 using ColossalFramework.Steamworks;
 using ICities;
 using NetworkExtensions.Framework;
+using UnityEngine;
+
+#if DEBUG
+using Debug = NetworkExtensions.Framework.Debug;
+#endif
 
 namespace NetworkExtensions
 {
@@ -29,27 +34,89 @@ namespace NetworkExtensions
             get { return "An addition of highways and roads"; }
         }
 
+        public const string PATH_NOT_FOUND = "NOT_FOUND";
+
+        private static string s_path = null;
         public static string GetPath()
         {
-            var localPath = DataLocation.modsPath + "/NetworkExtensions";
-            //Debug.Log("NExt: " + localPath);
+            if (s_path == null)
+            {
+                s_path = CheckForPath();
+
+                if (s_path != PATH_NOT_FOUND)
+                {
+                    Debug.Log("NExt: Mod path " + s_path);
+                }
+                else
+                {
+                    Debug.Log("NExt: Path not found");
+                }
+            }
+
+            return s_path;
+        }
+
+        private static string CheckForPath()
+        {
+            // 1. Check Local path (CurrentUser\Appdata\Local\Colossal Order\Cities_Skylines\Addons\Mods)
+            var localPath = Path.Combine(DataLocation.modsPath, "NetworkExtensions");
+            Debug.Log(string.Format("NExt: Exist={0} DataLocation.modsPath={1}", Directory.Exists(localPath), localPath));
+
             if (Directory.Exists(localPath))
             {
-                //Debug.Log("NExt: Local path exists, looking for assets here: " + localPath);
                 return localPath;
             }
 
+            // 2. Check Steam
             foreach (var mod in Steam.workshop.GetSubscribedItems())
             {
                 if (mod.AsUInt64 == WORKSHOP_ID)
                 {
                     var workshopPath = Steam.workshop.GetSubscribedItemPath(mod);
-                    //Debug.Log("NExt: Workshop path: " + workshopPath);
-                    return workshopPath;
+                    Debug.Log(string.Format("NExt: Exist={0} WorkshopPath={1}", Directory.Exists(workshopPath), workshopPath));
+                    if (Directory.Exists(workshopPath))
+                    {
+                        return workshopPath;
+                    }
                 }
             }
 
-            return ".";
+            // 3. Check Cities Skylines files folder
+            var csFolderPath = Path.Combine(Path.Combine(DataLocation.gameContentPath, "Mods"), "NetworkExtensions");
+            Debug.Log(string.Format("NExt: Exist={0} DataLocation.gameContentPath={1}", Directory.Exists(csFolderPath), csFolderPath));
+            if (Directory.Exists(csFolderPath))
+            {
+                return csFolderPath;
+            }
+
+            return PATH_NOT_FOUND;
+        }
+
+        private static IEnumerable<IModPart> s_parts;
+        public static IEnumerable<IModPart> Parts
+        {
+            get
+            {
+                if (s_parts == null)
+                {
+                    var builderType = typeof(IModPart);
+
+                    s_parts = typeof(ModInitializer)
+                        .Assembly
+                        .GetTypes()
+                        .Where(t => !t.IsAbstract && !t.IsInterface)
+                        .Where(builderType.IsAssignableFrom)
+                        .Select(t =>
+                        {
+                            var part = (IModPart) Activator.CreateInstance(t);
+                            part.IsEnabled = Options.Instance.IsPartEnabled(part);
+                            return part;
+                        })
+                        .ToArray();
+                }
+
+                return s_parts;
+            }
         }
 
         private static IEnumerable<INetInfoBuilder> s_netInfoBuilders;
@@ -59,14 +126,9 @@ namespace NetworkExtensions
             {
                 if (s_netInfoBuilders == null)
                 {
-                    var builderType = typeof(INetInfoBuilder);
-
-                    s_netInfoBuilders = typeof(ModInitializer)
-                        .Assembly
-                        .GetTypes()
-                        .Where(t => !t.IsAbstract && !t.IsInterface)
-                        .Where(builderType.IsAssignableFrom)
-                        .Select(t => (INetInfoBuilder)Activator.CreateInstance(t))
+                    s_netInfoBuilders = s_parts
+                        .Where(p => p.IsEnabled)
+                        .OfType<INetInfoBuilder>()
                         .ToArray();
                 }
 
@@ -81,14 +143,9 @@ namespace NetworkExtensions
             {
                 if (s_netInfoModifiers == null)
                 {
-                    var builderType = typeof(INetInfoBuilder);
-
-                    s_netInfoModifiers = typeof(ModInitializer)
-                        .Assembly
-                        .GetTypes()
-                        .Where(t => !t.IsAbstract && !t.IsInterface)
-                        .Where(builderType.IsAssignableFrom)
-                        .Select(t => (INetInfoModifier)Activator.CreateInstance(t))
+                    s_netInfoModifiers = s_parts
+                        .Where(p => p.IsEnabled)
+                        .OfType<INetInfoModifier>()
                         .ToArray();
                 }
 

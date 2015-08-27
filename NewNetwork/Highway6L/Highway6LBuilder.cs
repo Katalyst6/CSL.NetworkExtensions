@@ -12,8 +12,9 @@ using Debug = NetworkExtensions.Framework.Debug;
 
 namespace NetworkExtensions.NewNetwork.Highway6L
 {
-    public class Highway6LBuilder : INetInfoBuilder, INetInfoModifier
+    public class Highway6LBuilder : ModPart, INetInfoBuilder, INetInfoModifier
     {
+        public int OptionsPriority { get { return 4; } }
         public int Priority { get { return 14; } }
 
         public string PrefabName  { get { return "Large Oneway"; } }
@@ -146,7 +147,8 @@ namespace NetworkExtensions.NewNetwork.Highway6L
             ///////////////////////////
             // Set up                //
             ///////////////////////////
-            info.m_createPavement = (version != NetInfoVersion.Ground);
+            info.m_availableIn = ItemClass.Availability.All;
+            info.m_createPavement = (version == NetInfoVersion.Slope);
             info.m_createGravel = (version == NetInfoVersion.Ground);
             info.m_averageVehicleLaneSpeed = 2f;
             info.m_hasParkingSpaces = false;

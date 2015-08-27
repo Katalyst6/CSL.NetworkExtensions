@@ -46,6 +46,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Xml" />
     <Reference Include="UnityEngine">
       <HintPath>References\UnityEngine.dll</HintPath>
       <Private>False</Private>
@@ -58,6 +59,11 @@
     <Compile Include="Framework\Extensions\SegmentExtensions.cs" />
     <Compile Include="Framework\MeshAddendumModel.cs" />
     <Compile Include="Framework\MeshModel.cs" />
+    <Compile Include="NewNetwork\MediumAvenue4LTL\MediumAvenue4LTLBuilder.cs" />
+    <Compile Include="Options.cs" />
+    <Compile Include="Framework\IModPart.cs" />
+    <Compile Include="Framework\ModPart.cs" />
+    <Compile Include="Mod.Options.cs" />
     <Compile Include="Mod.Loading.cs" />
     <Compile Include="Framework\INetInfoModifier.cs" />
     <Compile Include="Framework\Extensions\EnumExtensions.cs" />
@@ -242,6 +248,18 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="NewNetwork\OneWay1L\thumbnails.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="NewNetwork\MediumAvenue4LTL\infotooltip.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="NewNetwork\MediumAvenue4LTL\Textures\Ground_Segment__AlphaMap.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="NewNetwork\MediumAvenue4LTL\Textures\Ground_Segment__MainTex.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="NewNetwork\MediumAvenue4LTL\thumbnails.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="NewNetwork\SmallAvenue4L\infotooltip.png">
