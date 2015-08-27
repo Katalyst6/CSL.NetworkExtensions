@@ -69,11 +69,11 @@ namespace NetworkExtensions.NewNetwork.OneWay1L
             ///////////////////////////
             if (version == NetInfoVersion.Ground)
             {
-                info.m_segments[0].m_mesh = (Mesh)Mesh.Instantiate(info.m_segments[0].m_lodMesh);
-                info.m_nodes[0].m_mesh = (Mesh)Mesh.Instantiate(info.m_nodes[0].m_lodMesh);
+                //info.m_segments[0].m_mesh = (Mesh)Mesh.Instantiate(info.m_segments[0].m_lodMesh);
+                //info.m_nodes[0].m_mesh = (Mesh)Mesh.Instantiate(info.m_nodes[0].m_lodMesh);
 
-                info.m_segments[0].m_mesh.Setup(OneWay1LSegmentModel.BuildMesh(), "OW_1L_Segment0_Grnd");
-                info.m_nodes[0].m_mesh.Setup(OneWay1LNodeModel.BuildMesh(), "OW_1L_Node0_Grnd");
+                info.m_segments[0].m_mesh = OneWay1LSegmentModel.BuildMesh().CreateMesh("OW_1L_Segment0_Grnd");
+                info.m_nodes[0].m_mesh = OneWay1LNodeModel.BuildMesh().CreateMesh("OW_1L_Node0_Grnd");
             }
             ///////////////////////////
             // Set up                //

@@ -106,11 +106,11 @@ namespace NetworkExtensions.NewNetwork.Highway1L
             {
                 info.m_surfaceLevel = 0;
                 //info.m_class = highwayInfo.m_class;
-                info.m_segments[0].m_mesh = (Mesh)Mesh.Instantiate(info.m_segments[0].m_lodMesh);
-                info.m_nodes[0].m_mesh = (Mesh)Mesh.Instantiate(info.m_nodes[0].m_lodMesh);
+                //info.m_segments[0].m_mesh = (Mesh)Mesh.Instantiate(info.m_segments[0].m_lodMesh);
+                //info.m_nodes[0].m_mesh = (Mesh)Mesh.Instantiate(info.m_nodes[0].m_lodMesh);
 
-                info.m_segments[0].m_mesh.Setup(Highway1LSegmentModel.BuildMesh(), "HW_1L_Segment0_Grnd");
-                info.m_nodes[0].m_mesh.Setup(Highway1LNodeModel.BuildMesh(), "HW_1L_Node0_Grnd");
+                info.m_segments[0].m_mesh = Highway1LSegmentModel.BuildMesh().CreateMesh("HW_1L_Segment0_Grnd");
+                info.m_nodes[0].m_mesh = Highway1LNodeModel.BuildMesh().CreateMesh("HW_1L_Node0_Grnd");
             }
 
             ///////////////////////////

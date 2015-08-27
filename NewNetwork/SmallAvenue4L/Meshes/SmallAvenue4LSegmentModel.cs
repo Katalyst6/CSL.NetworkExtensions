@@ -7,7 +7,7 @@ namespace NetworkExtensions.NewNetwork.SmallAvenue4L.Meshes
 {
     public class SmallAvenue4LSegmentModel
     {
-        public static MeshAddendumModel BuildMesh()
+        public static MeshData BuildMesh()
         {
             Vector3[] vertices = new Vector3[] {
                 new Vector3 (-11.00000f, -0.30000f, 32.00000f),
@@ -1023,7 +1023,7 @@ namespace NetworkExtensions.NewNetwork.SmallAvenue4L.Meshes
                 new Vector3 (0.00000f, 1.00000f, -0.00000f)
             };
 
-            MeshAddendumModel mam = new MeshAddendumModel()
+            MeshData mam = new MeshData()
             {
                 Vertices = vertices,
                 Triangles = triangles,

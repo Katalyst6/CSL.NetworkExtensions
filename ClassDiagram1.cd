@@ -63,11 +63,11 @@
       <FileName>Framework\Loading.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="NetworkExtensions.Framework.MeshAddendumModel" Collapsed="true">
+  <Class Name="NetworkExtensions.Framework.MeshModel" Collapsed="true">
     <Position X="5.75" Y="2.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAEAAAAAABAAAAAAAAAAAAAAAAEIAAAAAAAAA=</HashCode>
-      <FileName>Framework\MeshAddendumModel.cs</FileName>
+      <FileName>Framework\MeshModel.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="NetworkExtensions.Framework.MemberSelector&lt;T, TProperty&gt;" Collapsed="true" BaseTypeListCollapsed="true">

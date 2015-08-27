@@ -7,7 +7,7 @@ namespace NetworkExtensions.NewNetwork.Highway2L.Meshes
 {
     public class Highway2LSegmentModel
     {
-        public static MeshAddendumModel BuildMesh()
+        public static MeshData BuildMesh()
         {
             Vector3[] vertices = new Vector3[] {
                 new Vector3 (-8.00000f, 0.00000f, -32.00000f),
@@ -727,7 +727,7 @@ namespace NetworkExtensions.NewNetwork.Highway2L.Meshes
                 new Vector3 (-0.72499f, 0.68876f, 0.00005f)
             };
 
-            MeshAddendumModel mam = new MeshAddendumModel()
+            MeshData mam = new MeshData()
             {
                 Vertices = vertices,
                 Triangles = triangles,

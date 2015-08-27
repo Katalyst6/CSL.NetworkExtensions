@@ -7,7 +7,7 @@ namespace NetworkExtensions.NewNetwork.OneWay1L.Meshes
 {
     public class OneWay1LSegmentModel
     {
-        public static MeshAddendumModel BuildMesh()
+        public static MeshData BuildMesh()
         {
             Vector3[] vertices = new Vector3[] {
                 new Vector3 (-5.00000f, 0.00000f, -32.00000f),
@@ -861,7 +861,7 @@ namespace NetworkExtensions.NewNetwork.OneWay1L.Meshes
                 new Vector3 (1.00000f, 0.00000f, -0.00000f)
             };
 
-            MeshAddendumModel mam = new MeshAddendumModel()
+            MeshData mam = new MeshData()
             {
                 Vertices = vertices,
                 Triangles = triangles,

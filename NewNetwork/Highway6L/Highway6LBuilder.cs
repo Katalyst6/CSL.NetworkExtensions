@@ -83,8 +83,8 @@ namespace NetworkExtensions.NewNetwork.Highway6L
                 nodes1.m_flagsForbidden = NetNode.Flags.None;
                 nodes1.m_flagsRequired = NetNode.Flags.Transition;
 
-                var defaultMesh = Highway6LModel.BuildDefaultMesh().CreateMesh("HIGHWAY_6L_GROUND");
-                var transitionMesh = Highway6LModel.BuildTransitionMesh().CreateMesh("HIGHWAY_6L_GROUND_TRS");
+                var defaultMesh = Highway6LMeshes.GetGroundData().CreateMesh("HIGHWAY_6L_GROUND");
+                var transitionMesh = Highway6LMeshes.GetGroundTransitionData().CreateMesh("HIGHWAY_6L_GROUND_TRS");
 
                 segments0.m_mesh = defaultMesh;
                 nodes0.m_mesh = defaultMesh;
