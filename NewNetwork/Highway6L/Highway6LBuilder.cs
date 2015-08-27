@@ -27,7 +27,7 @@ namespace NetworkExtensions.NewNetwork.Highway6L
 
         public NetInfoVersion SupportedVersions
         {
-            get { return NetInfoVersion.Ground; }
+            get { return NetInfoVersion.All; }
         }
 
         public string GetPrefabName(NetInfoVersion version)
@@ -55,6 +55,43 @@ namespace NetworkExtensions.NewNetwork.Highway6L
             // Template              //
             ///////////////////////////
             var highwayInfo = ToolsCSL.FindPrefab<NetInfo>("Highway");
+
+
+            ///////////////////////////
+            // 3DModeling            //
+            ///////////////////////////
+            if (version == NetInfoVersion.Ground)
+            {
+                info.m_surfaceLevel = 0;
+                info.m_class = highwayInfo.m_class.Clone("LargeHighway");
+
+                var segments0 = info.m_segments[0];
+                var nodes0 = info.m_nodes[0];
+
+                segments0.m_backwardForbidden = NetSegment.Flags.None;
+                segments0.m_backwardRequired = NetSegment.Flags.None;
+
+                segments0.m_forwardForbidden = NetSegment.Flags.None;
+                segments0.m_forwardRequired = NetSegment.Flags.None;
+
+                var nodes1 = nodes0.Clone();
+
+                nodes0.m_flagsForbidden = NetNode.Flags.Transition;
+                nodes0.m_flagsRequired = NetNode.Flags.None;
+
+                nodes1.m_flagsForbidden = NetNode.Flags.None;
+                nodes1.m_flagsRequired = NetNode.Flags.Transition;
+
+                var defaultMesh = Highway6LModel.BuildDefaultMesh().CreateMesh("HIGHWAY_6L_GROUND");
+                var transitionMesh = Highway6LModel.BuildTransitionMesh().CreateMesh("HIGHWAY_6L_GROUND_TRS");
+
+                segments0.m_mesh = defaultMesh;
+                nodes0.m_mesh = defaultMesh;
+                nodes1.m_mesh = transitionMesh;
+
+                info.m_segments = new[] { segments0 };
+                info.m_nodes = new[] { nodes0, nodes1 };
+            }
 
 
             ///////////////////////////
@@ -107,32 +144,6 @@ namespace NetworkExtensions.NewNetwork.Highway6L
 
 
             ///////////////////////////
-            // 3DModeling            //
-            ///////////////////////////
-            if (version == NetInfoVersion.Ground)
-            {
-                //info.m_surfaceLevel = 0;
-                info.m_class = ScriptableObject.CreateInstance<ItemClass>();
-                info.m_class.m_layer = highwayInfo.m_class.m_layer;
-                info.m_class.m_level = highwayInfo.m_class.m_level;
-                info.m_class.m_service = highwayInfo.m_class.m_service;
-                info.m_class.m_subService = highwayInfo.m_class.m_subService;
-                info.m_class.hideFlags = highwayInfo.m_class.hideFlags;
-                info.m_class.name = "LargeHighway";
-
-                info.m_segments[0].m_mesh = info.m_segments[0].m_lodMesh;
-                info.m_nodes[0].m_mesh = info.m_nodes[0].m_lodMesh;
-
-                info.m_segments[0].m_mesh.Setup(Highway6LModel.BuildDefaultMesh(), "HW_6L_Segment0_Grnd");
-                info.m_nodes[0].m_mesh.Setup(Highway6LModel.BuildDefaultMesh(), "HW_6L_Segment0_Grnd");
-
-                // TODO: duplicate
-                info.m_nodes[1].m_mesh.Setup(Highway6LModel.BuildTransitionMesh(), "HW_6L_Node0_Grnd");
-                //info.m_nodes[0].m_flagsForbidden = NetNode.Flags.Transition;
-            }
-
-
-            ///////////////////////////
             // Set up                //
             ///////////////////////////
             info.m_createPavement = (version != NetInfoVersion.Ground);
@@ -176,10 +187,10 @@ namespace NetworkExtensions.NewNetwork.Highway6L
                 l.m_allowStop = false;
                 l.m_speedLimit = 2f;
 
-                //if (version == NetInfoVersion.Ground)
-                //{
-                //    l.m_verticalOffset = 0f;
-                //}
+                if (version == NetInfoVersion.Ground)
+                {
+                    l.m_verticalOffset = 0f;
+                }
 
                 l.m_width = laneWidthTotal;
                 l.m_position = positionStart + i * laneWidthTotal;
