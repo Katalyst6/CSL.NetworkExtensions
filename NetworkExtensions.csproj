@@ -52,9 +52,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Framework\Extensions\NodeExtensions.cs" />
+    <Compile Include="Framework\Extensions\ItemClassExtensions.cs" />
     <Compile Include="Framework\Extensions\MeshExtensions.cs" />
+    <Compile Include="Framework\Extensions\SegmentExtensions.cs" />
     <Compile Include="Framework\MeshAddendumModel.cs" />
-    <Compile Include="Framework\MeshAdder.cs" />
+    <Compile Include="Framework\MeshModel.cs" />
     <Compile Include="Mod.Loading.cs" />
     <Compile Include="Framework\INetInfoModifier.cs" />
     <Compile Include="Framework\Extensions\EnumExtensions.cs" />
@@ -74,11 +77,11 @@
     <Compile Include="NewNetwork\Highway1L\Meshes\Highway1LSegmentModel.cs" />
     <Compile Include="NewNetwork\Highway2L\Meshes\Highway2LNodeModel.cs" />
     <Compile Include="NewNetwork\Highway2L\Meshes\Highway2LSegmentModel.cs" />
-    <Compile Include="NewNetwork\Highway6L\Meshes\Highway6LNodeModel.cs" />
-    <Compile Include="NewNetwork\Highway6L\Meshes\Highway6LSegmentModel.cs" />
     <Compile Include="NewNetwork\OneWay1L\Meshes\OneWay1LNodeModel.cs" />
     <Compile Include="NewNetwork\OneWay1L\Meshes\OneWay1LSegmentModel.cs" />
     <Compile Include="NewNetwork\OneWay1L\OneWay1LBuilder.cs" />
+    <Compile Include="NewNetwork\Highway6L\Meshes\Highway6LModel.Transition.cs" />
+    <Compile Include="NewNetwork\Highway6L\Meshes\Highway6LModel.cs" />
     <Compile Include="NewNetwork\SmallAvenue4L\Meshes\SmallAvenue4LNodeModel.cs" />
     <Compile Include="NewNetwork\SmallAvenue4L\Meshes\SmallAvenue4LSegmentModel.cs" />
     <Compile Include="NewNetwork\SmallAvenue4L\SmallAvenue4LBuilder.cs" />

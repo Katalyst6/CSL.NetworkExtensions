@@ -58,6 +58,43 @@ namespace NetworkExtensions.NewNetwork.Highway6L
 
 
             ///////////////////////////
+            // 3DModeling            //
+            ///////////////////////////
+            if (version == NetInfoVersion.Ground)
+            {
+                info.m_surfaceLevel = 0;
+                info.m_class = highwayInfo.m_class.Clone("LargeHighway");
+
+                var segments0 = info.m_segments[0];
+                var nodes0 = info.m_nodes[0];
+
+                segments0.m_backwardForbidden = NetSegment.Flags.None;
+                segments0.m_backwardRequired = NetSegment.Flags.None;
+
+                segments0.m_forwardForbidden = NetSegment.Flags.None;
+                segments0.m_forwardRequired = NetSegment.Flags.None;
+
+                var nodes1 = nodes0.Clone();
+
+                nodes0.m_flagsForbidden = NetNode.Flags.Transition;
+                nodes0.m_flagsRequired = NetNode.Flags.None;
+
+                nodes1.m_flagsForbidden = NetNode.Flags.None;
+                nodes1.m_flagsRequired = NetNode.Flags.Transition;
+
+                var defaultMesh = Highway6LModel.BuildDefaultMesh().CreateMesh("HIGHWAY_6L_GROUND");
+                var transitionMesh = Highway6LModel.BuildTransitionMesh().CreateMesh("HIGHWAY_6L_GROUND_TRS");
+
+                segments0.m_mesh = defaultMesh;
+                nodes0.m_mesh = defaultMesh;
+                nodes1.m_mesh = transitionMesh;
+
+                info.m_segments = new[] { segments0 };
+                info.m_nodes = new[] { nodes0, nodes1 };
+            }
+
+
+            ///////////////////////////
             // Texturing             //
             ///////////////////////////
             switch (version)
@@ -103,21 +140,6 @@ namespace NetworkExtensions.NewNetwork.Highway6L
 
                 case NetInfoVersion.Tunnel:
                     break;
-            }
-
-
-            ///////////////////////////
-            // 3DModeling            //
-            ///////////////////////////
-            if (version == NetInfoVersion.Ground)
-            {
-                info.m_surfaceLevel = 0;
-                //info.m_class = highwayInfo.m_class;
-                info.m_segments[0].m_mesh = (Mesh)Mesh.Instantiate(info.m_segments[0].m_lodMesh);
-                info.m_nodes[0].m_mesh = (Mesh)Mesh.Instantiate(info.m_nodes[0].m_lodMesh);
-
-                info.m_segments[0].m_mesh.Setup(Highway6LSegmentModel.BuildMesh(), "HW_6L_Segment0_Grnd");
-                info.m_nodes[0].m_mesh.Setup(Highway6LNodeModel.BuildMesh(), "HW_6L_Node0_Grnd");
             }
 
 
