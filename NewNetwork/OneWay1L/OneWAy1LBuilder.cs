@@ -59,8 +59,8 @@ namespace NetworkExtensions.NewNetwork.OneWay1L
                             @"NewNetwork\OneWay1L\Textures\Ground_Segment__AlphaMap.png"));
                     info.SetNodesTexture(
                         new TexturesSet
-                            (@"NewNetwork\OneWay1L\Textures\Ground_Segment__MainTex.png",
-                             @"NewNetwork\OneWay1L\Textures\Ground_Segment__AlphaMap.png"));
+                            (@"NewNetwork\OneWay1L\Textures\Ground_Node__MainTex.png",
+                             @"NewNetwork\OneWay1L\Textures\Ground_Node__AlphaMap.png"));
                     break;
             }
             ///////////////////////////
@@ -81,36 +81,49 @@ namespace NetworkExtensions.NewNetwork.OneWay1L
             info.m_halfWidth = 5.0f;
             info.m_pavementWidth = 2f;
             // Disabling Parkings and Peds
-            foreach (var l in info.m_lanes)
-            {
-                if (l.m_laneType == NetInfo.LaneType.Parking)
-                {
-                    l.m_laneType = NetInfo.LaneType.None;
-                }
-            }
+            //foreach (var l in info.m_lanes)
+            //{
+            //    if (l.m_laneType == NetInfo.LaneType.Parking)
+            //    {
+            //        l.m_laneType = NetInfo.LaneType.None;
+            //    }
+            //}
 
             // Setting up lanes
+
+            var parkingLanes = info.m_lanes
+                .Where(l => l.m_laneType == NetInfo.LaneType.Parking)
+                .ToList();
+
             var vehicleLanes = info.m_lanes
                 .Where(l => l.m_laneType != NetInfo.LaneType.None)
                 .Where(l => l.m_laneType != NetInfo.LaneType.Pedestrian)
+                .Where(l => l.m_laneType != NetInfo.LaneType.Parking)
                 .ToList();
 
             var pedestrianLanes = info.m_lanes
                 .Where(l => l.m_laneType == NetInfo.LaneType.Pedestrian)
                 .OrderBy(l => l.m_similarLaneIndex)
-                .ToArray();
+                .ToList();
 
             var vehicleLane = vehicleLanes[0];
+            var parkingLane = parkingLanes[0];
             vehicleLanes[1].m_laneType = NetInfo.LaneType.None;
-            vehicleLane.m_width = 6.0f;
+            parkingLanes[1].m_laneType = NetInfo.LaneType.None;
+
+            vehicleLane.m_width = 3.5f;
             vehicleLane.m_verticalOffset = -0.3f;
-            vehicleLane.m_position = 0.0f;
+            vehicleLane.m_position = -1.25f;
             vehicleLane.m_speedLimit = 0.7f;
 
+            parkingLane.m_width = 2.5f;
+            parkingLane.m_verticalOffset = -0.3f;
+            parkingLane.m_position = 1.75f;
 
             var roadHalfWidth = 3f;
             var pedWidth = 2f;
-            for (var i = 0; i < pedestrianLanes.Length; i++)
+
+            for (var i = 0; i < pedestrianLanes.Count; i++)
             {
                 var multiplier = pedestrianLanes[i].m_position / Math.Abs(pedestrianLanes[i].m_position);
                 pedestrianLanes[i].m_width = pedWidth;
