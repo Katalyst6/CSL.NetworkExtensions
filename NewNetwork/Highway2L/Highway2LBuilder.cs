@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Linq;
 using NetworkExtensions.Framework;
+using NetworkExtensions.NewNetwork.Highway2L.Meshes;
+using UnityEngine;
 
 namespace NetworkExtensions.NewNetwork.Highway2L
 {
@@ -45,6 +47,49 @@ namespace NetworkExtensions.NewNetwork.Highway2L
         public void BuildUp(NetInfo info, NetInfoVersion version)
         {
             ///////////////////////////
+            // Template              //
+            ///////////////////////////
+            var highwayInfo = ToolsCSL.FindPrefab<NetInfo>("Highway");
+
+
+            ///////////////////////////
+            // 3DModeling            //
+            ///////////////////////////
+            if (version == NetInfoVersion.Ground)
+            {
+                info.m_surfaceLevel = 0;
+                info.m_class = highwayInfo.m_class.Clone("RuralHighway");
+
+                var segments0 = info.m_segments[0];
+                var nodes0 = info.m_nodes[0];
+
+                segments0.m_backwardForbidden = NetSegment.Flags.None;
+                segments0.m_backwardRequired = NetSegment.Flags.None;
+
+                segments0.m_forwardForbidden = NetSegment.Flags.None;
+                segments0.m_forwardRequired = NetSegment.Flags.None;
+
+                var nodes1 = nodes0.Clone();
+
+                nodes0.m_flagsForbidden = NetNode.Flags.Transition;
+                nodes0.m_flagsRequired = NetNode.Flags.None;
+
+                nodes1.m_flagsForbidden = NetNode.Flags.None;
+                nodes1.m_flagsRequired = NetNode.Flags.Transition;
+
+                var grndMesh = Highway2LMeshes.GetGroundData().CreateMesh("HIGHWAY_2L_GROUND");
+                var grndTransMesh = Highway2LMeshes.GetGroundTransitionData().CreateMesh("HIGHWAY_2L_GROUND_TRS");
+
+                segments0.m_mesh = grndMesh;
+                nodes0.m_mesh = grndMesh;
+                nodes1.m_mesh = grndTransMesh;
+
+                info.m_segments = new[] { segments0 };
+                info.m_nodes = new[] { nodes0, nodes1 };
+            }
+
+
+            ///////////////////////////
             // Texturing             //
             ///////////////////////////
             switch (version)
@@ -56,7 +101,7 @@ namespace NetworkExtensions.NewNetwork.Highway2L
                             @"NewNetwork\Highway2L\Textures\Ground_Segment__AlphaMap.png"));
                     info.SetNodesTexture(
                         new TexturesSet
-                           (@"NewNetwork\Highway2L\Textures\Ground_Segment__MainTex.png",
+                           (@"NewNetwork\Highway2L\Textures\Ground_Node__MainTex.png",
                             @"NewNetwork\Highway2L\Textures\Ground_Node__AlphaMap.png"),
                         new TexturesSet
                            (@"NewNetwork\Highway2L\Textures\Ground_NodeLOD__MainTex.png",
@@ -93,12 +138,9 @@ namespace NetworkExtensions.NewNetwork.Highway2L
             }
 
 
-
             ///////////////////////////
             // Set up                //
             ///////////////////////////
-            var highwayInfo = ToolsCSL.FindPrefab<NetInfo>("Highway");
-
             info.m_availableIn = ItemClass.Availability.All;
             info.m_createPavement = (version == NetInfoVersion.Slope);
             info.m_createGravel = (version == NetInfoVersion.Ground);
@@ -107,12 +149,6 @@ namespace NetworkExtensions.NewNetwork.Highway2L
             info.m_hasPedestrianLanes = false;
 
             info.m_UnlockMilestone = highwayInfo.m_UnlockMilestone;
-
-            // Activate with a new mesh
-            //info.m_class = highwayInfo.m_class;
-
-            // Test 
-            //info.m_surfaceLevel = 0;
 
 
             // Disabling Parkings and Peds
@@ -140,6 +176,11 @@ namespace NetworkExtensions.NewNetwork.Highway2L
                 var l = vehiculeLanes[i];
                 l.m_allowStop = false;
                 l.m_speedLimit = 2f;
+
+                if (version == NetInfoVersion.Ground)
+                {
+                    l.m_verticalOffset = 0f;
+                }
             }
 
 

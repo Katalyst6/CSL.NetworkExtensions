@@ -53,7 +53,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Framework\Extensions\NodeExtensions.cs" />
+    <Compile Include="Framework\Extensions\ItemClassExtensions.cs" />
+    <Compile Include="Framework\Extensions\MeshExtensions.cs" />
+    <Compile Include="Framework\Extensions\SegmentExtensions.cs" />
+    <Compile Include="Framework\MeshData.cs" />
     <Compile Include="NewNetwork\MediumAvenue4LTL\MediumAvenue4LTLBuilder.cs" />
+    <Compile Include="NewNetwork\SmallAvenue4L\Widening\Meshes\SmallAvenue4LMeshes.cs" />
+    <Compile Include="NewNetwork\SmallAvenue4L\Widening\Meshes\SmallAvenue4LMeshes.Transition.cs" />
     <Compile Include="Options.cs" />
     <Compile Include="Framework\IModPart.cs" />
     <Compile Include="Framework\ModPart.cs" />
@@ -73,6 +80,13 @@
     <Compile Include="Framework\INetInfoBuilder.cs" />
     <Compile Include="Framework\Extensions\LocaleExtensions.cs" />
     <Compile Include="NewNetwork\Highway1L\Highway1LBuilder.cs" />
+    <Compile Include="NewNetwork\Highway2L\Meshes\Highway2LMeshes.Transition.cs" />
+    <Compile Include="NewNetwork\Highway2L\Meshes\Highway2LMeshes.cs" />
+    <Compile Include="NewNetwork\OneWay1L\Meshes\OneWay1LNodeModel.cs" />
+    <Compile Include="NewNetwork\OneWay1L\Meshes\OneWay1LSegmentModel.cs" />
+    <Compile Include="NewNetwork\OneWay1L\OneWay1LBuilder.cs" />
+    <Compile Include="NewNetwork\Highway6L\Meshes\Highway6LMeshes.Transition.cs" />
+    <Compile Include="NewNetwork\Highway6L\Meshes\Highway6LMeshes.cs" />
     <Compile Include="NewNetwork\SmallAvenue4L\SmallAvenue4LBuilder.cs" />
     <Compile Include="NewNetwork\HighwayHelper.cs" />
     <Compile Include="NewNetwork\OneWay4L\OneWay4LBuilder.cs" />
@@ -93,6 +107,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="NewNetwork\Highway1L\Textures\Ground_Node__AlphaMap.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="NewNetwork\Highway1L\Textures\Ground_Node__MainTex.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="NewNetwork\Highway1L\Textures\Ground_Segment__AlphaMap.png">
@@ -132,6 +149,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="NewNetwork\Highway2L\Textures\Ground_Node__AlphaMap.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="NewNetwork\Highway2L\Textures\Ground_Node__MainTex.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="NewNetwork\Highway2L\Textures\Ground_Segment__AlphaMap.png">
@@ -215,6 +235,24 @@
     <Content Include="NewNetwork\Highway6L\thumbnails.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="NewNetwork\OneWay1L\infotooltip.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="NewNetwork\OneWay1L\Textures\Ground_Node__AlphaMap.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="NewNetwork\OneWay1L\Textures\Ground_Node__MainTex.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="NewNetwork\OneWay1L\Textures\Ground_Segment__AlphaMap.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="NewNetwork\OneWay1L\Textures\Ground_Segment__MainTex.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="NewNetwork\OneWay1L\thumbnails.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="NewNetwork\MediumAvenue4LTL\infotooltip.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -239,11 +277,16 @@
     <Content Include="NewNetwork\SmallAvenue4L\thumbnails.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="NewNetwork\SmallAvenue4L\Widening\Textures\Ground_Segment__AlphaMap.png" />
+    <Content Include="NewNetwork\SmallAvenue4L\Widening\Textures\Ground_Segment__MainTex.png" />
     <Content Include="SomeNetwork\Textures\planning_road_2_lanes.png" />
     <Content Include="SomeNetwork\thumbnail_atlas.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="CompatibilityTests\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassDiagram1.cd" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
@@ -251,9 +294,9 @@
 mkdir "%25LOCALAPPDATA%25\Colossal Order\Cities_Skylines\Addons\Mods\$(ProjectName)"
 xcopy /y /e "$(ProjectDir)bin\$(ConfigurationName)" "%25LOCALAPPDATA%25\Colossal Order\Cities_Skylines\Addons\Mods\$(ProjectName)"
 rd /s /q  "%25LOCALAPPDATA%25\Colossal Order\Cities_Skylines\Addons\Mods\$(ProjectName)"
-rd /s /q  "D:\Jeux\Steam\SteamApps\workshop\content\255710\478820060"
-mkdir "D:\Jeux\Steam\SteamApps\workshop\content\255710\478820060"
-xcopy /y /e "$(ProjectDir)bin\$(ConfigurationName)" "D:\Jeux\Steam\SteamApps\workshop\content\255710\478820060"</PostBuildEvent>
+rd /s /q  "C:\Program Files (x86)\Steam\SteamApps\workshop\content\255710\478820060"
+mkdir "C:\Program Files (x86)\Steam\SteamApps\workshop\content\255710\478820060"
+xcopy /y /e "$(ProjectDir)bin\$(ConfigurationName)" "C:\Program Files (x86)\Steam\SteamApps\workshop\content\255710\478820060"</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

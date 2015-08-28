@@ -1,0 +1,270 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="NetworkExtensions.Framework.EnumExtensions" Collapsed="true">
+    <Position X="2.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Framework\Extensions\EnumExtensions.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NetworkExtensions.Framework.ExpressionExtensions" Collapsed="true">
+    <Position X="4" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Framework\Extensions\ExpressionExtensions.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NetworkExtensions.Framework.LocaleExtensions" Collapsed="true">
+    <Position X="0.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Framework\Extensions\LocaleExtensions.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NetworkExtensions.Framework.MaterialExtensions" Collapsed="true">
+    <Position X="2.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABA=</HashCode>
+      <FileName>Framework\Extensions\MaterialExtensions.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NetworkExtensions.Framework.MeshExtensions" Collapsed="true">
+    <Position X="7.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Framework\Extensions\MeshExtensions.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NetworkExtensions.Framework.NetInfoExtensions" Collapsed="true">
+    <Position X="4" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAACAAgBA=</HashCode>
+      <FileName>Framework\Extensions\NetInfoExtensions.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NetworkExtensions.Framework.TypeExtensions" Collapsed="true">
+    <Position X="5.75" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Framework\Extensions\TypeExtensions.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NetworkExtensions.Framework.NetInfoBuilderExtensions" Collapsed="true">
+    <Position X="2.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAIAAAAAAAAAAAAgBAIAAAAAAAAAAA=</HashCode>
+      <FileName>Framework\INetInfoBuilder.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NetworkExtensions.Framework.Loading" Collapsed="true">
+    <Position X="9.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Framework\Loading.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NetworkExtensions.Framework.MeshModel" Collapsed="true">
+    <Position X="5.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAEAAAAAABAAAAAAAAAAAAAAAAEIAAAAAAAAA=</HashCode>
+      <FileName>Framework\MeshModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NetworkExtensions.Framework.MemberSelector&lt;T, TProperty&gt;" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="4" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAgAAAAAAAAEAAAAAAAIAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Framework\Selector.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="NetworkExtensions.Framework.Selector" Collapsed="true">
+    <Position X="0.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AACAAAAgAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Framework\Selector.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NetworkExtensions.Framework.TextureManager" Collapsed="true">
+    <Position X="7.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAACAAAAAAAAAAAAAAAAAgAAAACAAAAAEAAAAAA=</HashCode>
+      <FileName>Framework\TextureManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NetworkExtensions.Framework.TexturesSet" Collapsed="true">
+    <Position X="9.25" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAAAgAAAAAAgAgAABACAAAEACAAAAAAAAAAAA=</HashCode>
+      <FileName>Framework\TexturesSet.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NetworkExtensions.Framework.Tools" Collapsed="true">
+    <Position X="0.5" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAAAAAQAAAIAIAAAAAAAAAAAAAAAAAABAAAAAAAAgAA=</HashCode>
+      <FileName>Framework\Tools.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NetworkExtensions.Framework.ToolsCSL" Collapsed="true">
+    <Position X="2.25" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Framework\ToolsCSL.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NetworkExtensions.Framework.ToolsUnity" Collapsed="true">
+    <Position X="4" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAAAAAAAAAAAAAAAAgAAAAAgAAAEAAAAAABAAABAAAA=</HashCode>
+      <FileName>Framework\ToolsUnity.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NetworkExtensions.Mod" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="9.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAAAAACoABQgAAAAAAAIACRAACAKAAAAAAAAAAEBgAA=</HashCode>
+      <FileName>Mod.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="NetworkExtensions.ModInitializer" Collapsed="true">
+    <Position X="0.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAQAAAAggCAAAQAAAABAAEAAABAAAEAAAAAAAAAEAEA=</HashCode>
+      <FileName>ModInitializer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NetworkExtensions.NewNetwork.Highway1L.Highway1LBuilder" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="5.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEQAQAAgAAAgCAAEAAIBAAYAAAAAAAAAAAAAAgAAAAA=</HashCode>
+      <FileName>NewNetwork\Highway1L\Highway1LBuilder.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="NetworkExtensions.NewNetwork.Highway2L.Highway2LBuilder" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="7.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEAAQAAgAAAgCAAEAAIBAAYAAAAAAAAAAAAAAgAAAAA=</HashCode>
+      <FileName>NewNetwork\Highway2L\Highway2LBuilder.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="NetworkExtensions.NewNetwork.Highway2L.Meshes.Highway2LNodeModel" Collapsed="true">
+    <Position X="9.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>NewNetwork\Highway2L\Meshes\Highway2LNodeModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NetworkExtensions.NewNetwork.Highway2L.Meshes.Highway2LSegmentModel" Collapsed="true">
+    <Position X="0.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>NewNetwork\Highway2L\Meshes\Highway2LSegmentModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NetworkExtensions.NewNetwork.Highway6L.Highway6LBuilder" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="2.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IEAAQAAgAAAgCAAEAAIBAAYAAAAAAAAAAAAAAgAAAAA=</HashCode>
+      <FileName>NewNetwork\Highway6L\Highway6LBuilder.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="NetworkExtensions.NewNetwork.Highway6L.Meshes.Highway6LNodeModel" Collapsed="true">
+    <Position X="4" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>NewNetwork\Highway6L\Meshes\Highway6LNodeModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NetworkExtensions.NewNetwork.Highway6L.Meshes.Highway6LSegmentModel" Collapsed="true">
+    <Position X="5.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>NewNetwork\Highway6L\Meshes\Highway6LSegmentModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NetworkExtensions.NewNetwork.HighwayHelper" Collapsed="true">
+    <Position X="7.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>NewNetwork\HighwayHelper.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NetworkExtensions.NewNetwork.OneWay1L.Meshes.OneWay1LNodeModel" Collapsed="true">
+    <Position X="7.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>NewNetwork\OneWay1L\Meshes\OneWay1LNodeModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NetworkExtensions.NewNetwork.OneWay1L.Meshes.OneWay1LSegmentModel" Collapsed="true">
+    <Position X="9.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>NewNetwork\OneWay1L\Meshes\OneWay1LSegmentModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NetworkExtensions.NewNetwork.OneWay1L.OneWay1LBuilder" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="5.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEAAUAAgAAAgCAAEAAIBAAYAAAAAAAAAAAAAAgAAAAA=</HashCode>
+      <FileName>NewNetwork\OneWay1L\OneWay1LBuilder.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="NetworkExtensions.NewNetwork.SmallAvenue4L.Meshes.SmallAvenue4LNodeModel" Collapsed="true">
+    <Position X="4" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>NewNetwork\SmallAvenue4L\Meshes\SmallAvenue4LNodeModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NetworkExtensions.NewNetwork.SmallAvenue4L.Meshes.SmallAvenue4LSegmentModel" Collapsed="true">
+    <Position X="5.75" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>NewNetwork\SmallAvenue4L\Meshes\SmallAvenue4LSegmentModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NetworkExtensions.NewNetwork.SmallAvenue4L.SmallAvenue4LBuilder" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="2.25" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEAAUAAgAAAgCAAEAAIBAAYAAAAAAAAAAAAAAgAAAAA=</HashCode>
+      <FileName>NewNetwork\SmallAvenue4L\SmallAvenue4LBuilder.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Interface Name="NetworkExtensions.Framework.INetInfoBuilder" Collapsed="true">
+    <Position X="2.25" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEAAQAAgAAAgCAAEAAIBAAYAAAAAAAAAAAAAAgAAAAA=</HashCode>
+      <FileName>Framework\INetInfoBuilder.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="NetworkExtensions.Framework.INetInfoModifier" Collapsed="true">
+    <Position X="4" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Framework\INetInfoModifier.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="NetworkExtensions.Framework.IMemberSelector" Collapsed="true">
+    <Position X="0.5" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Framework\Selector.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Enum Name="NetworkExtensions.Framework.NetInfoVersion" Collapsed="true">
+    <Position X="0.5" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAQAAAAAAAAAAAAAAAAAAAAAAAAoAAIAAAAAAEEA=</HashCode>
+      <FileName>Framework\INetInfoBuilder.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

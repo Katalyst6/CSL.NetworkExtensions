@@ -14,7 +14,6 @@ namespace NetworkExtensions.Framework
         int Priority { get; }
 
         string PrefabName { get; }
-        string Name { get; }
         string CodeName { get; }
 
         string Description { get; }

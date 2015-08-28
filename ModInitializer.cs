@@ -6,6 +6,7 @@ using ColossalFramework;
 using ColossalFramework.Globalization;
 using NetworkExtensions.Framework;
 using UnityEngine;
+using NetworkExtensions.NewNetwork.Highway6L.Meshes;
 
 #if DEBUG
 using Debug = NetworkExtensions.Framework.Debug;
@@ -212,7 +213,6 @@ namespace NetworkExtensions
                 if (newInfos.Count > 0)
                 {
                     newRoads.m_prefabs = newInfos.ToArray();
-
                     PrefabCollection<NetInfo>.InitializePrefabs(newRoads.name, newRoads.m_prefabs, new string[] { });
                     PrefabCollection<NetInfo>.BindPrefabs();
                 }

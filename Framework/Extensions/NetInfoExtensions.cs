@@ -5,7 +5,6 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
 using ColossalFramework;
-using NetworkExtensions.Framework.Extensions;
 using UnityEngine;
 using Object = UnityEngine.Object;
 #if DEBUG
