@@ -59,6 +59,8 @@
     <Compile Include="Framework\Extensions\SegmentExtensions.cs" />
     <Compile Include="Framework\MeshData.cs" />
     <Compile Include="NewNetwork\MediumAvenue4LTL\MediumAvenue4LTLBuilder.cs" />
+    <Compile Include="NewNetwork\SmallAvenue4L\Widening\Meshes\SmallAvenue4LMeshes.cs" />
+    <Compile Include="NewNetwork\SmallAvenue4L\Widening\Meshes\SmallAvenue4LMeshes.Transition.cs" />
     <Compile Include="Options.cs" />
     <Compile Include="Framework\IModPart.cs" />
     <Compile Include="Framework\ModPart.cs" />
@@ -85,8 +87,6 @@
     <Compile Include="NewNetwork\OneWay1L\OneWay1LBuilder.cs" />
     <Compile Include="NewNetwork\Highway6L\Meshes\Highway6LMeshes.Transition.cs" />
     <Compile Include="NewNetwork\Highway6L\Meshes\Highway6LMeshes.cs" />
-    <Compile Include="NewNetwork\SmallAvenue4L\Meshes\SmallAvenue4LNodeModel.cs" />
-    <Compile Include="NewNetwork\SmallAvenue4L\Meshes\SmallAvenue4LSegmentModel.cs" />
     <Compile Include="NewNetwork\SmallAvenue4L\SmallAvenue4LBuilder.cs" />
     <Compile Include="NewNetwork\HighwayHelper.cs" />
     <Compile Include="NewNetwork\OneWay4L\OneWay4LBuilder.cs" />
@@ -277,6 +277,8 @@
     <Content Include="NewNetwork\SmallAvenue4L\thumbnails.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="NewNetwork\SmallAvenue4L\Widening\Textures\Ground_Segment__AlphaMap.png" />
+    <Content Include="NewNetwork\SmallAvenue4L\Widening\Textures\Ground_Segment__MainTex.png" />
     <Content Include="SomeNetwork\Textures\planning_road_2_lanes.png" />
     <Content Include="SomeNetwork\thumbnail_atlas.png" />
   </ItemGroup>
