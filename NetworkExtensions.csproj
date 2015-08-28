@@ -78,10 +78,8 @@
     <Compile Include="Framework\INetInfoBuilder.cs" />
     <Compile Include="Framework\Extensions\LocaleExtensions.cs" />
     <Compile Include="NewNetwork\Highway1L\Highway1LBuilder.cs" />
-    <Compile Include="NewNetwork\Highway1L\Meshes\Highway1LNodeModel.cs" />
-    <Compile Include="NewNetwork\Highway1L\Meshes\Highway1LSegmentModel.cs" />
-    <Compile Include="NewNetwork\Highway2L\Meshes\Highway2LNodeModel.cs" />
-    <Compile Include="NewNetwork\Highway2L\Meshes\Highway2LSegmentModel.cs" />
+    <Compile Include="NewNetwork\Highway2L\Meshes\Highway2LMeshes.Transition.cs" />
+    <Compile Include="NewNetwork\Highway2L\Meshes\Highway2LMeshes.cs" />
     <Compile Include="NewNetwork\OneWay1L\Meshes\OneWay1LNodeModel.cs" />
     <Compile Include="NewNetwork\OneWay1L\Meshes\OneWay1LSegmentModel.cs" />
     <Compile Include="NewNetwork\OneWay1L\OneWay1LBuilder.cs" />
@@ -109,6 +107,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="NewNetwork\Highway1L\Textures\Ground_Node__AlphaMap.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="NewNetwork\Highway1L\Textures\Ground_Node__MainTex.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="NewNetwork\Highway1L\Textures\Ground_Segment__AlphaMap.png">
@@ -148,6 +149,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="NewNetwork\Highway2L\Textures\Ground_Node__AlphaMap.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="NewNetwork\Highway2L\Textures\Ground_Node__MainTex.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="NewNetwork\Highway2L\Textures\Ground_Segment__AlphaMap.png">

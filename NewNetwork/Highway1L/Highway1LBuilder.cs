@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Linq;
 using NetworkExtensions.Framework;
+using NetworkExtensions.NewNetwork.Highway2L.Meshes;
 using UnityEngine;
-using NetworkExtensions.NewNetwork.Highway1L.Meshes;
 
 #if DEBUG
 using Debug = NetworkExtensions.Framework.Debug;
@@ -51,6 +51,49 @@ namespace NetworkExtensions.NewNetwork.Highway1L
         public void BuildUp(NetInfo info, NetInfoVersion version)
         {
             ///////////////////////////
+            // Template              //
+            ///////////////////////////
+            var highwayInfo = ToolsCSL.FindPrefab<NetInfo>("Highway");
+
+
+            ///////////////////////////
+            // 3DModeling            //
+            ///////////////////////////
+            if (version == NetInfoVersion.Ground)
+            {
+                info.m_surfaceLevel = 0;
+                info.m_class = highwayInfo.m_class.Clone("SmallRuralHighway");
+
+                var segments0 = info.m_segments[0];
+                var nodes0 = info.m_nodes[0];
+
+                segments0.m_backwardForbidden = NetSegment.Flags.None;
+                segments0.m_backwardRequired = NetSegment.Flags.None;
+
+                segments0.m_forwardForbidden = NetSegment.Flags.None;
+                segments0.m_forwardRequired = NetSegment.Flags.None;
+
+                var nodes1 = nodes0.Clone();
+
+                nodes0.m_flagsForbidden = NetNode.Flags.Transition;
+                nodes0.m_flagsRequired = NetNode.Flags.None;
+
+                nodes1.m_flagsForbidden = NetNode.Flags.None;
+                nodes1.m_flagsRequired = NetNode.Flags.Transition;
+
+                var grndMesh = Highway2LMeshes.GetGroundData().CreateMesh("HIGHWAY_1L_GROUND");
+                var grndTransMesh = Highway2LMeshes.GetGroundTransitionData().CreateMesh("HIGHWAY_1L_GROUND_TRS");
+
+                segments0.m_mesh = grndMesh;
+                nodes0.m_mesh = grndMesh;
+                nodes1.m_mesh = grndTransMesh;
+
+                info.m_segments = new[] { segments0 };
+                info.m_nodes = new[] { nodes0, nodes1 };
+            }
+
+
+            ///////////////////////////
             // Texturing             //
             ///////////////////////////
             switch (version)
@@ -62,7 +105,7 @@ namespace NetworkExtensions.NewNetwork.Highway1L
                             @"NewNetwork\Highway1L\Textures\Ground_Segment__AlphaMap.png"));
                     info.SetNodesTexture(
                         new TexturesSet
-                           (@"NewNetwork\Highway1L\Textures\Ground_Segment__MainTex.png",
+                           (@"NewNetwork\Highway1L\Textures\Ground_Node__MainTex.png",
                             @"NewNetwork\Highway1L\Textures\Ground_Node__AlphaMap.png"),
                         new TexturesSet
                            (@"NewNetwork\Highway2L\Textures\Ground_NodeLOD__MainTex.png",
@@ -99,25 +142,8 @@ namespace NetworkExtensions.NewNetwork.Highway1L
             }
 
             ///////////////////////////
-            // 3D Modeling           //
-            ///////////////////////////
-
-            if (version == NetInfoVersion.Ground)
-            {
-                info.m_surfaceLevel = 0;
-                //info.m_class = highwayInfo.m_class;
-                //info.m_segments[0].m_mesh = (Mesh)Mesh.Instantiate(info.m_segments[0].m_lodMesh);
-                //info.m_nodes[0].m_mesh = (Mesh)Mesh.Instantiate(info.m_nodes[0].m_lodMesh);
-
-                info.m_segments[0].m_mesh = Highway1LSegmentModel.BuildMesh().CreateMesh("HW_1L_Segment0_Grnd");
-                info.m_nodes[0].m_mesh = Highway1LNodeModel.BuildMesh().CreateMesh("HW_1L_Node0_Grnd");
-            }
-
-            ///////////////////////////
             // Set up                //
             ///////////////////////////
-            var highwayInfo = ToolsCSL.FindPrefab<NetInfo>("Highway");
-
             info.m_availableIn = ItemClass.Availability.All;
             info.m_createPavement = (version == NetInfoVersion.Slope);
             info.m_createGravel = (version == NetInfoVersion.Ground);
@@ -126,12 +152,6 @@ namespace NetworkExtensions.NewNetwork.Highway1L
             info.m_hasPedestrianLanes = false;
 
             info.m_UnlockMilestone = highwayInfo.m_UnlockMilestone;
-
-            // Activate with a new mesh
-            //info.m_class = highwayInfo.m_class;
-
-            // Test 
-            //info.m_surfaceLevel = 0;
 
 
             // Disabling Parkings and Peds
@@ -162,6 +182,8 @@ namespace NetworkExtensions.NewNetwork.Highway1L
 
                 if (version == NetInfoVersion.Ground)
                 {
+                    l.m_verticalOffset = 0f;
+
                     if (l.m_position < 0)
                     {
                         l.m_position -= 0.5f;
@@ -231,7 +253,7 @@ namespace NetworkExtensions.NewNetwork.Highway1L
                         if (lane.m_laneProps.name.ToLower().Contains("left"))
                         {
                             var newProps = ScriptableObject.CreateInstance<NetLaneProps>();
-                            newProps.name = "Highway6L Left Props";
+                            newProps.name = "Highway1L Left Props";
 
                             newProps.m_props = new NetLaneProps.Prop[0]; 
 
@@ -244,7 +266,7 @@ namespace NetworkExtensions.NewNetwork.Highway1L
                         if (lane.m_laneProps.name.ToLower().Contains("right"))
                         {
                             var newProps = ScriptableObject.CreateInstance<NetLaneProps>();
-                            newProps.name = "Highway6L Right Props";
+                            newProps.name = "Highway1L Right Props";
 
                             newProps.m_props = rightHwLane
                                 .m_laneProps

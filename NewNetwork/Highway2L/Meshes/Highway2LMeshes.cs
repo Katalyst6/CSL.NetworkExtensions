@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using NetworkExtensions.Framework;
 
-namespace NetworkExtensions.NewNetwork.Highway1L.Meshes
+namespace NetworkExtensions.NewNetwork.Highway2L.Meshes
 {
-    public class Highway1LSegmentModel
+    public partial class Highway2LMeshes
     {
-        public static MeshData BuildMesh()
+        public static MeshData GetGroundData()
         {
             Vector3[] vertices = new Vector3[] {
                 new Vector3 (-8.00000f, 0.00000f, -32.00000f),
@@ -727,15 +727,13 @@ namespace NetworkExtensions.NewNetwork.Highway1L.Meshes
                 new Vector3 (-0.72499f, 0.68876f, 0.00005f)
             };
 
-            MeshData mam = new MeshData()
+            return new MeshData()
             {
                 Vertices = vertices,
                 Triangles = triangles,
                 UVs = uv,
                 Normals = normals
             };
-
-            return mam;
         }
     }
 }
