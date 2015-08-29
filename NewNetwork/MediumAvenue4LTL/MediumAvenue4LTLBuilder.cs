@@ -95,7 +95,7 @@ namespace NetworkExtensions.NewNetwork.MediumAvenue4LTL
                     case 3:
                     case 2:
                         lane.m_allowConnect = false;
-                        lane.m_speedLimit /= 3f;
+                        lane.m_speedLimit /= 2f;
                         lane.m_position = 0f;
                         SetupTurningLaneProps(lane);
                         break;
