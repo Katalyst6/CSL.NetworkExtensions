@@ -1,16 +1,17 @@
 ﻿using System;
 using System.Linq;
+using ColossalFramework;
 using NetworkExtensions.Framework;
 
 namespace NetworkExtensions.NewNetwork.MediumAvenue4LTL
 {
     public class MediumAvenue4LTLBuilder : ModPart, INetInfoBuilder
     {
-        public int OptionsPriority { get { return 2; } }
+        public int OptionsPriority { get { return 20; } }
         public int Priority { get { return 5; } }
 
         public string PrefabName { get { return "Large Road"; } }
-        public string Name { get { return "Medium Avenue TL"; } }
+        public string Name { get { return "Medium Avenue with Turning Lane"; } }
         public string CodeName { get { return "MEDIUMROAD_4LTL"; } }
         public string Description { get { return "A four-lane road with turning lanes. Supports medium traffic."; } }
         public string UICategory { get { return "RoadsMedium"; } }
@@ -45,6 +46,12 @@ namespace NetworkExtensions.NewNetwork.MediumAvenue4LTL
         public void BuildUp(NetInfo info, NetInfoVersion version)
         {
             ///////////////////////////
+            // Template              //
+            ///////////////////////////
+            var mediumRoadInfo = ToolsCSL.FindPrefab<NetInfo>("Medium Road");
+
+
+            ///////////////////////////
             // Texturing             //
             ///////////////////////////
             switch (version)
@@ -61,149 +68,157 @@ namespace NetworkExtensions.NewNetwork.MediumAvenue4LTL
             ///////////////////////////
             // Set up                //
             ///////////////////////////
+            info.m_class = mediumRoadInfo.m_class.Clone("MediumAvenueTL");
+            info.m_UnlockMilestone = mediumRoadInfo.m_UnlockMilestone;
 
-            info.m_lanes = new NetInfo.Lane[0];
+            // Setting up lanes
+            var vehicleLaneTypes = new[]
+            {
+                NetInfo.LaneType.Vehicle,
+                NetInfo.LaneType.PublicTransport,
+                NetInfo.LaneType.CargoVehicle,
+                NetInfo.LaneType.TransportVehicle
+            };
 
-            //var basicRoadInfo = ToolsCSL.FindPrefab<NetInfo>("Basic Road");
+            var vehicleLanes = info.m_lanes
+                .Where(l => vehicleLaneTypes.Contains(l.m_laneType))
+                .OrderBy(l => l.m_position)
+                .ToArray();
 
-            //info.m_hasParkingSpaces = false;
+            for (var i = 0; i < vehicleLanes.Length; i++)
+            {
+                var lane = vehicleLanes[i];
 
-            //// Setting up lanes
-            //var vehicleLaneTypes = new[]
-            //{
-            //    NetInfo.LaneType.Vehicle,
-            //    NetInfo.LaneType.PublicTransport,
-            //    NetInfo.LaneType.CargoVehicle,
-            //    NetInfo.LaneType.TransportVehicle
-            //};
+                switch (i)
+                {
+                        // Turning lanes
+                    case 3:
+                    case 2:
+                        lane.m_allowConnect = false;
+                        lane.m_speedLimit /= 3f;
+                        lane.m_position = 0f;
+                        SetupTurningLaneProps(lane);
+                        break;
 
-            //var vehicleLanes = info.m_lanes
-            //    .Where(l =>
-            //        l.m_laneType.HasFlag(NetInfo.LaneType.Parking) ||
-            //        vehicleLaneTypes.Contains(l.m_laneType))
-            //    .OrderBy(l => l.m_position)
-            //    .ToArray();
-
-            //for (int i = 0; i < vehicleLanes.Length; i++)
-            //{
-            //    var lane = vehicleLanes[i];
-
-            //    if (lane.m_laneType.HasFlag(NetInfo.LaneType.Parking))
-            //    {
-            //        int closestVehicleLaneId;
-
-            //        if (i - 1 >= 0 && vehicleLaneTypes.Contains(vehicleLanes[i - 1].m_laneType))
-            //        {
-            //            closestVehicleLaneId = i - 1;
-            //        }
-            //        else if (i + 1 < vehicleLanes.Length && vehicleLaneTypes.Contains(vehicleLanes[i + 1].m_laneType))
-            //        {
-            //            closestVehicleLaneId = i + 1;
-            //        }
-            //        else
-            //        {
-            //            continue; // Not supposed to happen
-            //        }
-
-            //        var closestVehicleLane = vehicleLanes[closestVehicleLaneId];
-
-            //        SetLane(lane, closestVehicleLane);
-
-            //        if (lane.m_position < 0)
-            //        {
-            //            lane.m_position += 0.3f;
-            //        }
-            //        else
-            //        {
-            //            lane.m_position -= 0.3f;
-            //        }
-            //    }
-            //    else
-            //    {
-            //        if (lane.m_position < 0)
-            //        {
-            //            lane.m_position += 0.2f;
-            //        }
-            //        else
-            //        {
-            //            lane.m_position -= 0.2f;
-            //        }
-            //    }
-            //}
+                        // Regular lane
+                    case 4:
+                    case 1:
+                        if (lane.m_position < 0)
+                        {
+                            lane.m_position += 0.5f;
+                        }
+                        else
+                        {
+                            lane.m_position += -0.5f;
+                        }
+                        break;
+                }
+            }
 
 
-            //if (version == NetInfoVersion.Ground)
-            //{
-            //    var brPlayerNetAI = basicRoadInfo.GetComponent<PlayerNetAI>();
-            //    var playerNetAI = info.GetComponent<PlayerNetAI>();
+            if (version == NetInfoVersion.Ground)
+            {
+                var mrPlayerNetAI = mediumRoadInfo.GetComponent<PlayerNetAI>();
+                var playerNetAI = info.GetComponent<PlayerNetAI>();
 
-            //    if (brPlayerNetAI != null && playerNetAI != null)
-            //    {
-            //        playerNetAI.m_constructionCost = brPlayerNetAI.m_constructionCost * 12 / 10; // 20% increase
-            //        playerNetAI.m_maintenanceCost = brPlayerNetAI.m_maintenanceCost * 12 / 10; // 20% increase
-            //    }
-            //}
-            //else // Same as the original basic road specs
-            //{
+                if (mrPlayerNetAI != null && playerNetAI != null)
+                {
+                    playerNetAI.m_constructionCost = mrPlayerNetAI.m_constructionCost * 9 / 10; // 10% decrease
+                    playerNetAI.m_maintenanceCost = mrPlayerNetAI.m_maintenanceCost * 9 / 10; // 10% decrease
+                } 
+                
+                var roadBaseAI = info.GetComponent<RoadBaseAI>();
 
-            //} 
+                if (roadBaseAI != null)
+                {
+                    roadBaseAI.m_trafficLights = false;
+                }
+            }
         }
 
-        //private static void SetLane(NetInfo.Lane newLane, NetInfo.Lane closestLane)
-        //{
-        //    newLane.m_direction = closestLane.m_direction;
-        //    newLane.m_finalDirection = closestLane.m_finalDirection;
-        //    newLane.m_allowConnect = closestLane.m_allowConnect;
-        //    newLane.m_allowStop = closestLane.m_allowStop;
-        //    if (closestLane.m_allowStop)
-        //    {
-        //        closestLane.m_allowStop = false;
-        //        closestLane.m_stopOffset = 0;
-        //    }
-        //    if (newLane.m_allowStop)
-        //    {
-        //        if (newLane.m_position < 0)
-        //        {
-        //            newLane.m_stopOffset = -1f;
-        //        }
-        //        else
-        //        {
-        //            newLane.m_stopOffset = 1f;
-        //        }
-        //    }
+        private static void SetupTurningLaneProps(NetInfo.Lane lane)
+        {
+            var isLeftDriving = Singleton<SimulationManager>.instance.m_metaData.m_invertTraffic == SimulationMetaData.MetaBool.True;
 
-        //    newLane.m_laneType = closestLane.m_laneType;
-        //    newLane.m_similarLaneCount = closestLane.m_similarLaneCount = closestLane.m_similarLaneCount + 1;
-        //    newLane.m_similarLaneIndex = closestLane.m_similarLaneIndex + 1;
-        //    newLane.m_speedLimit = closestLane.m_speedLimit;
-        //    newLane.m_vehicleType = closestLane.m_vehicleType;
-        //    newLane.m_verticalOffset = closestLane.m_verticalOffset;
-        //    newLane.m_width = closestLane.m_width;
+            if (lane.m_laneProps == null)
+            {
+                return;
+            }
 
-        //    NetLaneProps templateLaneProps;
-        //    if (closestLane.m_laneProps != null)
-        //    {
-        //        templateLaneProps = closestLane.m_laneProps;
-        //    }
-        //    else
-        //    {
-        //        templateLaneProps = new NetLaneProps();
-        //    }
+            if (lane.m_laneProps.m_props == null)
+            {
+                return;
+            }
 
-        //    if (templateLaneProps.m_props == null)
-        //    {
-        //        templateLaneProps.m_props = new NetLaneProps.Prop[0];
-        //    }
+            var fwd = lane.m_laneProps.m_props.FirstOrDefault(p => p.m_flagsRequired == NetLane.Flags.Forward);
+            var left = lane.m_laneProps.m_props.FirstOrDefault(p => p.m_flagsRequired == NetLane.Flags.Left);
+            var right = lane.m_laneProps.m_props.FirstOrDefault(p => p.m_flagsRequired == NetLane.Flags.Right);
 
-        //    if (newLane.m_laneProps == null)
-        //    {
-        //        newLane.m_laneProps = new NetLaneProps();
-        //    }
+            if (fwd == null)
+            {
+                return;
+            }
 
-        //    newLane.m_laneProps.m_props = templateLaneProps
-        //        .m_props
-        //        .Select(p => p.ShallowClone())
-        //        .ToArray();
-        //}
+            if (left == null)
+            {
+                return;
+            }
+
+            if (right == null)
+            {
+                return;
+            }
+
+
+            // Existing props
+            //var r0 = NetLane.Flags.Forward; 
+            //var r1 = NetLane.Flags.ForwardRight;
+            //var r2 = NetLane.Flags.Left;
+            //var r3 = NetLane.Flags.LeftForward;
+            //var r4 = NetLane.Flags.LeftForwardRight;
+            //var r5 = NetLane.Flags.LeftRight;
+            //var r6 = NetLane.Flags.Right;
+
+            //var f0 = NetLane.Flags.LeftRight;
+            //var f1 = NetLane.Flags.Left;
+            //var f2 = NetLane.Flags.ForwardRight;
+            //var f3 = NetLane.Flags.Right;
+            //var f4 = NetLane.Flags.None;
+            //var f5 = NetLane.Flags.Forward;
+            //var f6 = NetLane.Flags.LeftForward;
+
+
+            var newProps = new FastList<NetLaneProps.Prop>();
+
+            newProps.Add(fwd);
+            newProps.Add(left);
+            newProps.Add(right);
+
+            var fl = left.ShallowClone();
+            fl.m_flagsRequired = NetLane.Flags.LeftForward;
+            fl.m_flagsForbidden = NetLane.Flags.Right;
+            newProps.Add(fl);
+
+            var fr = right.ShallowClone();
+            fr.m_flagsRequired = NetLane.Flags.ForwardRight;
+            fr.m_flagsForbidden = NetLane.Flags.Left;
+            newProps.Add(fr);
+
+            var flr = isLeftDriving ? right.ShallowClone() : left.ShallowClone();
+            flr.m_flagsRequired = NetLane.Flags.LeftForwardRight;
+            flr.m_flagsForbidden = NetLane.Flags.None;
+            newProps.Add(flr);
+
+            var lr = isLeftDriving ? right.ShallowClone() : left.ShallowClone();
+            lr.m_flagsRequired = NetLane.Flags.LeftRight;
+            lr.m_flagsForbidden = NetLane.Flags.Forward;
+            newProps.Add(lr);
+
+            lane.m_laneProps = new NetLaneProps
+            {
+                name = "TurningLane", 
+                m_props = newProps.ToArray()
+            };
+        }
     }
 }

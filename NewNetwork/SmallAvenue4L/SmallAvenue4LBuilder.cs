@@ -6,7 +6,7 @@ namespace NetworkExtensions.NewNetwork.SmallAvenue4L
 {
     public class SmallAvenue4LBuilder : ModPart, INetInfoBuilder
     {
-        public int OptionsPriority { get { return 1; } }
+        public int OptionsPriority { get { return 10; } }
         public int Priority { get { return 4; } }
 
         public string PrefabName { get { return "Basic Road"; } }

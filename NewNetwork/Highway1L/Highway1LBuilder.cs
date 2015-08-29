@@ -12,7 +12,7 @@ namespace NetworkExtensions.NewNetwork.Highway1L
 {
     public class Highway1LBuilder : ModPart, INetInfoBuilder
     {
-        public int OptionsPriority { get { return 2; } }
+        public int OptionsPriority { get { return 30; } }
         public int Priority { get { return 9; } }
 
         public string PrefabName  { get { return "Basic Road"; } }
