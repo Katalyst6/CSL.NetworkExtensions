@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Linq;
 using NetworkExtensions.Framework;
-using NetworkExtensions.NewNetwork.SmallAvenue4L.Meshes;
 
 namespace NetworkExtensions.NewNetwork.SmallAvenue4L
 {
@@ -46,6 +45,32 @@ namespace NetworkExtensions.NewNetwork.SmallAvenue4L
         public void BuildUp(NetInfo info, NetInfoVersion version)
         {
             ///////////////////////////
+            // Template              //
+            ///////////////////////////
+            var basicRoadInfo = ToolsCSL.FindPrefab<NetInfo>("Basic Road");
+
+
+            ///////////////////////////
+            // 3DModeling            //
+            ///////////////////////////
+            // NOTE: Lets dont go there yet, since we will need Segment, Bus stop, transition and transition bus stop meshes.
+            // Otherwise, we will be forced to unsupport the bus stops on the Small Avenue, which will cause crash on people allready using it with bus stops.
+            //if (version == NetInfoVersion.Ground)
+            //{
+            //    info.m_surfaceLevel = 0;
+            //    info.m_class = basicRoadInfo.m_class.Clone("SmallAvenue");
+
+            //    var segments0 = info.m_segments[0];
+            //    var nodes0 = info.m_nodes[0];
+
+            //    var grndMesh = SmallAvenue4LMeshes.GetGroundData().CreateMesh("SMALLROAD_4L_GROUND");
+
+            //    segments0.m_mesh = grndMesh;
+            //    nodes0.m_mesh = grndMesh;
+            //}
+
+
+            ///////////////////////////
             // Texturing             //
             ///////////////////////////
             switch (version)
@@ -58,26 +83,10 @@ namespace NetworkExtensions.NewNetwork.SmallAvenue4L
                     break;
             }
 
-            ///////////////////////////
-            // 3DModeling            //
-            ///////////////////////////
-            //if (version == NetInfoVersion.Ground)
-            //{
-            //    info.m_surfaceLevel = 0;
-            //    //info.m_class = highwayInfo.m_class;
-
-            //    info.m_segments[0].m_mesh = info.m_segments[0].m_lodMesh;
-            //    info.m_nodes[0].m_mesh = info.m_nodes[0].m_lodMesh;
-
-            //    info.m_segments[0].m_mesh.Setup(SmallAvenue4LSegmentModel.BuildMesh(), "Ave_Sm_4L_Segment0_Grnd");
-            //    info.m_nodes[0].m_mesh.Setup(SmallAvenue4LNodeModel.BuildMesh(), "Ave_Sm_4L_Node0_Grnd");
-            //}
 
             ///////////////////////////
             // Set up                //
             ///////////////////////////
-            var basicRoadInfo = ToolsCSL.FindPrefab<NetInfo>("Basic Road");
-
             info.m_hasParkingSpaces = false;
 
             // Setting up lanes

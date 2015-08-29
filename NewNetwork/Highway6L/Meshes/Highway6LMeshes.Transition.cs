@@ -837,15 +837,13 @@ namespace NetworkExtensions.NewNetwork.Highway6L.Meshes
                 new Vector3 (-1.00000f, -0.00000f, 0.00000f)
             };
 
-            MeshData model = new MeshData()
+            return new MeshData()
             {
                 Vertices = vertices,
                 Triangles = triangles,
                 UVs = uv,
                 Normals = normals
             };
-
-            return model;
         }
     }
 }

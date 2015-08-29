@@ -1,13 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using NetworkExtensions.Framework;
 using UnityEngine;
-using NetworkExtensions.Framework;
 
-namespace NetworkExtensions.NewNetwork.SmallAvenue4L.Meshes
+namespace NetworkExtensions.NewNetwork.SmallAvenue4L.Widening.Meshes
 {
-    public class SmallAvenue4LSegmentModel
+    public partial class SmallAvenue4LMeshes
     {
-        public static MeshData BuildMesh()
+        public static MeshData GetGroundTransitionData()
         {
             Vector3[] vertices = new Vector3[] {
                 new Vector3 (-11.00000f, -0.30000f, 32.00000f),
@@ -1023,15 +1021,13 @@ namespace NetworkExtensions.NewNetwork.SmallAvenue4L.Meshes
                 new Vector3 (0.00000f, 1.00000f, -0.00000f)
             };
 
-            MeshData mam = new MeshData()
+            return new MeshData()
             {
                 Vertices = vertices,
                 Triangles = triangles,
                 UVs = uv,
                 Normals = normals
             };
-
-            return mam;
         }
     }
 }
