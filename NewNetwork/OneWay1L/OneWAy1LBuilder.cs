@@ -9,7 +9,7 @@ namespace NetworkExtensions.NewNetwork.OneWay1L
     public class OneWay1LBuilder : ModPart, INetInfoBuilder
     {
         public int OptionsPriority { get { return 1; } }
-        public int Priority { get { return 30; } }
+        public int Priority { get { return 1; } }
 
         public string PrefabName { get { return "Oneway Road"; } }
         public string Name { get { return "Small Oneway"; } }
