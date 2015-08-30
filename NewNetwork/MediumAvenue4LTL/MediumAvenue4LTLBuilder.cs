@@ -7,13 +7,13 @@ namespace NetworkExtensions.NewNetwork.MediumAvenue4LTL
 {
     public class MediumAvenue4LTLBuilder : ModPart, INetInfoBuilder
     {
-        public int OptionsPriority { get { return 20; } }
+        public int OptionsPriority { get { return 21; } }
         public int Priority { get { return 5; } }
 
         public string PrefabName { get { return "Large Road"; } }
         public string Name { get { return "Medium Avenue with Turning Lane"; } }
-        public string CodeName { get { return "MEDIUMROAD_4LTL"; } }
-        public string Description { get { return "A four-lane road with turning lanes. Supports medium traffic."; } }
+        public string CodeName { get { return "MEDIUMAVENUE_4LTL"; } }
+        public string Description { get { return "A four-lane road with turning lanes. Supports medium traffic. Note: The turning lane goes in both direction, collisions might happen!"; } }
         public string UICategory { get { return "RoadsMedium"; } }
         
         public string ThumbnailsPath    { get { return @"NewNetwork\MediumAvenue4LTL\thumbnails.png"; } }
@@ -68,7 +68,7 @@ namespace NetworkExtensions.NewNetwork.MediumAvenue4LTL
             ///////////////////////////
             // Set up                //
             ///////////////////////////
-            info.m_class = mediumRoadInfo.m_class.Clone("MediumAvenueTL");
+            info.m_class = mediumRoadInfo.m_class.Clone(MediumAvenueHelper.CLASS_NAME);
             info.m_UnlockMilestone = mediumRoadInfo.m_UnlockMilestone;
 
             // Setting up lanes
@@ -114,6 +114,8 @@ namespace NetworkExtensions.NewNetwork.MediumAvenue4LTL
                         break;
                 }
             }
+
+            info.Setup50LimitProps();
 
 
             if (version == NetInfoVersion.Ground)
