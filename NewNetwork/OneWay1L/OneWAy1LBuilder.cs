@@ -47,6 +47,29 @@ namespace NetworkExtensions.NewNetwork.OneWay1L
 
         public void BuildUp(NetInfo info, NetInfoVersion version)
         {
+            ///////////////////////////
+            // Template              //
+            ///////////////////////////
+            var onewayRoadInfo = ToolsCSL.FindPrefab<NetInfo>("Oneway Road");
+
+
+            ///////////////////////////
+            // 3DModeling            //
+            ///////////////////////////
+            if (version == NetInfoVersion.Ground)
+            {
+                var segments0 = info.m_segments[0];
+                var nodes0 = info.m_nodes[0];
+
+                var grndMesh = OneWay1LSegmentModel.BuildMesh().CreateMesh("OW_1L_GROUND");
+
+                segments0.m_mesh = grndMesh;
+                nodes0.m_mesh = grndMesh;
+
+                info.m_segments = new[] { segments0 };
+                info.m_nodes = new[] { nodes0 };
+            }
+
 
             ///////////////////////////
             // Texturing             //
@@ -64,34 +87,16 @@ namespace NetworkExtensions.NewNetwork.OneWay1L
                              @"NewNetwork\OneWay1L\Textures\Ground_Node__AlphaMap.png"));
                     break;
             }
-            ///////////////////////////
-            // 3DModeling            //
-            ///////////////////////////
-            if (version == NetInfoVersion.Ground)
-            {
-                //info.m_segments[0].m_mesh = (Mesh)Mesh.Instantiate(info.m_segments[0].m_lodMesh);
-                //info.m_nodes[0].m_mesh = (Mesh)Mesh.Instantiate(info.m_nodes[0].m_lodMesh);
 
-                info.m_segments[0].m_mesh = OneWay1LSegmentModel.BuildMesh().CreateMesh("OW_1L_Segment0_Grnd");
-                info.m_nodes[0].m_mesh = OneWay1LNodeModel.BuildMesh().CreateMesh("OW_1L_Node0_Grnd");
-            }
             ///////////////////////////
             // Set up                //
             ///////////////////////////
+            info.m_class = onewayRoadInfo.m_class.Clone("SmallOneway");
             info.m_hasParkingSpaces = false;
             info.m_halfWidth = 5.0f;
             info.m_pavementWidth = 2f;
-            // Disabling Parkings and Peds
-            //foreach (var l in info.m_lanes)
-            //{
-            //    if (l.m_laneType == NetInfo.LaneType.Parking)
-            //    {
-            //        l.m_laneType = NetInfo.LaneType.None;
-            //    }
-            //}
 
             // Setting up lanes
-
             var parkingLanes = info.m_lanes
                 .Where(l => l.m_laneType == NetInfo.LaneType.Parking)
                 .ToList();
@@ -136,7 +141,6 @@ namespace NetworkExtensions.NewNetwork.OneWay1L
                 }
             }
 
-            var onewayRoadInfo = ToolsCSL.FindPrefab<NetInfo>("Oneway Road");
 
             if (version == NetInfoVersion.Ground)
             {
@@ -148,30 +152,6 @@ namespace NetworkExtensions.NewNetwork.OneWay1L
                     playerNetAI.m_maintenanceCost = orPlayerNetAI.m_maintenanceCost * 2 / 3;
                 }
             }
-            else // Same as the original oneway
-            {
-
-            }
-
-            //var roadBaseAI = info.GetComponent<RoadBaseAI>();
-
-            //if (roadBaseAI != null)
-            //{
-            //    roadBaseAI.m_highwayRules = true;
-            //    roadBaseAI.m_trafficLights = false;
-            //}
-
-            //var roadAI = info.GetComponent<RoadAI>();
-
-            //if (roadAI != null)
-            //{
-            //    roadAI.m_enableZoning = false;
-            //}
-
-            //info.SetHighwayProps(highwayInfo);
-            //info.TrimHighwayProps();
-
-
         }
     }
 }
