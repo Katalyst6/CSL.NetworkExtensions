@@ -47,6 +47,49 @@ namespace NetworkExtensions.NewNetwork.OneWay1L
 
         public void BuildUp(NetInfo info, NetInfoVersion version)
         {
+            ///////////////////////////
+            // 3DModeling            //
+            ///////////////////////////
+            //if (version == NetInfoVersion.Ground)
+            //{
+                //info.m_segments[0].m_mesh = (Mesh)Mesh.Instantiate(info.m_segments[0].m_lodMesh);
+                //info.m_nodes[0].m_mesh = (Mesh)Mesh.Instantiate(info.m_nodes[0].m_lodMesh);
+
+                //info.m_segments[0].m_mesh = OneWay1Ll.BuildMesh().CreateMesh("OW_1L_Segment0_Grnd");
+                //info.m_nodes[0].m_mesh = OneWay1LMeshes.BuildMesh().CreateMesh("OW_1L_Node0_Grnd");
+            //}
+
+            if (version == NetInfoVersion.Ground)
+            {
+                info.m_surfaceLevel = 0;
+
+                var segments0 = info.m_segments[0];
+                var nodes0 = info.m_nodes[0];
+
+                segments0.m_backwardForbidden = NetSegment.Flags.None;
+                segments0.m_backwardRequired = NetSegment.Flags.None;
+
+                segments0.m_forwardForbidden = NetSegment.Flags.None;
+                segments0.m_forwardRequired = NetSegment.Flags.None;
+
+                var nodes1 = nodes0.Clone();
+
+                nodes0.m_flagsForbidden = NetNode.Flags.Transition;
+                nodes0.m_flagsRequired = NetNode.Flags.None;
+
+                nodes1.m_flagsForbidden = NetNode.Flags.None;
+                nodes1.m_flagsRequired = NetNode.Flags.Transition;
+
+                var grndMesh = OneWay1LMeshes.GetGroundData().CreateMesh("ONEWAY_1L_GROUND");
+                var grndTransMesh = OneWay1LMeshes.GetGroundTransitionData().CreateMesh("ONEWAY_1L_GROUND_TRS");
+
+                segments0.m_mesh = grndMesh;
+                nodes0.m_mesh = grndMesh;
+                nodes1.m_mesh = grndTransMesh;
+
+                info.m_segments = new[] { segments0 };
+                info.m_nodes = new[] { nodes0, nodes1 };
+            }
 
             ///////////////////////////
             // Texturing             //
@@ -64,17 +107,7 @@ namespace NetworkExtensions.NewNetwork.OneWay1L
                              @"NewNetwork\OneWay1L\Textures\Ground_Node__AlphaMap.png"));
                     break;
             }
-            ///////////////////////////
-            // 3DModeling            //
-            ///////////////////////////
-            if (version == NetInfoVersion.Ground)
-            {
-                //info.m_segments[0].m_mesh = (Mesh)Mesh.Instantiate(info.m_segments[0].m_lodMesh);
-                //info.m_nodes[0].m_mesh = (Mesh)Mesh.Instantiate(info.m_nodes[0].m_lodMesh);
 
-                info.m_segments[0].m_mesh = OneWay1LSegmentModel.BuildMesh().CreateMesh("OW_1L_Segment0_Grnd");
-                info.m_nodes[0].m_mesh = OneWay1LNodeModel.BuildMesh().CreateMesh("OW_1L_Node0_Grnd");
-            }
             ///////////////////////////
             // Set up                //
             ///////////////////////////
@@ -115,7 +148,7 @@ namespace NetworkExtensions.NewNetwork.OneWay1L
             vehicleLane.m_width = 3.5f;
             vehicleLane.m_verticalOffset = -0.3f;
             vehicleLane.m_position = -1.25f;
-            vehicleLane.m_speedLimit = 0.7f;
+            vehicleLane.m_speedLimit *= 0.7f;
 
             parkingLane.m_width = 2.5f;
             parkingLane.m_verticalOffset = -0.3f;

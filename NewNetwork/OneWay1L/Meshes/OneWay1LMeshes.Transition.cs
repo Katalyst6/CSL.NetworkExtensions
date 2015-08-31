@@ -3,9 +3,9 @@ using NetworkExtensions.Framework;
 
 namespace NetworkExtensions.NewNetwork.OneWay1L.Meshes
 {
-    public class OneWay1LNodeModel
+    public partial class OneWay1LMeshes
     {
-        public static MeshData BuildMesh()
+        public static MeshData GetGroundTransitionData()
         {
             Vector3[] vertices = new Vector3[] {
                 new Vector3 (-5.00000f, 0.00000f, -32.00000f),

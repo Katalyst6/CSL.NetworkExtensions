@@ -56,11 +56,12 @@
     <Compile Include="Framework\Extensions\NodeExtensions.cs" />
     <Compile Include="Framework\Extensions\ItemClassExtensions.cs" />
     <Compile Include="Framework\Extensions\MeshExtensions.cs" />
+    <Compile Include="Framework\Extensions\ObjectCopyExtension.cs" />
     <Compile Include="Framework\Extensions\SegmentExtensions.cs" />
     <Compile Include="Framework\MeshData.cs" />
     <Compile Include="NewNetwork\MediumAvenue4LTL\MediumAvenue4LTLBuilder.cs" />
-    <Compile Include="NewNetwork\OneWay4L\Meshes\OneWay4LNodeModel.cs" />
-    <Compile Include="NewNetwork\OneWay4L\Meshes\OneWay4LSegmentModel.cs" />
+    <Compile Include="NewNetwork\OneWay4L\Meshes\OneWay4LMeshes.Transition.cs" />
+    <Compile Include="NewNetwork\OneWay4L\Meshes\OneWay4LMeshes.cs" />
     <Compile Include="NewNetwork\SmallAvenue4L\Widening\Meshes\SmallAvenue4LMeshes.cs" />
     <Compile Include="NewNetwork\SmallAvenue4L\Widening\Meshes\SmallAvenue4LMeshes.Transition.cs" />
     <Compile Include="Options.cs" />
@@ -84,8 +85,8 @@
     <Compile Include="NewNetwork\Highway1L\Highway1LBuilder.cs" />
     <Compile Include="NewNetwork\Highway2L\Meshes\Highway2LMeshes.Transition.cs" />
     <Compile Include="NewNetwork\Highway2L\Meshes\Highway2LMeshes.cs" />
-    <Compile Include="NewNetwork\OneWay1L\Meshes\OneWay1LNodeModel.cs" />
-    <Compile Include="NewNetwork\OneWay1L\Meshes\OneWay1LSegmentModel.cs" />
+    <Compile Include="NewNetwork\OneWay1L\Meshes\OneWay1LMeshes.Transition.cs" />
+    <Compile Include="NewNetwork\OneWay1L\Meshes\OneWay1LMeshes.cs" />
     <Compile Include="NewNetwork\OneWay1L\OneWay1LBuilder.cs" />
     <Compile Include="NewNetwork\Highway6L\Meshes\Highway6LMeshes.Transition.cs" />
     <Compile Include="NewNetwork\Highway6L\Meshes\Highway6LMeshes.cs" />
@@ -267,11 +268,24 @@
     <Content Include="NewNetwork\MediumAvenue4LTL\thumbnails.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="NewNetwork\OneWay4L\infotooltip.png" />
-    <Content Include="NewNetwork\OneWay4L\Textures\Ground_Node__AlphaMap.png" />
-    <Content Include="NewNetwork\OneWay4L\Textures\Ground_Node__MainTex.png" />
-    <Content Include="NewNetwork\OneWay4L\Textures\Ground_Segment__AlphaMap.png" />
-    <Content Include="NewNetwork\OneWay4L\Textures\Ground_Segment__MainTex.png" />
+    <Content Include="NewNetwork\OneWay4L\infotooltip.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="NewNetwork\OneWay4L\Textures\Ground_Node__AlphaMap.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="NewNetwork\OneWay4L\Textures\Ground_Node__MainTex.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="NewNetwork\OneWay4L\Textures\Ground_Segment__AlphaMap.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="NewNetwork\OneWay4L\Textures\Ground_Segment__MainTex.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="NewNetwork\OneWay4L\thumbnails.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="NewNetwork\SmallAvenue4L\infotooltip.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

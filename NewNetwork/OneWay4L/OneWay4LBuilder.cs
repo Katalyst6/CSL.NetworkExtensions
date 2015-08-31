@@ -2,17 +2,14 @@
 using System.Linq;
 using NetworkExtensions.Framework;
 using NetworkExtensions.NewNetwork.OneWay4L.Meshes;
-using UnityEngine;
-using Object = UnityEngine.Object;
-
-namespace NetworkExtensions.NewNetwork.OneWay1L
+namespace NetworkExtensions.NewNetwork.OneWay4L
 {
     public class OneWay4LBuilder : ModPart, INetInfoBuilder
     {
         public int OptionsPriority { get { return 7; } }
         public int Priority { get { return 7; } }
 
-        public string PrefabName { get { return "Oneway Road"; } }
+        public string PrefabName { get { return "Large Oneway"; } }
         public string Name { get { return "Medium Oneway"; } }
         public string CodeName { get { return "ONEWAY_4L"; } }
         public string Description { get { return "A four-lane, one-way road suitable for medium traffic moving in one direction. This road is zonable."; } }
@@ -48,7 +45,6 @@ namespace NetworkExtensions.NewNetwork.OneWay1L
 
         public void BuildUp(NetInfo info, NetInfoVersion version)
         {
-
             ///////////////////////////
             // Texturing             //
             ///////////////////////////
@@ -68,23 +64,56 @@ namespace NetworkExtensions.NewNetwork.OneWay1L
             ///////////////////////////
             // 3DModeling            //
             ///////////////////////////
+            //if (version == NetInfoVersion.Ground)
+            //{
+            //    //info.m_segments[0].m_mesh = (Mesh)Mesh.Instantiate(info.m_segments[0].m_lodMesh);
+            //    //info.m_nodes[0].m_mesh = (Mesh)Mesh.Instantiate(info.m_nodes[0].m_lodMesh);
+
+            //    info.m_segments[0].m_mesh = OneWay4LMeshes.BuildMesh().CreateMesh("OW_4L_Segment0_Grnd");
+            //    info.m_nodes[0].m_mesh = OneWay4LMeshes.BuildMesh().CreateMesh("OW_4L_Node0_Grnd");
+            //}
+
             if (version == NetInfoVersion.Ground)
             {
-                //info.m_segments[0].m_mesh = (Mesh)Mesh.Instantiate(info.m_segments[0].m_lodMesh);
-                //info.m_nodes[0].m_mesh = (Mesh)Mesh.Instantiate(info.m_nodes[0].m_lodMesh);
 
-                info.m_segments[0].m_mesh = OneWay4LSegmentModel.BuildMesh().CreateMesh("OW_4L_Segment0_Grnd");
-                info.m_nodes[0].m_mesh = OneWay4LNodeModel.BuildMesh().CreateMesh("OW_4L_Node0_Grnd");
+                var segments0 = info.m_segments[0];
+                var nodes0 = info.m_nodes[0];
+
+                segments0.m_backwardForbidden = NetSegment.Flags.None;
+                segments0.m_backwardRequired = NetSegment.Flags.None;
+
+                segments0.m_forwardForbidden = NetSegment.Flags.None;
+                segments0.m_forwardRequired = NetSegment.Flags.None;
+
+                var nodes1 = nodes0.Clone();
+
+                nodes0.m_flagsForbidden = NetNode.Flags.Transition;
+                nodes0.m_flagsRequired = NetNode.Flags.None;
+
+                nodes1.m_flagsForbidden = NetNode.Flags.None;
+                nodes1.m_flagsRequired = NetNode.Flags.Transition;
+
+                var grndMesh = OneWay4LMeshes.GetGroundData().CreateMesh("ONEWAY_4L_GROUND");
+                var grndTransMesh = OneWay4LMeshes.GetGroundTransitionData().CreateMesh("ONEWAY_4L_GROUND_TRS");
+
+                segments0.m_mesh = grndMesh;
+                nodes0.m_mesh = grndMesh;
+                nodes1.m_mesh = grndTransMesh;
+
+                info.m_segments = new[] { segments0 };
+                info.m_nodes = new[] { nodes0, nodes1 };
             }
+
             ///////////////////////////
             // Set up                //
             ///////////////////////////
-            var numExtraLanes = 2;
             var vehicleLaneWidth = 3f;
-            var vehicleSpeedLimit = 1.1f;
             var pedWidth = 4f;
             var roadHalfWidth = 8f;
             var parkingLaneWidth = 2f;
+            var vehicleLanesToTake = 4;
+            info.m_halfWidth = 12.0f;
+            info.m_pavementWidth = pedWidth;
             // Disabling Parkings and Peds
             //foreach (var l in info.m_lanes)
             //{
@@ -96,29 +125,25 @@ namespace NetworkExtensions.NewNetwork.OneWay1L
 
             // Setting up lanes
 
-            info.m_halfWidth = 12.0f;
-            info.m_pavementWidth = pedWidth;
-
-            var parkingLanes = info.m_lanes
+            var lanes = info.m_lanes;
+            
+            var parkingLanes = lanes
                 .Where(l => l.m_laneType == NetInfo.LaneType.Parking)
                 .ToList();
 
-            var vehicleLanes = info.m_lanes
+            var vehicleLanes = lanes
                 .Where(l => l.m_laneType != NetInfo.LaneType.None)
                 .Where(l => l.m_laneType != NetInfo.LaneType.Pedestrian)
                 .Where(l => l.m_laneType != NetInfo.LaneType.Parking)
-                .ToList();
+                .Take(vehicleLanesToTake).ToList();
 
-            var pedestrianLanes = info.m_lanes
+            var pedestrianLanes = lanes
                 .Where(l => l.m_laneType == NetInfo.LaneType.Pedestrian)
                 .OrderBy(l => l.m_similarLaneIndex)
                 .ToList();
+            Debug.Log("NExl: Categorized Lanes");
 
-            for (int i = 0; i < numExtraLanes; i++)
-            {
-                vehicleLanes.Add(vehicleLanes.First());
-            }
-
+            Debug.Log("New lanes created");
             for (var i = 0; i < pedestrianLanes.Count; i++)
             {
                 var multiplier = pedestrianLanes[i].m_position / Math.Abs(pedestrianLanes[i].m_position);
@@ -127,19 +152,19 @@ namespace NetworkExtensions.NewNetwork.OneWay1L
 
                 foreach (var prop in pedestrianLanes[i].m_laneProps.m_props)
                 {
-                    prop.m_position.x += multiplier * roadHalfWidth;
+                    prop.m_position.x += multiplier * 1.5f;
                 }
             }
-
+            var laneInfo = "LaneInfo: ";
             for (var i = 0; i < vehicleLanes.Count; i++)
             {
                 vehicleLanes[i].m_similarLaneCount = vehicleLanes.Count();
                 vehicleLanes[i].m_similarLaneIndex = i;
                 vehicleLanes[i].m_width = vehicleLaneWidth;
-                vehicleLanes[i].m_speedLimit = vehicleSpeedLimit;
                 vehicleLanes[i].m_position = (-1 * ((vehicleLanes.Count / 2f) - .5f) + i) * vehicleLaneWidth;
+                laneInfo += "lane 0: simlnct: " + vehicleLanes[i].m_similarLaneCount + " | simlnind: " + vehicleLanes[i].m_similarLaneIndex + " | pos: " + vehicleLanes[i].m_position;
             }
-
+            Debug.Log("NExt: LaneInfo: " + laneInfo);
             for (var i = 0; i < parkingLanes.Count; i++)
             {
                 var multiplier = parkingLanes[i].m_position / Math.Abs(parkingLanes[i].m_position);
@@ -155,8 +180,8 @@ namespace NetworkExtensions.NewNetwork.OneWay1L
                 var orPlayerNetAI = onewayRoadInfo.GetComponent<PlayerNetAI>();
                 if (playerNetAI != null)
                 {
-                    playerNetAI.m_constructionCost = orPlayerNetAI.m_constructionCost * 2 / 3;
-                    playerNetAI.m_maintenanceCost = orPlayerNetAI.m_maintenanceCost * 2 / 3;
+                    playerNetAI.m_constructionCost = orPlayerNetAI.m_constructionCost * 2;
+                    playerNetAI.m_maintenanceCost = orPlayerNetAI.m_maintenanceCost * 2;
                 }
             }
             else // Same as the original oneway
