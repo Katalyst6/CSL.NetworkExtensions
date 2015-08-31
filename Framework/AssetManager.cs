@@ -8,7 +8,7 @@ using UnityEngine;
 
 namespace NetworkExtensions.Framework
 {
-    public class TextureManager : Singleton<TextureManager>
+    public class AssetManager : Singleton<AssetManager>
     {
         readonly IDictionary<string, Texture2D> _allTextures = new Dictionary<string, Texture2D>();
 
@@ -21,22 +21,22 @@ namespace NetworkExtensions.Framework
             files.AddRange(modDirectory.GetFiles("*.png", SearchOption.AllDirectories));
             files.AddRange(modDirectory.GetFiles("*.dds", SearchOption.AllDirectories));
 
-            foreach (var textureFile in files)
+            foreach (var assetFile in files)
             {
-                var relativePath = textureFile.FullName.Replace(modPath, "").TrimStart(new []{'\\', '/'});
+                var relativePath = assetFile.FullName.Replace(modPath, "").TrimStart(new []{'\\', '/'});
 
                 if (_allTextures.ContainsKey(relativePath))
                 {
                     continue;
                 }
 
-                if (textureFile.Extension.ToLower() == ".dds")
+                if (assetFile.Extension.ToLower() == ".dds")
                 {
-                    _allTextures[relativePath] = LoadTextureDDS(textureFile.FullName);
+                    _allTextures[relativePath] = LoadTextureDDS(assetFile.FullName);
                 }
                 else
                 {
-                    _allTextures[relativePath] = LoadTexturePNG(textureFile.FullName);
+                    _allTextures[relativePath] = LoadTexturePNG(assetFile.FullName);
                 }
             }
         }

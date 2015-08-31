@@ -27,7 +27,7 @@ namespace NetworkExtensions
 
         void Start()
         {
-            Loading.QueueAction(TextureManager.instance.FindAndLoadAllTextures);
+            Loading.QueueAction(AssetManager.instance.FindAndLoadAllTextures);
         }
 
         void Awake()

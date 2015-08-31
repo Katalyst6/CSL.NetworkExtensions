@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using ColossalFramework.Importers;
 using ColossalFramework.UI;
 using NetworkExtensions.Framework;
 using NetworkExtensions.NewNetwork.Highway6L.Meshes;
 using UnityEngine;
-
+using UnityExtension;
 #if DEBUG
 using Debug = NetworkExtensions.Framework.Debug;
 #endif
@@ -64,7 +66,7 @@ namespace NetworkExtensions.NewNetwork.Highway6L
             if (version == NetInfoVersion.Ground)
             {
                 info.m_surfaceLevel = 0;
-                info.m_class = highwayInfo.m_class.Clone("LargeHighway");
+                info.m_class = highwayInfo.m_class;
 
                 var segments0 = info.m_segments[0];
                 var nodes0 = info.m_nodes[0];
@@ -89,6 +91,16 @@ namespace NetworkExtensions.NewNetwork.Highway6L
                 segments0.m_mesh = grndMesh;
                 nodes0.m_mesh = grndMesh;
                 nodes1.m_mesh = grndTransMesh;
+
+                var grndLODMesh = new Mesh();
+                grndLODMesh.LoadOBJ(OBJLoader.LoadOBJ(File.Open(Path.Combine(Mod.GetPath(), @"NewNetwork\Highway6L\Meshes\Ground_NodeLOD.obj"), FileMode.Open)));
+
+                //var grndTransLODMesh = new Mesh();
+                //grndLODMesh.LoadOBJ(OBJLoader.LoadOBJ(File.Open(Path.Combine(Mod.GetPath(), @"NewNetwork\Highway6L\Meshes\Ground_NodeLOD_Transition2.obj"), FileMode.Open)));
+
+                //segments0.m_lodMesh = grndLODMesh;
+                nodes0.m_lodMesh = grndLODMesh;
+                //nodes1.m_lodMesh = grndTransLODMesh;
 
                 info.m_segments = new[] { segments0 };
                 info.m_nodes = new[] { nodes0, nodes1 };

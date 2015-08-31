@@ -56,6 +56,18 @@
     <Compile Include="Framework\Extensions\ItemClassExtensions.cs" />
     <Compile Include="Framework\Extensions\MeshExtensions.cs" />
     <Compile Include="Framework\MeshData.cs" />
+    <Compile Include="Framework\MeshImporter\Extensions\MeshExt.cs" />
+    <Compile Include="Framework\MeshImporter\Int32Converter.cs" />
+    <Compile Include="Framework\MeshImporter\OBJGroup.cs" />
+    <Compile Include="Framework\MeshImporter\OBJMaterial.cs" />
+    <Compile Include="Framework\MeshImporter\Extensions\Utils.cs" />
+    <Compile Include="Framework\MeshImporter\OBJData.cs" />
+    <Compile Include="Framework\MeshImporter\OBJFace.cs" />
+    <Compile Include="Framework\MeshImporter\OBJFaceVertex.cs" />
+    <Compile Include="Framework\MeshImporter\OBJLoader.cs" />
+    <Compile Include="Framework\MeshImporter\StringExt.cs" />
+    <Compile Include="Framework\MeshImporter\Extensions\Vector3Ext.cs" />
+    <Compile Include="Framework\MeshImporter\Extensions\Vector4Ext.cs" />
     <Compile Include="NewNetwork\MediumAvenue4L\MediumAvenue4LBuilder.cs" />
     <Compile Include="NewNetwork\MediumAvenue4LTL\MediumAvenue4LTLBuilder.cs" />
     <Compile Include="NewNetwork\MediumAvenueHelper.cs" />
@@ -71,7 +83,7 @@
     <Compile Include="Framework\Extensions\ExpressionExtensions.cs" />
     <Compile Include="Framework\Extensions\MaterialExtensions.cs" />
     <Compile Include="Framework\Selector.cs" />
-    <Compile Include="Framework\TextureManager.cs" />
+    <Compile Include="Framework\AssetManager.cs" />
     <Compile Include="Framework\TexturesSet.cs" />
     <Compile Include="ModInitializer.CustomPanel.cs" />
     <Compile Include="Framework\Loading.cs" />
@@ -299,6 +311,15 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram1.cd" />
+    <None Include="NewNetwork\Highway6L\Meshes\Ground_NodeLOD.obj">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="NewNetwork\Highway6L\Meshes\Ground_NodeLOD_Transition.obj">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="NewNetwork\Highway6L\Meshes\Ground_NodeLOD_Transition2.obj">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
