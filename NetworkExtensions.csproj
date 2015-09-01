@@ -55,6 +55,8 @@
   <ItemGroup>
     <Compile Include="Framework\Extensions\ItemClassExtensions.cs" />
     <Compile Include="Framework\Extensions\MeshExtensions.cs" />
+    <Compile Include="Framework\Extensions\NodeExtensions.cs" />
+    <Compile Include="Framework\Extensions\SegmentExtensions.cs" />
     <Compile Include="Framework\MeshData.cs" />
     <Compile Include="Framework\MeshImporter\Extensions\MeshExt.cs" />
     <Compile Include="Framework\MeshImporter\Int32Converter.cs" />
@@ -97,8 +99,6 @@
     <Compile Include="NewNetwork\OneWay1L\Meshes\OneWay1LNodeModel.cs" />
     <Compile Include="NewNetwork\OneWay1L\Meshes\OneWay1LSegmentModel.cs" />
     <Compile Include="NewNetwork\OneWay1L\OneWay1LBuilder.cs" />
-    <Compile Include="NewNetwork\Highway6L\Meshes\Highway6LMeshes.Transition.cs" />
-    <Compile Include="NewNetwork\Highway6L\Meshes\Highway6LMeshes.cs" />
     <Compile Include="NewNetwork\SmallAvenue4L\SmallAvenue4LBuilder.cs" />
     <Compile Include="NewNetwork\HighwayHelper.cs" />
     <Compile Include="NewNetwork\OneWay4L\OneWay4LBuilder.cs" />
@@ -327,6 +327,12 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="NewNetwork\Highway6L\Meshes\Grnd_Seg_LOD.obj">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="NewNetwork\Highway6L\Meshes\Ground.obj">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="NewNetwork\Highway6L\Meshes\GroundTransition.obj">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="NewNetwork\OneWay1L\Meshes\Grnd_Trans_LOD.obj">

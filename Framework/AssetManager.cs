@@ -36,23 +36,24 @@ namespace NetworkExtensions.Framework
                 switch (assetFile.Extension.ToLower())
                 {
                     case ".dds":
-                        _allTextures[relativePath] = LoadTextureDDS(assetFile.FullName);
+                        _allTextures[relativePath] = LoadTextureDDS(assetFile.FullName, assetFile.Name);
                         break;
 
                     case ".png":
-                        _allTextures[relativePath] = LoadTexturePNG(assetFile.FullName);
+                        _allTextures[relativePath] = LoadTexturePNG(assetFile.FullName, assetFile.Name);
                         break;
 
                     case ".obj":
-                        _allMeshes[relativePath] = LoadMesh(assetFile.FullName);
+                        _allMeshes[relativePath] = LoadMesh(assetFile.FullName, assetFile.Name);
                         break;
                 }
             }
         }
 
-        private static Texture2D LoadTexturePNG(string fullPath)
+        private static Texture2D LoadTexturePNG(string fullPath, string textureName)
         {
             var texture = new Texture2D(1, 1);
+            texture.name = Path.GetFileNameWithoutExtension(textureName);
             texture.LoadImage(File.ReadAllBytes(fullPath));
             texture.anisoLevel = 8;
             texture.filterMode = FilterMode.Trilinear;
@@ -60,7 +61,7 @@ namespace NetworkExtensions.Framework
             return texture;
         }
 
-        private static Texture2D LoadTextureDDS(string fullPath)
+        private static Texture2D LoadTextureDDS(string fullPath, string textureName)
         {
             var numArray = File.ReadAllBytes(fullPath);
             var width = BitConverter.ToInt32(numArray, 16);
@@ -78,10 +79,11 @@ namespace NetworkExtensions.Framework
             texture.LoadRawTextureData(list.ToArray());
             texture.Apply();
             texture.anisoLevel = 8;
+            texture.name = Path.GetFileNameWithoutExtension(textureName);
             return texture;
         }
 
-        private static Mesh LoadMesh(string fullPath)
+        private static Mesh LoadMesh(string fullPath, string meshName)
         {
             var mesh = new Mesh();
             using (var fileStream = File.Open(fullPath, FileMode.Open))
@@ -89,6 +91,7 @@ namespace NetworkExtensions.Framework
                 mesh.LoadOBJ(OBJLoader.LoadOBJ(fileStream));
             }
             mesh.Optimize();
+            mesh.name = Path.GetFileNameWithoutExtension(meshName);
 
             return mesh;
         }

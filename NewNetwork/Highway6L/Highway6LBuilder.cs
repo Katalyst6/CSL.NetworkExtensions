@@ -1,16 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using ColossalFramework.Importers;
-using ColossalFramework.UI;
 using NetworkExtensions.Framework;
-using NetworkExtensions.NewNetwork.Highway6L.Meshes;
-using UnityEngine;
-using UnityExtension;
-#if DEBUG
-using Debug = NetworkExtensions.Framework.Debug;
-#endif
 
 namespace NetworkExtensions.NewNetwork.Highway6L
 {
@@ -85,20 +75,17 @@ namespace NetworkExtensions.NewNetwork.Highway6L
                 nodes1.m_flagsForbidden = NetNode.Flags.None;
                 nodes1.m_flagsRequired = NetNode.Flags.Transition;
 
-                var grndMesh = Highway6LMeshes.GetGroundData().CreateMesh("HIGHWAY_6L_GROUND");
-                var grndTransMesh = Highway6LMeshes.GetGroundTransitionData().CreateMesh("HIGHWAY_6L_GROUND_TRS");
+                segments0.SetMeshes
+                    (@"NewNetwork\Highway6L\Meshes\Ground.obj",
+                     @"NewNetwork\Highway6L\Meshes\Grnd_Seg_LOD.obj");
 
-                segments0.m_mesh = grndMesh;
-                nodes0.m_mesh = grndMesh;
-                nodes1.m_mesh = grndTransMesh;
+                nodes0.SetMeshes
+                    (@"NewNetwork\Highway6L\Meshes\Ground.obj",
+                     @"NewNetwork\Highway6L\Meshes\Grnd_HwTrans_LOD.obj");
 
-                var grndSegmentLODMesh = AssetManager.instance.GetMesh(@"NewNetwork\Highway6L\Meshes\Grnd_Seg_LOD.obj");
-                var grndHwTransLODMesh = AssetManager.instance.GetMesh(@"NewNetwork\Highway6L\Meshes\Grnd_HwTrans_LOD.obj");
-                var grndRdTransLODMesh = AssetManager.instance.GetMesh(@"NewNetwork\Highway6L\Meshes\Grnd_RdTrans_LOD.obj");
-
-                segments0.m_lodMesh = grndSegmentLODMesh;
-                nodes0.m_lodMesh = grndHwTransLODMesh;
-                nodes1.m_lodMesh = grndRdTransLODMesh;
+                nodes1.SetMeshes
+                    (@"NewNetwork\Highway6L\Meshes\GroundTransition.obj",
+                     @"NewNetwork\Highway6L\Meshes\Grnd_RdTrans_LOD.obj");
 
                 info.m_segments = new[] { segments0 };
                 info.m_nodes = new[] { nodes0, nodes1 };
@@ -115,10 +102,12 @@ namespace NetworkExtensions.NewNetwork.Highway6L
                         new TexturesSet(
                             @"NewNetwork\Highway6L\Textures\Ground_Segment__MainTex.png",
                             @"NewNetwork\Highway6L\Textures\Ground_Segment__APRMap.png"));
+                        // TODO: Make new Segment LOD here
                     info.SetNodesTexture(
                         new TexturesSet
                            (@"NewNetwork\Highway6L\Textures\Ground_Node__MainTex.png",
                             @"NewNetwork\Highway6L\Textures\Ground_Node__APRMap.png"),
+                        // TODO: Make new Node LOD here
                         new TexturesSet
                            (@"NewNetwork\Highway6L\Textures\Ground_NodeLOD__MainTex.png",
                             @"NewNetwork\Highway6L\Textures\Ground_NodeLOD__APRMap.png",
