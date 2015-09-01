@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Linq;
 using NetworkExtensions.Framework;
-using NetworkExtensions.NewNetwork.Highway2L.Meshes;
 using UnityEngine;
 
 #if DEBUG
@@ -15,11 +14,11 @@ namespace NetworkExtensions.NewNetwork.Highway1L
         public int OptionsPriority { get { return 30; } }
         public int Priority { get { return 9; } }
 
-        public string PrefabName  { get { return "Basic Road"; } }
-        public string Name        { get { return "Small Rural Highway"; } }
-        public string CodeName    { get { return "HIGHWAY_1L"; } }
+        public string PrefabName { get { return "Basic Road"; } }
+        public string Name { get { return "Small Rural Highway"; } }
+        public string CodeName { get { return "HIGHWAY_1L"; } }
         public string Description { get { return "A two-lane, two-way road suitable for low traffic between rural areas. Highway does not allow zoning next to it!"; } }
-        public string UICategory  { get { return "RoadsHighway"; } }
+        public string UICategory { get { return "RoadsHighway"; } }
 
         public string ThumbnailsPath { get { return @"NewNetwork\Highway1L\thumbnails.png"; } }
         public string InfoTooltipPath { get { return @"NewNetwork\Highway1L\infotooltip.png"; } }
@@ -81,20 +80,17 @@ namespace NetworkExtensions.NewNetwork.Highway1L
                 nodes1.m_flagsForbidden = NetNode.Flags.None;
                 nodes1.m_flagsRequired = NetNode.Flags.Transition;
 
-                var grndMesh = Highway2LMeshes.GetGroundData().CreateMesh("HIGHWAY_1L_GROUND");
-                var grndTransMesh = Highway2LMeshes.GetGroundTransitionData().CreateMesh("HIGHWAY_1L_GROUND_TRS");
+                segments0.SetMeshes
+                    (@"NewNetwork\Highway2L\Meshes\Ground.obj",
+                     @"NewNetwork\Highway2L\Meshes\Ground_LOD.obj");
 
-                segments0.m_mesh = grndMesh;
-                nodes0.m_mesh = grndMesh;
-                nodes1.m_mesh = grndTransMesh;
+                nodes0.SetMeshes
+                    (@"NewNetwork\Highway2L\Meshes\Ground.obj",
+                     @"NewNetwork\Highway2L\Meshes\Ground_HwTrans_LOD.obj");
 
-                var grndSegmentLODMesh = AssetManager.instance.GetMesh(@"NewNetwork\Highway2L\Meshes\Grnd_Seg_LOD.obj");
-                var grndHwTransLODMesh = AssetManager.instance.GetMesh(@"NewNetwork\Highway2L\Meshes\Grnd_HwTrans_LOD.obj");
-                var grndRdTransLODMesh = AssetManager.instance.GetMesh(@"NewNetwork\Highway2L\Meshes\Grnd_RdTrans_LOD.obj");
-
-                segments0.m_lodMesh = grndSegmentLODMesh;
-                nodes0.m_lodMesh = grndHwTransLODMesh;
-                nodes1.m_lodMesh = grndRdTransLODMesh;
+                nodes1.SetMeshes
+                    (@"NewNetwork\Highway2L\Meshes\Ground_Trans.obj",
+                     @"NewNetwork\Highway2L\Meshes\Ground_RdTrans_LOD.obj");
 
                 info.m_segments = new[] { segments0 };
                 info.m_nodes = new[] { nodes0, nodes1 };
@@ -127,11 +123,11 @@ namespace NetworkExtensions.NewNetwork.Highway1L
                         new TexturesSet
                            (@"NewNetwork\Highway2L\Textures\Elevated_Node__MainTex.png",
                             @"NewNetwork\Highway2L\Textures\Elevated_Node__AlphaMap.png"));
-                        // Lets leave the crossings there until we have a fix
-                        //new TexturesSet
-                        //   (@"NewNetwork\Highway2L\Textures\Elevated_NodeLOD__MainTex.png",
-                        //    @"NewNetwork\Highway2L\Textures\Elevated_NodeLOD__AlphaMap.png",
-                        //    @"NewNetwork\Highway2L\Textures\Elevated_NodeLOD__XYSMap.png"));
+                    // Lets leave the crossings there until we have a fix
+                    //new TexturesSet
+                    //   (@"NewNetwork\Highway2L\Textures\Elevated_NodeLOD__MainTex.png",
+                    //    @"NewNetwork\Highway2L\Textures\Elevated_NodeLOD__AlphaMap.png",
+                    //    @"NewNetwork\Highway2L\Textures\Elevated_NodeLOD__XYSMap.png"));
                     break;
 
                 case NetInfoVersion.Slope:
@@ -263,7 +259,7 @@ namespace NetworkExtensions.NewNetwork.Highway1L
                             var newProps = ScriptableObject.CreateInstance<NetLaneProps>();
                             newProps.name = "Highway1L Left Props";
 
-                            newProps.m_props = new NetLaneProps.Prop[0]; 
+                            newProps.m_props = new NetLaneProps.Prop[0];
 
                             lane.m_laneProps = newProps;
                         }

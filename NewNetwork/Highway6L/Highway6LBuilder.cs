@@ -77,15 +77,15 @@ namespace NetworkExtensions.NewNetwork.Highway6L
 
                 segments0.SetMeshes
                     (@"NewNetwork\Highway6L\Meshes\Ground.obj",
-                     @"NewNetwork\Highway6L\Meshes\Grnd_Seg_LOD.obj");
+                     @"NewNetwork\Highway6L\Meshes\Ground_LOD.obj");
 
                 nodes0.SetMeshes
                     (@"NewNetwork\Highway6L\Meshes\Ground.obj",
-                     @"NewNetwork\Highway6L\Meshes\Grnd_HwTrans_LOD.obj");
+                     @"NewNetwork\Highway6L\Meshes\Ground_HwTrans_LOD.obj");
 
                 nodes1.SetMeshes
-                    (@"NewNetwork\Highway6L\Meshes\GroundTransition.obj",
-                     @"NewNetwork\Highway6L\Meshes\Grnd_RdTrans_LOD.obj");
+                    (@"NewNetwork\Highway6L\Meshes\Ground_Trans.obj",
+                     @"NewNetwork\Highway6L\Meshes\Ground_RdTrans_LOD.obj");
 
                 info.m_segments = new[] { segments0 };
                 info.m_nodes = new[] { nodes0, nodes1 };

@@ -94,10 +94,6 @@
     <Compile Include="Framework\INetInfoBuilder.cs" />
     <Compile Include="Framework\Extensions\LocaleExtensions.cs" />
     <Compile Include="NewNetwork\Highway1L\Highway1LBuilder.cs" />
-    <Compile Include="NewNetwork\Highway2L\Meshes\Highway2LMeshes.Transition.cs" />
-    <Compile Include="NewNetwork\Highway2L\Meshes\Highway2LMeshes.cs" />
-    <Compile Include="NewNetwork\OneWay1L\Meshes\OneWay1LNodeModel.cs" />
-    <Compile Include="NewNetwork\OneWay1L\Meshes\OneWay1LSegmentModel.cs" />
     <Compile Include="NewNetwork\OneWay1L\OneWay1LBuilder.cs" />
     <Compile Include="NewNetwork\SmallAvenue4L\SmallAvenue4LBuilder.cs" />
     <Compile Include="NewNetwork\HighwayHelper.cs" />
@@ -311,34 +307,43 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram1.cd" />
-    <None Include="NewNetwork\Highway2L\Meshes\Grnd_HwTrans_LOD.obj">
+    <None Include="NewNetwork\Highway2L\Meshes\Ground_Trans.obj">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="NewNetwork\Highway2L\Meshes\Grnd_RdTrans_LOD.obj">
+    <None Include="NewNetwork\Highway2L\Meshes\Ground.obj">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="NewNetwork\Highway2L\Meshes\Grnd_Seg_LOD.obj">
+    <None Include="NewNetwork\Highway2L\Meshes\Ground_HwTrans_LOD.obj">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="NewNetwork\Highway6L\Meshes\Grnd_HwTrans_LOD.obj">
+    <None Include="NewNetwork\Highway2L\Meshes\Ground_RdTrans_LOD.obj">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="NewNetwork\Highway6L\Meshes\Grnd_RdTrans_LOD.obj">
+    <None Include="NewNetwork\Highway2L\Meshes\Ground_LOD.obj">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="NewNetwork\Highway6L\Meshes\Grnd_Seg_LOD.obj">
+    <None Include="NewNetwork\Highway6L\Meshes\Ground_HwTrans_LOD.obj">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="NewNetwork\Highway6L\Meshes\Ground_RdTrans_LOD.obj">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="NewNetwork\Highway6L\Meshes\Ground_LOD.obj">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="NewNetwork\Highway6L\Meshes\Ground.obj">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="NewNetwork\Highway6L\Meshes\GroundTransition.obj">
+    <None Include="NewNetwork\Highway6L\Meshes\Ground_Trans.obj">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="NewNetwork\OneWay1L\Meshes\Grnd_Trans_LOD.obj">
+    <None Include="NewNetwork\OneWay1L\Meshes\Ground.obj">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="NewNetwork\OneWay1L\Meshes\Grnd_Seg_LOD.obj">
+    <None Include="NewNetwork\OneWay1L\Meshes\Ground_Trans_LOD.obj">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="NewNetwork\OneWay1L\Meshes\Ground_LOD.obj">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
