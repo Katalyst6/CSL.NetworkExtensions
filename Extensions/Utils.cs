@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using UnityEngine;
 
-namespace UnityExtension
+namespace MeshImporter
 {
     public static class Utils
     {

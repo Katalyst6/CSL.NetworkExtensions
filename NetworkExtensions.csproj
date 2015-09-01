@@ -58,18 +58,6 @@
     <Compile Include="Framework\Extensions\NodeExtensions.cs" />
     <Compile Include="Framework\Extensions\SegmentExtensions.cs" />
     <Compile Include="Framework\MeshData.cs" />
-    <Compile Include="Framework\MeshImporter\Extensions\MeshExt.cs" />
-    <Compile Include="Framework\MeshImporter\Int32Converter.cs" />
-    <Compile Include="Framework\MeshImporter\OBJGroup.cs" />
-    <Compile Include="Framework\MeshImporter\OBJMaterial.cs" />
-    <Compile Include="Framework\MeshImporter\Extensions\Utils.cs" />
-    <Compile Include="Framework\MeshImporter\OBJData.cs" />
-    <Compile Include="Framework\MeshImporter\OBJFace.cs" />
-    <Compile Include="Framework\MeshImporter\OBJFaceVertex.cs" />
-    <Compile Include="Framework\MeshImporter\OBJLoader.cs" />
-    <Compile Include="Framework\MeshImporter\StringExt.cs" />
-    <Compile Include="Framework\MeshImporter\Extensions\Vector3Ext.cs" />
-    <Compile Include="Framework\MeshImporter\Extensions\Vector4Ext.cs" />
     <Compile Include="NewNetwork\MediumAvenue4L\MediumAvenue4LBuilder.cs" />
     <Compile Include="NewNetwork\MediumAvenue4LTL\MediumAvenue4LTLBuilder.cs" />
     <Compile Include="NewNetwork\MediumAvenueHelper.cs" />
@@ -323,6 +311,12 @@
     <None Include="NewNetwork\Highway6L\Meshes\LOD_GroundTransition.obj">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="MeshImporter.csproj">
+      <Project>{97D70503-6567-41A1-92FC-66D813A53370}</Project>
+      <Name>MeshImporter</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
