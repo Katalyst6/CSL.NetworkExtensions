@@ -3,6 +3,8 @@ using System.Linq;
 using NetworkExtensions.Framework;
 using NetworkExtensions.NewNetwork.Highway2L.Meshes;
 using UnityEngine;
+using UnityExtension;
+using System.IO;
 
 namespace NetworkExtensions.NewNetwork.Highway2L
 {
@@ -83,6 +85,19 @@ namespace NetworkExtensions.NewNetwork.Highway2L
                 segments0.m_mesh = grndMesh;
                 nodes0.m_mesh = grndMesh;
                 nodes1.m_mesh = grndTransMesh;
+
+                var grndLODMesh = new Mesh();
+                grndLODMesh.LoadOBJ(OBJLoader.LoadOBJ(File.Open(Path.Combine(Mod.GetPath(), @"NewNetwork\Highway2L\Meshes\Grnd_SegmentLOD.obj"), FileMode.Open)));
+
+                var grndHwTransLODMesh = new Mesh();
+                grndHwTransLODMesh.LoadOBJ(OBJLoader.LoadOBJ(File.Open(Path.Combine(Mod.GetPath(), @"NewNetwork\Highway2L\Meshes\Grnd_HwTrans_NodeLOD.obj"), FileMode.Open)));
+
+                var grndRdTransLODMesh = new Mesh();
+                grndRdTransLODMesh.LoadOBJ(OBJLoader.LoadOBJ(File.Open(Path.Combine(Mod.GetPath(), @"NewNetwork\Highway2L\Meshes\Grnd_RdTrans_NodeLOD.obj"), FileMode.Open)));
+
+                segments0.m_lodMesh = grndLODMesh;
+                nodes0.m_lodMesh = grndHwTransLODMesh;
+                nodes1.m_lodMesh = grndRdTransLODMesh;
 
                 info.m_segments = new[] { segments0 };
                 info.m_nodes = new[] { nodes0, nodes1 };

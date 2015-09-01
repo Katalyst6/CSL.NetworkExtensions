@@ -3,6 +3,8 @@ using System.Linq;
 using NetworkExtensions.Framework;
 using NetworkExtensions.NewNetwork.OneWay1L.Meshes;
 using UnityEngine;
+using UnityExtension;
+using System.IO;
 
 namespace NetworkExtensions.NewNetwork.OneWay1L
 {
@@ -65,6 +67,15 @@ namespace NetworkExtensions.NewNetwork.OneWay1L
 
                 segments0.m_mesh = grndMesh;
                 nodes0.m_mesh = grndMesh;
+
+                var grndSegmentLODMesh = new Mesh();
+                grndSegmentLODMesh.LoadOBJ(OBJLoader.LoadOBJ(File.Open(Path.Combine(Mod.GetPath(), @"NewNetwork\OneWay1L\Meshes\Grnd_SegmentLOD.obj"), FileMode.Open)));
+
+                var grndNodeLODMesh = new Mesh();
+                grndNodeLODMesh.LoadOBJ(OBJLoader.LoadOBJ(File.Open(Path.Combine(Mod.GetPath(), @"NewNetwork\OneWay1L\Meshes\Grnd_NodeLOD.obj"), FileMode.Open)));
+
+                segments0.m_lodMesh = grndSegmentLODMesh;
+                nodes0.m_lodMesh = grndNodeLODMesh;
 
                 info.m_segments = new[] { segments0 };
                 info.m_nodes = new[] { nodes0 };

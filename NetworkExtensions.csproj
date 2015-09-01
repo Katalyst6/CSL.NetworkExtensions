@@ -311,13 +311,28 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram1.cd" />
-    <None Include="NewNetwork\Highway6L\Meshes\Ground_NodeLOD.obj">
+    <None Include="NewNetwork\Highway2L\Meshes\Grnd_HwTrans_NodeLOD.obj">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="NewNetwork\Highway6L\Meshes\Ground_NodeLOD_Transition.obj">
+    <None Include="NewNetwork\Highway2L\Meshes\Grnd_RdTrans_NodeLOD.obj">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="NewNetwork\Highway6L\Meshes\Ground_NodeLOD_Transition2.obj">
+    <None Include="NewNetwork\Highway2L\Meshes\Grnd_SegmentLOD.obj">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="NewNetwork\Highway6L\Meshes\Grnd_HwTrans_NodeLOD.obj">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="NewNetwork\Highway6L\Meshes\Grnd_RdTrans_NodeLOD.obj">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="NewNetwork\Highway6L\Meshes\Grnd_SegmentLOD.obj">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="NewNetwork\OneWay1L\Meshes\Grnd_NodeLOD.obj">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="NewNetwork\OneWay1L\Meshes\Grnd_SegmentLOD.obj">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
