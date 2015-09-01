@@ -88,6 +88,14 @@ namespace NetworkExtensions.NewNetwork.Highway1L
                 nodes0.m_mesh = grndMesh;
                 nodes1.m_mesh = grndTransMesh;
 
+                var grndSegmentLODMesh = AssetManager.instance.GetMesh(@"NewNetwork\Highway2L\Meshes\Grnd_Seg_LOD.obj");
+                var grndHwTransLODMesh = AssetManager.instance.GetMesh(@"NewNetwork\Highway2L\Meshes\Grnd_HwTrans_LOD.obj");
+                var grndRdTransLODMesh = AssetManager.instance.GetMesh(@"NewNetwork\Highway2L\Meshes\Grnd_RdTrans_LOD.obj");
+
+                segments0.m_lodMesh = grndSegmentLODMesh;
+                nodes0.m_lodMesh = grndHwTransLODMesh;
+                nodes1.m_lodMesh = grndRdTransLODMesh;
+
                 info.m_segments = new[] { segments0 };
                 info.m_nodes = new[] { nodes0, nodes1 };
             }

@@ -68,14 +68,11 @@ namespace NetworkExtensions.NewNetwork.OneWay1L
                 segments0.m_mesh = grndMesh;
                 nodes0.m_mesh = grndMesh;
 
-                var grndSegmentLODMesh = new Mesh();
-                grndSegmentLODMesh.LoadOBJ(OBJLoader.LoadOBJ(File.Open(Path.Combine(Mod.GetPath(), @"NewNetwork\OneWay1L\Meshes\Grnd_SegmentLOD.obj"), FileMode.Open)));
-
-                var grndNodeLODMesh = new Mesh();
-                grndNodeLODMesh.LoadOBJ(OBJLoader.LoadOBJ(File.Open(Path.Combine(Mod.GetPath(), @"NewNetwork\OneWay1L\Meshes\Grnd_NodeLOD.obj"), FileMode.Open)));
+                var grndSegmentLODMesh = AssetManager.instance.GetMesh(@"NewNetwork\OneWay1L\Meshes\Grnd_Seg_LOD.obj");
+                var grndTransLODMesh = AssetManager.instance.GetMesh(@"NewNetwork\OneWay1L\Meshes\Grnd_Trans_LOD.obj");
 
                 segments0.m_lodMesh = grndSegmentLODMesh;
-                nodes0.m_lodMesh = grndNodeLODMesh;
+                nodes0.m_lodMesh = grndTransLODMesh;
 
                 info.m_segments = new[] { segments0 };
                 info.m_nodes = new[] { nodes0 };
