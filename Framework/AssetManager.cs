@@ -4,8 +4,8 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using ColossalFramework;
+using MeshImporter;
 using UnityEngine;
-using UnityExtension;
 
 namespace NetworkExtensions.Framework
 {

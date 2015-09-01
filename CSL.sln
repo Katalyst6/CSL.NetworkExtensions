@@ -19,6 +19,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "References", "References", 
 		References\UnityEngine.xml = References\UnityEngine.xml
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MeshImporter", "MeshImporter.csproj", "{97D70503-6567-41A1-92FC-66D813A53370}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,16 @@ Global
 		{19FA21B2-39CC-4B90-BE7E-B6BDCCB09208}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{19FA21B2-39CC-4B90-BE7E-B6BDCCB09208}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{19FA21B2-39CC-4B90-BE7E-B6BDCCB09208}.Release|x86.ActiveCfg = Release|Any CPU
+		{97D70503-6567-41A1-92FC-66D813A53370}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{97D70503-6567-41A1-92FC-66D813A53370}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{97D70503-6567-41A1-92FC-66D813A53370}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{97D70503-6567-41A1-92FC-66D813A53370}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{97D70503-6567-41A1-92FC-66D813A53370}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{97D70503-6567-41A1-92FC-66D813A53370}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{97D70503-6567-41A1-92FC-66D813A53370}.Release|Any CPU.Build.0 = Release|Any CPU
+		{97D70503-6567-41A1-92FC-66D813A53370}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{97D70503-6567-41A1-92FC-66D813A53370}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{97D70503-6567-41A1-92FC-66D813A53370}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

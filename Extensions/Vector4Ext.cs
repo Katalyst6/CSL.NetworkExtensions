@@ -1,7 +1,6 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
-namespace UnityExtension
+namespace MeshImporter
 {
     public static class Vector4Ext
     {
