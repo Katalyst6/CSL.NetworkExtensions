@@ -92,18 +92,14 @@ namespace NetworkExtensions.NewNetwork.Highway6L
                 nodes0.m_mesh = grndMesh;
                 nodes1.m_mesh = grndTransMesh;
 
-                var grndLODMesh = new Mesh();
-                grndLODMesh.LoadOBJ(OBJLoader.LoadOBJ(File.Open(Path.Combine(Mod.GetPath(), @"NewNetwork\Highway6L\Meshes\Grnd_SegmentLOD.obj"), FileMode.Open)));
+                var grndLODMesh = AssetManager.instance.GetMesh(@"NewNetwork\Highway6L\Meshes\Ground_NodeLOD.obj");
 
-                var grndHwTransLODMesh = new Mesh();
-                grndHwTransLODMesh.LoadOBJ(OBJLoader.LoadOBJ(File.Open(Path.Combine(Mod.GetPath(), @"NewNetwork\Highway6L\Meshes\Grnd_HwTrans_NodeLOD.obj"), FileMode.Open)));
-
-                var grndRdTransLODMesh = new Mesh();
-                grndRdTransLODMesh.LoadOBJ(OBJLoader.LoadOBJ(File.Open(Path.Combine(Mod.GetPath(), @"NewNetwork\Highway6L\Meshes\Grnd_RdTrans_NodeLOD.obj"), FileMode.Open)));
+                //var grndTransLODMesh = new Mesh();
+                //grndLODMesh.LoadOBJ(OBJLoader.LoadOBJ(File.Open(Path.Combine(Mod.GetPath(), @"NewNetwork\Highway6L\Meshes\Ground_NodeLOD_Transition2.obj"), FileMode.Open)));
 
                 segments0.m_lodMesh = grndLODMesh;
-                nodes0.m_lodMesh = grndHwTransLODMesh;
-                nodes1.m_lodMesh = grndRdTransLODMesh;
+                nodes0.m_lodMesh = grndLODMesh;
+                //nodes1.m_lodMesh = grndTransLODMesh;
 
                 info.m_segments = new[] { segments0 };
                 info.m_nodes = new[] { nodes0, nodes1 };
