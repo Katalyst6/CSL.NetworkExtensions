@@ -61,7 +61,7 @@ namespace NetworkExtensions.NewNetwork.Highway1L
             if (version == NetInfoVersion.Ground)
             {
                 info.m_surfaceLevel = 0;
-                info.m_class = highwayInfo.m_class.Clone("SmallRuralHighway");
+                info.m_class = highwayInfo.m_class;
 
                 var segments0 = info.m_segments[0];
                 var nodes0 = info.m_nodes[0];
