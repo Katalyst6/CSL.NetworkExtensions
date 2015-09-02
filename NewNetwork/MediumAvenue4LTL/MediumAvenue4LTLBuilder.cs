@@ -192,7 +192,7 @@ namespace NetworkExtensions.NewNetwork.MediumAvenue4LTL
 
             var newProps = new FastList<NetLaneProps.Prop>();
 
-            newProps.Add(fwd);
+            //newProps.Add(fwd); // Do we want "Forward" on a turning lane?
             newProps.Add(left);
             newProps.Add(right);
 
