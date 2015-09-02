@@ -58,6 +58,9 @@
     <Compile Include="Framework\Extensions\NodeExtensions.cs" />
     <Compile Include="Framework\Extensions\SegmentExtensions.cs" />
     <Compile Include="Framework\MeshData.cs" />
+    <Compile Include="NewNetwork\Alley\Meshes\AlleyMeshes.cs" />
+    <Compile Include="NewNetwork\Alley\Meshes\AlleyMeshes.Transition.cs" />
+    <Compile Include="NewNetwork\Alley\AlleyBuilder.cs" />
     <Compile Include="NewNetwork\MediumAvenue4L\MediumAvenue4LBuilder.cs" />
     <Compile Include="NewNetwork\MediumAvenue4LTL\MediumAvenue4LTLBuilder.cs" />
     <Compile Include="NewNetwork\MediumAvenueHelper.cs" />
@@ -101,6 +104,18 @@
     <Compile Include="SomeNetwork\PlanningRoadSmallBuilder.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="NewNetwork\Alley\infotooltip.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="NewNetwork\Alley\Textures\Ground_Segment__AlphaMap.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="NewNetwork\Alley\Textures\Ground_Segment__MainTex.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="NewNetwork\Alley\thumbnails.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="NewNetwork\MediumAvenue4L\infotooltip.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
