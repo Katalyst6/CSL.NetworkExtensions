@@ -100,7 +100,7 @@ namespace NetworkExtensions.Framework
 
 
 
-            var texture = TextureManager.instance.GetTexture(thumbnailsPath);
+            var texture = AssetManager.instance.GetTexture(thumbnailsPath);
             texture.FixTransparency();
 
             thumbnailAtlas.material.mainTexture = texture;
@@ -139,7 +139,7 @@ namespace NetworkExtensions.Framework
             var shader = Shader.Find("UI/Default UI Shader");
             if (shader != null) infoTooltipAtlas.material = new Material(shader);
 
-            var texture = TextureManager.instance.GetTexture(infoTooltipPath);
+            var texture = AssetManager.instance.GetTexture(infoTooltipPath);
 
             infoTooltipAtlas.material.mainTexture = texture;
 

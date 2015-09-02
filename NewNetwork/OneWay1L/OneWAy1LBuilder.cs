@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Linq;
 using NetworkExtensions.Framework;
-using NetworkExtensions.NewNetwork.OneWay1L.Meshes;
-using UnityEngine;
 
 namespace NetworkExtensions.NewNetwork.OneWay1L
 {
@@ -61,10 +59,13 @@ namespace NetworkExtensions.NewNetwork.OneWay1L
                 var segments0 = info.m_segments[0];
                 var nodes0 = info.m_nodes[0];
 
-                var grndMesh = OneWay1LSegmentModel.BuildMesh().CreateMesh("OW_1L_GROUND");
+                segments0.SetMeshes
+                    (@"NewNetwork\OneWay1L\Meshes\Ground.obj",
+                     @"NewNetwork\OneWay1L\Meshes\Ground_LOD.obj");
 
-                segments0.m_mesh = grndMesh;
-                nodes0.m_mesh = grndMesh;
+                nodes0.SetMeshes
+                    (@"NewNetwork\OneWay1L\Meshes\Ground.obj",
+                     @"NewNetwork\OneWay1L\Meshes\Ground_Trans_LOD.obj");
 
                 info.m_segments = new[] { segments0 };
                 info.m_nodes = new[] { nodes0 };

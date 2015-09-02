@@ -55,6 +55,8 @@
   <ItemGroup>
     <Compile Include="Framework\Extensions\ItemClassExtensions.cs" />
     <Compile Include="Framework\Extensions\MeshExtensions.cs" />
+    <Compile Include="Framework\Extensions\NodeExtensions.cs" />
+    <Compile Include="Framework\Extensions\SegmentExtensions.cs" />
     <Compile Include="Framework\MeshData.cs" />
     <Compile Include="NewNetwork\MediumAvenue4L\MediumAvenue4LBuilder.cs" />
     <Compile Include="NewNetwork\MediumAvenue4LTL\MediumAvenue4LTLBuilder.cs" />
@@ -71,7 +73,7 @@
     <Compile Include="Framework\Extensions\ExpressionExtensions.cs" />
     <Compile Include="Framework\Extensions\MaterialExtensions.cs" />
     <Compile Include="Framework\Selector.cs" />
-    <Compile Include="Framework\TextureManager.cs" />
+    <Compile Include="Framework\AssetManager.cs" />
     <Compile Include="Framework\TexturesSet.cs" />
     <Compile Include="ModInitializer.CustomPanel.cs" />
     <Compile Include="Framework\Loading.cs" />
@@ -80,13 +82,7 @@
     <Compile Include="Framework\INetInfoBuilder.cs" />
     <Compile Include="Framework\Extensions\LocaleExtensions.cs" />
     <Compile Include="NewNetwork\Highway1L\Highway1LBuilder.cs" />
-    <Compile Include="NewNetwork\Highway2L\Meshes\Highway2LMeshes.Transition.cs" />
-    <Compile Include="NewNetwork\Highway2L\Meshes\Highway2LMeshes.cs" />
-    <Compile Include="NewNetwork\OneWay1L\Meshes\OneWay1LNodeModel.cs" />
-    <Compile Include="NewNetwork\OneWay1L\Meshes\OneWay1LSegmentModel.cs" />
     <Compile Include="NewNetwork\OneWay1L\OneWay1LBuilder.cs" />
-    <Compile Include="NewNetwork\Highway6L\Meshes\Highway6LMeshes.Transition.cs" />
-    <Compile Include="NewNetwork\Highway6L\Meshes\Highway6LMeshes.cs" />
     <Compile Include="NewNetwork\SmallAvenue4L\SmallAvenue4LBuilder.cs" />
     <Compile Include="NewNetwork\HighwayHelper.cs" />
     <Compile Include="NewNetwork\OneWay4L\OneWay4LBuilder.cs" />
@@ -299,6 +295,51 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram1.cd" />
+    <None Include="NewNetwork\Highway2L\Meshes\Ground_Trans.obj">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="NewNetwork\Highway2L\Meshes\Ground.obj">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="NewNetwork\Highway2L\Meshes\Ground_HwTrans_LOD.obj">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="NewNetwork\Highway2L\Meshes\Ground_RdTrans_LOD.obj">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="NewNetwork\Highway2L\Meshes\Ground_LOD.obj">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="NewNetwork\Highway6L\Meshes\Ground_HwTrans_LOD.obj">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="NewNetwork\Highway6L\Meshes\Ground_RdTrans_LOD.obj">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="NewNetwork\Highway6L\Meshes\Ground_LOD.obj">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="NewNetwork\Highway6L\Meshes\Ground.obj">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="NewNetwork\Highway6L\Meshes\Ground_Trans.obj">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="NewNetwork\OneWay1L\Meshes\Ground.obj">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="NewNetwork\OneWay1L\Meshes\Ground_Trans_LOD.obj">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="NewNetwork\OneWay1L\Meshes\Ground_LOD.obj">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="MeshImporter.csproj">
+      <Project>{97D70503-6567-41A1-92FC-66D813A53370}</Project>
+      <Name>MeshImporter</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

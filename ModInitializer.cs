@@ -6,7 +6,6 @@ using ColossalFramework;
 using ColossalFramework.Globalization;
 using NetworkExtensions.Framework;
 using UnityEngine;
-using NetworkExtensions.NewNetwork.Highway6L.Meshes;
 
 #if DEBUG
 using Debug = NetworkExtensions.Framework.Debug;
@@ -27,7 +26,7 @@ namespace NetworkExtensions
 
         void Start()
         {
-            Loading.QueueAction(TextureManager.instance.FindAndLoadAllTextures);
+            Loading.QueueAction(AssetManager.instance.FindAndLoadAllTextures);
         }
 
         void Awake()

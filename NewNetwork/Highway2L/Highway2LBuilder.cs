@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Linq;
 using NetworkExtensions.Framework;
-using NetworkExtensions.NewNetwork.Highway2L.Meshes;
-using UnityEngine;
 
 namespace NetworkExtensions.NewNetwork.Highway2L
 {
@@ -11,11 +9,11 @@ namespace NetworkExtensions.NewNetwork.Highway2L
         public int OptionsPriority { get { return 40; } }
         public int Priority { get { return 10; } }
 
-        public string PrefabName  { get { return "Oneway Road"; } }
-        public string Name        { get { return "Rural Highway"; } }
-        public string CodeName    { get { return "HIGHWAY_2L"; } }
+        public string PrefabName { get { return "Oneway Road"; } }
+        public string Name { get { return "Rural Highway"; } }
+        public string CodeName { get { return "HIGHWAY_2L"; } }
         public string Description { get { return "A two-lane, one-way road suitable for low to medium traffic between rural areas. Lanes going the opposite direction need to be built separately. Highway does not allow zoning next to it!"; } }
-        public string UICategory  { get { return "RoadsHighway"; } }
+        public string UICategory { get { return "RoadsHighway"; } }
 
         public string ThumbnailsPath { get { return @"NewNetwork\Highway2L\thumbnails.png"; } }
         public string InfoTooltipPath { get { return @"NewNetwork\Highway2L\infotooltip.png"; } }
@@ -77,12 +75,17 @@ namespace NetworkExtensions.NewNetwork.Highway2L
                 nodes1.m_flagsForbidden = NetNode.Flags.None;
                 nodes1.m_flagsRequired = NetNode.Flags.Transition;
 
-                var grndMesh = Highway2LMeshes.GetGroundData().CreateMesh("HIGHWAY_2L_GROUND");
-                var grndTransMesh = Highway2LMeshes.GetGroundTransitionData().CreateMesh("HIGHWAY_2L_GROUND_TRS");
+                segments0.SetMeshes
+                    (@"NewNetwork\Highway2L\Meshes\Ground.obj",
+                     @"NewNetwork\Highway2L\Meshes\Ground_LOD.obj");
 
-                segments0.m_mesh = grndMesh;
-                nodes0.m_mesh = grndMesh;
-                nodes1.m_mesh = grndTransMesh;
+                nodes0.SetMeshes
+                    (@"NewNetwork\Highway2L\Meshes\Ground.obj",
+                     @"NewNetwork\Highway2L\Meshes\Ground_HwTrans_LOD.obj");
+
+                nodes1.SetMeshes
+                    (@"NewNetwork\Highway2L\Meshes\Ground_Trans.obj",
+                     @"NewNetwork\Highway2L\Meshes\Ground_RdTrans_LOD.obj");
 
                 info.m_segments = new[] { segments0 };
                 info.m_nodes = new[] { nodes0, nodes1 };
@@ -115,11 +118,11 @@ namespace NetworkExtensions.NewNetwork.Highway2L
                         new TexturesSet
                            (@"NewNetwork\Highway2L\Textures\Elevated_Node__MainTex.png",
                             @"NewNetwork\Highway2L\Textures\Elevated_Node__AlphaMap.png"));
-                        // Lets leave the crossings there until we have a fix
-                        //new TexturesSet
-                        //   (@"NewNetwork\Highway2L\Textures\Elevated_NodeLOD__MainTex.png",
-                        //    @"NewNetwork\Highway2L\Textures\Elevated_NodeLOD__AlphaMap.png",
-                        //    @"NewNetwork\Highway2L\Textures\Elevated_NodeLOD__XYSMap.png"));
+                    // Lets leave the crossings there until we have a fix
+                    //new TexturesSet
+                    //   (@"NewNetwork\Highway2L\Textures\Elevated_NodeLOD__MainTex.png",
+                    //    @"NewNetwork\Highway2L\Textures\Elevated_NodeLOD__AlphaMap.png",
+                    //    @"NewNetwork\Highway2L\Textures\Elevated_NodeLOD__XYSMap.png"));
                     break;
 
                 case NetInfoVersion.Slope:
