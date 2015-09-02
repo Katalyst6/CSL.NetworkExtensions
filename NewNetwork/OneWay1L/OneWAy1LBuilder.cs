@@ -71,7 +71,6 @@ namespace NetworkExtensions.NewNetwork.OneWay1L
                 info.m_nodes = new[] { nodes0 };
             }
 
-
             ///////////////////////////
             // Texturing             //
             ///////////////////////////
@@ -121,7 +120,7 @@ namespace NetworkExtensions.NewNetwork.OneWay1L
             vehicleLane.m_width = 3.5f;
             vehicleLane.m_verticalOffset = -0.3f;
             vehicleLane.m_position = -1.25f;
-            vehicleLane.m_speedLimit = 0.7f;
+            vehicleLane.m_speedLimit *= 0.7f;
 
             parkingLane.m_width = 2.5f;
             parkingLane.m_verticalOffset = -0.3f;
