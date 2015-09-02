@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace MeshImporter
+namespace ObjUnity3D
 {
     public class OBJFace
     {

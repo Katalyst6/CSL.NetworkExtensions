@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Globalization;
 
-namespace MeshImporter
+namespace ObjUnity3D
 {
     public static class StringExt
     {

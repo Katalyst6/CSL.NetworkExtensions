@@ -4,7 +4,7 @@ using System.IO;
 using System.Linq;
 using UnityEngine;
 
-namespace MeshImporter
+namespace ObjUnity3D
 {
     public class OBJLoader
     {

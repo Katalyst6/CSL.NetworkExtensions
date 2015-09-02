@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace MeshImporter
+namespace ObjUnity3D
 {
     public class OBJMaterial
     {

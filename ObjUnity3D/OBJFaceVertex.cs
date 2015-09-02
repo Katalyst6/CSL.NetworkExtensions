@@ -1,4 +1,4 @@
-﻿namespace MeshImporter
+﻿namespace ObjUnity3D
 {
     public class OBJFaceVertex
     {

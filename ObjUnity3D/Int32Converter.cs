@@ -1,6 +1,6 @@
 ﻿using System.Runtime.InteropServices;
 
-namespace MeshImporter
+namespace ObjUnity3D
 {
     [StructLayout(LayoutKind.Explicit)]
     public struct Int32Converter

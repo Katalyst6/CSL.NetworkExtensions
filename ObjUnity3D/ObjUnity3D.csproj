@@ -8,7 +8,7 @@
     <ProjectGuid>{97D70503-6567-41A1-92FC-66D813A53370}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>MeshImporter</RootNamespace>
+    <RootNamespace>ObjUnity3D</RootNamespace>
     <AssemblyName>ObjUnity3D</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>

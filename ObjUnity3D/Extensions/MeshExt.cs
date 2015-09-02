@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using UnityEngine;
 
-namespace MeshImporter
+namespace ObjUnity3D
 {
     public static class MeshExt
     {
