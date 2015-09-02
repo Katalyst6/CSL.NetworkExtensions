@@ -55,7 +55,6 @@
   <ItemGroup>
     <Compile Include="Framework\Extensions\ItemClassExtensions.cs" />
     <Compile Include="Framework\Extensions\MeshExtensions.cs" />
-    <Compile Include="Framework\Extensions\ObjectCopyExtension.cs" />
     <Compile Include="Framework\Extensions\NodeExtensions.cs" />
     <Compile Include="Framework\Extensions\SegmentExtensions.cs" />
     <Compile Include="Framework\MeshData.cs" />
@@ -85,10 +84,6 @@
     <Compile Include="Framework\INetInfoBuilder.cs" />
     <Compile Include="Framework\Extensions\LocaleExtensions.cs" />
     <Compile Include="NewNetwork\Highway1L\Highway1LBuilder.cs" />
-    <Compile Include="NewNetwork\Highway2L\Meshes\Highway2LMeshes.Transition.cs" />
-    <Compile Include="NewNetwork\Highway2L\Meshes\Highway2LMeshes.cs" />
-    <Compile Include="NewNetwork\OneWay1L\Meshes\OneWay1LMeshes.Transition.cs" />
-    <Compile Include="NewNetwork\OneWay1L\Meshes\OneWay1LMeshes.cs" />
     <Compile Include="NewNetwork\OneWay1L\OneWay1LBuilder.cs" />
     <Compile Include="NewNetwork\SmallAvenue4L\SmallAvenue4LBuilder.cs" />
     <Compile Include="NewNetwork\HighwayHelper.cs" />

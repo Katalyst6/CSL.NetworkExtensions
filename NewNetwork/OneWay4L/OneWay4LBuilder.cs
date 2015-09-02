@@ -85,7 +85,7 @@ namespace NetworkExtensions.NewNetwork.OneWay4L
                 segments0.m_forwardForbidden = NetSegment.Flags.None;
                 segments0.m_forwardRequired = NetSegment.Flags.None;
 
-                var nodes1 = nodes0.Clone();
+                var nodes1 = nodes0.ShallowClone();
 
                 nodes0.m_flagsForbidden = NetNode.Flags.Transition;
                 nodes0.m_flagsRequired = NetNode.Flags.None;
