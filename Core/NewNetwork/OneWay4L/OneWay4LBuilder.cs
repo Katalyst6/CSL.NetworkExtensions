@@ -7,10 +7,11 @@ namespace NetworkExtensions.NewNetwork.OneWay4L
     public class OneWay4LBuilder : ModPart, INetInfoBuilder
     {
         public int OptionsPriority { get { return 7; } }
-        public int Priority { get { return 7; } }
+        public int Priority { get { return 15; } }
 
         public string PrefabName { get { return "Large Oneway"; } }
         public string Name { get { return "Medium Oneway"; } }
+        public string DisplayName { get { return "Four-Lane Oneway"; } }
         public string CodeName { get { return "ONEWAY_4L"; } }
         public string Description { get { return "A four-lane, one-way road suitable for medium traffic moving in one direction. This road is zonable."; } }
         public string UICategory { get { return "RoadsMedium"; } }

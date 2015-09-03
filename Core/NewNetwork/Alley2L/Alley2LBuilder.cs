@@ -13,6 +13,7 @@ namespace NetworkExtensions.NewNetwork.Alley2L
 
         public string PrefabName { get { return "Basic Road"; } }
         public string Name { get { return "Alley2L"; } }
+        public string DisplayName { get { return "Two-Lane Alley"; } }
         public string CodeName { get { return "Alley_2L"; } }
         public string Description { get { return "A two-lane, tight Alley suitable for neighborhood traffic. This road is zonable."; } }
         public string UICategory { get { return "RoadsSmall"; } }

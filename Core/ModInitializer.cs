@@ -74,7 +74,7 @@ namespace NetworkExtensions
                 }
             }
 
-            if (!_initializedNetworkInfo)
+            if (!_initializedNetworkInfo & s_initializedLocalization)
             {
                 if (ValidateNetworkPrerequisites(NewRoads))
                 {

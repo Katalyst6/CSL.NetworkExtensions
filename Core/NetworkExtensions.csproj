@@ -61,6 +61,7 @@
     <Compile Include="NewNetwork\Alley2L\Meshes\Alley2LMeshes.cs" />
     <Compile Include="NewNetwork\Alley2L\Meshes\Alley2LMeshes.Transition.cs" />
     <Compile Include="NewNetwork\Alley2L\Alley2LBuilder.cs" />
+    <Compile Include="NewNetwork\LargeAvenue6LM\LargeAvenue6LMBuilder.cs" />
     <Compile Include="NewNetwork\MediumAvenue4L\MediumAvenue4LBuilder.cs" />
     <Compile Include="NewNetwork\MediumAvenue4LTL\MediumAvenue4LTLBuilder.cs" />
     <Compile Include="NewNetwork\MediumAvenueHelper.cs" />
@@ -114,6 +115,12 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="NewNetwork\Alley2L\thumbnails.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="NewNetwork\LargeAvenue6LM\infotooltip.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="NewNetwork\LargeAvenue6LM\thumbnails.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="NewNetwork\MediumAvenue4L\infotooltip.png">
@@ -327,6 +334,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="CompatibilityTests\" />
+    <Folder Include="NewNetwork\LargeAvenue6LM\Textures\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram1.cd" />
@@ -375,13 +383,9 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>rd /s /q  "%25LOCALAPPDATA%25\Colossal Order\Cities_Skylines\Addons\Mods\$(ProjectName)"
-mkdir "%25LOCALAPPDATA%25\Colossal Order\Cities_Skylines\Addons\Mods\$(ProjectName)"
-xcopy /y /e "$(ProjectDir)bin\$(ConfigurationName)" "%25LOCALAPPDATA%25\Colossal Order\Cities_Skylines\Addons\Mods\$(ProjectName)"
-rd /s /q  "%25LOCALAPPDATA%25\Colossal Order\Cities_Skylines\Addons\Mods\$(ProjectName)"
-rd /s /q  "C:\Program Files (x86)\Steam\SteamApps\workshop\content\255710\478820060"
-mkdir "C:\Program Files (x86)\Steam\SteamApps\workshop\content\255710\478820060"
-xcopy /y /e "$(ProjectDir)bin\$(ConfigurationName)" "C:\Program Files (x86)\Steam\SteamApps\workshop\content\255710\478820060"</PostBuildEvent>
+    <PostBuildEvent>rd /s /q  "d:\jeux\Steam\SteamApps\workshop\content\255710\478820060"
+mkdir "d:\jeux\Steam\SteamApps\workshop\content\255710\478820060"
+xcopy /y /e "$(ProjectDir)bin\$(ConfigurationName)" "d:\jeux\Steam\SteamApps\workshop\content\255710\478820060"</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

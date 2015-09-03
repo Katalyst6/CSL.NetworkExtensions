@@ -11,6 +11,7 @@ namespace NetworkExtensions.NewNetwork.SmallAvenue4L
 
         public string PrefabName { get { return "Basic Road"; } }
         public string Name { get { return "Small Avenue"; } }
+        public string DisplayName { get { return "Small Four-Lane Road"; } }
         public string CodeName { get { return "SMALLROAD_4L"; } }
         public string Description { get { return "A four-lane road without parkings spaces. Supports medium traffic."; } }
         public string UICategory { get { return "RoadsMedium"; } }

@@ -11,9 +11,10 @@ namespace NetworkExtensions.NewNetwork.MediumAvenue4LTL
         public int Priority { get { return 5; } }
 
         public string PrefabName { get { return "Large Road"; } }
-        public string Name { get { return "Medium Avenue with Turning Lane"; } }
+        public string Name { get { return "Medium Avenue TL"; } }
+        public string DisplayName { get { return "Four-Lane Road with Turning Lane"; } }
         public string CodeName { get { return "MEDIUMAVENUE_4LTL"; } }
-        public string Description { get { return "A four-lane road with turning lanes. Supports medium traffic. Note: The turning lane goes in both direction, collisions might happen!"; } }
+        public string Description { get { return "A four-lane road with turning lanes and parking spaces. Supports medium traffic. Note: The turning lane goes in both direction, collisions might happen!"; } }
         public string UICategory { get { return "RoadsMedium"; } }
         
         public string ThumbnailsPath    { get { return @"NewNetwork\MediumAvenue4LTL\thumbnails.png"; } }

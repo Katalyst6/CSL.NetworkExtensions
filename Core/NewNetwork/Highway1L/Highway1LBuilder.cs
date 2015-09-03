@@ -16,6 +16,7 @@ namespace NetworkExtensions.NewNetwork.Highway1L
 
         public string PrefabName { get { return "Basic Road"; } }
         public string Name { get { return "Small Rural Highway"; } }
+        public string DisplayName { get { return "Rural Highway"; } }
         public string CodeName { get { return "HIGHWAY_1L"; } }
         public string Description { get { return "A two-lane, two-way road suitable for low traffic between rural areas. Highway does not allow zoning next to it!"; } }
         public string UICategory { get { return "RoadsHighway"; } }

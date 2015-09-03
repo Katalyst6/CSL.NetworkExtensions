@@ -12,6 +12,7 @@ namespace NetworkExtensions.Framework
         int OptionsPriority { get; }
 
         string Name { get; }
+        string DisplayName { get; }
     }
 
     public static class ModPartExtensions

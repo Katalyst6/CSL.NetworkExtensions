@@ -118,7 +118,7 @@ namespace NetworkExtensions.Framework
             {
                 m_Identifier = "NET_TITLE",
                 m_Key = builder.Name
-            }, builder.Name);
+            }, builder.DisplayName);
 
             locale.AddLocalizedString(new Locale.Key()
             {

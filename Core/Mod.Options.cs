@@ -28,7 +28,7 @@ namespace NetworkExtensions
                 }
 
                 uIHelperBase.AddCheckbox(
-                    part.Name, 
+                    part.DisplayName, 
                     Options.Instance.PartsEnabled[partName], 
                     isChecked =>
                     {

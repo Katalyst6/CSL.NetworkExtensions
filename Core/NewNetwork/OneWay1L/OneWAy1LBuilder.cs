@@ -11,6 +11,7 @@ namespace NetworkExtensions.NewNetwork.OneWay1L
 
         public string PrefabName { get { return "Oneway Road"; } }
         public string Name { get { return "Small Oneway"; } }
+        public string DisplayName { get { return "Single-Lane Oneway"; } }
         public string CodeName { get { return "ONEWAY_1L"; } }
         public string Description { get { return "A one-lane, one-way road suitable for local traffic moving in one direction. This road is zonable."; } }
         public string UICategory { get { return "RoadsSmall"; } }

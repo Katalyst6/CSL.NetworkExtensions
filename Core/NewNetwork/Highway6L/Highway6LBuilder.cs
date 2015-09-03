@@ -11,6 +11,7 @@ namespace NetworkExtensions.NewNetwork.Highway6L
 
         public string PrefabName  { get { return "Large Oneway"; } }
         public string Name        { get { return "Large Highway"; } }
+        public string DisplayName { get { return "Six-Lane Highway"; } }
         public string CodeName    { get { return "HIGHWAY_6L"; } }
         public string Description { get { return "A six-lane, one-way road suitable for very high and dense traffic between metropolitan areas. Lanes going the opposite direction need to be built separately. Highway does not allow zoning next to it!"; } }
         public string UICategory  { get { return "RoadsHighway"; } }

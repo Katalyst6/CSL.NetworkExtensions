@@ -6,15 +6,16 @@ using NetworkExtensions.Framework;
 
 namespace NetworkExtensions.NewNetwork.MediumAvenue4L
 {
-    public class MediumAvenue4LBuilder : ModPart, INetInfoBuilder
+    public class MediumAvenue4LBuilder : ModPart, INetInfoBuilder, INetInfoModifier
     {
         public int OptionsPriority { get { return 20; } }
         public int Priority { get { return 4; } }
 
         public string PrefabName { get { return "Large Road"; } }
         public string Name { get { return "Medium Avenue"; } }
+        public string DisplayName { get { return "Four-Lane Road"; } }
         public string CodeName { get { return "MEDIUMAVENUE_4L"; } }
-        public string Description { get { return "A four-lane road. Supports medium traffic."; } }
+        public string Description { get { return "A four-lane road with parking spaces. Supports medium traffic."; } }
         public string UICategory { get { return "RoadsMedium"; } }
         
         public string ThumbnailsPath    { get { return @"NewNetwork\MediumAvenue4L\thumbnails.png"; } }
@@ -131,6 +132,12 @@ namespace NetworkExtensions.NewNetwork.MediumAvenue4L
                     playerNetAI.m_maintenanceCost = mrPlayerNetAI.m_maintenanceCost * 9 / 10; // 10% decrease
                 } 
             }
+        }
+
+        public void ModifyExistingNetInfo()
+        {
+            //var mediumRoadInfo = ToolsCSL.FindPrefab<NetInfo>("Medium Road");
+            //highwayRampInfo.m_UIPriority = highwayRampInfo.m_UIPriority + 1;
         }
     }
 }
