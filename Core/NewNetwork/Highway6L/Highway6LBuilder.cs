@@ -102,13 +102,15 @@ namespace NetworkExtensions.NewNetwork.Highway6L
                     info.SetSegmentsTexture(
                         new TexturesSet(
                             @"NewNetwork\Highway6L\Textures\Ground_Segment__MainTex.png",
-                            @"NewNetwork\Highway6L\Textures\Ground_Segment__APRMap.png"));
-                        // TODO: Make new Segment LOD here
+                            @"NewNetwork\Highway6L\Textures\Ground_Segment__APRMap.png"),
+                        new TexturesSet
+                           (@"NewNetwork\Highway6L\Textures\Ground_SegmentLOD__MainTex.png",
+                            @"NewNetwork\Highway6L\Textures\Ground_SegmentLOD__APRMap.png",
+                            @"NewNetwork\Highway6L\Textures\Ground_SegmentLOD__XYSMap.png"));
                     info.SetNodesTexture(
                         new TexturesSet
                            (@"NewNetwork\Highway6L\Textures\Ground_Node__MainTex.png",
                             @"NewNetwork\Highway6L\Textures\Ground_Node__APRMap.png"),
-                        // TODO: Make new Node LOD here
                         new TexturesSet
                            (@"NewNetwork\Highway6L\Textures\Ground_NodeLOD__MainTex.png",
                             @"NewNetwork\Highway6L\Textures\Ground_NodeLOD__APRMap.png",
