@@ -347,19 +347,19 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram1.cd" />
+    <None Include="NewNetwork\Highway2L\Meshes\Ground_Node_LOD.obj">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="NewNetwork\Highway2L\Meshes\Ground_Trans.obj">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="NewNetwork\Highway2L\Meshes\Ground.obj">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="NewNetwork\Highway2L\Meshes\Ground_HwTrans_LOD.obj">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="NewNetwork\Highway2L\Meshes\Ground_RdTrans_LOD.obj">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
     <None Include="NewNetwork\Highway2L\Meshes\Ground_LOD.obj">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="NewNetwork\Highway2L\Meshes\Ground_Trans_LOD.obj">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="NewNetwork\Highway6L\Meshes\Ground.obj">

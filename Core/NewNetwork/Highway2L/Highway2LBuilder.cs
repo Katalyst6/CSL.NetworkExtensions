@@ -82,11 +82,11 @@ namespace NetworkExtensions.NewNetwork.Highway2L
 
                 nodes0.SetMeshes
                     (@"NewNetwork\Highway2L\Meshes\Ground.obj",
-                     @"NewNetwork\Highway2L\Meshes\Ground_HwTrans_LOD.obj");
+                     @"NewNetwork\Highway2L\Meshes\Ground_Node_LOD.obj");
 
                 nodes1.SetMeshes
                     (@"NewNetwork\Highway2L\Meshes\Ground_Trans.obj",
-                     @"NewNetwork\Highway2L\Meshes\Ground_RdTrans_LOD.obj");
+                     @"NewNetwork\Highway2L\Meshes\Ground_Trans_LOD.obj");
 
                 info.m_segments = new[] { segments0 };
                 info.m_nodes = new[] { nodes0, nodes1 };
