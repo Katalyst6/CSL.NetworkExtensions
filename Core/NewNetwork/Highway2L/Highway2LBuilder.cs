@@ -102,7 +102,11 @@ namespace NetworkExtensions.NewNetwork.Highway2L
                     info.SetSegmentsTexture(
                         new TexturesSet
                            (@"NewNetwork\Highway2L\Textures\Ground_Segment__MainTex.png",
-                            @"NewNetwork\Highway2L\Textures\Ground_Segment__AlphaMap.png"));
+                            @"NewNetwork\Highway2L\Textures\Ground_Segment__AlphaMap.png"),
+                        new TexturesSet
+                           (@"NewNetwork\Highway2L\Textures\Ground_SegmentLOD__MainTex.png",
+                            @"NewNetwork\Highway2L\Textures\Ground_SegmentLOD__AlphaMap.png",
+                            @"NewNetwork\Highway2L\Textures\Ground_SegmentLOD__XYSMap.png"));
                     info.SetNodesTexture(
                         new TexturesSet
                            (@"NewNetwork\Highway2L\Textures\Ground_Node__MainTex.png",
