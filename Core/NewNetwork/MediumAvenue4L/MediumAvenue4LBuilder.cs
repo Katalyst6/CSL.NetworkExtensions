@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using ColossalFramework;
+using ColossalFramework.Globalization;
 using NetworkExtensions.Framework;
 
 namespace NetworkExtensions.NewNetwork.MediumAvenue4L
@@ -136,8 +137,22 @@ namespace NetworkExtensions.NewNetwork.MediumAvenue4L
 
         public void ModifyExistingNetInfo()
         {
-            //var mediumRoadInfo = ToolsCSL.FindPrefab<NetInfo>("Medium Road");
-            //highwayRampInfo.m_UIPriority = highwayRampInfo.m_UIPriority + 1;
+            //var localeManager = SingletonLite<LocaleManager>.instance;
+            //var localeField = typeof(LocaleManager).GetFieldByName("m_Locale");
+            //var LocalizedStringsField = typeof(Locale).GetFieldByName("m_LocalizedStrings");
+            //var locale = (Locale)localeField.GetValue(localeManager);
+            //var localizedStrings = (Dictionary<Locale.Key, string>)LocalizedStringsField.GetValue(locale);
+
+            //var kvp2 =
+            //    localizedStrings
+            //    .FirstOrDefault(kvp => 
+            //        kvp.Key.m_Identifier == "NET_TITLE" &&
+            //        kvp.Key.m_Key == "Medium Road");
+
+            //if (kvp2 != null)
+            //{
+            //    kvp2.Value =  "Four-Lane Road with Median";
+            //}
         }
     }
 }
