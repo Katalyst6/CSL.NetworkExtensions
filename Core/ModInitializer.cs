@@ -173,7 +173,8 @@ namespace NetworkExtensions
 
                     foreach (var builder in Mod.NetInfoBuilders)
                     {
-                        builder.DefineLocalization(locale);
+                        locale.CreateNetTitleLocalizedString(builder.Name, builder.DisplayName);
+                        locale.CreateNetDescriptionLocalizedString(builder.Name, builder.Description);
                     }
                 }
                 catch (Exception ex)
