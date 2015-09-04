@@ -129,12 +129,19 @@ namespace NetworkExtensions.NewNetwork.MediumAvenue4LTL
                     playerNetAI.m_constructionCost = mrPlayerNetAI.m_constructionCost * 9 / 10; // 10% decrease
                     playerNetAI.m_maintenanceCost = mrPlayerNetAI.m_maintenanceCost * 9 / 10; // 10% decrease
                 } 
-                
+
+                var mrRoadBaseAI = mediumRoadInfo.GetComponent<RoadBaseAI>();
                 var roadBaseAI = info.GetComponent<RoadBaseAI>();
 
                 if (roadBaseAI != null)
                 {
                     roadBaseAI.m_trafficLights = false;
+                }
+
+                if (mrRoadBaseAI != null && roadBaseAI != null)
+                {
+                    roadBaseAI.m_noiseAccumulation = mrRoadBaseAI.m_noiseAccumulation;
+                    roadBaseAI.m_noiseRadius = mrRoadBaseAI.m_noiseRadius;
                 }
             }
         }

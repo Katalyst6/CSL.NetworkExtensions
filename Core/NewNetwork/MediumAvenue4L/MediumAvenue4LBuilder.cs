@@ -131,28 +131,37 @@ namespace NetworkExtensions.NewNetwork.MediumAvenue4L
                 {
                     playerNetAI.m_constructionCost = mrPlayerNetAI.m_constructionCost * 9 / 10; // 10% decrease
                     playerNetAI.m_maintenanceCost = mrPlayerNetAI.m_maintenanceCost * 9 / 10; // 10% decrease
-                } 
+                }
+
+                var mrRoadBaseAI = mediumRoadInfo.GetComponent<RoadBaseAI>();
+                var roadBaseAI = info.GetComponent<RoadBaseAI>();
+
+                if (mrRoadBaseAI != null && roadBaseAI != null)
+                {
+                    roadBaseAI.m_noiseAccumulation = mrRoadBaseAI.m_noiseAccumulation;
+                    roadBaseAI.m_noiseRadius = mrRoadBaseAI.m_noiseRadius;
+                }
             }
         }
 
         public void ModifyExistingNetInfo()
         {
-            //var localeManager = SingletonLite<LocaleManager>.instance;
-            //var localeField = typeof(LocaleManager).GetFieldByName("m_Locale");
-            //var LocalizedStringsField = typeof(Locale).GetFieldByName("m_LocalizedStrings");
-            //var locale = (Locale)localeField.GetValue(localeManager);
-            //var localizedStrings = (Dictionary<Locale.Key, string>)LocalizedStringsField.GetValue(locale);
+            var localeManager = SingletonLite<LocaleManager>.instance;
+            var localeField = typeof(LocaleManager).GetFieldByName("m_Locale");
+            var localizedStringsField = typeof(Locale).GetFieldByName("m_LocalizedStrings");
+            var locale = (Locale)localeField.GetValue(localeManager);
+            var localizedStrings = (Dictionary<Locale.Key, string>)localizedStringsField.GetValue(locale);
 
-            //var kvp2 =
-            //    localizedStrings
-            //    .FirstOrDefault(kvp => 
-            //        kvp.Key.m_Identifier == "NET_TITLE" &&
-            //        kvp.Key.m_Key == "Medium Road");
+            var kvp =
+                localizedStrings
+                .FirstOrDefault(kvpInternal =>
+                    kvpInternal.Key.m_Identifier == "NET_TITLE" &&
+                    kvpInternal.Key.m_Key == "Medium Road");
 
-            //if (kvp2 != null)
-            //{
-            //    kvp2.Value =  "Four-Lane Road with Median";
-            //}
+            if (!Equals(kvp, default(KeyValuePair<Locale.Key, string>)))
+            {
+                localizedStrings[kvp.Key] = "Four-Lane Road with Median";
+            }
         }
     }
 }
