@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using ColossalFramework;
+using ColossalFramework.Globalization;
 using NetworkExtensions.Framework;
 
 namespace NetworkExtensions.NewNetwork.MediumAvenue4L
@@ -62,7 +63,15 @@ namespace NetworkExtensions.NewNetwork.MediumAvenue4L
                     info.SetSegmentsTexture(
                         new TexturesSet
                            (@"NewNetwork\MediumAvenue4L\Textures\Ground_Segment__MainTex.png",
-                            @"NewNetwork\MediumAvenue4L\Textures\Ground_Segment__AlphaMap.png"));
+                            @"NewNetwork\MediumAvenue4L\Textures\Ground_Segment__AlphaMap.png"),
+                        new TexturesSet
+                           (@"NewNetwork\MediumAvenue4L\Textures\Ground_SegmentLOD__MainTex.png",
+                            @"NewNetwork\MediumAvenue4L\Textures\Ground_SegmentLOD__AlphaMap.png",
+                            @"NewNetwork\MediumAvenue4L\Textures\Ground_SegmentLOD__XYSMap.png"));
+                    info.SetNodesTexture(
+                        new TexturesSet
+                           (null,
+                            @"NewNetwork\MediumAvenue4L\Textures\Ground_Node__AlphaMap.png"));
                     break;
             }
 
@@ -130,14 +139,37 @@ namespace NetworkExtensions.NewNetwork.MediumAvenue4L
                 {
                     playerNetAI.m_constructionCost = mrPlayerNetAI.m_constructionCost * 9 / 10; // 10% decrease
                     playerNetAI.m_maintenanceCost = mrPlayerNetAI.m_maintenanceCost * 9 / 10; // 10% decrease
-                } 
+                }
+
+                var mrRoadBaseAI = mediumRoadInfo.GetComponent<RoadBaseAI>();
+                var roadBaseAI = info.GetComponent<RoadBaseAI>();
+
+                if (mrRoadBaseAI != null && roadBaseAI != null)
+                {
+                    roadBaseAI.m_noiseAccumulation = mrRoadBaseAI.m_noiseAccumulation;
+                    roadBaseAI.m_noiseRadius = mrRoadBaseAI.m_noiseRadius;
+                }
             }
         }
 
         public void ModifyExistingNetInfo()
         {
-            //var mediumRoadInfo = ToolsCSL.FindPrefab<NetInfo>("Medium Road");
-            //highwayRampInfo.m_UIPriority = highwayRampInfo.m_UIPriority + 1;
+            var localeManager = SingletonLite<LocaleManager>.instance;
+            var localeField = typeof(LocaleManager).GetFieldByName("m_Locale");
+            var localizedStringsField = typeof(Locale).GetFieldByName("m_LocalizedStrings");
+            var locale = (Locale)localeField.GetValue(localeManager);
+            var localizedStrings = (Dictionary<Locale.Key, string>)localizedStringsField.GetValue(locale);
+
+            var kvp =
+                localizedStrings
+                .FirstOrDefault(kvpInternal =>
+                    kvpInternal.Key.m_Identifier == "NET_TITLE" &&
+                    kvpInternal.Key.m_Key == "Medium Road");
+
+            if (!Equals(kvp, default(KeyValuePair<Locale.Key, string>)))
+            {
+                localizedStrings[kvp.Key] = "Four-Lane Road with Median";
+            }
         }
     }
 }

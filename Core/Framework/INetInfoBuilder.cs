@@ -1,21 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using ColossalFramework;
+﻿using ColossalFramework;
 using ColossalFramework.Globalization;
-using ColossalFramework.UI;
-using UnityEngine;
-using Object = UnityEngine.Object;
+using System;
+using System.Collections.Generic;
 
 namespace NetworkExtensions.Framework
 {
     public interface INetInfoBuilder : IModPart
     {
         int Priority { get; }
-
-        string PrefabName { get; }
         string CodeName { get; }
-
         string Description { get; }
 
         string UICategory { get; }
@@ -47,7 +40,7 @@ namespace NetworkExtensions.Framework
 
 
             // Ground version--------------------------------------------------
-            var mainInfo = builder.BuildVersion(NetInfoVersion.Ground, null, newNetInfos);
+            var mainInfo = builder.BuildVersion(NetInfoVersion.Ground, newNetInfos);
             mainInfo.m_UIPriority = builder.Priority;
 
             if (!builder.CodeName.IsNullOrWhiteSpace() && !builder.ThumbnailsPath.IsNullOrWhiteSpace())
@@ -68,17 +61,17 @@ namespace NetworkExtensions.Framework
             // Other versions -------------------------------------------------
             var mainInfoAI = mainInfo.GetComponent<RoadAI>();
 
-            builder.BuildVersion(NetInfoVersion.Elevated, info => mainInfoAI.m_elevatedInfo = info, newNetInfos);
-            builder.BuildVersion(NetInfoVersion.Bridge, info => mainInfoAI.m_bridgeInfo = info, newNetInfos);
-            builder.BuildVersion(NetInfoVersion.Tunnel, info => mainInfoAI.m_tunnelInfo = info, newNetInfos);
-            builder.BuildVersion(NetInfoVersion.Slope, info => mainInfoAI.m_slopeInfo = info, newNetInfos);
+            mainInfoAI.m_elevatedInfo = builder.BuildVersion(NetInfoVersion.Elevated, newNetInfos);
+            mainInfoAI.m_bridgeInfo = builder.BuildVersion(NetInfoVersion.Bridge, newNetInfos);
+            mainInfoAI.m_tunnelInfo = builder.BuildVersion(NetInfoVersion.Tunnel, newNetInfos);
+            mainInfoAI.m_slopeInfo = builder.BuildVersion(NetInfoVersion.Slope, newNetInfos);
 
             Debug.Log(string.Format("NExt: Initialized {0}", builder.Name));
 
             return newNetInfos;
         }
 
-        private static NetInfo BuildVersion(this INetInfoBuilder builder, NetInfoVersion version, Action<NetInfo> assign, ICollection<NetInfo> holdingCollection)
+        private static NetInfo BuildVersion(this INetInfoBuilder builder, NetInfoVersion version, ICollection<NetInfo> holdingCollection)
         {
             if (builder.SupportedVersions.HasFlag(version))
             {
@@ -92,39 +85,14 @@ namespace NetworkExtensions.Framework
                 info.SetUICategory(builder.UICategory);
                 builder.BuildUp(info, version);
 
-                if (assign != null)
-                {
-                    assign(info);
-                }
-
                 holdingCollection.Add(info);
 
                 return info;
             }
             else
             {
-                if (assign != null)
-                {
-                    assign(null);
-                }
+                return null;
             }
-
-            return null;
-        }
-
-        public static void DefineLocalization(this INetInfoBuilder builder, Locale locale)
-        {
-            locale.AddLocalizedString(new Locale.Key
-            {
-                m_Identifier = "NET_TITLE",
-                m_Key = builder.Name
-            }, builder.DisplayName);
-
-            locale.AddLocalizedString(new Locale.Key()
-            {
-                m_Identifier = "NET_DESC",
-                m_Key = builder.Name
-            }, builder.Description);
         }
 
         private static string GetNewName(this INetInfoBuilder builder, NetInfoVersion version)

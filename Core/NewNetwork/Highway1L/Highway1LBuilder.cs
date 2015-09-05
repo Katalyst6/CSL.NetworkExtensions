@@ -87,11 +87,11 @@ namespace NetworkExtensions.NewNetwork.Highway1L
 
                 nodes0.SetMeshes
                     (@"NewNetwork\Highway2L\Meshes\Ground.obj",
-                     @"NewNetwork\Highway2L\Meshes\Ground_HwTrans_LOD.obj");
+                     @"NewNetwork\Highway2L\Meshes\Ground_Node_LOD.obj");
 
                 nodes1.SetMeshes
                     (@"NewNetwork\Highway2L\Meshes\Ground_Trans.obj",
-                     @"NewNetwork\Highway2L\Meshes\Ground_RdTrans_LOD.obj");
+                     @"NewNetwork\Highway2L\Meshes\Ground_Trans_LOD.obj");
 
                 info.m_segments = new[] { segments0 };
                 info.m_nodes = new[] { nodes0, nodes1 };
@@ -107,15 +107,19 @@ namespace NetworkExtensions.NewNetwork.Highway1L
                     info.SetSegmentsTexture(
                         new TexturesSet
                            (@"NewNetwork\Highway1L\Textures\Ground_Segment__MainTex.png",
-                            @"NewNetwork\Highway1L\Textures\Ground_Segment__AlphaMap.png"));
+                            @"NewNetwork\Highway1L\Textures\Ground_Segment__AlphaMap.png"),
+                        new TexturesSet
+                           (@"NewNetwork\Highway1L\Textures\Ground_SegmentLOD__MainTex.png",
+                            @"NewNetwork\Highway1L\Textures\Ground_SegmentLOD__AlphaMap.png",
+                            @"NewNetwork\Highway1L\Textures\Ground_SegmentLOD__XYSMap.png"));
                     info.SetNodesTexture(
                         new TexturesSet
                            (@"NewNetwork\Highway1L\Textures\Ground_Node__MainTex.png",
                             @"NewNetwork\Highway1L\Textures\Ground_Node__AlphaMap.png"),
                         new TexturesSet
-                           (@"NewNetwork\Highway2L\Textures\Ground_NodeLOD__MainTex.png",
-                            @"NewNetwork\Highway2L\Textures\Ground_NodeLOD__AlphaMap.png",
-                            @"NewNetwork\Highway2L\Textures\Ground_NodeLOD__XYSMap.png"));
+                           (@"NewNetwork\Highway1L\Textures\Ground_NodeLOD__MainTex.png",
+                            @"NewNetwork\Highway1L\Textures\Ground_NodeLOD__AlphaMap.png",
+                            @"NewNetwork\Highway1L\Textures\Ground_NodeLOD__XYSMap.png"));
                     break;
 
                 case NetInfoVersion.Elevated:

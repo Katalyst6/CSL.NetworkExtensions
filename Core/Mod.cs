@@ -112,6 +112,7 @@ namespace NetworkExtensions
                             part.IsEnabled = Options.Instance.IsPartEnabled(part);
                             return part;
                         })
+                        .OrderBy(p => p.OptionsPriority)
                         .ToArray();
                 }
 
