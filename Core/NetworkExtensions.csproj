@@ -117,6 +117,24 @@
     <Content Include="NewNetwork\Alley2L\thumbnails.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="NewNetwork\Highway1L\Textures\Ground_NodeLOD__AlphaMap.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="NewNetwork\Highway1L\Textures\Ground_NodeLOD__MainTex.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="NewNetwork\Highway1L\Textures\Ground_NodeLOD__XYSMap.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="NewNetwork\Highway1L\Textures\Ground_SegmentLOD__AlphaMap.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="NewNetwork\Highway1L\Textures\Ground_SegmentLOD__MainTex.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="NewNetwork\Highway1L\Textures\Ground_SegmentLOD__XYSMap.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="NewNetwork\Highway2L\Textures\Ground_SegmentLOD__AlphaMap.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

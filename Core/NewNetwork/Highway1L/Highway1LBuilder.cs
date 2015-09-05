@@ -62,7 +62,7 @@ namespace NetworkExtensions.NewNetwork.Highway1L
             if (version == NetInfoVersion.Ground)
             {
                 info.m_surfaceLevel = 0;
-                info.m_class = highwayInfo.m_class;
+                info.m_class = highwayInfo.m_class.Clone("RuralHighway");
 
                 var segments0 = info.m_segments[0];
                 var nodes0 = info.m_nodes[0];
@@ -107,15 +107,19 @@ namespace NetworkExtensions.NewNetwork.Highway1L
                     info.SetSegmentsTexture(
                         new TexturesSet
                            (@"NewNetwork\Highway1L\Textures\Ground_Segment__MainTex.png",
-                            @"NewNetwork\Highway1L\Textures\Ground_Segment__AlphaMap.png"));
+                            @"NewNetwork\Highway1L\Textures\Ground_Segment__AlphaMap.png"),
+                        new TexturesSet
+                           (@"NewNetwork\Highway1L\Textures\Ground_SegmentLOD__MainTex.png",
+                            @"NewNetwork\Highway1L\Textures\Ground_SegmentLOD__AlphaMap.png",
+                            @"NewNetwork\Highway1L\Textures\Ground_SegmentLOD__XYSMap.png"));
                     info.SetNodesTexture(
                         new TexturesSet
                            (@"NewNetwork\Highway1L\Textures\Ground_Node__MainTex.png",
                             @"NewNetwork\Highway1L\Textures\Ground_Node__AlphaMap.png"),
                         new TexturesSet
-                           (@"NewNetwork\Highway2L\Textures\Ground_NodeLOD__MainTex.png",
-                            @"NewNetwork\Highway2L\Textures\Ground_NodeLOD__AlphaMap.png",
-                            @"NewNetwork\Highway2L\Textures\Ground_NodeLOD__XYSMap.png"));
+                           (@"NewNetwork\Highway1L\Textures\Ground_NodeLOD__MainTex.png",
+                            @"NewNetwork\Highway1L\Textures\Ground_NodeLOD__AlphaMap.png",
+                            @"NewNetwork\Highway1L\Textures\Ground_NodeLOD__XYSMap.png"));
                     break;
 
                 case NetInfoVersion.Elevated:
