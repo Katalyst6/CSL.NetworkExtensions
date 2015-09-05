@@ -66,7 +66,7 @@ namespace NetworkExtensions.NewNetwork.OneWay1L
 
                 nodes0.SetMeshes
                     (@"NewNetwork\OneWay1L\Meshes\Ground.obj",
-                     @"NewNetwork\OneWay1L\Meshes\Ground_Trans_LOD.obj");
+                     @"NewNetwork\OneWay1L\Meshes\Ground_Node_LOD.obj");
 
                 info.m_segments = new[] { segments0 };
                 info.m_nodes = new[] { nodes0 };
@@ -122,6 +122,10 @@ namespace NetworkExtensions.NewNetwork.OneWay1L
             vehicleLane.m_verticalOffset = -0.3f;
             vehicleLane.m_position = -1.25f;
             vehicleLane.m_speedLimit *= 0.7f;
+            foreach (var prop in vehicleLane.m_laneProps.m_props)
+            {
+                prop.m_position.x = 0.5f;
+            }
 
             parkingLane.m_width = 2.5f;
             parkingLane.m_verticalOffset = -0.3f;

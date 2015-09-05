@@ -58,8 +58,6 @@
     <Compile Include="Framework\Extensions\NodeExtensions.cs" />
     <Compile Include="Framework\Extensions\SegmentExtensions.cs" />
     <Compile Include="Framework\MeshData.cs" />
-    <Compile Include="NewNetwork\Alley2L\Meshes\Alley2LMeshes.cs" />
-    <Compile Include="NewNetwork\Alley2L\Meshes\Alley2LMeshes.Transition.cs" />
     <Compile Include="NewNetwork\Alley2L\Alley2LBuilder.cs" />
     <Compile Include="NewNetwork\LargeAvenue6LM\LargeAvenue6LMBuilder.cs" />
     <Compile Include="NewNetwork\MediumAvenue4L\MediumAvenue4LBuilder.cs" />
@@ -106,6 +104,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="NewNetwork\Alley2L\infotooltip.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="NewNetwork\Alley2L\Textures\Ground_Node__AlphaMap.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="NewNetwork\Alley2L\Textures\Ground_Node__MainTex.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="NewNetwork\Alley2L\Textures\Ground_Segment__AlphaMap.png">
@@ -347,6 +351,15 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram1.cd" />
+    <None Include="NewNetwork\Alley2L\Meshes\Ground.obj">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="NewNetwork\Alley2L\Meshes\Ground_LOD.obj">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="NewNetwork\Alley2L\Meshes\Ground_Node_LOD.obj">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="NewNetwork\Highway2L\Meshes\Ground_Trans.obj">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -377,10 +390,10 @@
     <None Include="NewNetwork\OneWay1L\Meshes\Ground.obj">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="NewNetwork\OneWay1L\Meshes\Ground_Trans_LOD.obj">
+    <None Include="NewNetwork\OneWay1L\Meshes\Ground_LOD.obj">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="NewNetwork\OneWay1L\Meshes\Ground_LOD.obj">
+    <None Include="NewNetwork\OneWay1L\Meshes\Ground_Node_LOD.obj">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>

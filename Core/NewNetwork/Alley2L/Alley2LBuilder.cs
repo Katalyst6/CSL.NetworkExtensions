@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Linq;
 using NetworkExtensions.Framework;
-using NetworkExtensions.NewNetwork.Alley2L.Meshes;
 using UnityEngine;
 
 namespace NetworkExtensions.NewNetwork.Alley2L
@@ -9,7 +8,7 @@ namespace NetworkExtensions.NewNetwork.Alley2L
     public class Alley2LBuilder : ModPart, INetInfoBuilder
     {
         public int OptionsPriority { get { return 1; } }
-        public int Priority { get { return 1; } }
+        public int Priority { get { return 40; } }
 
         public string PrefabName { get { return "Basic Road"; } }
         public string Name { get { return "Alley2L"; } }
@@ -51,14 +50,6 @@ namespace NetworkExtensions.NewNetwork.Alley2L
             ///////////////////////////
             // 3DModeling            //
             ///////////////////////////
-            //if (version == NetInfoVersion.Ground)
-            //{
-                //info.m_segments[0].m_mesh = (Mesh)Mesh.Instantiate(info.m_segments[0].m_lodMesh);
-                //info.m_nodes[0].m_mesh = (Mesh)Mesh.Instantiate(info.m_nodes[0].m_lodMesh);
-
-                //info.m_segments[0].m_mesh = OneWay1Ll.BuildMesh().CreateMesh("OW_1L_Segment0_Grnd");
-                //info.m_nodes[0].m_mesh = OneWay1LMeshes.BuildMesh().CreateMesh("OW_1L_Node0_Grnd");
-            //}
 
             if (version == NetInfoVersion.Ground)
             {
@@ -67,29 +58,16 @@ namespace NetworkExtensions.NewNetwork.Alley2L
                 var segments0 = info.m_segments[0];
                 var nodes0 = info.m_nodes[0];
 
-                segments0.m_backwardForbidden = NetSegment.Flags.None;
-                segments0.m_backwardRequired = NetSegment.Flags.None;
+                segments0.SetMeshes
+                    (@"NewNetwork\Alley2L\Meshes\Ground.obj",
+                     @"NewNetwork\Alley2L\Meshes\Ground_LOD.obj");
 
-                segments0.m_forwardForbidden = NetSegment.Flags.None;
-                segments0.m_forwardRequired = NetSegment.Flags.None;
-
-                var nodes1 = nodes0.ShallowClone();
-
-                nodes0.m_flagsForbidden = NetNode.Flags.Transition;
-                nodes0.m_flagsRequired = NetNode.Flags.None;
-
-                nodes1.m_flagsForbidden = NetNode.Flags.None;
-                nodes1.m_flagsRequired = NetNode.Flags.Transition;
-
-                var grndMesh = Alley2LMeshes.GetGroundData().CreateMesh("Alley2L_GROUND");
-                var grndTransMesh = Alley2LMeshes.GetGroundTransitionData().CreateMesh("Alley2L_GROUND_TRS");
-
-                segments0.m_mesh = grndMesh;
-                nodes0.m_mesh = grndMesh;
-                nodes1.m_mesh = grndTransMesh;
+                nodes0.SetMeshes
+                    (@"NewNetwork\Alley2L\Meshes\Ground.obj",
+                     @"NewNetwork\Alley2L\Meshes\Ground_Node_LOD.obj");
 
                 info.m_segments = new[] { segments0 };
-                info.m_nodes = new[] { nodes0, nodes1 };
+                info.m_nodes = new[] { nodes0 };
             }
 
             ///////////////////////////
@@ -104,8 +82,8 @@ namespace NetworkExtensions.NewNetwork.Alley2L
                             @"NewNetwork\Alley2L\Textures\Ground_Segment__AlphaMap.png"));
                     info.SetNodesTexture(
                         new TexturesSet
-                            (@"NewNetwork\Alley2L\Textures\Ground_Segment__MainTex.png",
-                             @"NewNetwork\Alley2L\Textures\Ground_Segment__AlphaMap.png"));
+                            (@"NewNetwork\Alley2L\Textures\Ground_Node__MainTex.png",
+                             @"NewNetwork\Alley2L\Textures\Ground_Node__AlphaMap.png"));
                     break;
             }
 
@@ -113,8 +91,8 @@ namespace NetworkExtensions.NewNetwork.Alley2L
             // Set up                //
             ///////////////////////////
             info.m_hasParkingSpaces = false;
-            info.m_halfWidth = 4.0f;
-            info.m_pavementWidth = 1f;
+            info.m_halfWidth = 4f;
+            info.m_pavementWidth = 2f;
 
             var vehicleLanes = info.m_lanes
                 .Where(l => l.m_laneType != NetInfo.LaneType.None)
@@ -127,22 +105,36 @@ namespace NetworkExtensions.NewNetwork.Alley2L
                 .OrderBy(l => l.m_similarLaneIndex)
                 .ToList();
 
-            var roadHalfWidth = 2.5f;
-            var pedWidth = 1.5f;
+            var parkingLanes = info.m_lanes
+                .Where(l => l.m_laneType == NetInfo.LaneType.Parking)
+                .ToList();
+
+            foreach (var parkingLane in parkingLanes)
+            {
+                parkingLane.m_laneType = NetInfo.LaneType.None;
+            }
+
+            var roadHalfWidth = 2f;
+            var pedWidth = 2f;
 
             for (var i = 0; i < vehicleLanes.Count; i++)
             {
                 var multiplier = vehicleLanes[i].m_position / Math.Abs(vehicleLanes[i].m_position);
                 vehicleLanes[i].m_width = roadHalfWidth;
                 vehicleLanes[i].m_position = multiplier * 0.5f * roadHalfWidth;
+                vehicleLanes[i].m_speedLimit = 0.5f;
+                foreach (var prop in vehicleLanes[i].m_laneProps.m_props)
+                {
+                    prop.m_position.x =  multiplier * 0.4f;
+                }
             }
 
             for (var i = 0; i < pedestrianLanes.Count; i++)
             {
                 var multiplier = pedestrianLanes[i].m_position / Math.Abs(pedestrianLanes[i].m_position);
                 pedestrianLanes[i].m_width = pedWidth;
-                pedestrianLanes[i].m_position =  multiplier * (roadHalfWidth + (.5f * pedWidth));
-                
+                pedestrianLanes[i].m_position = multiplier * (roadHalfWidth + (.5f * pedWidth));
+
                 foreach (var prop in pedestrianLanes[i].m_laneProps.m_props)
                 {
                     prop.m_position.x += multiplier * roadHalfWidth;
@@ -157,8 +149,8 @@ namespace NetworkExtensions.NewNetwork.Alley2L
                 var orPlayerNetAI = onewayRoadInfo.GetComponent<PlayerNetAI>();
                 if (playerNetAI != null)
                 {
-                    playerNetAI.m_constructionCost = orPlayerNetAI.m_constructionCost * 2 / 3;
-                    playerNetAI.m_maintenanceCost = orPlayerNetAI.m_maintenanceCost * 2 / 3;
+                    playerNetAI.m_constructionCost = orPlayerNetAI.m_constructionCost * 1 / 2;
+                    playerNetAI.m_maintenanceCost = orPlayerNetAI.m_maintenanceCost * 1 / 2;
                 }
             }
             else // Same as the original oneway
