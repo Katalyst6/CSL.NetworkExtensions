@@ -12,6 +12,7 @@ namespace NetworkExtensions.Framework
         {
             var material = UnityEngine.Object.Instantiate(originalMaterial);
 
+            if (newTextures.MainTex != null)
             {
                 material.ModifyTexture("_MainTex", newTextures.MainTex);
             }
