@@ -80,10 +80,10 @@ namespace NetworkExtensions.NewNetwork.Alley2L
                         new TexturesSet
                            (@"NewNetwork\Alley2L\Textures\Ground_Segment__MainTex.png",
                             @"NewNetwork\Alley2L\Textures\Ground_Segment__AlphaMap.png"));
-                    info.SetNodesTexture(
-                        new TexturesSet
-                            (@"NewNetwork\Alley2L\Textures\Ground_Node__MainTex.png",
-                             @"NewNetwork\Alley2L\Textures\Ground_Node__AlphaMap.png"));
+                    //info.SetNodesTexture(
+                    //    new TexturesSet
+                    //        (@"NewNetwork\Alley2L\Textures\Ground_Node__MainTex.png",
+                    //         @"NewNetwork\Alley2L\Textures\Ground_Node__AlphaMap.png"));
                     break;
             }
 

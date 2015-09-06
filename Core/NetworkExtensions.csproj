@@ -53,9 +53,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Compatibility\RoadColorChanger.cs" />
     <Compile Include="Framework\Extensions\ItemClassExtensions.cs" />
     <Compile Include="Framework\Extensions\MeshExtensions.cs" />
     <Compile Include="Framework\Extensions\NodeExtensions.cs" />
+    <Compile Include="Framework\Extensions\PluginManagerExtensions.cs" />
     <Compile Include="Framework\Extensions\SegmentExtensions.cs" />
     <Compile Include="Framework\MeshData.cs" />
     <Compile Include="NewNetwork\Alley2L\Alley2LBuilder.cs" />
@@ -107,9 +109,6 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="NewNetwork\Alley2L\Textures\Ground_Node__AlphaMap.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="NewNetwork\Alley2L\Textures\Ground_Node__MainTex.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="NewNetwork\Alley2L\Textures\Ground_Segment__AlphaMap.png">
