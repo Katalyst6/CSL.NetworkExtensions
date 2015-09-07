@@ -111,6 +111,9 @@
     <Content Include="NewNetwork\Alley2L\Textures\Ground_Node__AlphaMap.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="NewNetwork\Alley2L\Textures\Ground_Node__MainTex.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="NewNetwork\Alley2L\Textures\Ground_Segment__AlphaMap.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
