@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Linq;
 using NetworkExtensions.Framework;
-using NetworkExtensions.NewNetwork.OneWay4L.Meshes;
 namespace NetworkExtensions.NewNetwork.OneWay4L
 {
     public class OneWay4LBuilder : ModPart, INetInfoBuilder
@@ -80,29 +79,16 @@ namespace NetworkExtensions.NewNetwork.OneWay4L
                 var segments0 = info.m_segments[0];
                 var nodes0 = info.m_nodes[0];
 
-                segments0.m_backwardForbidden = NetSegment.Flags.None;
-                segments0.m_backwardRequired = NetSegment.Flags.None;
+                segments0.SetMeshes
+                    (@"NewNetwork\OneWay4L\Meshes\Ground.obj",
+                     @"NewNetwork\OneWay4L\Meshes\Ground_LOD.obj");
 
-                segments0.m_forwardForbidden = NetSegment.Flags.None;
-                segments0.m_forwardRequired = NetSegment.Flags.None;
-
-                var nodes1 = nodes0.ShallowClone();
-
-                nodes0.m_flagsForbidden = NetNode.Flags.Transition;
-                nodes0.m_flagsRequired = NetNode.Flags.None;
-
-                nodes1.m_flagsForbidden = NetNode.Flags.None;
-                nodes1.m_flagsRequired = NetNode.Flags.Transition;
-
-                var grndMesh = OneWay4LMeshes.GetGroundData().CreateMesh("ONEWAY_4L_GROUND");
-                var grndTransMesh = OneWay4LMeshes.GetGroundTransitionData().CreateMesh("ONEWAY_4L_GROUND_TRS");
-
-                segments0.m_mesh = grndMesh;
-                nodes0.m_mesh = grndMesh;
-                nodes1.m_mesh = grndTransMesh;
+                nodes0.SetMeshes
+                    (@"NewNetwork\OneWay4L\Meshes\Ground.obj",
+                     @"NewNetwork\OneWay4L\Meshes\Ground_Node_LOD.obj");
 
                 info.m_segments = new[] { segments0 };
-                info.m_nodes = new[] { nodes0, nodes1 };
+                info.m_nodes = new[] { nodes0};
             }
 
             ///////////////////////////
@@ -142,9 +128,7 @@ namespace NetworkExtensions.NewNetwork.OneWay4L
                 .Where(l => l.m_laneType == NetInfo.LaneType.Pedestrian)
                 .OrderBy(l => l.m_similarLaneIndex)
                 .ToList();
-            Debug.Log("NExl: Categorized Lanes");
 
-            Debug.Log("New lanes created");
             for (var i = 0; i < pedestrianLanes.Count; i++)
             {
                 var multiplier = pedestrianLanes[i].m_position / Math.Abs(pedestrianLanes[i].m_position);
@@ -156,16 +140,15 @@ namespace NetworkExtensions.NewNetwork.OneWay4L
                     prop.m_position.x += multiplier * 1.5f;
                 }
             }
-            var laneInfo = "LaneInfo: ";
+
             for (var i = 0; i < vehicleLanes.Count; i++)
             {
                 vehicleLanes[i].m_similarLaneCount = vehicleLanes.Count();
                 vehicleLanes[i].m_similarLaneIndex = i;
                 vehicleLanes[i].m_width = vehicleLaneWidth;
                 vehicleLanes[i].m_position = (-1 * ((vehicleLanes.Count / 2f) - .5f) + i) * vehicleLaneWidth;
-                laneInfo += "lane 0: simlnct: " + vehicleLanes[i].m_similarLaneCount + " | simlnind: " + vehicleLanes[i].m_similarLaneIndex + " | pos: " + vehicleLanes[i].m_position;
             }
-            Debug.Log("NExt: LaneInfo: " + laneInfo);
+
             for (var i = 0; i < parkingLanes.Count; i++)
             {
                 var multiplier = parkingLanes[i].m_position / Math.Abs(parkingLanes[i].m_position);

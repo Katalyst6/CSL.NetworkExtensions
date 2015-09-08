@@ -158,24 +158,6 @@ namespace NetworkExtensions.NewNetwork.Alley2L
 
             }
 
-            //var roadBaseAI = info.GetComponent<RoadBaseAI>();
-
-            //if (roadBaseAI != null)
-            //{
-            //    roadBaseAI.m_highwayRules = true;
-            //    roadBaseAI.m_trafficLights = false;
-            //}
-
-            //var roadAI = info.GetComponent<RoadAI>();
-
-            //if (roadAI != null)
-            //{
-            //    roadAI.m_enableZoning = false;
-            //}
-
-            //info.SetHighwayProps(highwayInfo);
-            //info.TrimHighwayProps();
-
 
         }
     }

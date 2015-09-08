@@ -65,8 +65,6 @@
     <Compile Include="NewNetwork\MediumAvenue4L\MediumAvenue4LBuilder.cs" />
     <Compile Include="NewNetwork\MediumAvenue4LTL\MediumAvenue4LTLBuilder.cs" />
     <Compile Include="NewNetwork\MediumAvenueHelper.cs" />
-    <Compile Include="NewNetwork\OneWay4L\Meshes\OneWay4LMeshes.Transition.cs" />
-    <Compile Include="NewNetwork\OneWay4L\Meshes\OneWay4LMeshes.cs" />
     <Compile Include="NewNetwork\SmallAvenue4L\Widening\Meshes\SmallAvenue4LMeshes.cs" />
     <Compile Include="NewNetwork\SmallAvenue4L\Widening\Meshes\SmallAvenue4LMeshes.Transition.cs" />
     <Compile Include="Options.cs" />
@@ -447,6 +445,15 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="NewNetwork\OneWay1L\Meshes\Ground_Node_LOD.obj">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="NewNetwork\OneWay4L\Meshes\Ground.obj">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="NewNetwork\OneWay4L\Meshes\Ground_LOD.obj">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="NewNetwork\OneWay4L\Meshes\Ground_Node_LOD.obj">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
