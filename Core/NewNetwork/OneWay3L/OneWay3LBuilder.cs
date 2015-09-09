@@ -2,22 +2,22 @@
 using System.Linq;
 using NetworkExtensions.Framework;
 
-namespace NetworkExtensions.NewNetwork.OneWay4L
+namespace NetworkExtensions.NewNetwork.OneWay3L
 {
-    public class OneWay4LBuilder : ModPart, INetInfoBuilder
+    public class OneWay3LBuilder : ModPart, INetInfoBuilder
     {
-        public int OptionsPriority { get { return 9; } }
-        public int Priority { get { return 32; } }
+        public int OptionsPriority { get { return 8; } }
+        public int Priority { get { return 31; } }
 
         public string PrefabName { get { return "Oneway Road"; } }
-        public string Name { get { return "Small Oneway4L"; } }
-        public string CodeName { get { return "SMALL_ONEWAY_4L"; } }
-        public string DisplayName { get { return "Small Four-Lane Oneway"; } }
-        public string Description { get { return "A four-lane one-way road without parkings spaces. Supports medium traffic."; } }
+        public string Name { get { return "Oneway3L"; } }
+        public string CodeName { get { return "ONEWAY_3L"; } }
+        public string DisplayName { get { return "Three-Lane Oneway"; } }
+        public string Description { get { return "A three-lane one-way road without parkings spaces. Supports medium traffic."; } }
         public string UICategory { get { return "RoadsSmall"; } }
 
-        public string ThumbnailsPath    { get { return @"NewNetwork\OneWay4L\thumbnails.png"; } }
-        public string InfoTooltipPath   { get { return @"NewNetwork\OneWay4L\infotooltip.png"; } }
+        public string ThumbnailsPath    { get { return @"NewNetwork\OneWay3L\thumbnails.png"; } }
+        public string InfoTooltipPath   { get { return @"NewNetwork\OneWay3L\infotooltip.png"; } }
 
         public NetInfoVersion SupportedVersions
         {
@@ -58,8 +58,8 @@ namespace NetworkExtensions.NewNetwork.OneWay4L
                 case NetInfoVersion.Ground:
                     info.SetSegmentsTexture(
                         new TexturesSet
-                           (@"NewNetwork\OneWay4L\Textures\Ground_Segment__MainTex.png",
-                            @"NewNetwork\OneWay4L\Textures\Ground_Segment__AlphaMap.png"));
+                           (@"NewNetwork\OneWay3L\Textures\Ground_Segment__MainTex.png",
+                            @"NewNetwork\OneWay3L\Textures\Ground_Segment__AlphaMap.png"));
                     break;
             }
 
