@@ -12,7 +12,7 @@ namespace NetworkExtensions.NewNetwork.MediumAvenue4L
         public int OptionsPriority { get { return 20; } }
         public int Priority { get { return 4; } }
 
-        public string PrefabName { get { return "Large Road"; } }
+        public string PrefabName { get { return VanillaNetInfos.ROAD_6L; } }
         public string Name { get { return "Medium Avenue"; } }
         public string DisplayName { get { return "Four-Lane Road"; } }
         public string CodeName { get { return "MEDIUMAVENUE_4L"; } }
@@ -51,7 +51,7 @@ namespace NetworkExtensions.NewNetwork.MediumAvenue4L
             ///////////////////////////
             // Template              //
             ///////////////////////////
-            var mediumRoadInfo = ToolsCSL.FindPrefab<NetInfo>("Medium Road");
+            var mediumRoadInfo = ToolsCSL.FindPrefab<NetInfo>(VanillaNetInfos.AVENUE_4L);
 
 
             ///////////////////////////
@@ -164,7 +164,7 @@ namespace NetworkExtensions.NewNetwork.MediumAvenue4L
                 localizedStrings
                 .FirstOrDefault(kvpInternal =>
                     kvpInternal.Key.m_Identifier == "NET_TITLE" &&
-                    kvpInternal.Key.m_Key == "Medium Road");
+                    kvpInternal.Key.m_Key == VanillaNetInfos.AVENUE_4L);
 
             if (!Equals(kvp, default(KeyValuePair<Locale.Key, string>)))
             {

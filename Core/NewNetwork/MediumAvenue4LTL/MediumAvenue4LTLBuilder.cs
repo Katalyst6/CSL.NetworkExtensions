@@ -10,7 +10,7 @@ namespace NetworkExtensions.NewNetwork.MediumAvenue4LTL
         public int OptionsPriority { get { return 21; } }
         public int Priority { get { return 5; } }
 
-        public string PrefabName { get { return "Large Road"; } }
+        public string PrefabName { get { return VanillaNetInfos.ROAD_6L; } }
         public string Name { get { return "Medium Avenue TL"; } }
         public string DisplayName { get { return "Four-Lane Road with Turning Lane"; } }
         public string CodeName { get { return "MEDIUMAVENUE_4LTL"; } }
@@ -49,7 +49,7 @@ namespace NetworkExtensions.NewNetwork.MediumAvenue4LTL
             ///////////////////////////
             // Template              //
             ///////////////////////////
-            var mediumRoadInfo = ToolsCSL.FindPrefab<NetInfo>("Medium Road");
+            var mediumRoadInfo = ToolsCSL.FindPrefab<NetInfo>(VanillaNetInfos.AVENUE_4L);
 
 
             ///////////////////////////

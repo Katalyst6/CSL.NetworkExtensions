@@ -9,7 +9,7 @@ namespace NetworkExtensions.NewNetwork.OneWay3L
         public int OptionsPriority { get { return 8; } }
         public int Priority { get { return 31; } }
 
-        public string PrefabName { get { return "Oneway Road"; } }
+        public string PrefabName { get { return VanillaNetInfos.ONEWAY_2L; } }
         public string Name { get { return "Oneway3L"; } }
         public string CodeName { get { return "ONEWAY_3L"; } }
         public string DisplayName { get { return "Three-Lane Oneway"; } }
@@ -48,7 +48,7 @@ namespace NetworkExtensions.NewNetwork.OneWay3L
             ///////////////////////////
             // Template              //
             ///////////////////////////
-            var owRoadInfo = ToolsCSL.FindPrefab<NetInfo>("Oneway Road");
+            var owRoadInfo = ToolsCSL.FindPrefab<NetInfo>(VanillaNetInfos.ONEWAY_2L);
 
             ///////////////////////////
             // Texturing             //

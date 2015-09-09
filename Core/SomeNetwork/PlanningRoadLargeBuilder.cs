@@ -10,7 +10,7 @@
 //    {
 //        public int Priority { get { return 1002; } }
 
-//        public string PrefabName  { get { return "Large Road"; } }
+//        public string PrefabName  { get { return VanillaNetInfos.ROAD_6L; } }
 //        public string Name        { get { return "Planning Road (Large)"; } }
 //        public string CodeName    { get { return "SOME_PLANNING_LARGEROAD"; } }
 //        public string Description { get { return "A non-functional road for planning road layouts. Can be upgraded to actual roads."; } }

@@ -9,7 +9,7 @@ namespace NetworkExtensions.NewNetwork.OneWayMedium4L
         public int OptionsPriority { get { return 10; } }
         public int Priority { get { return 15; } }
 
-        public string PrefabName { get { return "Large Oneway"; } }
+        public string PrefabName { get { return VanillaNetInfos.ONEWAY_6L; } }
         public string Name { get { return "Medium Oneway"; } }
         public string DisplayName { get { return "Four-Lane Oneway"; } }
         public string CodeName { get { return "ONEWAY_4L"; } }
@@ -149,7 +149,7 @@ namespace NetworkExtensions.NewNetwork.OneWayMedium4L
                 parkingLanes[i].m_position = multiplier * (roadHalfWidth - (parkingLaneWidth / 2));
             }
 
-            var onewayRoadInfo = ToolsCSL.FindPrefab<NetInfo>("Oneway Road");
+            var onewayRoadInfo = ToolsCSL.FindPrefab<NetInfo>(VanillaNetInfos.ONEWAY_2L);
 
             if (version == NetInfoVersion.Ground)
             {

@@ -10,7 +10,7 @@ namespace NetworkExtensions.NewNetwork.Alley2L
         public int OptionsPriority { get { return 1; } }
         public int Priority { get { return 40; } }
 
-        public string PrefabName { get { return "Basic Road"; } }
+        public string PrefabName { get { return VanillaNetInfos.ROAD_2L; } }
         public string Name { get { return "Alley2L"; } }
         public string DisplayName { get { return "Two-Lane Alley"; } }
         public string CodeName { get { return "Alley_2L"; } }
@@ -141,7 +141,7 @@ namespace NetworkExtensions.NewNetwork.Alley2L
                 }
             }
 
-            var onewayRoadInfo = ToolsCSL.FindPrefab<NetInfo>("Basic Road");
+            var onewayRoadInfo = ToolsCSL.FindPrefab<NetInfo>(VanillaNetInfos.ROAD_2L);
 
             if (version == NetInfoVersion.Ground)
             {

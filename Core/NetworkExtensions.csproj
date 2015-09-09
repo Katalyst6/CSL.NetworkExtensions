@@ -103,6 +103,7 @@
     <Compile Include="NewNetwork\Highway6L\Highway6LBuilder.cs" />
     <Compile Include="SomeNetwork\PlanningRoadLargeBuilder.cs" />
     <Compile Include="SomeNetwork\PlanningRoadSmallBuilder.cs" />
+    <Compile Include="VanillaNetInfos.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="NewNetwork\Alley2L\infotooltip.png">
@@ -423,7 +424,6 @@
     <Content Include="SomeNetwork\thumbnail_atlas.png" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="CompatibilityTests\" />
     <Folder Include="NewNetwork\LargeAvenue6LM\Textures\" />
   </ItemGroup>
   <ItemGroup>

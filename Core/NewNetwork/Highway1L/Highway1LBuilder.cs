@@ -14,7 +14,7 @@ namespace NetworkExtensions.NewNetwork.Highway1L
         public int OptionsPriority { get { return 30; } }
         public int Priority { get { return 9; } }
 
-        public string PrefabName { get { return "Basic Road"; } }
+        public string PrefabName { get { return VanillaNetInfos.ROAD_2L; } }
         public string Name { get { return "Small Rural Highway"; } }
         public string DisplayName { get { return "Rural Highway"; } }
         public string CodeName { get { return "HIGHWAY_1L"; } }
@@ -53,7 +53,7 @@ namespace NetworkExtensions.NewNetwork.Highway1L
             ///////////////////////////
             // Template              //
             ///////////////////////////
-            var highwayInfo = ToolsCSL.FindPrefab<NetInfo>("Highway");
+            var highwayInfo = ToolsCSL.FindPrefab<NetInfo>(VanillaNetInfos.HIGHWAY_3L);
 
 
             ///////////////////////////

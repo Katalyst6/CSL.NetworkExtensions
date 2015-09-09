@@ -11,7 +11,7 @@ namespace NetworkExtensions.NewNetwork.LargeAvenue6LM
         public int OptionsPriority { get { return 25; } }
         public int Priority { get { return 25; } }
 
-        public string PrefabName { get { return "Medium Road"; } }
+        public string PrefabName { get { return VanillaNetInfos.AVENUE_4L; } }
         public string Name { get { return "Large Avenue M"; } }
         public string DisplayName { get { return "Six-Lane Road with Median"; } }
         public string CodeName { get { return "LARGEAVENUE_6LM"; } }

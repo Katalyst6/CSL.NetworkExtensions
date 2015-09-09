@@ -9,7 +9,7 @@ namespace NetworkExtensions.NewNetwork.SmallAvenue4L
         public int OptionsPriority { get { return 10; } }
         public int Priority { get { return 3; } }
 
-        public string PrefabName { get { return "Basic Road"; } }
+        public string PrefabName { get { return VanillaNetInfos.ROAD_2L; } }
         public string Name { get { return "Small Avenue"; } }
         public string DisplayName { get { return "Small Four-Lane Road"; } }
         public string CodeName { get { return "SMALLROAD_4L"; } }
@@ -48,7 +48,7 @@ namespace NetworkExtensions.NewNetwork.SmallAvenue4L
             ///////////////////////////
             // Template              //
             ///////////////////////////
-            var basicRoadInfo = ToolsCSL.FindPrefab<NetInfo>("Basic Road");
+            var basicRoadInfo = ToolsCSL.FindPrefab<NetInfo>(VanillaNetInfos.ROAD_2L);
 
 
             ///////////////////////////
