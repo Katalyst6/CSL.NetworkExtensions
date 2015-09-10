@@ -10,7 +10,7 @@ using Debug = NetworkExtensions.Framework.Debug;
 
 namespace NetworkExtensions.Framework
 {
-    public interface INetInfoBuilder : IModPart
+    public interface INetInfoBuilder : IActivablePart
     {
         int Priority { get; }
         string CodeName { get; }
@@ -70,8 +70,6 @@ namespace NetworkExtensions.Framework
             mainInfoAI.m_bridgeInfo = builder.BuildVersion(NetInfoVersion.Bridge, newNetInfos);
             mainInfoAI.m_tunnelInfo = builder.BuildVersion(NetInfoVersion.Tunnel, newNetInfos);
             mainInfoAI.m_slopeInfo = builder.BuildVersion(NetInfoVersion.Slope, newNetInfos);
-
-            Debug.Log(string.Format("NExt: {0} installed", builder.Name));
 
             return newNetInfos;
         }

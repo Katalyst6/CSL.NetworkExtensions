@@ -1,15 +1,29 @@
 ﻿using System.Collections.Generic;
 using System.IO;
 using System.Xml.Serialization;
+using ColossalFramework;
+using ColossalFramework.Plugins;
+using NetworkExtensions.Framework;
 using UnityEngine;
 
 namespace NetworkExtensions.Compatibility
 {
-    public class RoadColorChanger
+    public class RoadColorChanger : ICompatibilityPart
     {
+        private const string COLOR_CHANGER_MOD_ID = "417585852";
         private const string CONFIG_PATH = "RoadColorConfig.xml";
 
-        public void Execute(IEnumerable<NetInfo> newRoads)
+        public string Name
+        {
+            get { return "RoadColorChanger for NetworkExtensions"; }
+        }
+
+        public bool IsPluginActive
+        {
+            get { return Singleton<PluginManager>.instance.IsPluginActive(COLOR_CHANGER_MOD_ID); }
+        }
+
+        public void Setup(IEnumerable<NetInfo> newRoads)
         {
             var config = Configuration2.Deserialize(CONFIG_PATH);
 

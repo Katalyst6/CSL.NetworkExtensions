@@ -54,11 +54,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Compatibility\RoadColorChanger.cs" />
+    <Compile Include="Framework\ICompatibilityPart.cs" />
+    <Compile Include="Mod.Path.cs" />
+    <Compile Include="Mod.Parts.cs" />
     <Compile Include="Framework\Extensions\ItemClassExtensions.cs" />
     <Compile Include="Framework\Extensions\MeshExtensions.cs" />
     <Compile Include="Framework\Extensions\NodeExtensions.cs" />
     <Compile Include="Framework\Extensions\PluginManagerExtensions.cs" />
     <Compile Include="Framework\Extensions\SegmentExtensions.cs" />
+    <Compile Include="Framework\IModPart.cs" />
     <Compile Include="Framework\MeshData.cs" />
     <Compile Include="NewNetwork\Alley2L\Alley2LBuilder.cs" />
     <Compile Include="NewNetwork\OneWay3L\OneWay3LBuilder.cs" />
@@ -70,9 +74,9 @@
     <Compile Include="NewNetwork\SmallAvenue4L\Widening\Meshes\SmallAvenue4LMeshes.cs" />
     <Compile Include="NewNetwork\SmallAvenue4L\Widening\Meshes\SmallAvenue4LMeshes.Transition.cs" />
     <Compile Include="Options.cs" />
-    <Compile Include="Framework\IModPart.cs" />
-    <Compile Include="Framework\ModPart.cs" />
-    <Compile Include="Mod.Options.cs" />
+    <Compile Include="Framework\IActivablePart.cs" />
+    <Compile Include="Framework\ActivablePart.cs" />
+    <Compile Include="Mod.Settings.cs" />
     <Compile Include="Mod.Loading.cs" />
     <Compile Include="Framework\INetInfoModifier.cs" />
     <Compile Include="Framework\Extensions\EnumExtensions.cs" />

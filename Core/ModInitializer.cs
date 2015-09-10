@@ -1,11 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
 using ColossalFramework;
 using ColossalFramework.Globalization;
-using ColossalFramework.Plugins;
-using NetworkExtensions.Compatibility;
 using NetworkExtensions.Framework;
 using UnityEngine;
 
@@ -18,7 +15,7 @@ namespace NetworkExtensions
     public partial class ModInitializer : MonoBehaviour
     {
         private bool _doneWithInit = false;
-        private bool _initializedNetworkInfo = false;
+        private bool _initializedCoreLogic = false;
         private static bool s_initializedLocalization = false; //Only one localization throughout the application
 
         public NetCollection NewRoads { get; set; }
@@ -76,17 +73,17 @@ namespace NetworkExtensions
                 }
             }
 
-            if (!_initializedNetworkInfo & s_initializedLocalization)
+            if (!_initializedCoreLogic & s_initializedLocalization)
             {
-                if (ValidateNetworkPrerequisites(NewRoads))
+                if (ValidateCoreLogicPrerequisites(NewRoads))
                 {
-                    InitializeNewRoads(NewRoads);
-                    _initializedNetworkInfo = true;
+                    InitializeCoreLogic(NewRoads);
+                    _initializedCoreLogic = true;
                 }
             }
 
             _doneWithInit =
-                _initializedNetworkInfo &&
+                _initializedCoreLogic &&
                 s_initializedLocalization;
 
             if (_doneWithInit)
@@ -123,7 +120,7 @@ namespace NetworkExtensions
             return true;
         }
 
-        private static bool ValidateNetworkPrerequisites(NetCollection newRoads)
+        private static bool ValidateCoreLogicPrerequisites(NetCollection newRoads)
         {
             var roadObject = GameObject.Find(Mod.ROAD_NETCOLLECTION);
             if (roadObject == null)
@@ -165,7 +162,7 @@ namespace NetworkExtensions
             {
                 try
                 {
-                    Debug.Log("NExt: Localization");
+                    //Debug.Log("NExt: Localization");
                     var localeManager = SingletonLite<LocaleManager>.instance;
                     var localeField = typeof(LocaleManager).GetFieldByName("m_Locale");
                     var locale = (Locale)localeField.GetValue(localeManager);
@@ -188,11 +185,11 @@ namespace NetworkExtensions
             });
         }
 
-        private static void InitializeNewRoads(NetCollection newRoads)
+        private static void InitializeCoreLogic(NetCollection newRoads)
         {
             Loading.QueueAction(() =>
             {
-                Debug.Log("NExt: Build NetworkExtensions");
+                //Debug.Log("NExt: Setting up new Roads and Logic");
 
 
                 // Builders -----------------------------------------------------------------------
@@ -203,6 +200,8 @@ namespace NetworkExtensions
                     try
                     {
                         newInfos.AddRange(builder.Build());
+
+                        Debug.Log(string.Format("NExt: {0} installed", builder.DisplayName));
                     }
                     catch (Exception ex)
                     {
@@ -226,6 +225,8 @@ namespace NetworkExtensions
                     try
                     {
                         modifier.ModifyExistingNetInfo();
+
+                        Debug.Log(string.Format("NExt: {0} modifications applied", modifier.DisplayName));
                     }
                     catch (Exception ex)
                     {
@@ -237,28 +238,25 @@ namespace NetworkExtensions
 
 
                 // Cross mods support -------------------------------------------------------------
-                try
+                foreach (var compatibilityPart in Mod.CompatibilityParts)
                 {
-                    DealWithOtherMods(newInfos);
-                }
-                catch (Exception ex)
-                {
-                    Debug.Log("NExt: Crashed-CrossModsSupport");
-                    Debug.Log("NExt: " + ex.Message);
-                    Debug.Log("NExt: " + ex.ToString());
+                    try
+                    {
+                        if (compatibilityPart.IsPluginActive)
+                        {
+                            compatibilityPart.Setup(newInfos);
+
+                            Debug.Log(string.Format("NExt: {0} compatibility activated", compatibilityPart.Name));
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        Debug.Log(string.Format("NExt: Crashed-CompatibilitySupport {0}", compatibilityPart.Name));
+                        Debug.Log("NExt: " + ex.Message);
+                        Debug.Log("NExt: " + ex.ToString());
+                    }
                 }
             });
-        }
-
-        private static void DealWithOtherMods(IEnumerable<NetInfo> newRoads)
-        {
-            const string COLOR_CHANGER_ID = "417585852";
-
-            if (Singleton<PluginManager>.instance.IsPluginActive(COLOR_CHANGER_ID))
-            {
-                Debug.Log(string.Format("NExt: Road Color Changer is active"));
-                new RoadColorChanger().Execute(newRoads);
-            }
         }
     }
 }

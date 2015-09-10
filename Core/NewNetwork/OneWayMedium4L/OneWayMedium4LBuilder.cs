@@ -4,7 +4,7 @@ using NetworkExtensions.Framework;
 
 namespace NetworkExtensions.NewNetwork.OneWayMedium4L
 {
-    public class OneWayMedium4LBuilder : ModPart, INetInfoBuilder
+    public class OneWayMedium4LBuilder : ActivablePart, INetInfoBuilder
     {
         public int OptionsPriority { get { return 10; } }
         public int Priority { get { return 15; } }
@@ -73,12 +73,12 @@ namespace NetworkExtensions.NewNetwork.OneWayMedium4L
                 var nodes0 = info.m_nodes[0];
 
                 segments0.SetMeshes
-                    (@"NewNetwork\OneWay4L\Meshes\Ground.obj",
-                     @"NewNetwork\OneWay4L\Meshes\Ground_LOD.obj");
+                    (@"NewNetwork\OneWayMedium4L\Meshes\Ground.obj",
+                     @"NewNetwork\OneWayMedium4L\Meshes\Ground_LOD.obj");
 
                 nodes0.SetMeshes
-                    (@"NewNetwork\OneWay4L\Meshes\Ground.obj",
-                     @"NewNetwork\OneWay4L\Meshes\Ground_Node_LOD.obj");
+                    (@"NewNetwork\OneWayMedium4L\Meshes\Ground.obj",
+                     @"NewNetwork\OneWayMedium4L\Meshes\Ground_Node_LOD.obj");
 
                 info.m_segments = new[] { segments0 };
                 info.m_nodes = new[] { nodes0};

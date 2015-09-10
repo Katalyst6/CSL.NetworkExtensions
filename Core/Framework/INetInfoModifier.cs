@@ -9,7 +9,7 @@ using Object = UnityEngine.Object;
 
 namespace NetworkExtensions.Framework
 {
-    public interface INetInfoModifier : IModPart
+    public interface INetInfoModifier : IActivablePart
     {
         void ModifyExistingNetInfo();
     }

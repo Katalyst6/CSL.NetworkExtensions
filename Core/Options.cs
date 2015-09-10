@@ -15,7 +15,7 @@ namespace NetworkExtensions
 {
     public class Options
     {
-        private const string FILENAME = "Options.xml";
+        private const string FILENAME = "NetworkExtensionsConfig.xml";
 
         private static Options s_instance;
         public static Options Instance 
@@ -34,7 +34,7 @@ namespace NetworkExtensions
 
         public readonly IDictionary<string, bool> PartsEnabled = new Dictionary<string, bool>();
 
-        public bool IsPartEnabled(IModPart part)
+        public bool IsPartEnabled(IActivablePart part)
         {
             var partName = part.GetSerializableName();
 
@@ -54,8 +54,7 @@ namespace NetworkExtensions
                 return;
             }
 
-            var configPath = Path.Combine(Mod.GetPath(), FILENAME);
-            Debug.Log(string.Format("NExt: Saving config at {0}", configPath));
+            Debug.Log(string.Format("NExt: Saving config at {0}", FILENAME));
 
             try
             {
@@ -72,11 +71,11 @@ namespace NetworkExtensions
                     settings.AppendChild(xmlElem);
                 }
 
-                xDoc.Save(configPath);
+                xDoc.Save(FILENAME);
             }
             catch (Exception ex)
             {
-                Debug.Log(string.Format("NExt: Crashed saving config at {0} {1}", configPath, ex));
+                Debug.Log(string.Format("NExt: Crashed saving config at {0} {1}", FILENAME, ex));
             }
         }
 
@@ -87,10 +86,9 @@ namespace NetworkExtensions
                 return new Options();
             }
 
-            var configPath = Path.Combine(Mod.GetPath(), FILENAME);
-            Debug.Log(string.Format("NExt: Loading config at {0}", configPath));
-            
-            if (!File.Exists(configPath))
+            Debug.Log(string.Format("NExt: Loading config at {0}", FILENAME));
+
+            if (!File.Exists(FILENAME))
             {
                 return new Options();
             }
@@ -99,7 +97,7 @@ namespace NetworkExtensions
             {
                 var configuration = new Options();
                 var xDoc = new XmlDocument();
-                xDoc.Load(configPath);
+                xDoc.Load(FILENAME);
 
                 if (xDoc.DocumentElement == null)
                 {
@@ -122,7 +120,7 @@ namespace NetworkExtensions
             }
             catch (Exception ex)
             {
-                Debug.Log(string.Format("NExt: Crashed load config at {0} {1}", configPath, ex));
+                Debug.Log(string.Format("NExt: Crashed load config at {0} {1}", FILENAME, ex));
                 return new Options();
             }
         }

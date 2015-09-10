@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using ColossalFramework.IO;
-using ColossalFramework.Steamworks;
+﻿using System.Linq;
 using ICities;
 using NetworkExtensions.Framework;
 
@@ -16,7 +11,7 @@ namespace NetworkExtensions
             var uIHelperBase = helper.AddGroup("Network Extensions Options");
             var optionsChanged = false;
 
-            foreach (var part in Parts.OrderBy(p => p.OptionsPriority))
+            foreach (var part in ActivableParts)
             {
                 var partLocal = part;
                 var partName = part.GetSerializableName();
@@ -34,9 +29,6 @@ namespace NetworkExtensions
                     {
                         Options.Instance.PartsEnabled[partName] = partLocal.IsEnabled = isChecked;
                         Options.Instance.Save();
-
-                        s_netInfoBuilders = null;
-                        s_netInfoModifiers = null;
                     });
             }
 

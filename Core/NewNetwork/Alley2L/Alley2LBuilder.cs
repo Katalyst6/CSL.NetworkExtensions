@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace NetworkExtensions.NewNetwork.Alley2L
 {
-    public class Alley2LBuilder : ModPart, INetInfoBuilder
+    public class Alley2LBuilder : ActivablePart, INetInfoBuilder
     {
         public int OptionsPriority { get { return 1; } }
         public int Priority { get { return 40; } }

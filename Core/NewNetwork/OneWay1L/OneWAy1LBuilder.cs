@@ -4,7 +4,7 @@ using NetworkExtensions.Framework;
 
 namespace NetworkExtensions.NewNetwork.OneWay1L
 {
-    public class OneWay1LBuilder : ModPart, INetInfoBuilder
+    public class OneWay1LBuilder : ActivablePart, INetInfoBuilder
     {
         public int OptionsPriority { get { return 5; } }
         public int Priority { get { return 30; } }

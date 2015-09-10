@@ -5,8 +5,10 @@ using System.Text;
 
 namespace NetworkExtensions.Framework
 {
-    public abstract class ModPart
+    public interface ICompatibilityPart : IModPart
     {
-        public bool IsEnabled { get; set; }
+        bool IsPluginActive { get; }
+
+        void Setup(IEnumerable<NetInfo> newRoads);
     }
 }

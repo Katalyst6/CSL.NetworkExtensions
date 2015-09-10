@@ -5,8 +5,8 @@ using System.Text;
 
 namespace NetworkExtensions.Framework
 {
-    public interface IModPart
+    public abstract class ActivablePart
     {
-        string Name { get; }
+        public bool IsEnabled { get; set; }
     }
 }

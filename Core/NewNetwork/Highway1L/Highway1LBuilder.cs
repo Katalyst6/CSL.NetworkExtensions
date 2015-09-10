@@ -9,7 +9,7 @@ using Debug = NetworkExtensions.Framework.Debug;
 
 namespace NetworkExtensions.NewNetwork.Highway1L
 {
-    public class Highway1LBuilder : ModPart, INetInfoBuilder
+    public class Highway1LBuilder : ActivablePart, INetInfoBuilder
     {
         public int OptionsPriority { get { return 30; } }
         public int Priority { get { return 9; } }

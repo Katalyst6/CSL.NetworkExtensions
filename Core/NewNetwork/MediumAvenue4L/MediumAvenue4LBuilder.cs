@@ -7,7 +7,7 @@ using NetworkExtensions.Framework;
 
 namespace NetworkExtensions.NewNetwork.MediumAvenue4L
 {
-    public class MediumAvenue4LBuilder : ModPart, INetInfoBuilder, INetInfoModifier
+    public class MediumAvenue4LBuilder : ActivablePart, INetInfoBuilder, INetInfoModifier
     {
         public int OptionsPriority { get { return 20; } }
         public int Priority { get { return 4; } }

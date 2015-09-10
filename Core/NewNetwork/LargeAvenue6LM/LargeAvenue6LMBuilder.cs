@@ -6,7 +6,7 @@ using NetworkExtensions.Framework;
 
 namespace NetworkExtensions.NewNetwork.LargeAvenue6LM
 {
-    public class LargeAvenue6LMBuilder : ModPart, INetInfoBuilder
+    public class LargeAvenue6LMBuilder : ActivablePart, INetInfoBuilder
     {
         public int OptionsPriority { get { return 25; } }
         public int Priority { get { return 25; } }
