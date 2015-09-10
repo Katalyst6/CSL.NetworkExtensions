@@ -1,18 +1,14 @@
-﻿using ColossalFramework;
-using ColossalFramework.Globalization;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using UnityEngine;
-
-#if DEBUG
-using Debug = NetworkExtensions.Framework.Debug;
-#endif
+using ColossalFramework;
 
 namespace NetworkExtensions.Framework
 {
     public interface INetInfoBuilder : IActivablePart
     {
         int Priority { get; }
+
+        string PrefabName { get; }
         string CodeName { get; }
         string Description { get; }
 
@@ -21,7 +17,6 @@ namespace NetworkExtensions.Framework
         string InfoTooltipPath { get; }
 
         NetInfoVersion SupportedVersions { get; }
-        string GetPrefabName(NetInfoVersion version);
 
         void BuildUp(NetInfo info, NetInfoVersion version);
     }
@@ -78,7 +73,7 @@ namespace NetworkExtensions.Framework
         {
             if (builder.SupportedVersions.HasFlag(version))
             {
-                var completePrefabName = builder.GetPrefabName(version);
+                var completePrefabName = VanillaNetInfos.GetPrefabName(builder.PrefabName, version);
                 var completeName = builder.GetNewName(version);
 
                 var info = ToolsCSL

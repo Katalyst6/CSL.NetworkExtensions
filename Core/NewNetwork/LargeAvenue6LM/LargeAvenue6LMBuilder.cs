@@ -26,11 +26,6 @@ namespace NetworkExtensions.NewNetwork.LargeAvenue6LM
             get { return NetInfoVersion.Ground; }
         }
 
-        public string GetPrefabName(NetInfoVersion version)
-        {
-            return PrefabName;
-        }
-
         public void BuildUp(NetInfo info, NetInfoVersion version)
         {
             // I$|H3lls7rik3r sandbox

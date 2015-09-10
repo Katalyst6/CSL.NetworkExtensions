@@ -24,25 +24,6 @@ namespace NetworkExtensions.NewNetwork.Highway2L
             get { return NetInfoVersion.All; }
         }
 
-        public string GetPrefabName(NetInfoVersion version)
-        {
-            switch (version)
-            {
-                case NetInfoVersion.Ground:
-                    return PrefabName;
-                case NetInfoVersion.Elevated:
-                    return PrefabName + " " + NetInfoVersion.Elevated;
-                case NetInfoVersion.Bridge:
-                    return PrefabName + " " + NetInfoVersion.Bridge;
-                case NetInfoVersion.Tunnel:
-                    return PrefabName + " " + NetInfoVersion.Tunnel;
-                case NetInfoVersion.Slope:
-                    return PrefabName + " " + NetInfoVersion.Slope;
-                default:
-                    throw new NotImplementedException();
-            }
-        }
-
         public void BuildUp(NetInfo info, NetInfoVersion version)
         {
             ///////////////////////////
