@@ -17,8 +17,8 @@ namespace NetworkExtensions.NewNetwork.Alley2L
         public string Description { get { return "A two-lane, tight Alley suitable for neighborhood traffic. This road is zonable."; } }
         public string UICategory { get { return "RoadsSmall"; } }
 
-        public string ThumbnailsPath { get { return @"NewNetwork\Alley2L\thumbnails.png"; } }
-        public string InfoTooltipPath { get { return @"NewNetwork\Alley2L\infotooltip.png"; } }
+        public string ThumbnailsPath { get { return string.Empty; } }
+        public string InfoTooltipPath { get { return string.Empty; } }
 
         public NetInfoVersion SupportedVersions
         {

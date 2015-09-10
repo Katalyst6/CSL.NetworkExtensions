@@ -54,6 +54,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Compatibility\RoadColorChanger.cs" />
+    <Compile Include="Framework\Extensions\NetInfoLaneExtensions.cs" />
     <Compile Include="Framework\ICompatibilityPart.cs" />
     <Compile Include="Mod.Path.cs" />
     <Compile Include="Mod.Parts.cs" />
