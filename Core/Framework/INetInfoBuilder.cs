@@ -4,6 +4,10 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
+#if DEBUG
+using Debug = NetworkExtensions.Framework.Debug;
+#endif
+
 namespace NetworkExtensions.Framework
 {
     public interface INetInfoBuilder : IModPart
@@ -67,7 +71,7 @@ namespace NetworkExtensions.Framework
             mainInfoAI.m_tunnelInfo = builder.BuildVersion(NetInfoVersion.Tunnel, newNetInfos);
             mainInfoAI.m_slopeInfo = builder.BuildVersion(NetInfoVersion.Slope, newNetInfos);
 
-            Debug.Log(string.Format("NExt: Initialized {0}", builder.Name));
+            Debug.Log(string.Format("NExt: {0} installed", builder.Name));
 
             return newNetInfos;
         }

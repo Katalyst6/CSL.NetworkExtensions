@@ -4,6 +4,8 @@ using System.Linq;
 using System.Reflection;
 using ColossalFramework;
 using ColossalFramework.Globalization;
+using ColossalFramework.Plugins;
+using NetworkExtensions.Compatibility;
 using NetworkExtensions.Framework;
 using UnityEngine;
 
@@ -233,8 +235,30 @@ namespace NetworkExtensions
                     }
                 }
 
-                Debug.Log("NExt: Finished installing components");
+
+                // Cross mods support -------------------------------------------------------------
+                try
+                {
+                    DealWithOtherMods(newInfos);
+                }
+                catch (Exception ex)
+                {
+                    Debug.Log("NExt: Crashed-CrossModsSupport");
+                    Debug.Log("NExt: " + ex.Message);
+                    Debug.Log("NExt: " + ex.ToString());
+                }
             });
+        }
+
+        private static void DealWithOtherMods(IEnumerable<NetInfo> newRoads)
+        {
+            const string COLOR_CHANGER_ID = "417585852";
+
+            if (Singleton<PluginManager>.instance.IsPluginActive(COLOR_CHANGER_ID))
+            {
+                Debug.Log(string.Format("NExt: Road Color Changer is active"));
+                new RoadColorChanger().Execute(newRoads);
+            }
         }
     }
 }
