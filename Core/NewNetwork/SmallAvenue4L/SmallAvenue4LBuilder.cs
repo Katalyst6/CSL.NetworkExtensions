@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using NetworkExtensions.Framework;
+using UnityEngine;
 
 namespace NetworkExtensions.NewNetwork.SmallAvenue4L
 {
@@ -198,7 +199,7 @@ namespace NetworkExtensions.NewNetwork.SmallAvenue4L
             }
             else
             {
-                templateLaneProps = new NetLaneProps();
+                templateLaneProps = ScriptableObject.CreateInstance<NetLaneProps>();
             }
 
             if (templateLaneProps.m_props == null)
@@ -208,7 +209,7 @@ namespace NetworkExtensions.NewNetwork.SmallAvenue4L
 
             if (newLane.m_laneProps == null)
             {
-                newLane.m_laneProps = new NetLaneProps();
+                newLane.m_laneProps = ScriptableObject.CreateInstance<NetLaneProps>();
             }
 
             newLane.m_laneProps.m_props = templateLaneProps
