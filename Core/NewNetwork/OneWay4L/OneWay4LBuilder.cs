@@ -15,7 +15,7 @@ namespace NetworkExtensions.NewNetwork.OneWay4L
         public string CodeName { get { return "SMALL_ONEWAY_4L"; } }
         public string DisplayName { get { return "Small Four-Lane Oneway"; } }
         public string Description { get { return "A four-lane one-way road without parkings spaces. Supports medium traffic."; } }
-        public string UICategory { get { return "RoadsSmall"; } }
+        public string UICategory { get { return "RoadsOW"; } }
 
         public string ThumbnailsPath    { get { return @"NewNetwork\OneWay4L\thumbnails.png"; } }
         public string InfoTooltipPath   { get { return @"NewNetwork\OneWay4L\infotooltip.png"; } }

@@ -15,7 +15,7 @@ namespace NetworkExtensions.NewNetwork.OneWay3L
         public string CodeName { get { return "ONEWAY_3L"; } }
         public string DisplayName { get { return "Three-Lane Oneway"; } }
         public string Description { get { return "A three-lane one-way road without parkings spaces. Supports medium traffic."; } }
-        public string UICategory { get { return "RoadsSmall"; } }
+        public string UICategory { get { return "RoadsOW"; } }
 
         public string ThumbnailsPath    { get { return @"NewNetwork\OneWay3L\thumbnails.png"; } }
         public string InfoTooltipPath   { get { return @"NewNetwork\OneWay3L\infotooltip.png"; } }
