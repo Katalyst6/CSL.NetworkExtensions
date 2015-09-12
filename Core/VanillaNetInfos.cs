@@ -62,4 +62,12 @@ namespace NetworkExtensions
             }
         }
     }
+
+    public static class NetInfoClasses
+    {
+        public const string NEXT_HIGHWAY = "NExtHighway";
+        public const string NEXT_SMALL3L_ROAD = "NExtSmall3LRoad";
+        public const string NEXT_SMALL4L_ROAD = "NExtSmall4LRoad";
+        public const string NEXT_MEDIUM_ROAD = "NExtMediumRoad";
+    }
 }

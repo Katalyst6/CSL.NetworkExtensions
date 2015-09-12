@@ -16,7 +16,7 @@ namespace NetworkExtensions.NewNetwork.Highway1L
 
         public string PrefabName { get { return VanillaNetInfos.ROAD_2L; } }
         public string Name { get { return "Small Rural Highway"; } }
-        public string DisplayName { get { return "Rural Highway"; } }
+        public string DisplayName { get { return "National Road"; } }
         public string CodeName { get { return "HIGHWAY_1L"; } }
         public string Description { get { return "A two-lane, two-way road suitable for low traffic between rural areas. Highway does not allow zoning next to it!"; } }
         public string UICategory { get { return "RoadsHighway"; } }
@@ -43,7 +43,7 @@ namespace NetworkExtensions.NewNetwork.Highway1L
             if (version == NetInfoVersion.Ground)
             {
                 info.m_surfaceLevel = 0;
-                info.m_class = highwayInfo.m_class.Clone("NExtHighway");
+                info.m_class = highwayInfo.m_class.Clone(NetInfoClasses.NEXT_HIGHWAY);
 
                 var segments0 = info.m_segments[0];
                 var nodes0 = info.m_nodes[0];

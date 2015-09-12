@@ -8,14 +8,14 @@ namespace NetworkExtensions.NewNetwork.OneWay3L
     public class OneWay3LBuilder : ActivablePart, INetInfoBuilder
     {
         public int OptionsPriority { get { return 8; } }
-        public int Priority { get { return 31; } }
+        public int Priority { get { return 1; } }
 
         public string PrefabName { get { return VanillaNetInfos.ONEWAY_2L; } }
         public string Name { get { return "Oneway3L"; } }
         public string CodeName { get { return "ONEWAY_3L"; } }
         public string DisplayName { get { return "Three-Lane Oneway"; } }
         public string Description { get { return "A three-lane one-way road without parkings spaces. Supports medium traffic."; } }
-        public string UICategory { get { return "RoadsSmall"; } }
+        public string UICategory { get { return "RoadsMedium"; } }
 
         public string ThumbnailsPath    { get { return @"NewNetwork\OneWay3L\thumbnails.png"; } }
         public string InfoTooltipPath   { get { return @"NewNetwork\OneWay3L\infotooltip.png"; } }
@@ -50,6 +50,7 @@ namespace NetworkExtensions.NewNetwork.OneWay3L
             // Set up                //
             ///////////////////////////
             info.m_hasParkingSpaces = false;
+            info.m_class = owRoadInfo.m_class.Clone(NetInfoClasses.NEXT_SMALL3L_ROAD);
 
             // Setting up lanes
             var vehicleLaneTypes = new[]
