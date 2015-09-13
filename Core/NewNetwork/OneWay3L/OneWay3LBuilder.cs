@@ -51,6 +51,7 @@ namespace NetworkExtensions.NewNetwork.OneWay3L
             ///////////////////////////
             info.m_hasParkingSpaces = false;
             info.m_class = owRoadInfo.m_class.Clone(NetInfoClasses.NEXT_SMALL3L_ROAD);
+            info.m_class.m_level = ItemClass.Level.Level3; // To make sure they dont fit with the 4L Small Roads
 
             // Setting up lanes
             var vehicleLaneTypes = new[]
@@ -68,7 +69,7 @@ namespace NetworkExtensions.NewNetwork.OneWay3L
                 .First();
 
             var vehicleLanes = new List<NetInfo.Lane>();
-            const float outerlanePosition = 2.8f;
+            const float outerlanePosition = 3.2f;
 
             for (int i = 0; i < 3; i++)
             {
@@ -86,7 +87,7 @@ namespace NetworkExtensions.NewNetwork.OneWay3L
                 if (i == 2)
                 {
                     lane.m_allowStop = true;
-                    lane.m_stopOffset = 1.9f;
+                    lane.m_stopOffset = 1.5f;
                 }
 
                 vehicleLanes.Add(lane);
