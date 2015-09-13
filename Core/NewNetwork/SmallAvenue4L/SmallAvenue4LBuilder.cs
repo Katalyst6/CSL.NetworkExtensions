@@ -62,7 +62,11 @@ namespace NetworkExtensions.NewNetwork.SmallAvenue4L
                     info.SetSegmentsTexture(
                         new TexturesSet
                            (@"NewNetwork\SmallAvenue4L\Textures\Ground_Segment__MainTex.png",
-                            @"NewNetwork\SmallAvenue4L\Textures\Ground_Segment__AlphaMap.png"));
+                            @"NewNetwork\SmallAvenue4L\Textures\Ground_Segment__AlphaMap.png"),
+                        new TexturesSet
+                           (@"NewNetwork\SmallAvenue4L\Textures\Ground_SegmentLOD__MainTex.png",
+                            @"NewNetwork\SmallAvenue4L\Textures\Ground_SegmentLOD__AlphaMap.png",
+                            @"NewNetwork\SmallAvenue4L\Textures\Ground_SegmentLOD__XYS.png"));
                     break;
             }
 
