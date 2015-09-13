@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Linq;
 using NetworkExtensions.Framework;
+using UnityEngine;
 
 namespace NetworkExtensions.NewNetwork.SmallAvenue4L
 {
     public class SmallAvenue4LBuilder : ActivablePart, INetInfoBuilder
     {
         public int OptionsPriority { get { return 10; } }
-        public int Priority { get { return 3; } }
+        public int Priority { get { return 2; } }
 
         public string PrefabName { get { return VanillaNetInfos.ROAD_2L; } }
         public string Name { get { return "Small Avenue"; } }
@@ -70,6 +71,7 @@ namespace NetworkExtensions.NewNetwork.SmallAvenue4L
             // Set up                //
             ///////////////////////////
             info.m_hasParkingSpaces = false;
+            info.m_class = basicRoadInfo.m_class.Clone(NetInfoClasses.NEXT_SMALL4L_ROAD);
 
             // Setting up lanes
             var vehicleLaneTypes = new[]
@@ -198,7 +200,7 @@ namespace NetworkExtensions.NewNetwork.SmallAvenue4L
             }
             else
             {
-                templateLaneProps = new NetLaneProps();
+                templateLaneProps = ScriptableObject.CreateInstance<NetLaneProps>();
             }
 
             if (templateLaneProps.m_props == null)
@@ -208,7 +210,7 @@ namespace NetworkExtensions.NewNetwork.SmallAvenue4L
 
             if (newLane.m_laneProps == null)
             {
-                newLane.m_laneProps = new NetLaneProps();
+                newLane.m_laneProps = ScriptableObject.CreateInstance<NetLaneProps>();
             }
 
             newLane.m_laneProps.m_props = templateLaneProps

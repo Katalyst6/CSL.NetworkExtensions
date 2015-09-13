@@ -438,7 +438,6 @@
     <Folder Include="NewNetwork\LargeAvenue6LM\Textures\" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="ClassDiagram1.cd" />
     <None Include="NewNetwork\Alley2L\Meshes\Ground.obj">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

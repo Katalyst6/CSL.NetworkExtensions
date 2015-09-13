@@ -9,8 +9,6 @@ namespace NetworkExtensions.NewNetwork
 {
     public static class MediumAvenueHelper
     {
-        public const string CLASS_NAME = "NExtMediumAvenue";
-
         public static void Setup50LimitProps(this NetInfo info)
         {
             var speed50 = ToolsCSL.FindPrefab<PropInfo>("50 Speed Limit", false);

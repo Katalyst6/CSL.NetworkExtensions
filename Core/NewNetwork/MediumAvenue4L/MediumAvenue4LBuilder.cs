@@ -60,7 +60,7 @@ namespace NetworkExtensions.NewNetwork.MediumAvenue4L
             ///////////////////////////
             // Set up                //
             ///////////////////////////
-            info.m_class = mediumRoadInfo.m_class.Clone(MediumAvenueHelper.CLASS_NAME);
+            info.m_class = mediumRoadInfo.m_class.Clone(NetInfoClasses.NEXT_MEDIUM_ROAD);
             info.m_UnlockMilestone = mediumRoadInfo.m_UnlockMilestone;
 
             // Setting up lanes

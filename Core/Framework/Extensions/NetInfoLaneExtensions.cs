@@ -23,7 +23,7 @@ namespace NetworkExtensions.Framework
             newLane.m_verticalOffset = templateLane.m_verticalOffset;
             newLane.m_width = templateLane.m_width;
 
-            var templateLaneProps = templateLane.m_laneProps ?? new NetLaneProps();
+            var templateLaneProps = templateLane.m_laneProps ?? ScriptableObject.CreateInstance<NetLaneProps>();
             if (templateLaneProps.m_props == null)
             {
                 templateLaneProps.m_props = new NetLaneProps.Prop[0];
