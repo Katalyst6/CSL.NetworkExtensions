@@ -9,14 +9,14 @@ namespace NetworkExtensions.NewNetwork.Highway6L
         public int OptionsPriority { get { return 50; } }
         public int Priority { get { return 14; } }
 
-        public string PrefabName { get { return VanillaNetInfos.ONEWAY_6L; } }
-        public string Name { get { return "Large Highway"; } }
+        public string PrefabName  { get { return VanillaNetInfos.ONEWAY_6L; } }
+        public string Name        { get { return "Large Highway"; } }
         public string DisplayName { get { return "Six-Lane Highway"; } }
-        public string CodeName { get { return "HIGHWAY_6L"; } }
+        public string CodeName    { get { return "HIGHWAY_6L"; } }
         public string Description { get { return "A six-lane, one-way road suitable for very high and dense traffic between metropolitan areas. Lanes going the opposite direction need to be built separately. Highway does not allow zoning next to it!"; } }
-        public string UICategory { get { return "RoadsHighway"; } }
+        public string UICategory  { get { return "RoadsHighway"; } }
 
-        public string ThumbnailsPath { get { return @"NewNetwork\Highway6L\thumbnails.png"; } }
+        public string ThumbnailsPath  { get { return @"NewNetwork\Highway6L\thumbnails.png"; } }
         public string InfoTooltipPath { get { return @"NewNetwork\Highway6L\infotooltip.png"; } }
 
         public NetInfoVersion SupportedVersions
@@ -72,77 +72,8 @@ namespace NetworkExtensions.NewNetwork.Highway6L
                 info.m_segments = new[] { segments0 };
                 info.m_nodes = new[] { nodes0, nodes1 };
             }
-            else if (version == NetInfoVersion.Elevated)
-            {
-                info.m_surfaceLevel = 0;
-                info.m_class = highwayInfo.m_class.Clone("NExtHighway");
 
-                var segments0 = info.m_segments[0];
-                var nodes0 = info.m_nodes[0];
 
-                segments0.m_backwardForbidden = NetSegment.Flags.None;
-                segments0.m_backwardRequired = NetSegment.Flags.None;
-
-                segments0.m_forwardForbidden = NetSegment.Flags.None;
-                segments0.m_forwardRequired = NetSegment.Flags.None;
-
-                var nodes1 = nodes0.ShallowClone();
-
-                nodes0.m_flagsForbidden = NetNode.Flags.Transition;
-                nodes0.m_flagsRequired = NetNode.Flags.None;
-
-                nodes1.m_flagsForbidden = NetNode.Flags.None;
-                nodes1.m_flagsRequired = NetNode.Flags.Transition;
-
-                segments0.SetMeshes
-                    (@"NewNetwork\Highway6L\Meshes\Elevated.obj");
-
-                nodes0.SetMeshes
-                    (@"NewNetwork\Highway6L\Meshes\Elevated.obj");
-
-                nodes1.SetMeshes
-                    (@"NewNetwork\Highway6L\Meshes\Elevated_Trans.obj");
-
-                info.m_segments = new[] { segments0 };
-                info.m_nodes = new[] { nodes0, nodes1 };
-            }
-            else if (version == NetInfoVersion.Slope)
-            {
-                info.m_surfaceLevel = 0;
-                info.m_class = highwayInfo.m_class.Clone("NExtHighway");
-
-                var segments0 = info.m_segments[0];
-                var nodes0 = info.m_nodes[0];
-
-                segments0.m_backwardForbidden = NetSegment.Flags.None;
-                segments0.m_backwardRequired = NetSegment.Flags.None;
-
-                segments0.m_forwardForbidden = NetSegment.Flags.None;
-                segments0.m_forwardRequired = NetSegment.Flags.None;
-
-                var nodes1 = nodes0.ShallowClone();
-
-                nodes0.m_flagsForbidden = NetNode.Flags.Transition;
-                nodes0.m_flagsRequired = NetNode.Flags.None;
-
-                nodes1.m_flagsForbidden = NetNode.Flags.None;
-                nodes1.m_flagsRequired = NetNode.Flags.Transition;
-
-                segments0.SetMeshes
-                    (@"NewNetwork\Highway6L\Meshes\Ground.obj",
-                     @"NewNetwork\Highway6L\Meshes\Ground_LOD.obj");
-
-                nodes0.SetMeshes
-                    (@"NewNetwork\Highway6L\Meshes\Ground.obj",
-                     @"NewNetwork\Highway6L\Meshes\Ground_LOD.obj");
-
-                nodes1.SetMeshes
-                    (@"NewNetwork\Highway6L\Meshes\Ground_Trans.obj",
-                     @"NewNetwork\Highway6L\Meshes\Ground_Trans_LOD.obj");
-
-                info.m_segments = new[] { segments0 };
-                info.m_nodes = new[] { nodes0, nodes1 };
-            }
             ///////////////////////////
             // Texturing             //
             ///////////////////////////
@@ -151,16 +82,16 @@ namespace NetworkExtensions.NewNetwork.Highway6L
                 case NetInfoVersion.Ground:
                     info.SetSegmentsTexture(
                         new TexturesSet(
-                            @"NewNetwork\Highway6L\Textures\Ground_Elevated_Segment__MainTex.png",
-                            @"NewNetwork\Highway6L\Textures\Ground_Elevated_Segment__APRMap.png"),
+                            @"NewNetwork\Highway6L\Textures\Ground_Segment__MainTex.png",
+                            @"NewNetwork\Highway6L\Textures\Ground_Segment__APRMap.png"),
                         new TexturesSet
                            (@"NewNetwork\Highway6L\Textures\Ground_SegmentLOD__MainTex.png",
                             @"NewNetwork\Highway6L\Textures\Ground_SegmentLOD__APRMap.png",
                             @"NewNetwork\Highway6L\Textures\Ground_SegmentLOD__XYSMap.png"));
                     info.SetNodesTexture(
                         new TexturesSet
-                           (@"NewNetwork\Highway6L\Textures\Ground_Elevated_Node__MainTex.png",
-                            @"NewNetwork\Highway6L\Textures\Ground_Elevated_Node__APRMap.png"),
+                           (@"NewNetwork\Highway6L\Textures\Ground_Node__MainTex.png",
+                            @"NewNetwork\Highway6L\Textures\Ground_Node__APRMap.png"),
                         new TexturesSet
                            (@"NewNetwork\Highway6L\Textures\Ground_NodeLOD__MainTex.png",
                             @"NewNetwork\Highway6L\Textures\Ground_NodeLOD__APRMap.png",
@@ -169,26 +100,22 @@ namespace NetworkExtensions.NewNetwork.Highway6L
 
                 case NetInfoVersion.Elevated:
                 case NetInfoVersion.Bridge:
-                    info.SetSegmentsTexture(
-                        new TexturesSet(
-                            @"NewNetwork\Highway6L\Textures\Ground_Elevated_Segment__MainTex.png",
-                            @"NewNetwork\Highway6L\Textures\Ground_Elevated_Segment__APRMap.png"));
                     info.SetNodesTexture(
                         new TexturesSet
-                           (@"NewNetwork\Highway6L\Textures\Ground_Elevated_Node__MainTex.png",
-                            @"NewNetwork\Highway6L\Textures\Ground_Elevated_Node__APRMap.png"));
-                    // Lets leave the crossings there until we have a fix
-                    //new TexturesSet
-                    //   (@"NewNetwork\Highway6L\Textures\Elevated_NodeLOD__MainTex.png",
-                    //    @"NewNetwork\Highway6L\Textures\Elevated_NodeLOD__APRMap.png",
-                    //    @"NewNetwork\Highway6L\Textures\Elevated_NodeLOD__XYSMap.png"));
+                           (@"NewNetwork\Highway6L\Textures\Elevated_Node__MainTex.png",
+                            @"NewNetwork\Highway6L\Textures\Elevated_Node__APRMap.png"));
+                        // Lets leave the crossings there until we have a fix
+                        //new TexturesSet
+                        //   (@"NewNetwork\Highway6L\Textures\Elevated_NodeLOD__MainTex.png",
+                        //    @"NewNetwork\Highway6L\Textures\Elevated_NodeLOD__APRMap.png",
+                        //    @"NewNetwork\Highway6L\Textures\Elevated_NodeLOD__XYSMap.png"));
                     break;
 
                 case NetInfoVersion.Slope:
                     info.SetNodesTexture(
                         new TexturesSet
-                           (@"NewNetwork\Highway6L\Textures\Ground_Elevated_Node__MainTex.png",
-                            @"NewNetwork\Highway6L\Textures\Ground_Elevated_Node__APRMap.png"),
+                           (@"NewNetwork\Highway6L\Textures\Slope_Node__MainTex.png",
+                            @"NewNetwork\Highway6L\Textures\Slope_Node__APRMap.png"),
                         new TexturesSet
                            (@"NewNetwork\Highway6L\Textures\Slope_NodeLOD__MainTex.png",
                             @"NewNetwork\Highway6L\Textures\Slope_NodeLOD__APRMap.png",
@@ -204,14 +131,14 @@ namespace NetworkExtensions.NewNetwork.Highway6L
             // Set up                //
             ///////////////////////////
             info.m_availableIn = ItemClass.Availability.All;
-            info.m_createPavement = false; //(version == NetInfoVersion.Slope);
+            info.m_createPavement = (version == NetInfoVersion.Slope);
             info.m_createGravel = (version == NetInfoVersion.Ground);
             info.m_averageVehicleLaneSpeed = 2f;
             info.m_hasParkingSpaces = false;
             info.m_hasPedestrianLanes = false;
-            info.m_halfWidth = 16f;
+
             info.m_UnlockMilestone = highwayInfo.m_UnlockMilestone;
-            info.m_pavementWidth = 2f;
+
 
             // Disabling Parkings and Peds
             foreach (var l in info.m_lanes)
@@ -234,8 +161,10 @@ namespace NetworkExtensions.NewNetwork.Highway6L
                 .ToArray();
             var nbLanes = vehiculeLanes.Count(); // Supposed to be 6
 
-            const float laneWidth = 4f; // TODO: Make it 2.5 with new texture
-            var positionStart = (laneWidth * ((1f - nbLanes) / 2f));
+            const float laneWidth = 2f; // TODO: Make it 2.5 with new texture
+            const float laneWidthPad = 1f;
+            const float laneWidthTotal = laneWidth + laneWidthPad;
+            var positionStart = (laneWidthTotal * ((1f - nbLanes) / 2f));
 
             for (int i = 0; i < vehiculeLanes.Length; i++)
             {
@@ -248,8 +177,8 @@ namespace NetworkExtensions.NewNetwork.Highway6L
                     l.m_verticalOffset = 0f;
                 }
 
-                l.m_width = laneWidth;
-                l.m_position = positionStart + i * laneWidth;
+                l.m_width = laneWidthTotal;
+                l.m_position = positionStart + i * laneWidthTotal;
             }
 
 
