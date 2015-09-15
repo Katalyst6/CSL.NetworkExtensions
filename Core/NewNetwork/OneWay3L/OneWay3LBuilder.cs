@@ -41,7 +41,11 @@ namespace NetworkExtensions.NewNetwork.OneWay3L
                     info.SetSegmentsTexture(
                         new TexturesSet
                            (@"NewNetwork\OneWay3L\Textures\Ground_Segment__MainTex.png",
-                            @"NewNetwork\OneWay3L\Textures\Ground_Segment__AlphaMap.png"));
+                            @"NewNetwork\OneWay3L\Textures\Ground_Segment__AlphaMap.png"),
+                        new TexturesSet
+                           (@"NewNetwork\OneWay3L\Textures\Ground_SegmentLOD__MainTex.png",
+                            @"NewNetwork\OneWay3L\Textures\Ground_SegmentLOD__AlphaMap.png",
+                            @"NewNetwork\OneWay3L\Textures\Ground_SegmentLOD__XYS.png"));
                     break;
             }
 
