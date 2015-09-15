@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using NetworkExtensions.Framework;
 using UnityEngine;
@@ -218,56 +219,92 @@ namespace NetworkExtensions.NewNetwork.Highway1L
                 roadAI.m_trafficLights = false;
             }
 
-            SetHighwayProps(info, highwayInfo);
-            info.TrimHighwayProps();
+            SetupHighwayProps(info);
         }
 
-        private static void SetHighwayProps(NetInfo info, NetInfo highwayInfoTemplate)
+        public static void SetupHighwayProps(NetInfo info)
         {
-            var leftHwLane = highwayInfoTemplate
-                .m_lanes
-                .Where(l => l != null && l.m_laneProps != null && l.m_laneProps.name != null && l.m_laneProps.m_props != null)
-                .FirstOrDefault(l => l.m_laneProps.name.ToLower().Contains("left"));
+            var randomProp = ToolsCSL.FindPrefab<PropInfo>("Random Street Prop", false);
+            var streetLight = ToolsCSL.FindPrefab<PropInfo>("New Street Light", false);
+            var streetLight2 = ToolsCSL.FindPrefab<PropInfo>("New Street Light Small Road", false);
+            var manhole = ToolsCSL.FindPrefab<PropInfo>("Manhole", false);
+            var speed40 = ToolsCSL.FindPrefab<PropInfo>("40 Speed Limit", false);
 
-            var rightHwLane = highwayInfoTemplate
-                .m_lanes
-                .Where(l => l != null && l.m_laneProps != null && l.m_laneProps.name != null && l.m_laneProps.m_props != null)
-                .FirstOrDefault(l => l.m_laneProps.name.ToLower().Contains("right"));
+            if (randomProp == null)
+            {
+                return;
+            }
 
             foreach (var lane in info.m_lanes)
             {
-                if (lane.m_laneProps != null && lane.m_laneProps.name != null)
+                if (lane == null)
                 {
-                    if (leftHwLane != null)
-                    {
-                        if (lane.m_laneProps.name.ToLower().Contains("left"))
-                        {
-                            var newProps = ScriptableObject.CreateInstance<NetLaneProps>();
-                            newProps.name = "Highway1L Left Props";
-
-                            newProps.m_props = new NetLaneProps.Prop[0];
-
-                            lane.m_laneProps = newProps;
-                        }
-                    }
-
-                    if (rightHwLane != null)
-                    {
-                        if (lane.m_laneProps.name.ToLower().Contains("right"))
-                        {
-                            var newProps = ScriptableObject.CreateInstance<NetLaneProps>();
-                            newProps.name = "Highway1L Right Props";
-
-                            newProps.m_props = rightHwLane
-                                .m_laneProps
-                                .m_props
-                                .Select(p => p.ShallowClone())
-                                .ToArray();
-
-                            lane.m_laneProps = newProps;
-                        }
-                    }
+                    continue;
                 }
+
+                if (lane.m_laneProps == null)
+                {
+                    continue;
+                }
+
+                NetLaneProps sideProps = null;
+
+                if (lane.m_laneProps.name.ToLower().Contains("left"))
+                {
+                    sideProps = ScriptableObject.CreateInstance<NetLaneProps>();
+                    sideProps.name = "Highway1L Left Props";
+                }
+
+                if (lane.m_laneProps.name.ToLower().Contains("right"))
+                {
+                    sideProps = ScriptableObject.CreateInstance<NetLaneProps>();
+                    sideProps.name = "Highway1L Right Props";
+                }
+
+                if (sideProps == null)
+                {
+                    continue;
+                }
+
+                var remainingProps = new List<NetLaneProps.Prop>();
+
+                foreach (var prop in lane.m_laneProps.m_props)
+                {
+                    if (prop.m_prop == null)
+                    {
+                        continue;
+                    }
+
+                    if (prop.m_prop == randomProp)
+                    {
+                        continue;
+                    }
+
+                    if (prop.m_prop == manhole)
+                    {
+                        continue;
+                    }
+
+                    if (prop.m_prop == streetLight)
+                    {
+                        continue;
+                    }
+
+                    if (prop.m_prop == streetLight2)
+                    {
+                        continue;
+                    }
+
+                    if (prop.m_prop == speed40)
+                    {
+                        continue;
+                    }
+
+                    remainingProps.Add(prop);
+                }
+
+                sideProps.m_props = remainingProps.ToArray();
+                lane.m_laneProps = sideProps;
             }
         }
     }
