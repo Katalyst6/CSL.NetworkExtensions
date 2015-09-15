@@ -226,9 +226,9 @@ namespace NetworkExtensions.NewNetwork.Highway1L
         {
             var randomProp = ToolsCSL.FindPrefab<PropInfo>("Random Street Prop", false);
             var streetLight = ToolsCSL.FindPrefab<PropInfo>("New Street Light", false);
+            var streetLight2 = ToolsCSL.FindPrefab<PropInfo>("New Street Light Small Road", false);
             var manhole = ToolsCSL.FindPrefab<PropInfo>("Manhole", false);
             var speed40 = ToolsCSL.FindPrefab<PropInfo>("40 Speed Limit", false);
-            // TODO: Test that
 
             if (randomProp == null)
             {
@@ -290,6 +290,11 @@ namespace NetworkExtensions.NewNetwork.Highway1L
                         continue;
                     }
 
+                    if (prop.m_prop == streetLight2)
+                    {
+                        continue;
+                    }
+
                     if (prop.m_prop == speed40)
                     {
                         continue;
@@ -298,8 +303,8 @@ namespace NetworkExtensions.NewNetwork.Highway1L
                     remainingProps.Add(prop);
                 }
 
-                lane.m_laneProps.m_props = remainingProps.ToArray();
-                }
+                sideProps.m_props = remainingProps.ToArray();
+                lane.m_laneProps = sideProps;
             }
         }
     }
