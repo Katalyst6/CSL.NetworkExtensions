@@ -48,6 +48,13 @@ namespace NetworkExtensions
             });
         }
 
+        public override void OnLevelLoaded(LoadMode mode)
+        {
+            base.OnLevelLoaded(mode);
+
+            MenusInstaller.Execute();
+        }
+
         public override void OnReleased()
         {
             base.OnReleased();

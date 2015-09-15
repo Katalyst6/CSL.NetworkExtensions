@@ -18,7 +18,6 @@ namespace NetworkExtensions
         private bool _doneWithInit = false;
         private static bool s_initializedLocalization = false; //Only one localization throughout the application
         private bool _initializedCoreLogic = false;
-        private bool _initializedAdditionalMenus = false;
 
         public NetCollection NewRoads { get; set; }
 
@@ -84,17 +83,7 @@ namespace NetworkExtensions
                 }
             }
 
-            if (!_initializedAdditionalMenus & _initializedCoreLogic & s_initializedLocalization)
-            {
-                if (ValidateAdditionalMenusPrerequisites())
-                {
-                    InitializeAdditionalMenus();
-                    _initializedAdditionalMenus = true;
-                }
-            }
-
             _doneWithInit =
-                _initializedAdditionalMenus &&
                 _initializedCoreLogic &&
                 s_initializedLocalization;
 
@@ -128,31 +117,6 @@ namespace NetworkExtensions
             {
                 return false;
             }
-
-            return true;
-        }
-
-        private static bool ValidateAdditionalMenusPrerequisites()
-        {
-            var roadsGroupPanels = FindObjectsOfType<RoadsGroupPanel>();
-            if (roadsGroupPanels == null)
-            {
-                return false;
-            }
-
-            //if (roadsGroupPanels.Length == 0)
-            //{
-            //    return false;
-            //}
-
-            //var templateFound = roadsGroupPanels
-            //    .Select(panel => panel.Find<UIButton>("RoadsSmall"))
-            //    .Any(button => button != null);
-
-            //if (!templateFound)
-            //{
-            //    return false;
-            //}
 
             return true;
         }
@@ -216,38 +180,6 @@ namespace NetworkExtensions
                 catch (Exception ex)
                 {
                     Debug.Log("NExt: Crashed-Localization");
-                    Debug.Log("NExt: " + ex.Message);
-                    Debug.Log("NExt: " + ex.ToString());
-                }
-            });
-        }
-
-        private static void InitializeAdditionalMenus()
-        {
-            Loading.QueueAction(() =>
-            {
-                try
-                {
-                    Debug.Log("NExt: Initialized New Menus");
-
-                    foreach (var panel in FindObjectsOfType<RoadsGroupPanel>())
-                    {
-                        panel.PopulateGroups();
-
-                        var button = panel.Find<UIButton>("RoadOW");
-                        if (button == null)
-                        {
-                            Debug.Log("NExt: Button not found");
-                        }
-                        else
-                        {
-                            Debug.Log("NExt: Button found!");
-                        }
-                    }
-                }
-                catch (Exception ex)
-                {
-                    Debug.Log("NExt: Crashed-Initialized New Menus");
                     Debug.Log("NExt: " + ex.Message);
                     Debug.Log("NExt: " + ex.ToString());
                 }
