@@ -4,13 +4,13 @@ namespace NetworkExtensions.Framework
 {
     public static class LocaleExtensions
     {
-        public static void AddCategoryLocalizedString(this Locale locale)
+        public static void CreateMenuTitleLocalizedString(this Locale locale, string key, string label)
         {
             locale.AddLocalizedString(new Locale.Key()
             {
                 m_Identifier = "MAIN_CATEGORY",
-                m_Key = Mod.NEXT_CATEGORY_NAME
-            }, Mod.NEXT_CATEGORY_NAME);
+                m_Key = key
+            }, label);
         }
 
         public static void CreateNetTitleLocalizedString(this Locale locale, string key, string label)

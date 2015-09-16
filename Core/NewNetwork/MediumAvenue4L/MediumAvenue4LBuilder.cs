@@ -135,10 +135,8 @@ namespace NetworkExtensions.NewNetwork.MediumAvenue4L
 
         public void ModifyExistingNetInfo()
         {
-            var localeManager = SingletonLite<LocaleManager>.instance;
-            var localeField = typeof(LocaleManager).GetFieldByName("m_Locale");
             var localizedStringsField = typeof(Locale).GetFieldByName("m_LocalizedStrings");
-            var locale = (Locale)localeField.GetValue(localeManager);
+            var locale = SingletonLite<LocaleManager>.instance.GetLocale();
             var localizedStrings = (Dictionary<Locale.Key, string>)localizedStringsField.GetValue(locale);
 
             var kvp =

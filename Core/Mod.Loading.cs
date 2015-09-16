@@ -1,6 +1,7 @@
 ﻿using System;
 using ICities;
 using NetworkExtensions.Framework;
+using NetworkExtensions.Install;
 using UnityEngine;
 using Object = UnityEngine.Object;
 
@@ -12,6 +13,7 @@ namespace NetworkExtensions
         private GameObject _container = null;
         private NetCollection _newRoads = null;
         private ModInitializer _initalizer = null;
+        private MenusInstaller _menusInstaller = null;
 
         public override void OnCreated(ILoading loading)
         {
@@ -21,6 +23,8 @@ namespace NetworkExtensions
             {
                 if (GetPath() != PATH_NOT_FOUND)
                 {
+                    _menusInstaller = new MenusInstaller();
+
                     _container = new GameObject(NEXT_OBJECT_NAME);
 
                     _newRoads = _container.AddComponent<NetCollection>();
@@ -52,7 +56,11 @@ namespace NetworkExtensions
         {
             base.OnLevelLoaded(mode);
 
-            MenusInstaller.Execute();
+            if (_menusInstaller != null)
+            {
+                _menusInstaller.Execute();
+                _menusInstaller = null;
+            }
         }
 
         public override void OnReleased()
