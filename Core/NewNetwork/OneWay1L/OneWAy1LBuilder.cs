@@ -47,7 +47,7 @@ namespace NetworkExtensions.NewNetwork.OneWay1L
 
                 nodes0.SetMeshes
                     (@"NewNetwork\OneWay1L\Meshes\Ground.obj",
-                     @"NewNetwork\OneWay1L\Meshes\Ground_Node_LOD.obj");
+                     @"NewNetwork\OneWay1L\Meshes\Ground_LOD.obj");
 
                 info.m_segments = new[] { segments0 };
                 info.m_nodes = new[] { nodes0 };
@@ -62,11 +62,19 @@ namespace NetworkExtensions.NewNetwork.OneWay1L
                     info.SetSegmentsTexture(
                         new TexturesSet
                            (@"NewNetwork\OneWay1L\Textures\Ground_Segment__MainTex.png",
-                            @"NewNetwork\OneWay1L\Textures\Ground_Segment__AlphaMap.png"));
+                            @"NewNetwork\OneWay1L\Textures\Ground_Segment__AlphaMap.png"),
+                        new TexturesSet
+                           (@"NewNetwork\OneWay1L\Textures\Ground_SegmentLOD__MainTex.png",
+                            @"NewNetwork\OneWay1L\Textures\Ground_SegmentLOD__AlphaMap.png",
+                            @"NewNetwork\OneWay1L\Textures\Ground_SegmentLOD__XYSMap.png"));
                     info.SetNodesTexture(
                         new TexturesSet
                             (@"NewNetwork\OneWay1L\Textures\Ground_Node__MainTex.png",
-                             @"NewNetwork\OneWay1L\Textures\Ground_Node__AlphaMap.png"));
+                             @"NewNetwork\OneWay1L\Textures\Ground_Node__AlphaMap.png"),
+                        new TexturesSet
+                            (@"NewNetwork\OneWay1L\Textures\Ground_NodeLOD__MainTex.png",
+                             @"NewNetwork\OneWay1L\Textures\Ground_NodeLOD__AlphaMap.png",
+                             @"NewNetwork\OneWay1L\Textures\Ground_NodeLOD__XYSMap.png"));
                     break;
             }
 
@@ -75,13 +83,17 @@ namespace NetworkExtensions.NewNetwork.OneWay1L
             ///////////////////////////
             info.m_class = onewayRoadInfo.m_class.Clone("SmallOneway");
             info.m_hasParkingSpaces = false;
-            info.m_halfWidth = 5.0f;
+            info.m_halfWidth = 4f;
             info.m_pavementWidth = 2f;
 
             // Setting up lanes
             var parkingLanes = info.m_lanes
                 .Where(l => l.m_laneType == NetInfo.LaneType.Parking)
                 .ToList();
+            foreach (var parkingLane in parkingLanes)
+            {
+                parkingLane.m_laneType = NetInfo.LaneType.None;
+            }
 
             var vehicleLanes = info.m_lanes
                 .Where(l => l.m_laneType != NetInfo.LaneType.None)
@@ -95,24 +107,18 @@ namespace NetworkExtensions.NewNetwork.OneWay1L
                 .ToList();
 
             var vehicleLane = vehicleLanes[0];
-            var parkingLane = parkingLanes[0];
             vehicleLanes[1].m_laneType = NetInfo.LaneType.None;
-            parkingLanes[1].m_laneType = NetInfo.LaneType.None;
 
-            vehicleLane.m_width = 3.5f;
+            vehicleLane.m_width = 3f;
             vehicleLane.m_verticalOffset = -0.3f;
-            vehicleLane.m_position = -1.25f;
+            vehicleLane.m_position = 0f;
             vehicleLane.m_speedLimit *= 0.7f;
             foreach (var prop in vehicleLane.m_laneProps.m_props)
             {
-                prop.m_position.x = 0.5f;
+                prop.m_position.x = 0f;
             }
 
-            parkingLane.m_width = 2.5f;
-            parkingLane.m_verticalOffset = -0.3f;
-            parkingLane.m_position = 1.75f;
-
-            var roadHalfWidth = 3f;
+            var roadHalfWidth = 2f;
             var pedWidth = 2f;
 
             for (var i = 0; i < pedestrianLanes.Count; i++)
