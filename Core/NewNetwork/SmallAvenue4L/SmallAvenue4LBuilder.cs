@@ -8,14 +8,14 @@ namespace NetworkExtensions.NewNetwork.SmallAvenue4L
     public class SmallAvenue4LBuilder : ActivablePart, INetInfoBuilder
     {
         public int OptionsPriority { get { return 10; } }
-        public int Priority { get { return 2; } }
+        public int Priority { get { return 20; } }
 
         public string PrefabName { get { return VanillaNetInfos.ROAD_2L; } }
         public string Name { get { return "Small Avenue"; } }
         public string DisplayName { get { return "Small Four-Lane Road"; } }
         public string CodeName { get { return "SMALLROAD_4L"; } }
         public string Description { get { return "A four-lane road without parkings spaces. Supports medium traffic."; } }
-        public string UICategory { get { return "RoadsMedium"; } }
+        public string UICategory { get { return Menus.ROADS_SMALL_HV; } }
 
         public string ThumbnailsPath    { get { return @"NewNetwork\SmallAvenue4L\thumbnails.png"; } }
         public string InfoTooltipPath   { get { return @"NewNetwork\SmallAvenue4L\infotooltip.png"; } }

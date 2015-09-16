@@ -8,7 +8,6 @@ namespace NetworkExtensions
         private const UInt64 WORKSHOP_ID = 478820060;
 
         public const string NEXT_OBJECT_NAME = "Network Extensions";
-        public const string NEXT_CATEGORY_NAME = "Network Extensions";
 
         public const string ROAD_NETCOLLECTION = "Road";
         public const string NEWROADS_NETCOLLECTION = "NewRoad";

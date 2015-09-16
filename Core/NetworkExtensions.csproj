@@ -54,8 +54,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Compatibility\RoadColorChanger.cs" />
+    <Compile Include="Framework\Extensions\LocaleManagerExtensions.cs" />
     <Compile Include="Framework\Extensions\NetInfoLaneExtensions.cs" />
     <Compile Include="Framework\ICompatibilityPart.cs" />
+    <Compile Include="Install\IInstaller.cs" />
+    <Compile Include="Menus.cs" />
+    <Compile Include="Install\MenusInstaller.cs" />
     <Compile Include="Mod.Path.cs" />
     <Compile Include="Mod.Parts.cs" />
     <Compile Include="Framework\Extensions\ItemClassExtensions.cs" />
@@ -86,7 +90,6 @@
     <Compile Include="Framework\Selector.cs" />
     <Compile Include="Framework\AssetManager.cs" />
     <Compile Include="Framework\TexturesSet.cs" />
-    <Compile Include="ModInitializer.CustomPanel.cs" />
     <Compile Include="Framework\Loading.cs" />
     <Compile Include="Framework\ToolsCSL.cs" />
     <Compile Include="Framework\ToolsUnity.cs" />
