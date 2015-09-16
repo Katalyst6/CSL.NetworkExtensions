@@ -45,7 +45,7 @@ namespace NetworkExtensions.Framework
 
             if (!builder.CodeName.IsNullOrWhiteSpace() && !builder.ThumbnailsPath.IsNullOrWhiteSpace())
             {
-                var thumbnails = ToolsUnity.LoadThumbnails(builder.CodeName, builder.ThumbnailsPath);
+                var thumbnails = ToolsUnity.LoadToolThumbnails(builder.CodeName, builder.ThumbnailsPath);
                 mainInfo.m_Atlas = thumbnails;
                 mainInfo.m_Thumbnail = thumbnails.name;
             }

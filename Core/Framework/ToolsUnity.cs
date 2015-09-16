@@ -89,7 +89,7 @@ namespace NetworkExtensions.Framework
         }
         //=========================================================================
 
-        public static UITextureAtlas LoadThumbnails(string thumbnailsName, string thumbnailsPath)
+        public static UITextureAtlas LoadToolThumbnails(string thumbnailsName, string thumbnailsPath)
         {
             var thumbnailAtlas = ScriptableObject.CreateInstance<UITextureAtlas>();
             thumbnailAtlas.padding = 0;
@@ -118,6 +118,47 @@ namespace NetworkExtensions.Framework
                 var sprite = new UITextureAtlas.SpriteInfo
                 {
                     name = string.Format(thumbnailsName.ToUpper() + "{0}", ts[x]),
+                    region = new Rect(
+                        (float)(x * iconW) / textureW, 0f,
+                        (float)(iconW) / textureW, (float)(iconH) / textureH),
+                    texture = new Texture2D(iconW, iconH, TextureFormat.ARGB32, false)
+                };
+
+                thumbnailAtlas.AddSprite(sprite);
+            }
+
+            return thumbnailAtlas;
+        }
+
+        public static UITextureAtlas LoadMenuThumbnails(string thumbnailsName, string thumbnailsPath)
+        {
+            var thumbnailAtlas = ScriptableObject.CreateInstance<UITextureAtlas>();
+            thumbnailAtlas.padding = 0;
+            thumbnailAtlas.name = thumbnailsName;
+
+            var shader = Shader.Find("UI/Default UI Shader");
+            if (shader != null) thumbnailAtlas.material = new Material(shader);
+
+
+
+            var texture = AssetManager.instance.GetTexture(thumbnailsPath);
+            texture.FixTransparency();
+
+            thumbnailAtlas.material.mainTexture = texture;
+
+            const int iconW = 32;
+            const int iconH = 22;
+
+            const int textureW = iconW * 5;
+            const int textureH = 22;
+
+
+            string[] ts = { "", "Disabled", "Focused", "Hovered", "Pressed" };
+            for (int x = 0; x < ts.Length; ++x)
+            {
+                var sprite = new UITextureAtlas.SpriteInfo
+                {
+                    name = string.Format(thumbnailsName + "{0}", ts[x]),
                     region = new Rect(
                         (float)(x * iconW) / textureW, 0f,
                         (float)(iconW) / textureW, (float)(iconH) / textureH),

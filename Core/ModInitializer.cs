@@ -4,6 +4,7 @@ using System.Linq;
 using ColossalFramework;
 using ColossalFramework.Globalization;
 using ColossalFramework.UI;
+using NetworkExtensions.AdditionnalMenus;
 using NetworkExtensions.Framework;
 using UnityEngine;
 

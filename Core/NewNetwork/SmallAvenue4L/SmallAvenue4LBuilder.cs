@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using NetworkExtensions.AdditionnalMenus;
 using NetworkExtensions.Framework;
 using UnityEngine;
 

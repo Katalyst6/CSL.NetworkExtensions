@@ -11,6 +11,11 @@ namespace NetworkExtensions.Framework
 {
     public class AssetManager : Singleton<AssetManager>
     {
+#if DEBUG
+        private readonly ICollection<Texture2D> _specialTextures = new List<Texture2D>();
+        public ICollection<Texture2D> SpecialTextures { get { return _specialTextures; } }
+#endif
+
         private readonly IDictionary<string, Texture2D> _allTextures = new Dictionary<string, Texture2D>();
         private readonly IDictionary<string, Mesh> _allMeshes = new Dictionary<string, Mesh>();
 
