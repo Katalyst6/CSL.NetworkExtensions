@@ -8,14 +8,14 @@ namespace NetworkExtensions.NewNetwork.OneWay4L
     public class OneWay4LBuilder : ActivablePart, INetInfoBuilder
     {
         public int OptionsPriority { get { return 9; } }
-        public int Priority { get { return 3; } }
+        public int Priority { get { return 30; } }
 
         public string PrefabName { get { return VanillaNetInfos.ONEWAY_2L; } }
         public string Name { get { return "Oneway4L"; } }
         public string CodeName { get { return "SMALL_ONEWAY_4L"; } }
         public string DisplayName { get { return "Small Four-Lane Oneway"; } }
         public string Description { get { return "A four-lane one-way road without parkings spaces. Supports medium traffic."; } }
-        public string UICategory { get { return "RoadsMedium"; } }
+        public string UICategory { get { return Menus.ROADS_SMALL_HV; } }
 
         public string ThumbnailsPath    { get { return @"NewNetwork\OneWay4L\thumbnails.png"; } }
         public string InfoTooltipPath   { get { return @"NewNetwork\OneWay4L\infotooltip.png"; } }
