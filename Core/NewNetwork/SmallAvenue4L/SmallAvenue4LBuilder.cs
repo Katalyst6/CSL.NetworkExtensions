@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
-using NetworkExtensions.AdditionnalMenus;
 using NetworkExtensions.Framework;
+using NetworkExtensions.Menus;
 using UnityEngine;
 
 namespace NetworkExtensions.NewNetwork.SmallAvenue4L
@@ -16,7 +16,7 @@ namespace NetworkExtensions.NewNetwork.SmallAvenue4L
         public string DisplayName { get { return "Small Four-Lane Road"; } }
         public string CodeName { get { return "SMALLROAD_4L"; } }
         public string Description { get { return "A four-lane road without parkings spaces. Supports medium traffic."; } }
-        public string UICategory { get { return Menus.ROADS_SMALL_HV; } }
+        public string UICategory { get { return AdditionnalMenus.ROADS_SMALL_HV; } }
 
         public string ThumbnailsPath    { get { return @"NewNetwork\SmallAvenue4L\thumbnails.png"; } }
         public string InfoTooltipPath   { get { return @"NewNetwork\SmallAvenue4L\infotooltip.png"; } }

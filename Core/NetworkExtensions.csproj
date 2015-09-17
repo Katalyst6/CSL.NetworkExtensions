@@ -58,7 +58,7 @@
     <Compile Include="Framework\Extensions\NetInfoLaneExtensions.cs" />
     <Compile Include="Framework\ICompatibilityPart.cs" />
     <Compile Include="Install\IInstaller.cs" />
-    <Compile Include="AdditionnalMenus\Menus.cs" />
+    <Compile Include="Menus\AdditionnalMenus.cs" />
     <Compile Include="Install\MenusInstaller.cs" />
     <Compile Include="Mod.Path.cs" />
     <Compile Include="Mod.Parts.cs" />
@@ -114,7 +114,7 @@
     <Compile Include="VanillaNetInfos.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="AdditionnalMenus\Textures\RoadsSmallHV.png">
+    <Content Include="Menus\Textures\AdditionnalSubBar.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="NewNetwork\Alley2L\infotooltip.png">

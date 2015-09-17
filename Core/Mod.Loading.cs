@@ -23,7 +23,6 @@ namespace NetworkExtensions
             {
                 if (GetPath() != PATH_NOT_FOUND)
                 {
-                    _menusInstaller = new MenusInstaller();
 
                     _container = new GameObject(NEXT_OBJECT_NAME);
 
@@ -52,14 +51,26 @@ namespace NetworkExtensions
             });
         }
 
+        private void MenusInstallationCompleted()
+        {
+            Loading.QueueAction(() =>
+            {
+                if (_menusInstaller != null)
+                {
+                    Object.Destroy(_menusInstaller);
+                    _menusInstaller = null;
+                }
+            });
+        }
+
         public override void OnLevelLoaded(LoadMode mode)
         {
             base.OnLevelLoaded(mode);
 
-            if (_menusInstaller != null)
+            if (_container != null && _menusInstaller == null)
             {
-                _menusInstaller.Execute();
-                _menusInstaller = null;
+                _menusInstaller = _container.AddComponent<MenusInstaller>();
+                _menusInstaller.InstallationCompleted += MenusInstallationCompleted;
             }
         }
 

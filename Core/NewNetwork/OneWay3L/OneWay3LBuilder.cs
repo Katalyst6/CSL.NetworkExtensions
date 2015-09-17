@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using NetworkExtensions.AdditionnalMenus;
 using NetworkExtensions.Framework;
+using NetworkExtensions.Menus;
 
 namespace NetworkExtensions.NewNetwork.OneWay3L
 {
@@ -16,7 +16,7 @@ namespace NetworkExtensions.NewNetwork.OneWay3L
         public string CodeName { get { return "ONEWAY_3L"; } }
         public string DisplayName { get { return "Three-Lane Oneway"; } }
         public string Description { get { return "A three-lane one-way road without parkings spaces. Supports medium traffic."; } }
-        public string UICategory { get { return Menus.ROADS_SMALL_HV; } }
+        public string UICategory { get { return AdditionnalMenus.ROADS_SMALL_HV; } }
 
         public string ThumbnailsPath    { get { return @"NewNetwork\OneWay3L\thumbnails.png"; } }
         public string InfoTooltipPath   { get { return @"NewNetwork\OneWay3L\infotooltip.png"; } }

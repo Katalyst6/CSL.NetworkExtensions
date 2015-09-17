@@ -1,77 +1,128 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using ColossalFramework.UI;
-using NetworkExtensions.AdditionnalMenus;
 using NetworkExtensions.Framework;
-using Object = UnityEngine.Object;
+using NetworkExtensions.Menus;
+using UnityEngine;
+using Debug = NetworkExtensions.Framework.Debug;
 
 namespace NetworkExtensions.Install
 {
-    public class MenusInstaller : IInstaller
+    public delegate void InstallationCompletedEventHandler();
+
+    public class MenusInstaller : MonoBehaviour
     {
-        public void Execute()
+        public event InstallationCompletedEventHandler InstallationCompleted;
+
+        private bool _doneWithInstall = false;
+
+        void Awake()
+        {
+            DontDestroyOnLoad(this);
+        }
+
+        void Update()
+        {
+            if (!_doneWithInstall)
+            {
+                UpdateInternal();
+            }
+        }
+
+        private void UpdateInternal()
+        {
+            if (!_doneWithInstall)
+            {
+                if (ValidatePrerequisites())
+                {
+                    Install();
+                    _doneWithInstall = true;
+                }
+            }
+
+            if (_doneWithInstall)
+            {
+                if (InstallationCompleted != null)
+                {
+                    InstallationCompleted();
+                }
+            }
+        }
+
+        private bool ValidatePrerequisites()
+        {
+            try
+            {
+                if (!ModInitializer.s_initializedLocalization)
+                {
+                    return false;
+                }
+
+                var group = FindObjectsOfType<RoadsGroupPanel>().FirstOrDefault();
+                if (group == null)
+                {
+                    return false;
+                }
+
+                var panelContainer = group.Find<UITabContainer>("GTSContainer");
+                if (panelContainer == null)
+                {
+                    return false;
+                }
+
+                var buttonContainer = group.Find<UITabstrip>("GroupToolstrip");
+                if (buttonContainer == null)
+                {
+                    return false;
+                }
+
+                var panels = panelContainer.components.OfType<UIPanel>();
+                if (!panels.Any())
+                {
+                    return false;
+                }
+
+                var buttons = buttonContainer.components.OfType<UIButton>();
+                if (!buttons.Any())
+                {
+                    return false;
+                }
+            }
+            catch
+            {
+                return false;
+            }
+
+            return true;
+        }
+
+        private void Install()
         {
             Loading.QueueAction(() =>
             {
                 try
                 {
-                    var menuInstalled = false;
+//                    Debug.Log("NExt: Installing Additionnal Menus");
+//                    var menuInstalled = false;
 
-                    foreach (var group in Object.FindObjectsOfType<RoadsGroupPanel>())
-                    {
-                        var button1 = group.Find<UIButton>("RoadsMedium");
-                        var n = button1.normalBgSprite;
-                        var d = button1.disabledBgSprite;
-                        var f = button1.focusedBgSprite;
-                        var h = button1.hoveredBgSprite;
-                        var p = button1.pressedBgSprite;
+//                    var group = FindObjectsOfType<RoadsGroupPanel>().FirstOrDefault();
 
-                        var spriteToGet = new[]
-                        {
-                            n, d, f, h, p
-                        };
+//                    if (InstallRoadSmallHV(group))
+//                    {
+//                        menuInstalled = true;
+//                    }
 
-                        var texs = button1
-                            .atlas
-                            .sprites
-                            .Where(s => spriteToGet.Contains(s.name))
-                            .OrderBy(s => s.name)
-                            .Select(s => s.texture)
-                            .ToArray();
-
-                        foreach (var t in texs)
-                        {
-                            AssetManager.instance.SpecialTextures.Add(t);
-                        }
-
-                        var button = group.Find<UIButton>(Menus.ROADS_SMALL_HV);
-                        var panel = group.Find<UIPanel>(Menus.ROADS_SMALL_HV + "Panel");
-
-                        if (button != null && panel != null)
-                        {
-                            // TODO: Set the thumbnail
-                            button.zOrder = 1;
-                            panel.zOrder = 1;
-
-                            button.atlas = ToolsUnity.LoadMenuThumbnails(
-                                "SubBar" + Menus.ROADS_SMALL_HV,
-                                @"AdditionnalMenus\Textures\RoadsSmallHV.png");
-
-                            menuInstalled = true;
-                            break;
-                        }
-                    }
-
-                    if (menuInstalled)
-                    {
-                        Debug.Log("NExt: New Menus have been installed");
-                    }
-#if DEBUG
-                    else
-                    {
-                        Debug.Log("NExt: Something has happened, new menus have not been installed");
-                    }
-#endif
+//                    if (menuInstalled)
+//                    {
+//                        Debug.Log("NExt: Additionnal Menus have been installed");
+//                    }
+//#if DEBUG
+//                    else
+//                    {
+//                        Debug.Log("NExt: Something has happened, Additionnal Menus have not been installed");
+//                    }
+//#endif
                 }
                 catch (Exception ex)
                 {
@@ -80,6 +131,33 @@ namespace NetworkExtensions.Install
                     Debug.Log("NExt: " + ex.ToString());
                 }
             });
+        }
+
+        private static bool InstallRoadSmallHV(RoadsGroupPanel group)
+        {
+            const int TARGET_ID = 1;
+            const string PANEL_NAME = AdditionnalMenus.ROADS_SMALL_HV + "Panel";
+            const string BTN_NAME = AdditionnalMenus.ROADS_SMALL_HV;
+
+            var panelInstalled = false;
+            var buttonInstalled = false;
+
+            var p = group.Find<UIPanel>(PANEL_NAME);
+            if (p != null)
+            {
+                p.zOrder = TARGET_ID;
+                panelInstalled = true;
+            }
+
+            var b = group.Find<UIButton>(BTN_NAME);
+            if (b != null)
+            {
+                b.zOrder = TARGET_ID;
+                b.atlas = ToolsUnity.LoadMenuThumbnails();
+                buttonInstalled = true;
+            }
+
+            return panelInstalled && buttonInstalled;
         }
     }
 }

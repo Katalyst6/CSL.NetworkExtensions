@@ -4,7 +4,6 @@ using System.Linq;
 using ColossalFramework;
 using ColossalFramework.Globalization;
 using ColossalFramework.UI;
-using NetworkExtensions.AdditionnalMenus;
 using NetworkExtensions.Framework;
 using UnityEngine;
 
@@ -17,7 +16,7 @@ namespace NetworkExtensions
     public partial class ModInitializer : MonoBehaviour
     {
         private bool _doneWithInit = false;
-        private static bool s_initializedLocalization = false; //Only one localization throughout the application
+        public static bool s_initializedLocalization = false; //Only one localization throughout the application
         private bool _initializedCoreLogic = false;
 
         public NetCollection NewRoads { get; set; }
@@ -167,7 +166,7 @@ namespace NetworkExtensions
                     //Debug.Log("NExt: Localization");
                     var locale = SingletonLite<LocaleManager>.instance.GetLocale();
 
-                    locale.CreateMenuTitleLocalizedString(Menus.ROADS_SMALL_HV, "Small Heavy Roads");
+                    locale.CreateMenuTitleLocalizedString(Menus.AdditionnalMenus.ROADS_SMALL_HV, "Small Heavy Roads");
 
                     foreach (var builder in Mod.NetInfoBuilders)
                     {
