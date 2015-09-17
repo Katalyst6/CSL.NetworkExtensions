@@ -3,7 +3,10 @@ using System.Linq;
 using ColossalFramework.UI;
 using NetworkExtensions.Framework;
 using NetworkExtensions.Menus;
+
+#if DEBUG
 using Debug = NetworkExtensions.Framework.Debug;
+#endif
 
 namespace NetworkExtensions.Install
 {
@@ -13,7 +16,7 @@ namespace NetworkExtensions.Install
         {
             try
             {
-                if (!ModInitializer.s_initializedLocalization)
+                if (!LocalizationInstaller.Done)
                 {
                     return false;
                 }

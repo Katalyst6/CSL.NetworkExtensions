@@ -12,7 +12,8 @@ namespace NetworkExtensions
         private bool _isReleased = true;
         private GameObject _container = null;
         private NetCollection _newRoads = null;
-        private ModInitializer _initalizer = null;
+        private LocalizationInstaller _localizationInstaller = null;
+        private RoadsInstaller _roadsInstaller = null;
         private MenusInstaller _menusInstaller = null;
 
         public override void OnCreated(ILoading loading)
@@ -29,24 +30,39 @@ namespace NetworkExtensions
                     _newRoads = _container.AddComponent<NetCollection>();
                     _newRoads.name = NEWROADS_NETCOLLECTION;
 
-                    _initalizer = _container.AddComponent<ModInitializer>();
-                    _initalizer.NewRoads = _newRoads;
-                    _initalizer.InitializationCompleted += InitializationCompleted;
+                    _localizationInstaller = _container.AddComponent<LocalizationInstaller>();
+                    _localizationInstaller.InstallationCompleted += LocInstallationCompleted;
+
+                    _roadsInstaller = _container.AddComponent<RoadsInstaller>();
+                    _roadsInstaller.NewRoads = _newRoads;
+                    _roadsInstaller.InitializationCompleted += RoadsInstallationCompleted;
                 }
 
                 _isReleased = false;
             }
         }
 
-        private void InitializationCompleted(object sender, EventArgs e)
+        private void LocInstallationCompleted()
         {
             Loading.QueueAction(() =>
             {
-                if (_initalizer != null)
+                if (_localizationInstaller != null)
                 {
-                    _initalizer.NewRoads = null;
-                    Object.Destroy(_initalizer);
-                    _initalizer = null;
+                    Object.Destroy(_localizationInstaller);
+                    _localizationInstaller = null;
+                }
+            });
+        }
+
+        private void RoadsInstallationCompleted(object sender, EventArgs e)
+        {
+            Loading.QueueAction(() =>
+            {
+                if (_roadsInstaller != null)
+                {
+                    _roadsInstaller.NewRoads = null;
+                    Object.Destroy(_roadsInstaller);
+                    _roadsInstaller = null;
                 }
             });
         }
@@ -83,10 +99,28 @@ namespace NetworkExtensions
                 return;
             }
 
-            if (_initalizer != null)
+            if (_localizationInstaller != null)
             {
-                Object.Destroy(_initalizer);
-                _initalizer = null;
+                Object.Destroy(_localizationInstaller);
+                _localizationInstaller = null;
+            }
+
+            if (_roadsInstaller != null)
+            {
+                Object.Destroy(_roadsInstaller);
+                _roadsInstaller = null;
+            }
+
+            if (_menusInstaller != null)
+            {
+                Object.Destroy(_menusInstaller);
+                _menusInstaller = null;
+            }
+
+            if (_roadsInstaller != null)
+            {
+                Object.Destroy(_roadsInstaller);
+                _roadsInstaller = null;
             }
 
             if (_newRoads != null)

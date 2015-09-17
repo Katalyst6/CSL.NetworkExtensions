@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using ColossalFramework;
-using ColossalFramework.Globalization;
-using ColossalFramework.UI;
 using NetworkExtensions.Framework;
 using UnityEngine;
 
@@ -11,12 +8,11 @@ using UnityEngine;
 using Debug = NetworkExtensions.Framework.Debug;
 #endif
 
-namespace NetworkExtensions
+namespace NetworkExtensions.Install
 {
-    public partial class ModInitializer : MonoBehaviour
+    public class RoadsInstaller : MonoBehaviour
     {
         private bool _doneWithInit = false;
-        public static bool s_initializedLocalization = false; //Only one localization throughout the application
         private bool _initializedCoreLogic = false;
 
         public NetCollection NewRoads { get; set; }
@@ -58,23 +54,13 @@ namespace NetworkExtensions
 
             if (!_versionShown)
             {
-                var version = typeof(ModInitializer).Assembly.GetName().Version;
+                var version = typeof(RoadsInstaller).Assembly.GetName().Version;
                 Debug.Log(string.Format("NExt: Version {0}", version));
                 _versionShown = true;
             }
 #endif
 
-
-            if (!s_initializedLocalization)
-            {
-                if (ValidateLocalizationPrerequisites())
-                {
-                    InitializeLocalization();
-                    s_initializedLocalization = true;
-                }
-            }
-
-            if (!_initializedCoreLogic & s_initializedLocalization)
+            if (!_initializedCoreLogic)
             {
                 if (ValidateCoreLogicPrerequisites(NewRoads))
                 {
@@ -83,9 +69,7 @@ namespace NetworkExtensions
                 }
             }
 
-            _doneWithInit =
-                _initializedCoreLogic &&
-                s_initializedLocalization;
+            _doneWithInit = _initializedCoreLogic;
 
             if (_doneWithInit)
             {
@@ -96,33 +80,13 @@ namespace NetworkExtensions
             }
         }
 
-        private static bool ValidateLocalizationPrerequisites()
-        {
-            var localeManager = SingletonLite<LocaleManager>.instance;
-            if (localeManager == null)
-            {
-                return false;
-            }
-
-
-            var localeField = typeof(LocaleManager).GetFieldByName("m_Locale");
-            if (localeField == null)
-            {
-                return false;
-            }
-
-
-            var locale = (Locale)localeField.GetValue(localeManager);
-            if (locale == null)
-            {
-                return false;
-            }
-
-            return true;
-        }
-
         private static bool ValidateCoreLogicPrerequisites(NetCollection newRoads)
         {
+            if (!LocalizationInstaller.Done)
+            {
+                return false;
+            }
+
             var roadObject = GameObject.Find(Mod.ROAD_NETCOLLECTION);
             if (roadObject == null)
             {
@@ -155,32 +119,6 @@ namespace NetworkExtensions
             }
 
             return true;
-        }
-
-        private static void InitializeLocalization()
-        {
-            Loading.QueueAction(() =>
-            {
-                try
-                {
-                    //Debug.Log("NExt: Localization");
-                    var locale = SingletonLite<LocaleManager>.instance.GetLocale();
-
-                    locale.CreateMenuTitleLocalizedString(Menus.AdditionnalMenus.ROADS_SMALL_HV, "Small Heavy Roads");
-
-                    foreach (var builder in Mod.NetInfoBuilders)
-                    {
-                        locale.CreateNetTitleLocalizedString(builder.Name, builder.DisplayName);
-                        locale.CreateNetDescriptionLocalizedString(builder.Name, builder.Description);
-                    }
-                }
-                catch (Exception ex)
-                {
-                    Debug.Log("NExt: Crashed-Localization");
-                    Debug.Log("NExt: " + ex.Message);
-                    Debug.Log("NExt: " + ex.ToString());
-                }
-            });
         }
 
         private static void InitializeCoreLogic(NetCollection newRoads)
