@@ -1,56 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using ColossalFramework.UI;
 using NetworkExtensions.Framework;
 using NetworkExtensions.Menus;
-using UnityEngine;
 using Debug = NetworkExtensions.Framework.Debug;
 
 namespace NetworkExtensions.Install
 {
-    public delegate void InstallationCompletedEventHandler();
-
-    public class MenusInstaller : MonoBehaviour
+    public class MenusInstaller : Installer
     {
-        public event InstallationCompletedEventHandler InstallationCompleted;
-
-        private bool _doneWithInstall = false;
-
-        void Awake()
-        {
-            DontDestroyOnLoad(this);
-        }
-
-        void Update()
-        {
-            if (!_doneWithInstall)
-            {
-                UpdateInternal();
-            }
-        }
-
-        private void UpdateInternal()
-        {
-            if (!_doneWithInstall)
-            {
-                if (ValidatePrerequisites())
-                {
-                    Install();
-                    _doneWithInstall = true;
-                }
-            }
-
-            if (_doneWithInstall)
-            {
-                if (InstallationCompleted != null)
-                {
-                    InstallationCompleted();
-                }
-            }
-        }
-
-        private bool ValidatePrerequisites()
+        protected override bool ValidatePrerequisites()
         {
             try
             {
@@ -97,32 +56,32 @@ namespace NetworkExtensions.Install
             return true;
         }
 
-        private void Install()
+        protected override void Install()
         {
             Loading.QueueAction(() =>
             {
                 try
                 {
-//                    Debug.Log("NExt: Installing Additionnal Menus");
-//                    var menuInstalled = false;
+                    Debug.Log("NExt: Installing Additionnal Menus");
+                    var menuInstalled = false;
 
-//                    var group = FindObjectsOfType<RoadsGroupPanel>().FirstOrDefault();
+                    var group = FindObjectsOfType<RoadsGroupPanel>().FirstOrDefault();
 
-//                    if (InstallRoadSmallHV(group))
-//                    {
-//                        menuInstalled = true;
-//                    }
+                    if (InstallRoadSmallHV(group))
+                    {
+                        menuInstalled = true;
+                    }
 
-//                    if (menuInstalled)
-//                    {
-//                        Debug.Log("NExt: Additionnal Menus have been installed");
-//                    }
-//#if DEBUG
-//                    else
-//                    {
-//                        Debug.Log("NExt: Something has happened, Additionnal Menus have not been installed");
-//                    }
-//#endif
+                    if (menuInstalled)
+                    {
+                        Debug.Log("NExt: Additionnal Menus have been installed");
+                    }
+#if DEBUG
+                    else
+                    {
+                        Debug.Log("NExt: Something has happened, Additionnal Menus have not been installed");
+                    }
+#endif
                 }
                 catch (Exception ex)
                 {
