@@ -19,21 +19,26 @@ namespace NetworkExtensions.Install
                 return;
             }
 
-            Loading.QueueAction(() =>
+            foreach (var action in AssetManager.instance.CreateLoadingSequence())
             {
-                try
-                {
-                    AssetManager.instance.FindAndLoadAllTextures();
-                }
-                catch (Exception ex)
-                {
-                    Debug.Log("NExt: Crashed-AssetsInstaller");
-                    Debug.Log("NExt: " + ex.Message);
-                    Debug.Log("NExt: " + ex.ToString());
-                }
+                var localAction = action;
 
-                Done = true;
-            });
+                Loading.QueueAction(() =>
+                {
+                    try
+                    {
+                        localAction();
+                    }
+                    catch (Exception ex)
+                    {
+                        Debug.Log("NExt: Crashed-AssetsInstaller");
+                        Debug.Log("NExt: " + ex.Message);
+                        Debug.Log("NExt: " + ex.ToString());
+                    }
+                });
+            }
+
+            Done = true;
         }
     }
 }
