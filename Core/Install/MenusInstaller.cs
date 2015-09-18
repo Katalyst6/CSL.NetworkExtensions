@@ -70,7 +70,6 @@ namespace NetworkExtensions.Install
             {
                 try
                 {
-                    Debug.Log("NExt: Installing Additionnal Menus");
                     var menuInstalled = false;
 
                     var group = FindObjectsOfType<RoadsGroupPanel>().FirstOrDefault();
@@ -82,7 +81,7 @@ namespace NetworkExtensions.Install
 
                     if (menuInstalled)
                     {
-                        Debug.Log("NExt: Additionnal Menus have been installed");
+                        Debug.Log("NExt: Additionnal Menus have been installed successfully");
                     }
 #if DEBUG
                     else

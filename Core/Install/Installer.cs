@@ -27,7 +27,7 @@ namespace NetworkExtensions.Install
             }
         }
 
-        protected virtual void UpdateInternal()
+        private void UpdateInternal()
         {
             if (!_doneWithInstall)
             {

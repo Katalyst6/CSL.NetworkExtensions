@@ -4,7 +4,7 @@ using Debug = NetworkExtensions.Framework.Debug;
 
 namespace NetworkExtensions.Install
 {
-    public class CoreInstaller : Installer
+    public class HeaderInstaller : Installer
     {
 #if DEBUG
         private int _frameNb = 0;

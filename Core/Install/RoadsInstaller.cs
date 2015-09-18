@@ -10,52 +10,11 @@ using Debug = NetworkExtensions.Framework.Debug;
 
 namespace NetworkExtensions.Install
 {
-    public class RoadsInstaller : MonoBehaviour
+    public class RoadsInstaller : Installer
     {
-        private bool _doneWithInit = false;
-        private bool _initializedCoreLogic = false;
-
         public NetCollection NewRoads { get; set; }
 
-        public delegate void InitializationCompletedEventHandler(object sender, EventArgs e);
-        public event InitializationCompletedEventHandler InitializationCompleted;
-
-        void Awake()
-        {
-            DontDestroyOnLoad(this);
-        }
-
-        void Update()
-        {
-            if (!_doneWithInit)
-            {
-                Initialize();
-            }
-        }
-        
-        private void Initialize()
-        {
-            if (!_initializedCoreLogic)
-            {
-                if (ValidateCoreLogicPrerequisites(NewRoads))
-                {
-                    InitializeCoreLogic(NewRoads);
-                    _initializedCoreLogic = true;
-                }
-            }
-
-            _doneWithInit = _initializedCoreLogic;
-
-            if (_doneWithInit)
-            {
-                if (InitializationCompleted != null)
-                {
-                    InitializationCompleted(this, EventArgs.Empty);
-                }
-            }
-        }
-
-        private static bool ValidateCoreLogicPrerequisites(NetCollection newRoads)
+        protected override bool ValidatePrerequisites()
         {
             if (!LocalizationInstaller.Done)
             {
@@ -93,7 +52,7 @@ namespace NetworkExtensions.Install
                 return false;
             }
 
-            if (newRoads == null)
+            if (NewRoads == null)
             {
                 return false;
             }
@@ -101,8 +60,10 @@ namespace NetworkExtensions.Install
             return true;
         }
 
-        private static void InitializeCoreLogic(NetCollection newRoads)
+        protected override void Install()
         {
+            var localNewRoads = NewRoads;
+
             Loading.QueueAction(() =>
             {
                 //Debug.Log("NExt: Setting up new Roads and Logic");
@@ -129,8 +90,8 @@ namespace NetworkExtensions.Install
 
                 if (newInfos.Count > 0)
                 {
-                    newRoads.m_prefabs = newInfos.ToArray();
-                    PrefabCollection<NetInfo>.InitializePrefabs(newRoads.name, newRoads.m_prefabs, new string[] { });
+                    localNewRoads.m_prefabs = newInfos.ToArray();
+                    PrefabCollection<NetInfo>.InitializePrefabs(localNewRoads.name, localNewRoads.m_prefabs, new string[] { });
                     PrefabCollection<NetInfo>.BindPrefabs();
                 }
 

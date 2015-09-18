@@ -13,7 +13,7 @@ namespace NetworkExtensions
         private GameObject _container = null;
         private NetCollection _newRoads = null;
 
-        private CoreInstaller _coreInstaller = null;
+        private HeaderInstaller _headerInstaller = null;
         private LocalizationInstaller _localizationInstaller = null;
         private AssetsInstaller _assetsInstaller = null;
         private RoadsInstaller _roadsInstaller = null;
@@ -32,22 +32,22 @@ namespace NetworkExtensions
                     _newRoads = _container.AddComponent<NetCollection>();
                     _newRoads.name = NEWROADS_NETCOLLECTION;
 
-                    _coreInstaller = _container.AddComponent<CoreInstaller>();
-                    _coreInstaller.InstallationCompleted += CoreInstallationCompleted;
+                    _headerInstaller = _container.AddComponent<HeaderInstaller>();
+                    _headerInstaller.InstallationCompleted += HeaderInstallationCompleted;
                 }
 
                 _isReleased = false;
             }
         }
 
-        private void CoreInstallationCompleted()
+        private void HeaderInstallationCompleted()
         {
             Loading.QueueAction(() =>
             {
-                if (_coreInstaller != null)
+                if (_headerInstaller != null)
                 {
-                    Object.Destroy(_coreInstaller);
-                    _coreInstaller = null;
+                    Object.Destroy(_headerInstaller);
+                    _headerInstaller = null;
                 }
 
                 if (_container != null)
@@ -60,7 +60,7 @@ namespace NetworkExtensions
 
                     _roadsInstaller = _container.AddComponent<RoadsInstaller>();
                     _roadsInstaller.NewRoads = _newRoads;
-                    _roadsInstaller.InitializationCompleted += RoadsInstallationCompleted;
+                    _roadsInstaller.InstallationCompleted += RoadsInstallationCompleted;
                 }
             });
         }
@@ -89,7 +89,7 @@ namespace NetworkExtensions
             });
         }
 
-        private void RoadsInstallationCompleted(object sender, EventArgs e)
+        private void RoadsInstallationCompleted()
         {
             Loading.QueueAction(() =>
             {
@@ -134,10 +134,10 @@ namespace NetworkExtensions
                 return;
             }
 
-            if (_coreInstaller != null)
+            if (_headerInstaller != null)
             {
-                Object.Destroy(_coreInstaller);
-                _coreInstaller = null;
+                Object.Destroy(_headerInstaller);
+                _headerInstaller = null;
             }
 
             if (_localizationInstaller != null)
@@ -162,12 +162,6 @@ namespace NetworkExtensions
             {
                 Object.Destroy(_menusInstaller);
                 _menusInstaller = null;
-            }
-
-            if (_roadsInstaller != null)
-            {
-                Object.Destroy(_roadsInstaller);
-                _roadsInstaller = null;
             }
 
             if (_newRoads != null)
