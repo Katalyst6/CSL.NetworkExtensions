@@ -1,5 +1,9 @@
 ﻿using UnityEngine;
 
+#if DEBUG
+using Debug = NetworkExtensions.Framework.Debug;
+#endif
+
 namespace NetworkExtensions.Install
 {
     public delegate void InstallationCompletedEventHandler();
@@ -23,13 +27,15 @@ namespace NetworkExtensions.Install
             }
         }
 
-        private void UpdateInternal()
+        protected virtual void UpdateInternal()
         {
             if (!_doneWithInstall)
             {
                 if (ValidatePrerequisites())
                 {
                     Install();
+                    Debug.Log(string.Format("NExt: {0} completed", GetType().Name));
+
                     _doneWithInstall = true;
                 }
             }

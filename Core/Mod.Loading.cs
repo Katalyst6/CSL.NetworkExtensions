@@ -13,6 +13,7 @@ namespace NetworkExtensions
         private GameObject _container = null;
         private NetCollection _newRoads = null;
 
+        private CoreInstaller _coreInstaller = null;
         private LocalizationInstaller _localizationInstaller = null;
         private AssetsInstaller _assetsInstaller = null;
         private RoadsInstaller _roadsInstaller = null;
@@ -26,12 +27,31 @@ namespace NetworkExtensions
             {
                 if (GetPath() != PATH_NOT_FOUND)
                 {
-
                     _container = new GameObject(NEXT_OBJECT_NAME);
 
                     _newRoads = _container.AddComponent<NetCollection>();
                     _newRoads.name = NEWROADS_NETCOLLECTION;
 
+                    _coreInstaller = _container.AddComponent<CoreInstaller>();
+                    _coreInstaller.InstallationCompleted += CoreInstallationCompleted;
+                }
+
+                _isReleased = false;
+            }
+        }
+
+        private void CoreInstallationCompleted()
+        {
+            Loading.QueueAction(() =>
+            {
+                if (_coreInstaller != null)
+                {
+                    Object.Destroy(_coreInstaller);
+                    _coreInstaller = null;
+                }
+
+                if (_container != null)
+                {
                     _localizationInstaller = _container.AddComponent<LocalizationInstaller>();
                     _localizationInstaller.InstallationCompleted += LocInstallationCompleted;
 
@@ -42,9 +62,7 @@ namespace NetworkExtensions
                     _roadsInstaller.NewRoads = _newRoads;
                     _roadsInstaller.InitializationCompleted += RoadsInstallationCompleted;
                 }
-
-                _isReleased = false;
-            }
+            });
         }
 
         private void LocInstallationCompleted()
@@ -114,6 +132,12 @@ namespace NetworkExtensions
             if (_isReleased)
             {
                 return;
+            }
+
+            if (_coreInstaller != null)
+            {
+                Object.Destroy(_coreInstaller);
+                _coreInstaller = null;
             }
 
             if (_localizationInstaller != null)

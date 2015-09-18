@@ -32,29 +32,9 @@ namespace NetworkExtensions.Install
                 Initialize();
             }
         }
-
-
-#if DEBUG
-        private int _frameNb = 0;
-        private bool _versionShown = false;
-#endif
         
         private void Initialize()
         {
-#if DEBUG
-            if (_frameNb++ < 20) // Giving some time for the UI to refresh **NB. Putting this constant higher than 100 causes wierd behavior**
-            {
-                return;
-            }
-
-            if (!_versionShown)
-            {
-                var version = typeof(RoadsInstaller).Assembly.GetName().Version;
-                Debug.Log(string.Format("NExt: Version {0}", version));
-                _versionShown = true;
-            }
-#endif
-
             if (!_initializedCoreLogic)
             {
                 if (ValidateCoreLogicPrerequisites(NewRoads))
