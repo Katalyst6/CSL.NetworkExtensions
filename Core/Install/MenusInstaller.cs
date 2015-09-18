@@ -1,13 +1,70 @@
 ﻿using System;
+using System.Linq;
 using ColossalFramework.UI;
 using NetworkExtensions.Framework;
-using Object = UnityEngine.Object;
+using NetworkExtensions.Menus;
+
+#if DEBUG
+using Debug = NetworkExtensions.Framework.Debug;
+#endif
 
 namespace NetworkExtensions.Install
 {
-    public class MenusInstaller : IInstaller
+    public class MenusInstaller : Installer
     {
-        public void Execute()
+        protected override bool ValidatePrerequisites()
+        {
+            try
+            {
+                if (!LocalizationInstaller.Done)
+                {
+                    return false;
+                }
+
+                if (!AssetsInstaller.Done)
+                {
+                    return false;
+                }
+
+                var group = FindObjectsOfType<RoadsGroupPanel>().FirstOrDefault();
+                if (group == null)
+                {
+                    return false;
+                }
+
+                var panelContainer = group.Find<UITabContainer>("GTSContainer");
+                if (panelContainer == null)
+                {
+                    return false;
+                }
+
+                var buttonContainer = group.Find<UITabstrip>("GroupToolstrip");
+                if (buttonContainer == null)
+                {
+                    return false;
+                }
+
+                var panels = panelContainer.components.OfType<UIPanel>();
+                if (!panels.Any())
+                {
+                    return false;
+                }
+
+                var buttons = buttonContainer.components.OfType<UIButton>();
+                if (!buttons.Any())
+                {
+                    return false;
+                }
+            }
+            catch
+            {
+                return false;
+            }
+
+            return true;
+        }
+
+        protected override void Install()
         {
             Loading.QueueAction(() =>
             {
@@ -15,37 +72,58 @@ namespace NetworkExtensions.Install
                 {
                     var menuInstalled = false;
 
-                    foreach (var group in Object.FindObjectsOfType<RoadsGroupPanel>())
-                    {
-                        var button = group.Find<UIButton>(Menus.ROADS_SMALL_HV);
-                        var panel = group.Find<UIPanel>(Menus.ROADS_SMALL_HV + "Panel");
+                    var group = FindObjectsOfType<RoadsGroupPanel>().FirstOrDefault();
 
-                        if (button != null && panel != null)
-                        {
-                            // TODO: Set the thumbnail
-                            button.zOrder = 1;
-                            panel.zOrder = 1;
-                            menuInstalled = true;
-                            break;
-                        }
+                    if (InstallRoadSmallHV(group))
+                    {
+                        menuInstalled = true;
                     }
 
                     if (menuInstalled)
                     {
-                        Debug.Log("NExt: New Menus have been installed");
+                        Debug.Log("NExt: Additionnal Menus have been installed successfully");
                     }
+#if DEBUG
                     else
                     {
-                        Debug.Log("NExt: Something has happened, new menus have not been installed");
+                        Debug.Log("NExt: Something has happened, Additionnal Menus have not been installed");
                     }
+#endif
                 }
                 catch (Exception ex)
                 {
-                    Debug.Log("NExt: Crashed-Initialized New Menus");
+                    Debug.Log("NExt: Crashed-Initialized Additionnal Menus");
                     Debug.Log("NExt: " + ex.Message);
                     Debug.Log("NExt: " + ex.ToString());
                 }
             });
+        }
+
+        private static bool InstallRoadSmallHV(RoadsGroupPanel group)
+        {
+            const int TARGET_ID = 1;
+            const string PANEL_NAME = AdditionnalMenus.ROADS_SMALL_HV + "Panel";
+            const string BTN_NAME = AdditionnalMenus.ROADS_SMALL_HV;
+
+            var panelInstalled = false;
+            var buttonInstalled = false;
+
+            var p = group.Find<UIPanel>(PANEL_NAME);
+            if (p != null)
+            {
+                p.zOrder = TARGET_ID;
+                panelInstalled = true;
+            }
+
+            var b = group.Find<UIButton>(BTN_NAME);
+            if (b != null)
+            {
+                b.zOrder = TARGET_ID;
+                b.atlas = ToolsUnity.LoadMenuThumbnails();
+                buttonInstalled = true;
+            }
+
+            return panelInstalled && buttonInstalled;
         }
     }
 }

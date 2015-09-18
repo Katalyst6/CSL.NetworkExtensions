@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using ICities;
 using NetworkExtensions.Framework;
+using NetworkExtensions.Install;
 
 namespace NetworkExtensions
 {
@@ -17,7 +18,7 @@ namespace NetworkExtensions
                 {
                     var partType = typeof(IModPart);
 
-                    s_parts = typeof(ModInitializer)
+                    s_parts = typeof(RoadsInstaller)
                         .Assembly
                         .GetTypes()
                         .Where(t => !t.IsAbstract && !t.IsInterface)

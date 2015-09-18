@@ -57,8 +57,11 @@
     <Compile Include="Framework\Extensions\LocaleManagerExtensions.cs" />
     <Compile Include="Framework\Extensions\NetInfoLaneExtensions.cs" />
     <Compile Include="Framework\ICompatibilityPart.cs" />
-    <Compile Include="Install\IInstaller.cs" />
-    <Compile Include="Menus.cs" />
+    <Compile Include="Install\AssetsInstaller.cs" />
+    <Compile Include="Install\HeaderInstaller.cs" />
+    <Compile Include="Install\LocalizationInstaller.cs" />
+    <Compile Include="Install\Installer.cs" />
+    <Compile Include="Menus\AdditionnalMenus.cs" />
     <Compile Include="Install\MenusInstaller.cs" />
     <Compile Include="Mod.Path.cs" />
     <Compile Include="Mod.Parts.cs" />
@@ -106,7 +109,7 @@
     <Compile Include="Framework\Extensions\TypeExtensions.cs" />
     <Compile Include="Mod.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ModInitializer.cs" />
+    <Compile Include="Install\RoadsInstaller.cs" />
     <Compile Include="Framework\Tools.cs" />
     <Compile Include="NewNetwork\Highway6L\Highway6LBuilder.cs" />
     <Compile Include="SomeNetwork\PlanningRoadLargeBuilder.cs" />
@@ -114,6 +117,9 @@
     <Compile Include="VanillaNetInfos.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Menus\Textures\AdditionnalSubBar.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="NewNetwork\Alley2L\infotooltip.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
