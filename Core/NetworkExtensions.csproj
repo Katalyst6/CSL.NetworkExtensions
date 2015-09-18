@@ -57,6 +57,7 @@
     <Compile Include="Framework\Extensions\LocaleManagerExtensions.cs" />
     <Compile Include="Framework\Extensions\NetInfoLaneExtensions.cs" />
     <Compile Include="Framework\ICompatibilityPart.cs" />
+    <Compile Include="Install\AssetsInstaller.cs" />
     <Compile Include="Install\LocalizationInstaller.cs" />
     <Compile Include="Install\Installer.cs" />
     <Compile Include="Menus\AdditionnalMenus.cs" />

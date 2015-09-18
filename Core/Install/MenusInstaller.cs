@@ -21,6 +21,11 @@ namespace NetworkExtensions.Install
                     return false;
                 }
 
+                if (!AssetsInstaller.Done)
+                {
+                    return false;
+                }
+
                 var group = FindObjectsOfType<RoadsGroupPanel>().FirstOrDefault();
                 if (group == null)
                 {
@@ -88,7 +93,7 @@ namespace NetworkExtensions.Install
                 }
                 catch (Exception ex)
                 {
-                    Debug.Log("NExt: Crashed-Initialized New Menus");
+                    Debug.Log("NExt: Crashed-Initialized Additionnal Menus");
                     Debug.Log("NExt: " + ex.Message);
                     Debug.Log("NExt: " + ex.ToString());
                 }

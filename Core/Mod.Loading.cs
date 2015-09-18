@@ -12,7 +12,9 @@ namespace NetworkExtensions
         private bool _isReleased = true;
         private GameObject _container = null;
         private NetCollection _newRoads = null;
+
         private LocalizationInstaller _localizationInstaller = null;
+        private AssetsInstaller _assetsInstaller = null;
         private RoadsInstaller _roadsInstaller = null;
         private MenusInstaller _menusInstaller = null;
 
@@ -33,6 +35,9 @@ namespace NetworkExtensions
                     _localizationInstaller = _container.AddComponent<LocalizationInstaller>();
                     _localizationInstaller.InstallationCompleted += LocInstallationCompleted;
 
+                    _assetsInstaller = _container.AddComponent<AssetsInstaller>();
+                    _assetsInstaller.InstallationCompleted += AssetsInstallationCompleted;
+
                     _roadsInstaller = _container.AddComponent<RoadsInstaller>();
                     _roadsInstaller.NewRoads = _newRoads;
                     _roadsInstaller.InitializationCompleted += RoadsInstallationCompleted;
@@ -50,6 +55,18 @@ namespace NetworkExtensions
                 {
                     Object.Destroy(_localizationInstaller);
                     _localizationInstaller = null;
+                }
+            });
+        }
+
+        private void AssetsInstallationCompleted()
+        {
+            Loading.QueueAction(() =>
+            {
+                if (_assetsInstaller != null)
+                {
+                    Object.Destroy(_assetsInstaller);
+                    _assetsInstaller = null;
                 }
             });
         }
@@ -103,6 +120,12 @@ namespace NetworkExtensions
             {
                 Object.Destroy(_localizationInstaller);
                 _localizationInstaller = null;
+            }
+
+            if (_assetsInstaller != null)
+            {
+                Object.Destroy(_assetsInstaller);
+                _assetsInstaller = null;
             }
 
             if (_roadsInstaller != null)

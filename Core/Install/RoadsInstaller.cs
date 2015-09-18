@@ -20,11 +20,6 @@ namespace NetworkExtensions.Install
         public delegate void InitializationCompletedEventHandler(object sender, EventArgs e);
         public event InitializationCompletedEventHandler InitializationCompleted;
 
-        void Start()
-        {
-            Loading.QueueAction(AssetManager.instance.FindAndLoadAllTextures);
-        }
-
         void Awake()
         {
             DontDestroyOnLoad(this);
@@ -83,6 +78,11 @@ namespace NetworkExtensions.Install
         private static bool ValidateCoreLogicPrerequisites(NetCollection newRoads)
         {
             if (!LocalizationInstaller.Done)
+            {
+                return false;
+            }
+
+            if (!AssetsInstaller.Done)
             {
                 return false;
             }
