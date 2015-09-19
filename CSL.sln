@@ -1,8 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.31101.0
-MinimumVisualStudioVersion = 10.0.40219.1
+# Visual Studio 2010
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "References", "References", "{FC5D316C-D7B8-4986-9E91-D3784D4A8CBB}"
 	ProjectSection(SolutionItems) = preProject
 		References\Assembly-CSharp-firstpass.dll = References\Assembly-CSharp-firstpass.dll
@@ -23,6 +21,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetworkExtensions", "Core\N
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ObjUnity3D", "ObjUnity3D\ObjUnity3D.csproj", "{97D70503-6567-41A1-92FC-66D813A53370}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Externals", "Externals\Externals.csproj", "{7DCC08EF-DC85-47A4-BD6F-79FC52C7EF13}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -37,6 +37,10 @@ Global
 		{97D70503-6567-41A1-92FC-66D813A53370}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{97D70503-6567-41A1-92FC-66D813A53370}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{97D70503-6567-41A1-92FC-66D813A53370}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7DCC08EF-DC85-47A4-BD6F-79FC52C7EF13}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7DCC08EF-DC85-47A4-BD6F-79FC52C7EF13}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7DCC08EF-DC85-47A4-BD6F-79FC52C7EF13}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7DCC08EF-DC85-47A4-BD6F-79FC52C7EF13}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

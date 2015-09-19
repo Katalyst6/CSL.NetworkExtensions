@@ -101,29 +101,14 @@ namespace NetworkExtensions.Install
 
         private static bool InstallRoadSmallHV(RoadsGroupPanel group)
         {
-            const int TARGET_ID = 1;
-            const string PANEL_NAME = AdditionnalMenus.ROADS_SMALL_HV + "Panel";
-            const string BTN_NAME = AdditionnalMenus.ROADS_SMALL_HV;
-
-            var panelInstalled = false;
-            var buttonInstalled = false;
-
-            var p = group.Find<UIPanel>(PANEL_NAME);
-            if (p != null)
-            {
-                p.zOrder = TARGET_ID;
-                panelInstalled = true;
-            }
-
-            var b = group.Find<UIButton>(BTN_NAME);
+            var b = group.Find<UIButton>(AdditionnalMenus.ROADS_SMALL_HV);
             if (b != null)
             {
-                b.zOrder = TARGET_ID;
                 b.atlas = ToolsUnity.LoadMenuThumbnails();
-                buttonInstalled = true;
+                return true;
             }
 
-            return panelInstalled && buttonInstalled;
+            return false;
         }
     }
 }
