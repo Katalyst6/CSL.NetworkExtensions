@@ -3,6 +3,7 @@ using System.Linq;
 using ColossalFramework.UI;
 using NetworkExtensions.Framework;
 using NetworkExtensions.Menus;
+using UnityEngine;
 
 #if DEBUG
 using Debug = NetworkExtensions.Framework.Debug;

@@ -2,6 +2,7 @@
 using ColossalFramework;
 using ColossalFramework.Globalization;
 using NetworkExtensions.Framework;
+using UnityEngine;
 
 #if DEBUG
 using Debug = NetworkExtensions.Framework.Debug;

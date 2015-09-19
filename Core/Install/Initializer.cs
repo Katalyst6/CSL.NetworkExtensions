@@ -2,6 +2,7 @@
 using System.Reflection;
 using Externals;
 using NetworkExtensions.Menus;
+using UnityEngine;
 
 #if DEBUG
 using Debug = NetworkExtensions.Framework.Debug;
