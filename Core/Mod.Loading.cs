@@ -13,7 +13,7 @@ namespace NetworkExtensions
         private GameObject _container = null;
         private NetCollection _newRoads = null;
 
-        private HeaderInstaller _headerInstaller = null;
+        private Initializer _initializer = null;
         private LocalizationInstaller _localizationInstaller = null;
         private AssetsInstaller _assetsInstaller = null;
         private RoadsInstaller _roadsInstaller = null;
@@ -32,22 +32,22 @@ namespace NetworkExtensions
                     _newRoads = _container.AddComponent<NetCollection>();
                     _newRoads.name = NEWROADS_NETCOLLECTION;
 
-                    _headerInstaller = _container.AddComponent<HeaderInstaller>();
-                    _headerInstaller.InstallationCompleted += HeaderInstallationCompleted;
+                    _initializer = _container.AddComponent<Initializer>();
+                    _initializer.InstallationCompleted += InitializationCompleted;
                 }
 
                 _isReleased = false;
             }
         }
 
-        private void HeaderInstallationCompleted()
+        private void InitializationCompleted()
         {
             Loading.QueueAction(() =>
             {
-                if (_headerInstaller != null)
+                if (_initializer != null)
                 {
-                    Object.Destroy(_headerInstaller);
-                    _headerInstaller = null;
+                    Object.Destroy(_initializer);
+                    _initializer = null;
                 }
 
                 if (_container != null)
@@ -134,10 +134,10 @@ namespace NetworkExtensions
                 return;
             }
 
-            if (_headerInstaller != null)
+            if (_initializer != null)
             {
-                Object.Destroy(_headerInstaller);
-                _headerInstaller = null;
+                Object.Destroy(_initializer);
+                _initializer = null;
             }
 
             if (_localizationInstaller != null)

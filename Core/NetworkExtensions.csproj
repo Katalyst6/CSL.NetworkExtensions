@@ -58,7 +58,7 @@
     <Compile Include="Framework\Extensions\NetInfoLaneExtensions.cs" />
     <Compile Include="Framework\ICompatibilityPart.cs" />
     <Compile Include="Install\AssetsInstaller.cs" />
-    <Compile Include="Install\HeaderInstaller.cs" />
+    <Compile Include="Install\Initializer.cs" />
     <Compile Include="Install\LocalizationInstaller.cs" />
     <Compile Include="Install\Installer.cs" />
     <Compile Include="Menus\AdditionnalMenus.cs" />
