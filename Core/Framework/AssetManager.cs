@@ -17,42 +17,6 @@ namespace NetworkExtensions.Framework
         private readonly IDictionary<string, Texture2D> _allTextures = new Dictionary<string, Texture2D>();
         private readonly IDictionary<string, Mesh> _allMeshes = new Dictionary<string, Mesh>();
 
-        public void FindAndLoadAllTextures()
-        {
-            var modPath = Mod.GetPath();
-            var modDirectory = new DirectoryInfo(modPath);
-
-            var files = new List<FileInfo>();
-            files.AddRange(modDirectory.GetFiles("*.png", SearchOption.AllDirectories));
-            files.AddRange(modDirectory.GetFiles("*.dds", SearchOption.AllDirectories));
-            files.AddRange(modDirectory.GetFiles("*.obj", SearchOption.AllDirectories));
-
-            foreach (var assetFile in files)
-            {
-                var relativePath = assetFile.FullName.Replace(modPath, "").TrimStart(new[] { '\\', '/' });
-
-                if (_allTextures.ContainsKey(relativePath))
-                {
-                    continue;
-                }
-
-                switch (assetFile.Extension.ToLower())
-                {
-                    case ".dds":
-                        _allTextures[relativePath] = LoadTextureDDS(assetFile.FullName, assetFile.Name);
-                        break;
-
-                    case ".png":
-                        _allTextures[relativePath] = LoadTexturePNG(assetFile.FullName, assetFile.Name);
-                        break;
-
-                    case ".obj":
-                        _allMeshes[relativePath] = LoadMesh(assetFile.FullName, assetFile.Name);
-                        break;
-                }
-            }
-        }
-
         public IEnumerable<Action> CreateLoadingSequence()
         {
             var modPath = Mod.GetPath();
