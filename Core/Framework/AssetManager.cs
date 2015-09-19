@@ -29,7 +29,7 @@ namespace NetworkExtensions.Framework
 
             foreach (var assetFile in files)
             {
-                var relativePath = assetFile.FullName.Replace(modPath, "").TrimStart(new []{'\\', '/'});
+                var relativePath = assetFile.FullName.Replace(modPath, "").TrimStart(new[] { '\\', '/' });
 
                 if (_allTextures.ContainsKey(relativePath))
                 {
@@ -48,6 +48,53 @@ namespace NetworkExtensions.Framework
 
                     case ".obj":
                         _allMeshes[relativePath] = LoadMesh(assetFile.FullName, assetFile.Name);
+                        break;
+                }
+            }
+        }
+
+        public IEnumerable<Action> CreateLoadingSequence()
+        {
+            var modPath = Mod.GetPath();
+            var modDirectory = new DirectoryInfo(modPath);
+
+            var files = new List<FileInfo>();
+            files.AddRange(modDirectory.GetFiles("*.png", SearchOption.AllDirectories));
+            files.AddRange(modDirectory.GetFiles("*.dds", SearchOption.AllDirectories));
+            files.AddRange(modDirectory.GetFiles("*.obj", SearchOption.AllDirectories));
+
+            foreach (var assetFile in files)
+            {
+                var assetFullPath = assetFile.FullName;
+                var assetRelativePath = assetFile.FullName.Replace(modPath, "").TrimStart(new[] { '\\', '/' });
+                var assetName = assetFile.Name;
+
+                if (_allTextures.ContainsKey(assetRelativePath))
+                {
+                    continue;
+                }
+
+                switch (assetFile.Extension.ToLower())
+                {
+                    case ".dds":
+                        yield return () =>
+                        {
+                            _allTextures[assetRelativePath] = LoadTextureDDS(assetFullPath, assetName);
+                        };
+                        break;
+
+                    case ".png":
+                        yield return () =>
+                        {
+                            _allTextures[assetRelativePath] = LoadTexturePNG(assetFullPath, assetName);
+                        };
+                        break;
+
+                    case ".obj":
+                        yield return () =>
+                        {
+                            _allMeshes[assetRelativePath] = LoadMesh(assetFullPath, assetName);
+                        };
                         break;
                 }
             }
