@@ -19,7 +19,7 @@ namespace NetworkExtensions.NewNetwork.Highway1L
         public string Name { get { return "Small Rural Highway"; } }
         public string DisplayName { get { return "National Road"; } }
         public string CodeName { get { return "HIGHWAY_1L"; } }
-        public string Description { get { return "A two-lane, two-way road suitable for low traffic between rural areas. Highway does not allow zoning next to it!"; } }
+        public string Description { get { return "A two-lane, two-way road suitable for low traffic between areas. Highway does not allow zoning next to it!"; } }
         public string UICategory { get { return "RoadsHighway"; } }
 
         public string ThumbnailsPath { get { return @"NewNetwork\Highway1L\thumbnails.png"; } }
