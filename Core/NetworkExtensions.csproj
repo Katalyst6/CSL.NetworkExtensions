@@ -73,10 +73,8 @@
     <Compile Include="Framework\Extensions\SegmentExtensions.cs" />
     <Compile Include="Framework\IModPart.cs" />
     <Compile Include="Framework\MeshData.cs" />
-    <Compile Include="NewNetwork\Alley2L\Alley2LBuilder.cs" />
     <Compile Include="NewNetwork\OneWay3L\OneWay3LBuilder.cs" />
     <Compile Include="NewNetwork\OneWay4L\OneWay4LBuilder.cs" />
-    <Compile Include="NewNetwork\LargeAvenue6LM\LargeAvenue6LMBuilder.cs" />
     <Compile Include="NewNetwork\MediumAvenue4L\MediumAvenue4LBuilder.cs" />
     <Compile Include="NewNetwork\MediumAvenue4LTL\MediumAvenue4LTLBuilder.cs" />
     <Compile Include="NewNetwork\MediumAvenueHelper.cs" />
@@ -100,10 +98,8 @@
     <Compile Include="Framework\INetInfoBuilder.cs" />
     <Compile Include="Framework\Extensions\LocaleExtensions.cs" />
     <Compile Include="NewNetwork\Highway1L\Highway1LBuilder.cs" />
-    <Compile Include="NewNetwork\OneWay1L\OneWay1LBuilder.cs" />
     <Compile Include="NewNetwork\SmallAvenue4L\SmallAvenue4LBuilder.cs" />
     <Compile Include="NewNetwork\HighwayHelper.cs" />
-    <Compile Include="NewNetwork\OneWayMedium4L\OneWayMedium4LBuilder.cs" />
     <Compile Include="NewNetwork\Highway2L\Highway2LBuilder.cs" />
     <Compile Include="Framework\Debug.cs" />
     <Compile Include="Framework\Extensions\NetInfoExtensions.cs" />
@@ -113,48 +109,10 @@
     <Compile Include="Install\RoadsInstaller.cs" />
     <Compile Include="Framework\Tools.cs" />
     <Compile Include="NewNetwork\Highway6L\Highway6LBuilder.cs" />
-    <Compile Include="SomeNetwork\PlanningRoadLargeBuilder.cs" />
-    <Compile Include="SomeNetwork\PlanningRoadSmallBuilder.cs" />
     <Compile Include="VanillaNetInfos.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Menus\Textures\AdditionnalSubBar.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="NewNetwork\Alley2L\infotooltip.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="NewNetwork\Alley2L\Textures\Ground_Node__AlphaMap.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="NewNetwork\Alley2L\Textures\Ground_Node__MainTex.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="NewNetwork\Alley2L\Textures\Ground_Segment__AlphaMap.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="NewNetwork\Alley2L\Textures\Ground_Segment__MainTex.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="NewNetwork\Alley2L\thumbnails.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="NewNetwork\OneWay1L\Textures\Ground_NodeLOD__AlphaMap.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="NewNetwork\OneWay1L\Textures\Ground_NodeLOD__MainTex.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="NewNetwork\OneWay1L\Textures\Ground_NodeLOD__XYSMap.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="NewNetwork\OneWay1L\Textures\Ground_SegmentLOD__AlphaMap.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="NewNetwork\OneWay1L\Textures\Ground_SegmentLOD__MainTex.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="NewNetwork\OneWay1L\Textures\Ground_SegmentLOD__XYSMap.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="NewNetwork\OneWay3L\infotooltip.png">
@@ -233,12 +191,6 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="NewNetwork\Highway6L\Textures\Ground_SegmentLOD__XYSMap.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="NewNetwork\LargeAvenue6LM\infotooltip.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="NewNetwork\LargeAvenue6LM\thumbnails.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="NewNetwork\MediumAvenue4LTL\Textures\Ground_Node__AlphaMap.png">
@@ -409,24 +361,6 @@
     <Content Include="NewNetwork\Highway6L\thumbnails.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="NewNetwork\OneWay1L\infotooltip.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="NewNetwork\OneWay1L\Textures\Ground_Node__AlphaMap.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="NewNetwork\OneWay1L\Textures\Ground_Node__MainTex.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="NewNetwork\OneWay1L\Textures\Ground_Segment__AlphaMap.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="NewNetwork\OneWay1L\Textures\Ground_Segment__MainTex.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="NewNetwork\OneWay1L\thumbnails.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <Content Include="NewNetwork\MediumAvenue4LTL\infotooltip.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -437,24 +371,6 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="NewNetwork\MediumAvenue4LTL\thumbnails.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="NewNetwork\OneWayMedium4L\infotooltip.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="NewNetwork\OneWayMedium4L\Textures\Ground_Node__AlphaMap.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="NewNetwork\OneWayMedium4L\Textures\Ground_Node__MainTex.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="NewNetwork\OneWayMedium4L\Textures\Ground_Segment__AlphaMap.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="NewNetwork\OneWayMedium4L\Textures\Ground_Segment__MainTex.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="NewNetwork\OneWayMedium4L\thumbnails.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="NewNetwork\SmallAvenue4L\infotooltip.png">
@@ -480,22 +396,9 @@
     </Content>
     <Content Include="NewNetwork\SmallAvenue4L\Widening\Textures\Ground_Segment__AlphaMap.png" />
     <Content Include="NewNetwork\SmallAvenue4L\Widening\Textures\Ground_Segment__MainTex.png" />
-    <Content Include="SomeNetwork\Textures\planning_road_2_lanes.png" />
-    <Content Include="SomeNetwork\thumbnail_atlas.png" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Folder Include="NewNetwork\LargeAvenue6LM\Textures\" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="NewNetwork\Alley2L\Meshes\Ground.obj">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="NewNetwork\Alley2L\Meshes\Ground_LOD.obj">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="NewNetwork\Alley2L\Meshes\Ground_Node_LOD.obj">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
     <None Include="NewNetwork\Highway2L\Meshes\Ground_Node_LOD.obj">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -521,21 +424,6 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="NewNetwork\Highway6L\Meshes\Ground_Trans_LOD.obj">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="NewNetwork\OneWay1L\Meshes\Ground.obj">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="NewNetwork\OneWay1L\Meshes\Ground_LOD.obj">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="NewNetwork\OneWayMedium4L\Meshes\Ground.obj">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="NewNetwork\OneWayMedium4L\Meshes\Ground_LOD.obj">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="NewNetwork\OneWayMedium4L\Meshes\Ground_Node_LOD.obj">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
