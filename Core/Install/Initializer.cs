@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Reflection;
 using Externals;
+using NetworkExtensions.AI;
 using NetworkExtensions.Menus;
 using UnityEngine;
 
@@ -61,7 +62,7 @@ namespace NetworkExtensions.Install
             }
         }
 
-        private static RedirectCallsState s_rmoRedirect;
+        private static IDisposable s_rgpRedirect;
 
         private void InstallRoadsGroupPanelRedirect()
         {
@@ -73,7 +74,7 @@ namespace NetworkExtensions.Install
                 return;
             }
 
-            var newMethod = typeof(NExtRoadsGroupPanel).GetMethod("GetCategoryOrder", BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance);
+            var newMethod = typeof(RoadsGroupPanelRedirect).GetMethod("GetCategoryOrder", BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance);
 
             if (newMethod == null)
             {
@@ -81,7 +82,30 @@ namespace NetworkExtensions.Install
                 return;
             }
 
-            s_rmoRedirect = RedirectionHelper.RedirectCalls(originalMethod, newMethod);
+            s_rgpRedirect = originalMethod.RedirectTo(newMethod); // TODO: Make that "uninstallable"
+        }
+
+        private static IDisposable s_raiRedirect;
+
+        private void InstallRoadAIRedirect()
+        {
+            var originalMethod = typeof(RoadAI).GetMethod("CreateZoneBlocks", BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance);
+
+            if (originalMethod == null)
+            {
+                Debug.Log("NExt: Cannot find the GetCategoryOrder original method, continuing");
+                return;
+            }
+
+            var newMethod = typeof(RoadAIRedirect).GetMethod("CreateZoneBlocks", BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance);
+
+            if (newMethod == null)
+            {
+                Debug.Log("NExt: Cannot find the GetCategoryOrder new method, continuing");
+                return;
+            }
+
+            s_raiRedirect = originalMethod.RedirectTo(newMethod); // TODO: Make that "uninstallable"
         }
     }
 }

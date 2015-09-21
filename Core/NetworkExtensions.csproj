@@ -53,6 +53,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AI\RoadAIRedirect.cs" />
     <Compile Include="Compatibility\RoadColorChanger.cs" />
     <Compile Include="Framework\Extensions\LocaleManagerExtensions.cs" />
     <Compile Include="Framework\Extensions\NetInfoLaneExtensions.cs" />
@@ -63,7 +64,7 @@
     <Compile Include="Install\Installer.cs" />
     <Compile Include="Menus\AdditionnalMenus.cs" />
     <Compile Include="Install\MenusInstaller.cs" />
-    <Compile Include="Menus\NExtRoadsGroupPanel.cs" />
+    <Compile Include="Menus\RoadsGroupPanelRedirect.cs" />
     <Compile Include="Mod.Path.cs" />
     <Compile Include="Mod.Parts.cs" />
     <Compile Include="Framework\Extensions\ItemClassExtensions.cs" />

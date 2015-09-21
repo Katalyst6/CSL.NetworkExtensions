@@ -2,7 +2,7 @@
 
 namespace NetworkExtensions.Menus
 {
-    public class NExtRoadsGroupPanel : GeneratedGroupPanel
+    public class RoadsGroupPanelRedirect : GeneratedGroupPanel
     {
         protected override int GetCategoryOrder(string name)
         {
