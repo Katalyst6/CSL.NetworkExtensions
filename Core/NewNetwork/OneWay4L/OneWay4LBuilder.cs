@@ -8,7 +8,7 @@ namespace NetworkExtensions.NewNetwork.OneWay4L
     public class OneWay4LBuilder : ActivablePart, INetInfoBuilder
     {
         public int OptionsPriority { get { return 9; } }
-        public int Priority { get { return 32; } }
+        public int Priority { get { return 30; } }
 
         public string PrefabName { get { return VanillaNetInfos.ONEWAY_2L; } }
         public string Name { get { return "Oneway4L"; } }
@@ -33,6 +33,26 @@ namespace NetworkExtensions.NewNetwork.OneWay4L
             var owRoadInfo = ToolsCSL.FindPrefab<NetInfo>(VanillaNetInfos.ONEWAY_2L);
 
             ///////////////////////////
+            // 3DModeling            //
+            ///////////////////////////
+            if (version == NetInfoVersion.Ground)
+            {
+                var segments0 = info.m_segments[0];
+                var nodes0 = info.m_nodes[0];
+
+                segments0.SetMeshes
+                    (@"NewNetwork\OneWay4L\Meshes\Ground.obj",
+                     @"NewNetwork\OneWay4L\Meshes\Ground_LOD.obj");
+
+                nodes0.SetMeshes
+                    (@"NewNetwork\OneWay4L\Meshes\Ground.obj",
+                     @"NewNetwork\OneWay4L\Meshes\Ground_LOD.obj");
+
+                info.m_segments = new[] { segments0 };
+                info.m_nodes = new[] { nodes0 };
+            }
+
+            ///////////////////////////
             // Texturing             //
             ///////////////////////////
             switch (version)
@@ -41,7 +61,11 @@ namespace NetworkExtensions.NewNetwork.OneWay4L
                     info.SetSegmentsTexture(
                         new TexturesSet
                            (@"NewNetwork\OneWay4L\Textures\Ground_Segment__MainTex.png",
-                            @"NewNetwork\OneWay4L\Textures\Ground_Segment__AlphaMap.png"));
+                            @"NewNetwork\OneWay4L\Textures\Ground_Segment__AlphaMap.png"),
+                        new TexturesSet
+                           (@"NewNetwork\OneWay4L\Textures\Ground_SegmentLOD__MainTex.png",
+                            @"NewNetwork\OneWay4L\Textures\Ground_SegmentLOD__AlphaMap.png",
+                            @"NewNetwork\OneWay4L\Textures\Ground_SegmentLOD__XYS.png"));
                     break;
             }
 
@@ -50,6 +74,7 @@ namespace NetworkExtensions.NewNetwork.OneWay4L
             // Set up                //
             ///////////////////////////
             info.m_hasParkingSpaces = false;
+            info.m_pavementWidth = 2;
 
             // Setting up lanes
             var vehicleLaneTypes = new[]
