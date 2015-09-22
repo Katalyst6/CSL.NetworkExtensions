@@ -41,6 +41,10 @@ namespace NetworkExtensions.NewNetwork.OneWay4L
                 var segments0 = info.m_segments[0];
                 var nodes0 = info.m_nodes[0];
 
+                segments0.m_forwardRequired = NetSegment.Flags.None;
+                segments0.m_forwardForbidden = NetSegment.Flags.None;
+                segments0.m_backwardRequired = NetSegment.Flags.None;
+                segments0.m_backwardForbidden = NetSegment.Flags.None;
                 segments0.SetMeshes
                     (@"NewNetwork\SmallHeavyRoads\Meshes\Ground.obj",
                      @"NewNetwork\SmallHeavyRoads\Meshes\Ground_LOD.obj");
