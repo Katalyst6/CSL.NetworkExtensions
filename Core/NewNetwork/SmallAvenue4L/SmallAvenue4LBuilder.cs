@@ -33,25 +33,25 @@ namespace NetworkExtensions.NewNetwork.SmallAvenue4L
             ///////////////////////////
             var basicRoadInfo = ToolsCSL.FindPrefab<NetInfo>(VanillaNetInfos.ROAD_2L);
 
-
             ///////////////////////////
             // 3DModeling            //
             ///////////////////////////
-            // NOTE: Lets dont go there yet, since we will need Segment, Bus stop, transition and transition bus stop meshes.
-            // Otherwise, we will be forced to unsupport the bus stops on the Small Avenue, which will cause crash on people allready using it with bus stops.
-            //if (version == NetInfoVersion.Ground)
-            //{
-            //    info.m_surfaceLevel = 0;
-            //    info.m_class = basicRoadInfo.m_class.Clone("SmallAvenue");
+            if (version == NetInfoVersion.Ground)
+            {
+                var segments0 = info.m_segments[0];
+                var nodes0 = info.m_nodes[0];
 
-            //    var segments0 = info.m_segments[0];
-            //    var nodes0 = info.m_nodes[0];
+                segments0.SetMeshes
+                    (@"NewNetwork\SmallHeavyRoads\Meshes\Ground.obj",
+                     @"NewNetwork\SmallHeavyRoads\Meshes\Ground_LOD.obj");
 
-            //    var grndMesh = SmallAvenue4LMeshes.GetGroundData().CreateMesh("SMALLROAD_4L_GROUND");
+                nodes0.SetMeshes
+                    (@"NewNetwork\SmallHeavyRoads\Meshes\Ground.obj",
+                     @"NewNetwork\SmallHeavyRoads\Meshes\Ground_LOD.obj");
 
-            //    segments0.m_mesh = grndMesh;
-            //    nodes0.m_mesh = grndMesh;
-            //}
+                info.m_segments = new[] { segments0 };
+                info.m_nodes = new[] { nodes0 };
+            }
 
 
             ///////////////////////////
@@ -77,6 +77,7 @@ namespace NetworkExtensions.NewNetwork.SmallAvenue4L
             ///////////////////////////
             info.m_hasParkingSpaces = false;
             info.m_class = basicRoadInfo.m_class.Clone(NetInfoClasses.NEXT_SMALL4L_ROAD);
+            info.m_pavementWidth = 2;
 
             // Setting up lanes
             var vehicleLaneTypes = new[]

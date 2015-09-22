@@ -42,12 +42,12 @@ namespace NetworkExtensions.NewNetwork.OneWay4L
                 var nodes0 = info.m_nodes[0];
 
                 segments0.SetMeshes
-                    (@"NewNetwork\OneWay4L\Meshes\Ground.obj",
-                     @"NewNetwork\OneWay4L\Meshes\Ground_LOD.obj");
+                    (@"NewNetwork\SmallHeavyRoads\Meshes\Ground.obj",
+                     @"NewNetwork\SmallHeavyRoads\Meshes\Ground_LOD.obj");
 
                 nodes0.SetMeshes
-                    (@"NewNetwork\OneWay4L\Meshes\Ground.obj",
-                     @"NewNetwork\OneWay4L\Meshes\Ground_LOD.obj");
+                    (@"NewNetwork\SmallHeavyRoads\Meshes\Ground.obj",
+                     @"NewNetwork\SmallHeavyRoads\Meshes\Ground_LOD.obj");
 
                 info.m_segments = new[] { segments0 };
                 info.m_nodes = new[] { nodes0 };
@@ -142,8 +142,8 @@ namespace NetworkExtensions.NewNetwork.OneWay4L
 
                 if (owPlayerNetAI != null && playerNetAI != null)
                 {
-                    playerNetAI.m_constructionCost = owPlayerNetAI.m_constructionCost * 12 / 10; // 20% increase
-                    playerNetAI.m_maintenanceCost = owPlayerNetAI.m_maintenanceCost * 12 / 10; // 20% increase
+                    playerNetAI.m_constructionCost = owPlayerNetAI.m_constructionCost * 125 / 10; // 25% increase
+                    playerNetAI.m_maintenanceCost = owPlayerNetAI.m_maintenanceCost * 125 / 10; // 25% increase
                 }
             }
             else // Same as the original basic road specs
