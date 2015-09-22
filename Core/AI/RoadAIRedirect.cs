@@ -189,7 +189,7 @@ namespace NetworkExtensions.AI
 
                         // Blocks #1 --------------------------------------------------------------
                         var position = startPosition + new Vector3(
-                            blockSize * 8,
+                            blockSize * 2f * 4.5f,
                             0f,
                             halfWidth);
                             
