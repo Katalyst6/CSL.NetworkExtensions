@@ -11,7 +11,7 @@ namespace NetworkExtensions.NewNetwork.Alley2L
         public int Priority { get { return 40; } }
 
         public string PrefabName { get { return VanillaNetInfos.ROAD_2L; } }
-        public string Name { get { return "Alley2L"; } }
+        public string Name { get { return NetInfos.New.ALLEY_2L; } }
         public string DisplayName { get { return "Two-Lane Alley"; } }
         public string CodeName { get { return "Alley_2L"; } }
         public string Description { get { return "A two-lane, tight Alley suitable for neighborhood traffic. This road is zonable."; } }

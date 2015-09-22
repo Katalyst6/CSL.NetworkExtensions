@@ -3,6 +3,7 @@ using NetworkExtensions.Framework;
 
 namespace NetworkExtensions
 {
+    [Obsolete("Use NetInfos.Vanilla")]
     public static class VanillaNetInfos
     {
         public const string ROAD_2L = "Basic Road";
@@ -63,6 +64,7 @@ namespace NetworkExtensions
         }
     }
 
+    [Obsolete("Use NetInfosClasses.New")]
     public static class NetInfoClasses
     {
         public const string NEXT_HIGHWAY = "NExtHighway";

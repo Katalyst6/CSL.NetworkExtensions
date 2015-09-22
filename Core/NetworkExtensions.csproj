@@ -53,6 +53,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AI\RoadAIRedirect.New.cs" />
+    <Compile Include="AI\RoadAIRedirect.Original.cs" />
     <Compile Include="AI\RoadAIRedirect.cs" />
     <Compile Include="Compatibility\RoadColorChanger.cs" />
     <Compile Include="Framework\Extensions\LocaleManagerExtensions.cs" />
@@ -74,6 +76,8 @@
     <Compile Include="Framework\Extensions\SegmentExtensions.cs" />
     <Compile Include="Framework\IModPart.cs" />
     <Compile Include="Framework\MeshData.cs" />
+    <Compile Include="NetInfos.cs" />
+    <Compile Include="NetInfosClasses.cs" />
     <Compile Include="NewNetwork\Alley2L\Alley2LBuilder.cs" />
     <Compile Include="NewNetwork\OneWay3L\OneWay3LBuilder.cs" />
     <Compile Include="NewNetwork\OneWay4L\OneWay4LBuilder.cs" />
