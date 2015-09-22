@@ -2,6 +2,9 @@
 using NetworkExtensions.Framework;
 using UnityEngine;
 
+#if DEBUG
+using Debug = NetworkExtensions.Framework.Debug;
+#endif
 
 namespace NetworkExtensions.Install
 {

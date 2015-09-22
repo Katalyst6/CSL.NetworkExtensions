@@ -49,6 +49,7 @@ namespace NetworkExtensions.Install
             try
             {
                 InstallRoadsGroupPanelRedirect();
+                InstallRoadAIRedirect();
             }
             catch (Exception ex)
             {
@@ -83,6 +84,7 @@ namespace NetworkExtensions.Install
             }
 
             s_rgpRedirect = originalMethod.RedirectTo(newMethod); // TODO: Make that "uninstallable"
+            Debug.Log("NExt: RoadsGroupPanel Redirection installed");
         }
 
         private static IDisposable s_raiRedirect;
@@ -93,7 +95,7 @@ namespace NetworkExtensions.Install
 
             if (originalMethod == null)
             {
-                Debug.Log("NExt: Cannot find the GetCategoryOrder original method, continuing");
+                Debug.Log("NExt: Cannot find the CreateZoneBlocks original method, continuing");
                 return;
             }
 
@@ -101,11 +103,12 @@ namespace NetworkExtensions.Install
 
             if (newMethod == null)
             {
-                Debug.Log("NExt: Cannot find the GetCategoryOrder new method, continuing");
+                Debug.Log("NExt: Cannot find the CreateZoneBlocks new method, continuing");
                 return;
             }
 
             s_raiRedirect = originalMethod.RedirectTo(newMethod); // TODO: Make that "uninstallable"
+            Debug.Log("NExt: RoadAI Redirection installed");
         }
     }
 }
