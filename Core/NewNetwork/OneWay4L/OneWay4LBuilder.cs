@@ -34,6 +34,26 @@ namespace NetworkExtensions.NewNetwork.OneWay4L
             var owRoadInfo = ToolsCSL.FindPrefab<NetInfo>(VanillaNetInfos.ONEWAY_2L);
 
             ///////////////////////////
+            // 3DModeling            //
+            ///////////////////////////
+            if (version == NetInfoVersion.Ground)
+            {
+                var segments0 = info.m_segments[0];
+                var nodes0 = info.m_nodes[0];
+
+                segments0.SetMeshes
+                    (@"NewNetwork\OneWay4L\Meshes\Ground.obj",
+                     @"NewNetwork\OneWay4L\Meshes\Ground_LOD.obj");
+
+                nodes0.SetMeshes
+                    (@"NewNetwork\OneWay4L\Meshes\Ground.obj",
+                     @"NewNetwork\OneWay4L\Meshes\Ground_LOD.obj");
+
+                info.m_segments = new[] { segments0 };
+                info.m_nodes = new[] { nodes0 };
+            }
+
+            ///////////////////////////
             // Texturing             //
             ///////////////////////////
             switch (version)
@@ -56,6 +76,7 @@ namespace NetworkExtensions.NewNetwork.OneWay4L
             ///////////////////////////
             info.m_hasParkingSpaces = false;
             info.m_class = owRoadInfo.m_class.Clone(NetInfoClasses.NEXT_SMALL4L_ROAD);
+            info.m_pavementWidth = 2;
 
             // Setting up lanes
             var vehicleLaneTypes = new[]

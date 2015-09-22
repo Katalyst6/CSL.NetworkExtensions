@@ -523,6 +523,12 @@
     <None Include="NewNetwork\Highway6L\Meshes\Ground_Trans_LOD.obj">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="NewNetwork\SmallHeavyRoads\Meshes\Ground.obj">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="NewNetwork\SmallHeavyRoads\Meshes\Ground_LOD.obj">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="NewNetwork\OneWay1L\Meshes\Ground.obj">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
