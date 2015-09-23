@@ -101,7 +101,7 @@ namespace NetworkExtensions.NewNetwork.OneWay3L
             var vehicleLanes = new List<NetInfo.Lane>();
             const float outerCarLanePosition = 4.0f;
             const float pedLanePosition = 8f;
-            const float pedLaneWidth = 2f;
+            const float pedLaneWidth = 1.5f;
 
             for (int i = 0; i < 3; i++)
             {

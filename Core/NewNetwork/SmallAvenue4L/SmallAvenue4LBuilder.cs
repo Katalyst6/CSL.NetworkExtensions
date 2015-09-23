@@ -98,6 +98,11 @@ namespace NetworkExtensions.NewNetwork.SmallAvenue4L
                     vehicleLaneTypes.Contains(l.m_laneType))
                 .OrderBy(l => l.m_position)
                 .ToArray();
+            
+            const float outerCarLanePosition = 4.4f;
+            const float innerCarLanePosition = 1.5f;
+            const float pedLanePosition = 8f;
+            const float pedLaneWidth = 1.5f;
 
             for (int i = 0; i < vehicleLanes.Length; i++)
             {
@@ -123,27 +128,34 @@ namespace NetworkExtensions.NewNetwork.SmallAvenue4L
                     var closestVehicleLane = vehicleLanes[closestVehicleLaneId];
 
                     SetLane(lane, closestVehicleLane);
+                }
 
-                    if (lane.m_position < 0)
-                    {
-                        lane.m_position += 0.3f;
-                    }
-                    else
-                    {
-                        lane.m_position -= 0.3f;
-                    }
+                switch (i)
+                {
+                    case 0: lane.m_position = -outerCarLanePosition; break;
+                    case 1: lane.m_position = -innerCarLanePosition; break;
+                    case 2: lane.m_position = innerCarLanePosition; break;
+                    case 3: lane.m_position = outerCarLanePosition; break;
+                }
+            }
+
+            var pedestrianLanes = info.m_lanes
+                .Where(l => l.m_laneType == NetInfo.LaneType.Pedestrian)
+                .OrderBy(l => l.m_position)
+                .ToArray();
+
+            foreach (var lane in pedestrianLanes)
+            {
+                if (lane.m_position < 0)
+                {
+                    lane.m_position = -pedLanePosition;
                 }
                 else
                 {
-                    if (lane.m_position < 0)
-                    {
-                        lane.m_position += 0.2f;
-                    }
-                    else
-                    {
-                        lane.m_position -= 0.2f;
-                    }
+                    lane.m_position = pedLanePosition;
                 }
+
+                lane.m_width = pedLaneWidth;
             }
 
 
@@ -154,8 +166,8 @@ namespace NetworkExtensions.NewNetwork.SmallAvenue4L
 
                 if (brPlayerNetAI != null && playerNetAI != null)
                 {
-                    playerNetAI.m_constructionCost = brPlayerNetAI.m_constructionCost * 12 / 10; // 20% increase
-                    playerNetAI.m_maintenanceCost = brPlayerNetAI.m_maintenanceCost * 12 / 10; // 20% increase
+                    playerNetAI.m_constructionCost = brPlayerNetAI.m_constructionCost * 125 / 100; // 25% increase
+                    playerNetAI.m_maintenanceCost = brPlayerNetAI.m_maintenanceCost * 125 / 100; // 25% increase
                 }
             }
             else // Same as the original basic road specs
@@ -187,11 +199,11 @@ namespace NetworkExtensions.NewNetwork.SmallAvenue4L
             {
                 if (newLane.m_position < 0)
                 {
-                    newLane.m_stopOffset = -1f;
+                    newLane.m_stopOffset = -0.3f;
                 }
                 else
                 {
-                    newLane.m_stopOffset = 1f;
+                    newLane.m_stopOffset = 0.3f;
                 }
             }
 

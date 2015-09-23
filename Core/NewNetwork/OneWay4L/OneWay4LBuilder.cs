@@ -98,8 +98,10 @@ namespace NetworkExtensions.NewNetwork.OneWay4L
                 .First();
 
             var vehicleLanes = new List<NetInfo.Lane>();
-            const float outerlanePosition = 3.7f;
-            const float innerlanePosition = 1.3f;
+            const float outerCarLanePosition = 4.4f;
+            const float innerCarLanePosition = 1.5f;
+            const float pedLanePosition = 8f;
+            const float pedLaneWidth = 1.5f;
 
             for (int i = 0; i < 4; i++)
             {
@@ -109,30 +111,43 @@ namespace NetworkExtensions.NewNetwork.OneWay4L
 
                 switch (i)
                 {
-                    case 0: lane.m_position = -outerlanePosition; break;
-                    case 1: lane.m_position = -innerlanePosition; break;
-                    case 2: lane.m_position = innerlanePosition; break;
-                    case 3: lane.m_position = outerlanePosition; break;
+                    case 0: lane.m_position = -outerCarLanePosition; break;
+                    case 1: lane.m_position = -innerCarLanePosition; break;
+                    case 2: lane.m_position = innerCarLanePosition; break;
+                    case 3: lane.m_position = outerCarLanePosition; break;
                 }
 
                 if (i == 3)
                 {
                     lane.m_allowStop = true;
-                    lane.m_stopOffset = 1f;
+                    lane.m_stopOffset = 0.3f;
                 }
 
                 vehicleLanes.Add(lane);
             }
 
-            var nonVehicleLanes = info.m_lanes
-                .Where(l =>
-                    !l.m_laneType.HasFlag(NetInfo.LaneType.Parking) &&
-                    !vehicleLaneTypes.Contains(l.m_laneType))
+            var pedestrianLanes = info.m_lanes
+                .Where(l => l.m_laneType == NetInfo.LaneType.Pedestrian)
+                .OrderBy(l => l.m_position)
                 .ToArray();
+
+            foreach (var lane in pedestrianLanes)
+            {
+                if (lane.m_position < 0)
+                {
+                    lane.m_position = -pedLanePosition;
+                }
+                else
+                {
+                    lane.m_position = pedLanePosition;
+                }
+
+                lane.m_width = pedLaneWidth;
+            }
 
             var allLanes = new List<NetInfo.Lane>();
             allLanes.AddRange(vehicleLanes);
-            allLanes.AddRange(nonVehicleLanes);
+            allLanes.AddRange(pedestrianLanes);
 
             info.m_lanes = allLanes
                 .OrderBy(l => l.m_position)
@@ -146,8 +161,8 @@ namespace NetworkExtensions.NewNetwork.OneWay4L
 
                 if (owPlayerNetAI != null && playerNetAI != null)
                 {
-                    playerNetAI.m_constructionCost = owPlayerNetAI.m_constructionCost * 125 / 10; // 25% increase
-                    playerNetAI.m_maintenanceCost = owPlayerNetAI.m_maintenanceCost * 125 / 10; // 25% increase
+                    playerNetAI.m_constructionCost = owPlayerNetAI.m_constructionCost * 125 / 100; // 25% increase
+                    playerNetAI.m_maintenanceCost = owPlayerNetAI.m_maintenanceCost * 125 / 100; // 25% increase
                 }
             }
             else // Same as the original basic road specs
