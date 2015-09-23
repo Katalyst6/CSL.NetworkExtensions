@@ -33,25 +33,29 @@ namespace NetworkExtensions.NewNetwork.SmallAvenue4L
             ///////////////////////////
             var basicRoadInfo = ToolsCSL.FindPrefab<NetInfo>(VanillaNetInfos.ROAD_2L);
 
-
             ///////////////////////////
             // 3DModeling            //
             ///////////////////////////
-            // NOTE: Lets dont go there yet, since we will need Segment, Bus stop, transition and transition bus stop meshes.
-            // Otherwise, we will be forced to unsupport the bus stops on the Small Avenue, which will cause crash on people allready using it with bus stops.
-            //if (version == NetInfoVersion.Ground)
-            //{
-            //    info.m_surfaceLevel = 0;
-            //    info.m_class = basicRoadInfo.m_class.Clone("SmallAvenue");
+            if (version == NetInfoVersion.Ground)
+            {
+                var segments0 = info.m_segments[0];
+                var nodes0 = info.m_nodes[0];
 
-            //    var segments0 = info.m_segments[0];
-            //    var nodes0 = info.m_nodes[0];
+                segments0.m_forwardRequired = NetSegment.Flags.None;
+                segments0.m_forwardForbidden = NetSegment.Flags.None;
+                segments0.m_backwardRequired = NetSegment.Flags.None;
+                segments0.m_backwardForbidden = NetSegment.Flags.None;
+                segments0.SetMeshes
+                    (@"NewNetwork\SmallHeavyRoads\Meshes\Ground.obj",
+                     @"NewNetwork\SmallHeavyRoads\Meshes\Ground_LOD.obj");
 
-            //    var grndMesh = SmallAvenue4LMeshes.GetGroundData().CreateMesh("SMALLROAD_4L_GROUND");
+                nodes0.SetMeshes
+                    (@"NewNetwork\SmallHeavyRoads\Meshes\Ground.obj",
+                     @"NewNetwork\SmallHeavyRoads\Meshes\Ground_Node_LOD.obj");
 
-            //    segments0.m_mesh = grndMesh;
-            //    nodes0.m_mesh = grndMesh;
-            //}
+                info.m_segments = new[] { segments0 };
+                info.m_nodes = new[] { nodes0 };
+            }
 
 
             ///////////////////////////
@@ -77,6 +81,7 @@ namespace NetworkExtensions.NewNetwork.SmallAvenue4L
             ///////////////////////////
             info.m_hasParkingSpaces = false;
             info.m_class = basicRoadInfo.m_class.Clone(NetInfoClasses.NEXT_SMALL4L_ROAD);
+            info.m_pavementWidth = 2;
 
             // Setting up lanes
             var vehicleLaneTypes = new[]
@@ -93,6 +98,11 @@ namespace NetworkExtensions.NewNetwork.SmallAvenue4L
                     vehicleLaneTypes.Contains(l.m_laneType))
                 .OrderBy(l => l.m_position)
                 .ToArray();
+            
+            const float outerCarLanePosition = 4.4f;
+            const float innerCarLanePosition = 1.5f;
+            const float pedLanePosition = 8f;
+            const float pedLaneWidth = 1.5f;
 
             for (int i = 0; i < vehicleLanes.Length; i++)
             {
@@ -118,27 +128,34 @@ namespace NetworkExtensions.NewNetwork.SmallAvenue4L
                     var closestVehicleLane = vehicleLanes[closestVehicleLaneId];
 
                     SetLane(lane, closestVehicleLane);
+                }
 
-                    if (lane.m_position < 0)
-                    {
-                        lane.m_position += 0.3f;
-                    }
-                    else
-                    {
-                        lane.m_position -= 0.3f;
-                    }
+                switch (i)
+                {
+                    case 0: lane.m_position = -outerCarLanePosition; break;
+                    case 1: lane.m_position = -innerCarLanePosition; break;
+                    case 2: lane.m_position = innerCarLanePosition; break;
+                    case 3: lane.m_position = outerCarLanePosition; break;
+                }
+            }
+
+            var pedestrianLanes = info.m_lanes
+                .Where(l => l.m_laneType == NetInfo.LaneType.Pedestrian)
+                .OrderBy(l => l.m_position)
+                .ToArray();
+
+            foreach (var lane in pedestrianLanes)
+            {
+                if (lane.m_position < 0)
+                {
+                    lane.m_position = -pedLanePosition;
                 }
                 else
                 {
-                    if (lane.m_position < 0)
-                    {
-                        lane.m_position += 0.2f;
-                    }
-                    else
-                    {
-                        lane.m_position -= 0.2f;
-                    }
+                    lane.m_position = pedLanePosition;
                 }
+
+                lane.m_width = pedLaneWidth;
             }
 
 
@@ -149,8 +166,8 @@ namespace NetworkExtensions.NewNetwork.SmallAvenue4L
 
                 if (brPlayerNetAI != null && playerNetAI != null)
                 {
-                    playerNetAI.m_constructionCost = brPlayerNetAI.m_constructionCost * 12 / 10; // 20% increase
-                    playerNetAI.m_maintenanceCost = brPlayerNetAI.m_maintenanceCost * 12 / 10; // 20% increase
+                    playerNetAI.m_constructionCost = brPlayerNetAI.m_constructionCost * 125 / 100; // 25% increase
+                    playerNetAI.m_maintenanceCost = brPlayerNetAI.m_maintenanceCost * 125 / 100; // 25% increase
                 }
             }
             else // Same as the original basic road specs
@@ -182,11 +199,11 @@ namespace NetworkExtensions.NewNetwork.SmallAvenue4L
             {
                 if (newLane.m_position < 0)
                 {
-                    newLane.m_stopOffset = -1f;
+                    newLane.m_stopOffset = -0.3f;
                 }
                 else
                 {
-                    newLane.m_stopOffset = 1f;
+                    newLane.m_stopOffset = 0.3f;
                 }
             }
 

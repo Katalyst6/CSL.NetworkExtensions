@@ -34,6 +34,30 @@ namespace NetworkExtensions.NewNetwork.OneWay3L
             var owRoadInfo = ToolsCSL.FindPrefab<NetInfo>(VanillaNetInfos.ONEWAY_2L);
 
             ///////////////////////////
+            // 3DModeling            //
+            ///////////////////////////
+            if (version == NetInfoVersion.Ground)
+            {
+                var segments0 = info.m_segments[0];
+                var nodes0 = info.m_nodes[0];
+
+                segments0.m_forwardRequired = NetSegment.Flags.None;
+                segments0.m_forwardForbidden = NetSegment.Flags.None;
+                segments0.m_backwardRequired = NetSegment.Flags.None;
+                segments0.m_backwardForbidden = NetSegment.Flags.None;
+                segments0.SetMeshes
+                    (@"NewNetwork\SmallHeavyRoads\Meshes\Ground.obj",
+                     @"NewNetwork\SmallHeavyRoads\Meshes\Ground_LOD.obj");
+
+                nodes0.SetMeshes
+                    (@"NewNetwork\SmallHeavyRoads\Meshes\Ground.obj",
+                     @"NewNetwork\SmallHeavyRoads\Meshes\Ground_Node_LOD.obj");
+
+                info.m_segments = new[] { segments0 };
+                info.m_nodes = new[] { nodes0 };
+            }
+
+            ///////////////////////////
             // Texturing             //
             ///////////////////////////
             switch (version)
@@ -56,6 +80,7 @@ namespace NetworkExtensions.NewNetwork.OneWay3L
             ///////////////////////////
             info.m_hasParkingSpaces = false;
             info.m_class = owRoadInfo.m_class.Clone(NetInfoClasses.NEXT_SMALL3L_ROAD);
+            info.m_pavementWidth = 2;
             info.m_class.m_level = ItemClass.Level.Level3; // To make sure they dont fit with the 4L Small Roads
 
             // Setting up lanes
@@ -74,7 +99,9 @@ namespace NetworkExtensions.NewNetwork.OneWay3L
                 .First();
 
             var vehicleLanes = new List<NetInfo.Lane>();
-            const float outerlanePosition = 3.2f;
+            const float outerCarLanePosition = 4.0f;
+            const float pedLanePosition = 8f;
+            const float pedLaneWidth = 1.5f;
 
             for (int i = 0; i < 3; i++)
             {
@@ -84,29 +111,42 @@ namespace NetworkExtensions.NewNetwork.OneWay3L
 
                 switch (i)
                 {
-                    case 0: lane.m_position = -outerlanePosition; break;
+                    case 0: lane.m_position = -outerCarLanePosition; break;
                     case 1: lane.m_position = 0f; break;
-                    case 2: lane.m_position = outerlanePosition; break;
+                    case 2: lane.m_position = outerCarLanePosition; break;
                 }
 
                 if (i == 2)
                 {
                     lane.m_allowStop = true;
-                    lane.m_stopOffset = 1.5f;
+                    lane.m_stopOffset = 0.7f;
                 }
 
                 vehicleLanes.Add(lane);
             }
 
-            var nonVehicleLanes = info.m_lanes
-                .Where(l =>
-                    !l.m_laneType.HasFlag(NetInfo.LaneType.Parking) &&
-                    !vehicleLaneTypes.Contains(l.m_laneType))
+            var pedestrianLanes = info.m_lanes
+                .Where(l => l.m_laneType == NetInfo.LaneType.Pedestrian)
+                .OrderBy(l => l.m_position)
                 .ToArray();
+
+            foreach (var lane in pedestrianLanes)
+            {
+                if (lane.m_position < 0)
+                {
+                    lane.m_position = -pedLanePosition;
+                }
+                else
+                {
+                    lane.m_position = pedLanePosition;
+                }
+
+                lane.m_width = pedLaneWidth;
+            }
 
             var allLanes = new List<NetInfo.Lane>();
             allLanes.AddRange(vehicleLanes);
-            allLanes.AddRange(nonVehicleLanes);
+            allLanes.AddRange(pedestrianLanes);
 
             info.m_lanes = allLanes
                 .OrderBy(l => l.m_position)
