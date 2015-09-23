@@ -51,7 +51,7 @@ namespace NetworkExtensions.NewNetwork.OneWay3L
 
                 nodes0.SetMeshes
                     (@"NewNetwork\SmallHeavyRoads\Meshes\Ground.obj",
-                     @"NewNetwork\SmallHeavyRoads\Meshes\Ground_LOD.obj");
+                     @"NewNetwork\SmallHeavyRoads\Meshes\Ground_Node_LOD.obj");
 
                 info.m_segments = new[] { segments0 };
                 info.m_nodes = new[] { nodes0 };
