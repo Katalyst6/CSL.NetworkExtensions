@@ -224,7 +224,7 @@ namespace NetworkExtensions.NewNetwork.Highway6L
             ///////////////////////////
             if (version == NetInfoVersion.Slope)
             {
-             
+
             }
             info.m_availableIn = ItemClass.Availability.All;
             info.m_createPavement = false; //(version == NetInfoVersion.Slope);
@@ -275,7 +275,6 @@ namespace NetworkExtensions.NewNetwork.Highway6L
                 l.m_position = positionStart + i * laneWidth;
             }
 
-
             if (version == NetInfoVersion.Ground)
             {
                 var hwPlayerNetAI = highwayInfo.GetComponent<PlayerNetAI>();
@@ -309,6 +308,28 @@ namespace NetworkExtensions.NewNetwork.Highway6L
 
             info.SetHighwayProps(highwayInfo);
             info.TrimHighwayProps();
+            
+            //Setting up props
+            var streetLightProp = info.m_lanes.Where(x => x.m_laneProps.name == "Highway6L Right Props").First().m_laneProps.m_props.Where(x => x.m_prop.name == "New Street Light Highway").First();
+            var streetLightPropLeft = streetLightProp.ShallowClone();
+            var leftHighway6LProps = info.m_lanes.Where(x => x.m_laneProps.name == "Highway6L Left Props").First().m_laneProps.m_props.ToList();
+            streetLightProp.m_repeatDistance = 80;
+
+            if (version == NetInfoVersion.Bridge || version == NetInfoVersion.Elevated)
+            {
+                streetLightProp.m_position = new UnityEngine.Vector3(3.6f, 1, 0);
+                streetLightPropLeft.m_position = new UnityEngine.Vector3(-3.6f, 1, 50);
+            }
+            else
+            {
+                streetLightProp.m_position.x = 1;
+                streetLightPropLeft.m_position = new UnityEngine.Vector3(-1, 0, 50);
+            }
+
+            streetLightPropLeft.m_repeatDistance = 80;
+            streetLightPropLeft.m_angle = 180;
+            leftHighway6LProps.Add(streetLightPropLeft);
+            info.m_lanes.Where(x => x.m_laneProps.name == "Highway6L Left Props").First().m_laneProps.m_props = leftHighway6LProps.ToArray();
         }
 
         public void ModifyExistingNetInfo()
