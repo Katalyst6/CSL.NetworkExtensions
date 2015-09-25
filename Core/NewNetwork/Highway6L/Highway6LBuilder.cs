@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using NetworkExtensions.Framework;
+using System.Collections.Generic;
 
 namespace NetworkExtensions.NewNetwork.Highway6L
 {
@@ -255,9 +256,9 @@ namespace NetworkExtensions.NewNetwork.Highway6L
                 .Where(l => l.m_laneType != NetInfo.LaneType.None)
                 .OrderBy(l => l.m_similarLaneIndex)
                 .ToArray();
-            var nbLanes = vehiculeLanes.Count(); // Supposed to be 6
+            var nbLanes = vehiculeLanes.Count();
 
-            const float laneWidth = 4f; // TODO: Make it 2.5 with new texture
+            const float laneWidth = 4f;
             var positionStart = (laneWidth * ((1f - nbLanes) / 2f));
 
             for (int i = 0; i < vehiculeLanes.Length; i++)
@@ -308,28 +309,65 @@ namespace NetworkExtensions.NewNetwork.Highway6L
 
             info.SetHighwayProps(highwayInfo);
             info.TrimHighwayProps();
-            
+
             //Setting up props
-            var streetLightProp = info.m_lanes.Where(x => x.m_laneProps.name == "Highway6L Right Props").First().m_laneProps.m_props.Where(x => x.m_prop.name == "New Street Light Highway").First();
-            var streetLightPropLeft = streetLightProp.ShallowClone();
-            var leftHighway6LProps = info.m_lanes.Where(x => x.m_laneProps.name == "Highway6L Left Props").First().m_laneProps.m_props.ToList();
-            streetLightProp.m_repeatDistance = 80;
 
-            if (version == NetInfoVersion.Bridge || version == NetInfoVersion.Elevated)
-            {
-                streetLightProp.m_position = new UnityEngine.Vector3(3.6f, 1, 0);
-                streetLightPropLeft.m_position = new UnityEngine.Vector3(-3.6f, 1, 50);
-            }
-            else
-            {
-                streetLightProp.m_position.x = 1;
-                streetLightPropLeft.m_position = new UnityEngine.Vector3(-1, 0, 50);
-            }
+            var leftHwLane = info
+                .m_lanes
+                .Where(l => l != null && l.m_laneProps != null && l.m_laneProps.name != null && l.m_laneProps.m_props != null)
+                .FirstOrDefault(l => l.m_laneProps.name.ToLower().Contains("left"));
 
-            streetLightPropLeft.m_repeatDistance = 80;
-            streetLightPropLeft.m_angle = 180;
-            leftHighway6LProps.Add(streetLightPropLeft);
-            info.m_lanes.Where(x => x.m_laneProps.name == "Highway6L Left Props").First().m_laneProps.m_props = leftHighway6LProps.ToArray();
+            var rightHwLane = info
+                .m_lanes
+                .Where(l => l != null && l.m_laneProps != null && l.m_laneProps.name != null && l.m_laneProps.m_props != null)
+                .FirstOrDefault(l => l.m_laneProps.name.ToLower().Contains("right"));
+
+            var leftHwProps = new List<NetLaneProps.Prop>();
+            var rightHwProps = new List<NetLaneProps.Prop>();
+
+            if (leftHwLane != null && rightHwLane != null)
+            {
+                leftHwProps = leftHwLane.m_laneProps.m_props.ToList();
+
+                NetLaneProps.Prop streetLightLeft = null;
+                NetLaneProps.Prop streetLightRight = null;
+
+                foreach (var prop in rightHwLane.m_laneProps.m_props)
+                {
+                    if (prop != null && prop.m_prop != null && prop.m_prop.name != null && prop.m_prop.name.Contains("New Street Light"))
+                    {
+                        streetLightLeft = prop.ShallowClone();
+                        streetLightRight = prop.ShallowClone();
+                        break;
+                    }
+                }
+
+                if (streetLightLeft != null && version != NetInfoVersion.Slope && version != NetInfoVersion.Tunnel)
+                {
+                    streetLightRight.m_repeatDistance = 80;
+                    streetLightLeft.m_repeatDistance = 80;
+
+                    streetLightLeft.m_angle = 180;
+                    streetLightLeft.m_segmentOffset = 40;
+
+                    if (version == NetInfoVersion.Bridge || version == NetInfoVersion.Elevated)
+                    {
+                        streetLightLeft.m_position = new UnityEngine.Vector3(-3.6f, 1, 0);
+                        streetLightRight.m_position = new UnityEngine.Vector3(3.6f, 1, 0);
+                    }
+                    else
+                    {
+                        streetLightLeft.m_position = new UnityEngine.Vector3(-1, 0, 0);
+                        streetLightRight.m_position = new UnityEngine.Vector3(1, 0, 0); ;
+                    }
+
+                    leftHwProps.Add(streetLightLeft);
+                    leftHwLane.m_laneProps.m_props = leftHwProps.ToArray();
+
+                    rightHwProps.Add(streetLightRight);
+                    rightHwLane.m_laneProps.m_props = rightHwProps.ToArray();
+                }
+            }
         }
 
         public void ModifyExistingNetInfo()
