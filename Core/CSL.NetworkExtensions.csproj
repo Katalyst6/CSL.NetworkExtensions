@@ -532,9 +532,13 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>rd /s /q  "d:\jeux\Steam\SteamApps\workshop\content\255710\478820060"
-mkdir "d:\jeux\Steam\SteamApps\workshop\content\255710\478820060"
-xcopy /y /e "$(ProjectDir)bin\$(ConfigurationName)" "d:\jeux\Steam\SteamApps\workshop\content\255710\478820060"</PostBuildEvent>
+    <PostBuildEvent>rd /s /q  "%25LOCALAPPDATA%25\Colossal Order\Cities_Skylines\Addons\Mods\$(ProjectName)"
+mkdir "%25LOCALAPPDATA%25\Colossal Order\Cities_Skylines\Addons\Mods\$(ProjectName)"
+xcopy /y /e "$(ProjectDir)bin\$(ConfigurationName)" "%25LOCALAPPDATA%25\Colossal Order\Cities_Skylines\Addons\Mods\$(ProjectName)"
+rd /s /q  "%25LOCALAPPDATA%25\Colossal Order\Cities_Skylines\Addons\Mods\$(ProjectName)"
+rd /s /q  "C:\Program Files (x86)\Steam\SteamApps\workshop\content\255710\478820060"
+mkdir "C:\Program Files (x86)\Steam\SteamApps\workshop\content\255710\478820060"
+xcopy /y /e "$(ProjectDir)bin\$(ConfigurationName)" "C:\Program Files (x86)\Steam\SteamApps\workshop\content\255710\478820060"</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
