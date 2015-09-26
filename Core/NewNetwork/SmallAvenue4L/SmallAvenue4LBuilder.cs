@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
-using NetworkExtensions.Framework;
+using CSL.ExtensionFramework;
+using CSL.ExtensionFramework.ModParts;
 using NetworkExtensions.Menus;
 using UnityEngine;
 
@@ -11,7 +12,7 @@ namespace NetworkExtensions.NewNetwork.SmallAvenue4L
         public int OptionsPriority { get { return 10; } }
         public int Priority { get { return 20; } }
 
-        public string PrefabName { get { return VanillaNetInfos.ROAD_2L; } }
+        public string PrefabName { get { return NetInfos.Vanilla.ROAD_2L; } }
         public string Name { get { return "Small Avenue"; } }
         public string DisplayName { get { return "Small Four-Lane Road"; } }
         public string CodeName { get { return "SMALLROAD_4L"; } }
@@ -31,7 +32,7 @@ namespace NetworkExtensions.NewNetwork.SmallAvenue4L
             ///////////////////////////
             // Template              //
             ///////////////////////////
-            var basicRoadInfo = ToolsCSL.FindPrefab<NetInfo>(VanillaNetInfos.ROAD_2L);
+            var basicRoadInfo = Prefabs.Find<NetInfo>(NetInfos.Vanilla.ROAD_2L);
 
             ///////////////////////////
             // 3DModeling            //
@@ -64,7 +65,7 @@ namespace NetworkExtensions.NewNetwork.SmallAvenue4L
             switch (version)
             {
                 case NetInfoVersion.Ground:
-                    info.SetSegmentsTexture(
+                    info.SetAllSegmentsTexture(
                         new TexturesSet
                            (@"NewNetwork\SmallAvenue4L\Textures\Ground_Segment__MainTex.png",
                             @"NewNetwork\SmallAvenue4L\Textures\Ground_Segment__AlphaMap.png"),

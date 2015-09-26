@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
-using NetworkExtensions.Framework;
+using CSL.ExtensionFramework;
+using CSL.ExtensionFramework.ModParts;
 
 namespace NetworkExtensions.NewNetwork.OneWay1L
 {
@@ -9,7 +10,7 @@ namespace NetworkExtensions.NewNetwork.OneWay1L
         public int OptionsPriority { get { return 5; } }
         public int Priority { get { return 30; } }
 
-        public string PrefabName { get { return VanillaNetInfos.ONEWAY_2L; } }
+        public string PrefabName { get { return NetInfos.Vanilla.ONEWAY_2L; } }
         public string Name { get { return "Small Oneway"; } }
         public string DisplayName { get { return "Single-Lane Oneway"; } }
         public string CodeName { get { return "ONEWAY_1L"; } }
@@ -30,7 +31,7 @@ namespace NetworkExtensions.NewNetwork.OneWay1L
             ///////////////////////////
             // Template              //
             ///////////////////////////
-            var onewayRoadInfo = ToolsCSL.FindPrefab<NetInfo>(VanillaNetInfos.ONEWAY_2L);
+            var onewayRoadInfo = Prefabs.Find<NetInfo>(NetInfos.Vanilla.ONEWAY_2L);
 
 
             ///////////////////////////
@@ -59,7 +60,7 @@ namespace NetworkExtensions.NewNetwork.OneWay1L
             switch (version)
             {
                 case NetInfoVersion.Ground:
-                    info.SetSegmentsTexture(
+                    info.SetAllSegmentsTexture(
                         new TexturesSet
                            (@"NewNetwork\OneWay1L\Textures\Ground_Segment__MainTex.png",
                             @"NewNetwork\OneWay1L\Textures\Ground_Segment__AlphaMap.png"),
@@ -67,7 +68,7 @@ namespace NetworkExtensions.NewNetwork.OneWay1L
                            (@"NewNetwork\OneWay1L\Textures\Ground_SegmentLOD__MainTex.png",
                             @"NewNetwork\OneWay1L\Textures\Ground_SegmentLOD__AlphaMap.png",
                             @"NewNetwork\OneWay1L\Textures\Ground_SegmentLOD__XYSMap.png"));
-                    info.SetNodesTexture(
+                    info.SetAllNodesTexture(
                         new TexturesSet
                             (@"NewNetwork\OneWay1L\Textures\Ground_Node__MainTex.png",
                              @"NewNetwork\OneWay1L\Textures\Ground_Node__AlphaMap.png"),

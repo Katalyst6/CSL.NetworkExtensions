@@ -2,7 +2,7 @@
 
 //using System;
 //using System.Linq;
-//using NetworkExtensions.Framework;
+//using CSL.ExtensionFramework;
 
 //namespace NetworkExtensions.SomeNetwork
 //{
@@ -10,7 +10,7 @@
 //    {
 //        public int Priority { get { return 1001; } }
 
-//        public string PrefabName  { get { return VanillaNetInfo.ROAD_2L; } }
+//        public string PrefabName  { get { return NetInfos.VanillaNetInfo.ROAD_2L; } }
 //        public string Name        { get { return "Planning Road (Small)"; } }
 //        public string CodeName    { get { return "SOME_PLANNING_SMALLROAD"; } }
 //        public string Description { get { return "A non-functional road for planning road layouts. Can be upgraded to actual roads."; } }

@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using NetworkExtensions.Framework;
+using CSL.ExtensionFramework;
 using UnityEngine;
 
 #if DEBUG
-using Debug = NetworkExtensions.Framework.Debug;
+using Debug = CSL.ExtensionFramework.Debug;
 #endif
 
 namespace NetworkExtensions.NewNetwork
@@ -68,9 +68,9 @@ namespace NetworkExtensions.NewNetwork
 
         public static void TrimHighwayProps(this NetInfo info)
         {
-            var randomProp = ToolsCSL.FindPrefab<PropInfo>("Random Street Prop", false);
-            var streetLight = ToolsCSL.FindPrefab<PropInfo>("New Street Light", false);
-            var manhole = ToolsCSL.FindPrefab<PropInfo>("Manhole", false);
+            var randomProp = Prefabs.Find<PropInfo>("Random Street Prop", false);
+            var streetLight = Prefabs.Find<PropInfo>("New Street Light", false);
+            var manhole = Prefabs.Find<PropInfo>("Manhole", false);
 
             if (randomProp == null)
             {

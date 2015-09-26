@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Linq;
 using ColossalFramework;
-using NetworkExtensions.Framework;
+using CSL.ExtensionFramework;
+using CSL.ExtensionFramework.ModParts;
 
 namespace NetworkExtensions.NewNetwork.MediumAvenue4LTL
 {
@@ -10,7 +11,7 @@ namespace NetworkExtensions.NewNetwork.MediumAvenue4LTL
         public int OptionsPriority { get { return 21; } }
         public int Priority { get { return 5; } }
 
-        public string PrefabName { get { return VanillaNetInfos.ROAD_6L; } }
+        public string PrefabName { get { return NetInfos.Vanilla.ROAD_6L; } }
         public string Name { get { return "Medium Avenue TL"; } }
         public string DisplayName { get { return "Four-Lane Road with Turning Lane"; } }
         public string CodeName { get { return "MEDIUMAVENUE_4LTL"; } }
@@ -30,7 +31,7 @@ namespace NetworkExtensions.NewNetwork.MediumAvenue4LTL
             ///////////////////////////
             // Template              //
             ///////////////////////////
-            var mediumRoadInfo = ToolsCSL.FindPrefab<NetInfo>(VanillaNetInfos.AVENUE_4L);
+            var mediumRoadInfo = Prefabs.Find<NetInfo>(NetInfos.Vanilla.AVENUE_4L);
 
 
             ///////////////////////////
@@ -39,7 +40,7 @@ namespace NetworkExtensions.NewNetwork.MediumAvenue4LTL
             switch (version)
             {
                 case NetInfoVersion.Ground:
-                    info.SetSegmentsTexture(
+                    info.SetAllSegmentsTexture(
                         new TexturesSet
                            (@"NewNetwork\MediumAvenue4LTL\Textures\Ground_Segment__MainTex.png",
                             @"NewNetwork\MediumAvenue4LTL\Textures\Ground_Segment__AlphaMap.png"),
@@ -47,7 +48,7 @@ namespace NetworkExtensions.NewNetwork.MediumAvenue4LTL
                            (@"NewNetwork\MediumAvenue4LTL\Textures\Ground_SegmentLOD__MainTex.png",
                             @"NewNetwork\MediumAvenue4LTL\Textures\Ground_SegmentLOD__AlphaMap.png",
                             @"NewNetwork\MediumAvenue4LTL\Textures\Ground_SegmentLOD__XYSMap.png"));
-                    info.SetNodesTexture(
+                    info.SetAllNodesTexture(
                         new TexturesSet
                            (null,
                             @"NewNetwork\MediumAvenue4LTL\Textures\Ground_Node__AlphaMap.png"));

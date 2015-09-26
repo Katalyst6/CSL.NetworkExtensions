@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
-using NetworkExtensions.Framework;
+using CSL.ExtensionFramework;
+using CSL.ExtensionFramework.ModParts;
 using UnityEngine;
 
 namespace NetworkExtensions.NewNetwork.Alley2L
@@ -10,7 +11,7 @@ namespace NetworkExtensions.NewNetwork.Alley2L
         public int OptionsPriority { get { return 1; } }
         public int Priority { get { return 40; } }
 
-        public string PrefabName { get { return VanillaNetInfos.ROAD_2L; } }
+        public string PrefabName { get { return NetInfos.Vanilla.ROAD_2L; } }
         public string Name { get { return "Alley2L"; } }
         public string DisplayName { get { return "Two-Lane Alley"; } }
         public string CodeName { get { return "Alley_2L"; } }
@@ -56,7 +57,7 @@ namespace NetworkExtensions.NewNetwork.Alley2L
             switch (version)
             {
                 case NetInfoVersion.Ground:
-                    info.SetSegmentsTexture(
+                    info.SetAllSegmentsTexture(
                         new TexturesSet
                            (@"NewNetwork\Alley2L\Textures\Ground_Segment__MainTex.png",
                             @"NewNetwork\Alley2L\Textures\Ground_Segment__AlphaMap.png"));
@@ -121,7 +122,7 @@ namespace NetworkExtensions.NewNetwork.Alley2L
                 }
             }
 
-            var onewayRoadInfo = ToolsCSL.FindPrefab<NetInfo>(VanillaNetInfos.ROAD_2L);
+            var onewayRoadInfo = Prefabs.Find<NetInfo>(NetInfos.Vanilla.ROAD_2L);
 
             if (version == NetInfoVersion.Ground)
             {

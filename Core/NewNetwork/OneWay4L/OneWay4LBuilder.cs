@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using NetworkExtensions.Framework;
+using CSL.ExtensionFramework;
+using CSL.ExtensionFramework.ModParts;
 using NetworkExtensions.Menus;
 
 namespace NetworkExtensions.NewNetwork.OneWay4L
@@ -11,7 +12,7 @@ namespace NetworkExtensions.NewNetwork.OneWay4L
         public int OptionsPriority { get { return 9; } }
         public int Priority { get { return 30; } }
 
-        public string PrefabName { get { return VanillaNetInfos.ONEWAY_2L; } }
+        public string PrefabName { get { return NetInfos.Vanilla.ONEWAY_2L; } }
         public string Name { get { return "Oneway4L"; } }
         public string CodeName { get { return "SMALL_ONEWAY_4L"; } }
         public string DisplayName { get { return "Small Four-Lane Oneway"; } }
@@ -31,7 +32,7 @@ namespace NetworkExtensions.NewNetwork.OneWay4L
             ///////////////////////////
             // Template              //
             ///////////////////////////
-            var owRoadInfo = ToolsCSL.FindPrefab<NetInfo>(VanillaNetInfos.ONEWAY_2L);
+            var owRoadInfo = Prefabs.Find<NetInfo>(NetInfos.Vanilla.ONEWAY_2L);
 
             ///////////////////////////
             // 3DModeling            //
@@ -63,7 +64,7 @@ namespace NetworkExtensions.NewNetwork.OneWay4L
             switch (version)
             {
                 case NetInfoVersion.Ground:
-                    info.SetSegmentsTexture(
+                    info.SetAllSegmentsTexture(
                         new TexturesSet
                            (@"NewNetwork\OneWay4L\Textures\Ground_Segment__MainTex.png",
                             @"NewNetwork\OneWay4L\Textures\Ground_Segment__AlphaMap.png"),

@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using ColossalFramework;
 using ColossalFramework.Globalization;
-using NetworkExtensions.Framework;
+using CSL.ExtensionFramework;
+using CSL.ExtensionFramework.ModParts;
 
 namespace NetworkExtensions.NewNetwork.MediumAvenue4L
 {
@@ -12,7 +13,7 @@ namespace NetworkExtensions.NewNetwork.MediumAvenue4L
         public int OptionsPriority { get { return 20; } }
         public int Priority { get { return 4; } }
 
-        public string PrefabName { get { return VanillaNetInfos.ROAD_6L; } }
+        public string PrefabName { get { return NetInfos.Vanilla.ROAD_6L; } }
         public string Name { get { return "Medium Avenue"; } }
         public string DisplayName { get { return "Four-Lane Road"; } }
         public string CodeName { get { return "MEDIUMAVENUE_4L"; } }
@@ -32,7 +33,7 @@ namespace NetworkExtensions.NewNetwork.MediumAvenue4L
             ///////////////////////////
             // Template              //
             ///////////////////////////
-            var mediumRoadInfo = ToolsCSL.FindPrefab<NetInfo>(VanillaNetInfos.AVENUE_4L);
+            var mediumRoadInfo = Prefabs.Find<NetInfo>(NetInfos.Vanilla.AVENUE_4L);
 
 
             ///////////////////////////
@@ -41,7 +42,7 @@ namespace NetworkExtensions.NewNetwork.MediumAvenue4L
             switch (version)
             {
                 case NetInfoVersion.Ground:
-                    info.SetSegmentsTexture(
+                    info.SetAllSegmentsTexture(
                         new TexturesSet
                            (@"NewNetwork\MediumAvenue4L\Textures\Ground_Segment__MainTex.png",
                             @"NewNetwork\MediumAvenue4L\Textures\Ground_Segment__AlphaMap.png"),
@@ -49,7 +50,7 @@ namespace NetworkExtensions.NewNetwork.MediumAvenue4L
                            (@"NewNetwork\MediumAvenue4L\Textures\Ground_SegmentLOD__MainTex.png",
                             @"NewNetwork\MediumAvenue4L\Textures\Ground_SegmentLOD__AlphaMap.png",
                             @"NewNetwork\MediumAvenue4L\Textures\Ground_SegmentLOD__XYSMap.png"));
-                    info.SetNodesTexture(
+                    info.SetAllNodesTexture(
                         new TexturesSet
                            (null,
                             @"NewNetwork\MediumAvenue4L\Textures\Ground_Node__AlphaMap.png"));
@@ -143,7 +144,7 @@ namespace NetworkExtensions.NewNetwork.MediumAvenue4L
                 localizedStrings
                 .FirstOrDefault(kvpInternal =>
                     kvpInternal.Key.m_Identifier == "NET_TITLE" &&
-                    kvpInternal.Key.m_Key == VanillaNetInfos.AVENUE_4L);
+                    kvpInternal.Key.m_Key == NetInfos.Vanilla.AVENUE_4L);
 
             if (!Equals(kvp, default(KeyValuePair<Locale.Key, string>)))
             {

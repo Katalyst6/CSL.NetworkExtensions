@@ -4,11 +4,12 @@ using System.IO;
 using System.Linq;
 using System.Xml;
 using ColossalFramework;
-using NetworkExtensions.Framework;
+using CSL.ExtensionFramework;
+using CSL.ExtensionFramework.ModParts;
 using UnityEngine;
 
 #if DEBUG
-using Debug = NetworkExtensions.Framework.Debug;
+using Debug = CSL.ExtensionFramework.Debug;
 #endif
 
 namespace NetworkExtensions

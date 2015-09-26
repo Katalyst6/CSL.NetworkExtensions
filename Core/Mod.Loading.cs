@@ -1,6 +1,6 @@
 ﻿using System;
 using ICities;
-using NetworkExtensions.Framework;
+using CSL.ExtensionFramework;
 using NetworkExtensions.Install;
 using UnityEngine;
 using Object = UnityEngine.Object;

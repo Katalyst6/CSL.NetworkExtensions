@@ -1,6 +1,7 @@
 ﻿using System.Linq;
+using CSL.ExtensionFramework.ModParts;
 using ICities;
-using NetworkExtensions.Framework;
+using CSL.ExtensionFramework;
 
 namespace NetworkExtensions
 {
