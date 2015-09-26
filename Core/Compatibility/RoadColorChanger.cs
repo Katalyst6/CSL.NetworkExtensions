@@ -3,7 +3,8 @@ using System.IO;
 using System.Xml.Serialization;
 using ColossalFramework;
 using ColossalFramework.Plugins;
-using NetworkExtensions.Framework;
+using CSL.ExtensionFramework;
+using CSL.ExtensionFramework.ModParts;
 using UnityEngine;
 
 namespace NetworkExtensions.Compatibility

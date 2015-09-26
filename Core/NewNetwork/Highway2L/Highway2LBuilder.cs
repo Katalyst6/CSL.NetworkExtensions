@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
-using NetworkExtensions.Framework;
+using CSL.ExtensionFramework;
+using CSL.ExtensionFramework.ModParts;
 
 namespace NetworkExtensions.NewNetwork.Highway2L
 {
@@ -9,7 +10,7 @@ namespace NetworkExtensions.NewNetwork.Highway2L
         public int OptionsPriority { get { return 40; } }
         public int Priority { get { return 10; } }
 
-        public string PrefabName { get { return VanillaNetInfos.ONEWAY_2L; } }
+        public string PrefabName { get { return NetInfos.Vanilla.ONEWAY_2L; } }
         public string Name { get { return "Rural Highway"; } }
         public string DisplayName { get { return "Two-Lane Highway"; } }
         public string CodeName { get { return "HIGHWAY_2L"; } }
@@ -29,7 +30,7 @@ namespace NetworkExtensions.NewNetwork.Highway2L
             ///////////////////////////
             // Template              //
             ///////////////////////////
-            var highwayInfo = ToolsCSL.FindPrefab<NetInfo>(VanillaNetInfos.HIGHWAY_3L);
+            var highwayInfo = Prefabs.Find<NetInfo>(NetInfos.Vanilla.HIGHWAY_3L);
 
 
             ///////////////////////////
@@ -80,7 +81,7 @@ namespace NetworkExtensions.NewNetwork.Highway2L
             switch (version)
             {
                 case NetInfoVersion.Ground:
-                    info.SetSegmentsTexture(
+                    info.SetAllSegmentsTexture(
                         new TexturesSet
                            (@"NewNetwork\Highway2L\Textures\Ground_Segment__MainTex.png",
                             @"NewNetwork\Highway2L\Textures\Ground_Segment__AlphaMap.png"),
@@ -88,7 +89,7 @@ namespace NetworkExtensions.NewNetwork.Highway2L
                            (@"NewNetwork\Highway2L\Textures\Ground_SegmentLOD__MainTex.png",
                             @"NewNetwork\Highway2L\Textures\Ground_SegmentLOD__AlphaMap.png",
                             @"NewNetwork\Highway2L\Textures\Ground_SegmentLOD__XYSMap.png"));
-                    info.SetNodesTexture(
+                    info.SetAllNodesTexture(
                         new TexturesSet
                            (@"NewNetwork\Highway2L\Textures\Ground_Node__MainTex.png",
                             @"NewNetwork\Highway2L\Textures\Ground_Node__AlphaMap.png"),
@@ -100,7 +101,7 @@ namespace NetworkExtensions.NewNetwork.Highway2L
 
                 case NetInfoVersion.Elevated:
                 case NetInfoVersion.Bridge:
-                    info.SetNodesTexture(
+                    info.SetAllNodesTexture(
                         new TexturesSet
                            (@"NewNetwork\Highway2L\Textures\Elevated_Node__MainTex.png",
                             @"NewNetwork\Highway2L\Textures\Elevated_Node__AlphaMap.png"));
@@ -112,7 +113,7 @@ namespace NetworkExtensions.NewNetwork.Highway2L
                     break;
 
                 case NetInfoVersion.Slope:
-                    info.SetNodesTexture(
+                    info.SetAllNodesTexture(
                         new TexturesSet
                            (@"NewNetwork\Highway2L\Textures\Slope_Node__MainTex.png",
                             @"NewNetwork\Highway2L\Textures\Slope_Node__AlphaMap.png"),

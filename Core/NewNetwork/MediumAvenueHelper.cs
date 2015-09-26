@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using NetworkExtensions.Framework;
+using CSL.ExtensionFramework;
 using UnityEngine;
 
 namespace NetworkExtensions.NewNetwork
@@ -11,8 +11,8 @@ namespace NetworkExtensions.NewNetwork
     {
         public static void Setup50LimitProps(this NetInfo info)
         {
-            var speed50 = ToolsCSL.FindPrefab<PropInfo>("50 Speed Limit", false);
-            var speed60 = ToolsCSL.FindPrefab<PropInfo>("60 Speed Limit", false);
+            var speed50 = Prefabs.Find<PropInfo>("50 Speed Limit", false);
+            var speed60 = Prefabs.Find<PropInfo>("60 Speed Limit", false);
 
             if (speed50 == null || speed60 == null)
             {

@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Linq;
 using ColossalFramework.UI;
-using NetworkExtensions.Framework;
+using CSL.ExtensionFramework;
 using NetworkExtensions.Menus;
 using UnityEngine;
 
 #if DEBUG
-using Debug = NetworkExtensions.Framework.Debug;
+using Debug = CSL.ExtensionFramework.Debug;
 #endif
 
 namespace NetworkExtensions.Install
@@ -105,7 +105,7 @@ namespace NetworkExtensions.Install
             var b = group.Find<UIButton>(AdditionnalMenus.ROADS_SMALL_HV);
             if (b != null)
             {
-                b.atlas = ToolsUnity.LoadMenuThumbnails();
+                b.atlas = AdditionnalMenus.LoadThumbnails();
                 return true;
             }
 

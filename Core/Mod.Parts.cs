@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using CSL.ExtensionFramework.ModParts;
 using ICities;
-using NetworkExtensions.Framework;
 using NetworkExtensions.Install;
 
 namespace NetworkExtensions

@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using NetworkExtensions.Framework;
+using CSL.ExtensionFramework;
+using CSL.ExtensionFramework.ModParts;
 using UnityEngine;
 
 #if DEBUG
-using Debug = NetworkExtensions.Framework.Debug;
+using Debug = CSL.ExtensionFramework.Debug;
 #endif
 
 namespace NetworkExtensions.NewNetwork.Highway1L
@@ -15,7 +16,7 @@ namespace NetworkExtensions.NewNetwork.Highway1L
         public int OptionsPriority { get { return 30; } }
         public int Priority { get { return 9; } }
 
-        public string PrefabName { get { return VanillaNetInfos.ROAD_2L; } }
+        public string PrefabName { get { return NetInfos.Vanilla.ROAD_2L; } }
         public string Name { get { return "Small Rural Highway"; } }
         public string DisplayName { get { return "National Road"; } }
         public string CodeName { get { return "HIGHWAY_1L"; } }
@@ -35,7 +36,7 @@ namespace NetworkExtensions.NewNetwork.Highway1L
             ///////////////////////////
             // Template              //
             ///////////////////////////
-            var highwayInfo = ToolsCSL.FindPrefab<NetInfo>(VanillaNetInfos.HIGHWAY_3L);
+            var highwayInfo = Prefabs.Find<NetInfo>(NetInfos.Vanilla.HIGHWAY_3L);
 
 
             ///////////////////////////
@@ -86,7 +87,7 @@ namespace NetworkExtensions.NewNetwork.Highway1L
             switch (version)
             {
                 case NetInfoVersion.Ground:
-                    info.SetSegmentsTexture(
+                    info.SetAllSegmentsTexture(
                         new TexturesSet
                            (@"NewNetwork\Highway1L\Textures\Ground_Segment__MainTex.png",
                             @"NewNetwork\Highway1L\Textures\Ground_Segment__AlphaMap.png"),
@@ -94,7 +95,7 @@ namespace NetworkExtensions.NewNetwork.Highway1L
                            (@"NewNetwork\Highway1L\Textures\Ground_SegmentLOD__MainTex.png",
                             @"NewNetwork\Highway1L\Textures\Ground_SegmentLOD__AlphaMap.png",
                             @"NewNetwork\Highway1L\Textures\Ground_SegmentLOD__XYSMap.png"));
-                    info.SetNodesTexture(
+                    info.SetAllNodesTexture(
                         new TexturesSet
                            (@"NewNetwork\Highway1L\Textures\Ground_Node__MainTex.png",
                             @"NewNetwork\Highway1L\Textures\Ground_Node__AlphaMap.png"),
@@ -106,7 +107,7 @@ namespace NetworkExtensions.NewNetwork.Highway1L
 
                 case NetInfoVersion.Elevated:
                 case NetInfoVersion.Bridge:
-                    info.SetNodesTexture(
+                    info.SetAllNodesTexture(
                         new TexturesSet
                            (@"NewNetwork\Highway2L\Textures\Elevated_Node__MainTex.png",
                             @"NewNetwork\Highway2L\Textures\Elevated_Node__AlphaMap.png"));
@@ -118,7 +119,7 @@ namespace NetworkExtensions.NewNetwork.Highway1L
                     break;
 
                 case NetInfoVersion.Slope:
-                    info.SetNodesTexture(
+                    info.SetAllNodesTexture(
                         new TexturesSet
                            (@"NewNetwork\Highway2L\Textures\Slope_Node__MainTex.png",
                             @"NewNetwork\Highway2L\Textures\Slope_Node__AlphaMap.png"),
@@ -224,12 +225,12 @@ namespace NetworkExtensions.NewNetwork.Highway1L
 
         public static void SetupHighwayProps(NetInfo info)
         {
-            var randomProp = ToolsCSL.FindPrefab<PropInfo>("Random Street Prop", false);
-            var streetLight = ToolsCSL.FindPrefab<PropInfo>("New Street Light", false);
-            var streetLight2 = ToolsCSL.FindPrefab<PropInfo>("New Street Light Small Road", false);
-            var manhole = ToolsCSL.FindPrefab<PropInfo>("Manhole", false);
-            var speed40 = ToolsCSL.FindPrefab<PropInfo>("40 Speed Limit", false);
-            var speed100 = ToolsCSL.FindPrefab<PropInfo>("100 Speed Limit", false);
+            var randomProp = Prefabs.Find<PropInfo>("Random Street Prop", false);
+            var streetLight = Prefabs.Find<PropInfo>("New Street Light", false);
+            var streetLight2 = Prefabs.Find<PropInfo>("New Street Light Small Road", false);
+            var manhole = Prefabs.Find<PropInfo>("Manhole", false);
+            var speed40 = Prefabs.Find<PropInfo>("40 Speed Limit", false);
+            var speed100 = Prefabs.Find<PropInfo>("100 Speed Limit", false);
 
             if (randomProp == null)
             {

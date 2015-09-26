@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
-using NetworkExtensions.Framework;
+using CSL.ExtensionFramework;
+using CSL.ExtensionFramework.ModParts;
 
 namespace NetworkExtensions.NewNetwork.Highway6L
 {
@@ -9,7 +10,7 @@ namespace NetworkExtensions.NewNetwork.Highway6L
         public int OptionsPriority { get { return 50; } }
         public int Priority { get { return 14; } }
 
-        public string PrefabName  { get { return VanillaNetInfos.ONEWAY_6L; } }
+        public string PrefabName  { get { return NetInfos.Vanilla.ONEWAY_6L; } }
         public string Name        { get { return "Large Highway"; } }
         public string DisplayName { get { return "Six-Lane Highway"; } }
         public string CodeName    { get { return "HIGHWAY_6L"; } }
@@ -29,7 +30,7 @@ namespace NetworkExtensions.NewNetwork.Highway6L
             ///////////////////////////
             // Template              //
             ///////////////////////////
-            var highwayInfo = ToolsCSL.FindPrefab<NetInfo>(VanillaNetInfos.HIGHWAY_3L);
+            var highwayInfo = Prefabs.Find<NetInfo>(NetInfos.Vanilla.HIGHWAY_3L);
 
 
             ///////////////////////////
@@ -80,7 +81,7 @@ namespace NetworkExtensions.NewNetwork.Highway6L
             switch (version)
             {
                 case NetInfoVersion.Ground:
-                    info.SetSegmentsTexture(
+                    info.SetAllSegmentsTexture(
                         new TexturesSet(
                             @"NewNetwork\Highway6L\Textures\Ground_Segment__MainTex.png",
                             @"NewNetwork\Highway6L\Textures\Ground_Segment__APRMap.png"),
@@ -88,7 +89,7 @@ namespace NetworkExtensions.NewNetwork.Highway6L
                            (@"NewNetwork\Highway6L\Textures\Ground_SegmentLOD__MainTex.png",
                             @"NewNetwork\Highway6L\Textures\Ground_SegmentLOD__APRMap.png",
                             @"NewNetwork\Highway6L\Textures\Ground_SegmentLOD__XYSMap.png"));
-                    info.SetNodesTexture(
+                    info.SetAllNodesTexture(
                         new TexturesSet
                            (@"NewNetwork\Highway6L\Textures\Ground_Node__MainTex.png",
                             @"NewNetwork\Highway6L\Textures\Ground_Node__APRMap.png"),
@@ -100,7 +101,7 @@ namespace NetworkExtensions.NewNetwork.Highway6L
 
                 case NetInfoVersion.Elevated:
                 case NetInfoVersion.Bridge:
-                    info.SetNodesTexture(
+                    info.SetAllNodesTexture(
                         new TexturesSet
                            (@"NewNetwork\Highway6L\Textures\Elevated_Node__MainTex.png",
                             @"NewNetwork\Highway6L\Textures\Elevated_Node__APRMap.png"));
@@ -112,7 +113,7 @@ namespace NetworkExtensions.NewNetwork.Highway6L
                     break;
 
                 case NetInfoVersion.Slope:
-                    info.SetNodesTexture(
+                    info.SetAllNodesTexture(
                         new TexturesSet
                            (@"NewNetwork\Highway6L\Textures\Slope_Node__MainTex.png",
                             @"NewNetwork\Highway6L\Textures\Slope_Node__APRMap.png"),
@@ -219,7 +220,7 @@ namespace NetworkExtensions.NewNetwork.Highway6L
 
         public void ModifyExistingNetInfo()
         {
-            var highwayRampInfo = ToolsCSL.FindPrefab<NetInfo>("HighwayRamp");
+            var highwayRampInfo = Prefabs.Find<NetInfo>("HighwayRamp");
             highwayRampInfo.m_UIPriority = highwayRampInfo.m_UIPriority + 1;
         }
     }

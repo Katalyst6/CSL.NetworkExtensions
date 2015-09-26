@@ -1,9 +1,10 @@
 ﻿using System;
-using NetworkExtensions.Framework;
+using CSL.ExtensionFramework;
+using CSL.ExtensionFramework;
 using UnityEngine;
 
 #if DEBUG
-using Debug = NetworkExtensions.Framework.Debug;
+using Debug = CSL.ExtensionFramework.Debug;
 #endif
 
 
@@ -25,7 +26,7 @@ namespace NetworkExtensions.Install
                 return;
             }
 
-            foreach (var action in AssetManager.instance.CreateLoadingSequence())
+            foreach (var action in AssetManager.instance.CreateLoadingSequence(Mod.GetPath()))
             {
                 var localAction = action;
 

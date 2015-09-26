@@ -5,7 +5,7 @@ using NetworkExtensions.Menus;
 using UnityEngine;
 
 #if DEBUG
-using Debug = NetworkExtensions.Framework.Debug;
+using Debug = CSL.ExtensionFramework.Debug;
 #endif
 
 namespace NetworkExtensions.Install
