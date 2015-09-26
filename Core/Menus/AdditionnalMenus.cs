@@ -1,8 +1,8 @@
 ﻿using ColossalFramework.UI;
-using CSL.ExtensionFramework;
+using CSL.NetworkExtensions.Framework;
 using UnityEngine;
 
-namespace NetworkExtensions.Menus
+namespace CSL.RoadExtensions.Menus
 {
     public static class AdditionnalMenus
     {

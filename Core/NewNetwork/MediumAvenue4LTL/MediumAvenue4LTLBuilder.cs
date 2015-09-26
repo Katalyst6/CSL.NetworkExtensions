@@ -1,17 +1,17 @@
 ﻿using System;
 using System.Linq;
 using ColossalFramework;
-using CSL.ExtensionFramework;
-using CSL.ExtensionFramework.ModParts;
+using CSL.NetworkExtensions.Framework;
+using CSL.NetworkExtensions.Framework.ModParts;
 
-namespace NetworkExtensions.NewNetwork.MediumAvenue4LTL
+namespace CSL.RoadExtensions.NewNetwork.MediumAvenue4LTL
 {
     public class MediumAvenue4LTLBuilder : ActivablePart, INetInfoBuilder
     {
         public int OptionsPriority { get { return 21; } }
         public int Priority { get { return 5; } }
 
-        public string PrefabName { get { return NetInfos.Vanilla.ROAD_6L; } }
+        public string TemplatePrefabName { get { return NetInfos.Vanilla.ROAD_6L; } }
         public string Name { get { return "Medium Avenue TL"; } }
         public string DisplayName { get { return "Four-Lane Road with Turning Lane"; } }
         public string CodeName { get { return "MEDIUMAVENUE_4LTL"; } }

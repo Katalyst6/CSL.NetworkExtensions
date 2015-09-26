@@ -1,18 +1,18 @@
 ﻿using System;
 using System.Linq;
-using CSL.ExtensionFramework;
-using CSL.ExtensionFramework.ModParts;
-using NetworkExtensions.Menus;
+using CSL.NetworkExtensions.Framework;
+using CSL.NetworkExtensions.Framework.ModParts;
+using CSL.RoadExtensions.Menus;
 using UnityEngine;
 
-namespace NetworkExtensions.NewNetwork.SmallAvenue4L
+namespace CSL.RoadExtensions.NewNetwork.SmallAvenue4L
 {
     public class SmallAvenue4LBuilder : ActivablePart, INetInfoBuilder
     {
         public int OptionsPriority { get { return 10; } }
         public int Priority { get { return 20; } }
 
-        public string PrefabName { get { return NetInfos.Vanilla.ROAD_2L; } }
+        public string TemplatePrefabName { get { return NetInfos.Vanilla.ROAD_2L; } }
         public string Name { get { return "Small Avenue"; } }
         public string DisplayName { get { return "Small Four-Lane Road"; } }
         public string CodeName { get { return "SMALLROAD_4L"; } }

@@ -17,13 +17,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "References", "References", 
 		References\UnityEngine.xml = References\UnityEngine.xml
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSL.NetworkExtensions", "Core\CSL.NetworkExtensions.csproj", "{19FA21B2-39CC-4B90-BE7E-B6BDCCB09208}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSL.RoadExtensions", "Core\CSL.RoadExtensions.csproj", "{19FA21B2-39CC-4B90-BE7E-B6BDCCB09208}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ObjUnity3D", "ObjUnity3D\ObjUnity3D.csproj", "{97D70503-6567-41A1-92FC-66D813A53370}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Externals", "Externals\Externals.csproj", "{7DCC08EF-DC85-47A4-BD6F-79FC52C7EF13}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSL.NetworkExtensions.Framework.Unsafe", "CSL.NetworkExtensions.Framework.Unsafe\CSL.NetworkExtensions.Framework.Unsafe.csproj", "{7DCC08EF-DC85-47A4-BD6F-79FC52C7EF13}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSL.ExtensionFramework", "ExtensionFramework\CSL.ExtensionFramework.csproj", "{8891467E-C88E-46B0-96F9-4413DF6DC205}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSL.NetworkExtensions.Framework", "CSL.NetworkExtensions.Framework\CSL.NetworkExtensions.Framework.csproj", "{8891467E-C88E-46B0-96F9-4413DF6DC205}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -1,14 +1,14 @@
 ﻿using System;
 using ColossalFramework;
 using ColossalFramework.Globalization;
-using CSL.ExtensionFramework;
+using CSL.NetworkExtensions.Framework;
 using UnityEngine;
 
 #if DEBUG
-using Debug = CSL.ExtensionFramework.Debug;
+using Debug = CSL.NetworkExtensions.Framework.Debug;
 #endif
 
-namespace NetworkExtensions.Install
+namespace CSL.RoadExtensions.Install
 {
     public class LocalizationInstaller : Installer
     {
@@ -50,7 +50,7 @@ namespace NetworkExtensions.Install
             {
                 try
                 {
-                    //Debug.Log("NExt: Localization");
+                    //Debug.Log("REx: Localization");
                     var locale = SingletonLite<LocaleManager>.instance.GetLocale();
 
                     locale.CreateMenuTitleLocalizedString(Menus.AdditionnalMenus.ROADS_SMALL_HV, "Small Heavy Roads");
@@ -63,9 +63,9 @@ namespace NetworkExtensions.Install
                 }
                 catch (Exception ex)
                 {
-                    Debug.Log("NExt: Crashed-Localization");
-                    Debug.Log("NExt: " + ex.Message);
-                    Debug.Log("NExt: " + ex.ToString());
+                    Debug.Log("REx: Crashed-Localization");
+                    Debug.Log("REx: " + ex.Message);
+                    Debug.Log("REx: " + ex.ToString());
                 }
 
                 Done = true;

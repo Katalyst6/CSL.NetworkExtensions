@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using CSL.ExtensionFramework;
+using CSL.NetworkExtensions.Framework;
 using UnityEngine;
 
-namespace NetworkExtensions.NewNetwork
+namespace CSL.RoadExtensions.NewNetwork
 {
     public static class MediumAvenueHelper
     {

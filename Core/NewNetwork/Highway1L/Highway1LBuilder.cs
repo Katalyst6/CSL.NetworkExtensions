@@ -1,22 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using CSL.ExtensionFramework;
-using CSL.ExtensionFramework.ModParts;
+using CSL.NetworkExtensions.Framework;
+using CSL.NetworkExtensions.Framework.ModParts;
 using UnityEngine;
 
 #if DEBUG
-using Debug = CSL.ExtensionFramework.Debug;
+using Debug = CSL.NetworkExtensions.Framework.Debug;
 #endif
 
-namespace NetworkExtensions.NewNetwork.Highway1L
+namespace CSL.RoadExtensions.NewNetwork.Highway1L
 {
     public class Highway1LBuilder : ActivablePart, INetInfoBuilder
     {
         public int OptionsPriority { get { return 30; } }
         public int Priority { get { return 9; } }
 
-        public string PrefabName { get { return NetInfos.Vanilla.ROAD_2L; } }
+        public string TemplatePrefabName { get { return NetInfos.Vanilla.ROAD_2L; } }
         public string Name { get { return "Small Rural Highway"; } }
         public string DisplayName { get { return "National Road"; } }
         public string CodeName { get { return "HIGHWAY_1L"; } }

@@ -1,16 +1,16 @@
 ﻿using System;
 using System.Linq;
-using CSL.ExtensionFramework;
-using CSL.ExtensionFramework.ModParts;
+using CSL.NetworkExtensions.Framework;
+using CSL.NetworkExtensions.Framework.ModParts;
 
-namespace NetworkExtensions.NewNetwork.OneWayMedium4L
+namespace CSL.RoadExtensions.NewNetwork.OneWayMedium4L
 {
     public class OneWayMedium4LBuilder : ActivablePart, INetInfoBuilder
     {
         public int OptionsPriority { get { return 10; } }
         public int Priority { get { return 15; } }
 
-        public string PrefabName { get { return NetInfos.Vanilla.ONEWAY_6L; } }
+        public string TemplatePrefabName { get { return NetInfos.Vanilla.ONEWAY_6L; } }
         public string Name { get { return "Medium Oneway"; } }
         public string DisplayName { get { return "Four-Lane Oneway"; } }
         public string CodeName { get { return "ONEWAY_4L"; } }

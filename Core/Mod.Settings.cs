@@ -1,9 +1,9 @@
 ﻿using System.Linq;
-using CSL.ExtensionFramework.ModParts;
+using CSL.NetworkExtensions.Framework.ModParts;
 using ICities;
-using CSL.ExtensionFramework;
+using CSL.NetworkExtensions.Framework;
 
-namespace NetworkExtensions
+namespace CSL.RoadExtensions
 {
     public partial class Mod : IUserMod
     {

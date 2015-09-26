@@ -2,9 +2,9 @@
 
 //using System;
 //using System.Linq;
-//using CSL.ExtensionFramework;
+//using CSL.NetworkExtensions.Framework;
 
-//namespace NetworkExtensions.SomeNetwork
+//namespace CSL.RoadExtensions.SomeNetwork
 //{
 //    public class PlanningRoadLargeBuilder : INetInfoBuilder
 //    {

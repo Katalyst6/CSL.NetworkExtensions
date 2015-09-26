@@ -1,14 +1,15 @@
 ﻿using System;
 using System.Reflection;
-using Externals;
-using NetworkExtensions.Menus;
+using CSL.NetworkExtensions.Framework;
+using CSL.NetworkExtensions.Framework.Unsafe;
+using CSL.RoadExtensions.Menus;
 using UnityEngine;
 
 #if DEBUG
-using Debug = CSL.ExtensionFramework.Debug;
+using Debug = CSL.NetworkExtensions.Framework.Debug;
 #endif
 
-namespace NetworkExtensions.Install
+namespace CSL.RoadExtensions.Install
 {
     public class Initializer : Installer
     {
@@ -31,7 +32,7 @@ namespace NetworkExtensions.Install
         protected override void Install()
         {
             var version = GetType().Assembly.GetName().Version;
-            Debug.Log(string.Format("NExt: Version {0}", version));
+            Debug.Log(string.Format("REx: Version {0}", version));
 
             InstallRedirections();
         }
@@ -51,9 +52,9 @@ namespace NetworkExtensions.Install
             }
             catch (Exception ex)
             {
-                Debug.Log("NExt: Crashed-RedirectionsInstall");
-                Debug.Log("NExt: " + ex.Message);
-                Debug.Log("NExt: " + ex.ToString());
+                Debug.Log("REx: Crashed-RedirectionsInstall");
+                Debug.Log("REx: " + ex.Message);
+                Debug.Log("REx: " + ex.ToString());
             }
             finally
             {
@@ -69,15 +70,15 @@ namespace NetworkExtensions.Install
 
             if (originalMethod == null)
             {
-                Debug.Log("NExt: Cannot find the GetCategoryOrder original method, continuing");
+                Debug.Log("REx: Cannot find the GetCategoryOrder original method, continuing");
                 return;
             }
 
-            var newMethod = typeof(NExtRoadsGroupPanel).GetMethod("GetCategoryOrder", BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance);
+            var newMethod = typeof(RExRoadsGroupPanel).GetMethod("GetCategoryOrder", BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance);
 
             if (newMethod == null)
             {
-                Debug.Log("NExt: Cannot find the GetCategoryOrder new method, continuing");
+                Debug.Log("REx: Cannot find the GetCategoryOrder new method, continuing");
                 return;
             }
 

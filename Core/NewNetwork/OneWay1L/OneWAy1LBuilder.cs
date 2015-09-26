@@ -1,16 +1,16 @@
 ﻿using System;
 using System.Linq;
-using CSL.ExtensionFramework;
-using CSL.ExtensionFramework.ModParts;
+using CSL.NetworkExtensions.Framework;
+using CSL.NetworkExtensions.Framework.ModParts;
 
-namespace NetworkExtensions.NewNetwork.OneWay1L
+namespace CSL.RoadExtensions.NewNetwork.OneWay1L
 {
     public class OneWay1LBuilder : ActivablePart, INetInfoBuilder
     {
         public int OptionsPriority { get { return 5; } }
         public int Priority { get { return 30; } }
 
-        public string PrefabName { get { return NetInfos.Vanilla.ONEWAY_2L; } }
+        public string TemplatePrefabName { get { return NetInfos.Vanilla.ONEWAY_2L; } }
         public string Name { get { return "Small Oneway"; } }
         public string DisplayName { get { return "Single-Lane Oneway"; } }
         public string CodeName { get { return "ONEWAY_1L"; } }

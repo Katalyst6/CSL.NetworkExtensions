@@ -5,10 +5,10 @@ using ICities;
 using UnityEngine;
 
 #if DEBUG
-using Debug = CSL.ExtensionFramework.Debug;
+using Debug = CSL.NetworkExtensions.Framework.Debug;
 #endif
 
-namespace NetworkExtensions
+namespace CSL.RoadExtensions
 {
     public partial class Mod : IUserMod
     {
@@ -23,11 +23,11 @@ namespace NetworkExtensions
 
                 if (s_path != PATH_NOT_FOUND)
                 {
-                    Debug.Log("NExt: Mod path " + s_path);
+                    Debug.Log("REx: Mod path " + s_path);
                 }
                 else
                 {
-                    Debug.Log("NExt: Path not found");
+                    Debug.Log("REx: Path not found");
                 }
             }
 
@@ -38,7 +38,7 @@ namespace NetworkExtensions
         {
             // 1. Check Local path (CurrentUser\Appdata\Local\Colossal Order\Cities_Skylines\Addons\Mods)
             var localPath = Path.Combine(DataLocation.modsPath, "NetworkExtensions");
-            Debug.Log(string.Format("NExt: Exist={0} DataLocation.modsPath={1}", Directory.Exists(localPath), localPath));
+            Debug.Log(string.Format("REx: Exist={0} DataLocation.modsPath={1}", Directory.Exists(localPath), localPath));
 
             if (Directory.Exists(localPath))
             {
@@ -51,7 +51,7 @@ namespace NetworkExtensions
                 if (mod.AsUInt64 == WORKSHOP_ID)
                 {
                     var workshopPath = Steam.workshop.GetSubscribedItemPath(mod);
-                    Debug.Log(string.Format("NExt: Exist={0} WorkshopPath={1}", Directory.Exists(workshopPath), workshopPath));
+                    Debug.Log(string.Format("REx: Exist={0} WorkshopPath={1}", Directory.Exists(workshopPath), workshopPath));
                     if (Directory.Exists(workshopPath))
                     {
                         return workshopPath;
@@ -61,7 +61,7 @@ namespace NetworkExtensions
 
             // 3. Check Cities Skylines files folder
             var csFolderPath = Path.Combine(Path.Combine(DataLocation.gameContentPath, "Mods"), "NetworkExtensions");
-            Debug.Log(string.Format("NExt: Exist={0} DataLocation.gameContentPath={1}", Directory.Exists(csFolderPath), csFolderPath));
+            Debug.Log(string.Format("REx: Exist={0} DataLocation.gameContentPath={1}", Directory.Exists(csFolderPath), csFolderPath));
             if (Directory.Exists(csFolderPath))
             {
                 return csFolderPath;

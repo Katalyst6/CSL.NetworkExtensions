@@ -1,18 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using CSL.ExtensionFramework;
-using CSL.ExtensionFramework.ModParts;
-using NetworkExtensions.Menus;
+using CSL.NetworkExtensions.Framework;
+using CSL.NetworkExtensions.Framework.ModParts;
+using CSL.RoadExtensions.Menus;
 
-namespace NetworkExtensions.NewNetwork.OneWay3L
+namespace CSL.RoadExtensions.NewNetwork.OneWay3L
 {
     public class OneWay3LBuilder : ActivablePart, INetInfoBuilder
     {
         public int OptionsPriority { get { return 8; } }
         public int Priority { get { return 10; } }
 
-        public string PrefabName { get { return NetInfos.Vanilla.ONEWAY_2L; } }
+        public string TemplatePrefabName { get { return NetInfos.Vanilla.ONEWAY_2L; } }
         public string Name { get { return "Oneway3L"; } }
         public string CodeName { get { return "ONEWAY_3L"; } }
         public string DisplayName { get { return "Three-Lane Oneway"; } }

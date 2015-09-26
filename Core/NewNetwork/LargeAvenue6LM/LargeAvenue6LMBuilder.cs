@@ -2,17 +2,17 @@
 using System.Collections.Generic;
 using System.Linq;
 using ColossalFramework;
-using CSL.ExtensionFramework;
-using CSL.ExtensionFramework.ModParts;
+using CSL.NetworkExtensions.Framework;
+using CSL.NetworkExtensions.Framework.ModParts;
 
-namespace NetworkExtensions.NewNetwork.LargeAvenue6LM
+namespace CSL.RoadExtensions.NewNetwork.LargeAvenue6LM
 {
     public class LargeAvenue6LMBuilder : ActivablePart, INetInfoBuilder
     {
         public int OptionsPriority { get { return 25; } }
         public int Priority { get { return 25; } }
 
-        public string PrefabName { get { return NetInfos.Vanilla.AVENUE_4L; } }
+        public string TemplatePrefabName { get { return NetInfos.Vanilla.AVENUE_4L; } }
         public string Name { get { return "Large Avenue M"; } }
         public string DisplayName { get { return "Six-Lane Road with Median"; } }
         public string CodeName { get { return "LARGEAVENUE_6LM"; } }

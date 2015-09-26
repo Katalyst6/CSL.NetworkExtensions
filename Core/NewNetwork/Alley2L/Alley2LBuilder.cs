@@ -1,17 +1,17 @@
 ﻿using System;
 using System.Linq;
-using CSL.ExtensionFramework;
-using CSL.ExtensionFramework.ModParts;
+using CSL.NetworkExtensions.Framework;
+using CSL.NetworkExtensions.Framework.ModParts;
 using UnityEngine;
 
-namespace NetworkExtensions.NewNetwork.Alley2L
+namespace CSL.RoadExtensions.NewNetwork.Alley2L
 {
     public class Alley2LBuilder : ActivablePart, INetInfoBuilder
     {
         public int OptionsPriority { get { return 1; } }
         public int Priority { get { return 40; } }
 
-        public string PrefabName { get { return NetInfos.Vanilla.ROAD_2L; } }
+        public string TemplatePrefabName { get { return NetInfos.Vanilla.ROAD_2L; } }
         public string Name { get { return "Alley2L"; } }
         public string DisplayName { get { return "Two-Lane Alley"; } }
         public string CodeName { get { return "Alley_2L"; } }

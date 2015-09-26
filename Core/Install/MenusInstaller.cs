@@ -1,15 +1,15 @@
 ﻿using System;
 using System.Linq;
 using ColossalFramework.UI;
-using CSL.ExtensionFramework;
-using NetworkExtensions.Menus;
+using CSL.NetworkExtensions.Framework;
+using CSL.RoadExtensions.Menus;
 using UnityEngine;
 
 #if DEBUG
-using Debug = CSL.ExtensionFramework.Debug;
+using Debug = CSL.NetworkExtensions.Framework.Debug;
 #endif
 
-namespace NetworkExtensions.Install
+namespace CSL.RoadExtensions.Install
 {
     public class MenusInstaller : Installer
     {
@@ -82,20 +82,20 @@ namespace NetworkExtensions.Install
 
                     if (menuInstalled)
                     {
-                        Debug.Log("NExt: Additionnal Menus have been installed successfully");
+                        Debug.Log("REx: Additionnal Menus have been installed successfully");
                     }
 #if DEBUG
                     else
                     {
-                        Debug.Log("NExt: Something has happened, Additionnal Menus have not been installed");
+                        Debug.Log("REx: Something has happened, Additionnal Menus have not been installed");
                     }
 #endif
                 }
                 catch (Exception ex)
                 {
-                    Debug.Log("NExt: Crashed-Initialized Additionnal Menus");
-                    Debug.Log("NExt: " + ex.Message);
-                    Debug.Log("NExt: " + ex.ToString());
+                    Debug.Log("REx: Crashed-Initialized Additionnal Menus");
+                    Debug.Log("REx: " + ex.Message);
+                    Debug.Log("REx: " + ex.ToString());
                 }
             });
         }

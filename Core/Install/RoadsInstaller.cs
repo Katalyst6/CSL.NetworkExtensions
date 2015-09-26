@@ -1,14 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using CSL.ExtensionFramework;
+using CSL.NetworkExtensions.Framework;
 using UnityEngine;
 
 #if DEBUG
-using Debug = CSL.ExtensionFramework.Debug;
+using Debug = CSL.NetworkExtensions.Framework.Debug;
 #endif
 
-namespace NetworkExtensions.Install
+namespace CSL.RoadExtensions.Install
 {
     public class RoadsInstaller : Installer
     {
@@ -66,7 +66,7 @@ namespace NetworkExtensions.Install
 
             Loading.QueueAction(() =>
             {
-                //Debug.Log("NExt: Setting up new Roads and Logic");
+                //Debug.Log("REx: Setting up new Roads and Logic");
 
 
                 // Builders -----------------------------------------------------------------------
@@ -78,13 +78,13 @@ namespace NetworkExtensions.Install
                     {
                         newInfos.AddRange(builder.Build());
 
-                        Debug.Log(string.Format("NExt: {0} installed", builder.DisplayName));
+                        Debug.Log(string.Format("REx: {0} installed", builder.DisplayName));
                     }
                     catch (Exception ex)
                     {
-                        Debug.Log(string.Format("NExt: Crashed-Network builders {0}", builder));
-                        Debug.Log("NExt: " + ex.Message);
-                        Debug.Log("NExt: " + ex.ToString());
+                        Debug.Log(string.Format("REx: Crashed-Network builders {0}", builder));
+                        Debug.Log("REx: " + ex.Message);
+                        Debug.Log("REx: " + ex.ToString());
                     }
                 }
 
@@ -103,13 +103,13 @@ namespace NetworkExtensions.Install
                     {
                         modifier.ModifyExistingNetInfo();
 
-                        Debug.Log(string.Format("NExt: {0} modifications applied", modifier.DisplayName));
+                        Debug.Log(string.Format("REx: {0} modifications applied", modifier.DisplayName));
                     }
                     catch (Exception ex)
                     {
-                        Debug.Log(string.Format("NExt: Crashed-Network modifiers {0}", modifier));
-                        Debug.Log("NExt: " + ex.Message);
-                        Debug.Log("NExt: " + ex.ToString());
+                        Debug.Log(string.Format("REx: Crashed-Network modifiers {0}", modifier));
+                        Debug.Log("REx: " + ex.Message);
+                        Debug.Log("REx: " + ex.ToString());
                     }
                 }
 
@@ -123,14 +123,14 @@ namespace NetworkExtensions.Install
                         {
                             compatibilityPart.Setup(newInfos);
 
-                            Debug.Log(string.Format("NExt: {0} compatibility activated", compatibilityPart.Name));
+                            Debug.Log(string.Format("REx: {0} compatibility activated", compatibilityPart.Name));
                         }
                     }
                     catch (Exception ex)
                     {
-                        Debug.Log(string.Format("NExt: Crashed-CompatibilitySupport {0}", compatibilityPart.Name));
-                        Debug.Log("NExt: " + ex.Message);
-                        Debug.Log("NExt: " + ex.ToString());
+                        Debug.Log(string.Format("REx: Crashed-CompatibilitySupport {0}", compatibilityPart.Name));
+                        Debug.Log("REx: " + ex.Message);
+                        Debug.Log("REx: " + ex.ToString());
                     }
                 }
             });

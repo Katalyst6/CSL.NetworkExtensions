@@ -1,16 +1,16 @@
 ﻿using System;
 using System.Linq;
-using CSL.ExtensionFramework;
-using CSL.ExtensionFramework.ModParts;
+using CSL.NetworkExtensions.Framework;
+using CSL.NetworkExtensions.Framework.ModParts;
 
-namespace NetworkExtensions.NewNetwork.Highway2L
+namespace CSL.RoadExtensions.NewNetwork.Highway2L
 {
     public class Highway2LBuilder : ActivablePart, INetInfoBuilder
     {
         public int OptionsPriority { get { return 40; } }
         public int Priority { get { return 10; } }
 
-        public string PrefabName { get { return NetInfos.Vanilla.ONEWAY_2L; } }
+        public string TemplatePrefabName { get { return NetInfos.Vanilla.ONEWAY_2L; } }
         public string Name { get { return "Rural Highway"; } }
         public string DisplayName { get { return "Two-Lane Highway"; } }
         public string CodeName { get { return "HIGHWAY_2L"; } }

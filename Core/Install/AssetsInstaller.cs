@@ -1,14 +1,14 @@
 ﻿using System;
-using CSL.ExtensionFramework;
-using CSL.ExtensionFramework;
+using CSL.NetworkExtensions.Framework;
+using CSL.NetworkExtensions.Framework;
 using UnityEngine;
 
 #if DEBUG
-using Debug = CSL.ExtensionFramework.Debug;
+using Debug = CSL.NetworkExtensions.Framework.Debug;
 #endif
 
 
-namespace NetworkExtensions.Install
+namespace CSL.RoadExtensions.Install
 {
     public class AssetsInstaller : Installer
     {
@@ -38,9 +38,9 @@ namespace NetworkExtensions.Install
                     }
                     catch (Exception ex)
                     {
-                        Debug.Log("NExt: Crashed-AssetsInstaller");
-                        Debug.Log("NExt: " + ex.Message);
-                        Debug.Log("NExt: " + ex.ToString());
+                        Debug.Log("REx: Crashed-AssetsInstaller");
+                        Debug.Log("REx: " + ex.Message);
+                        Debug.Log("REx: " + ex.ToString());
                     }
                 });
             }

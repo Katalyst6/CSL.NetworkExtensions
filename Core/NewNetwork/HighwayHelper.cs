@@ -2,14 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using CSL.ExtensionFramework;
+using CSL.NetworkExtensions.Framework;
 using UnityEngine;
 
 #if DEBUG
-using Debug = CSL.ExtensionFramework.Debug;
+using Debug = CSL.NetworkExtensions.Framework.Debug;
 #endif
 
-namespace NetworkExtensions.NewNetwork
+namespace CSL.RoadExtensions.NewNetwork
 {
     public static class HighwayHelper
     {

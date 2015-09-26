@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using CSL.ExtensionFramework.ModParts;
+using CSL.NetworkExtensions.Framework.ModParts;
 using ICities;
-using NetworkExtensions.Install;
+using CSL.RoadExtensions.Install;
 
-namespace NetworkExtensions
+namespace CSL.RoadExtensions
 {
     public partial class Mod : IUserMod
     {

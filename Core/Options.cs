@@ -4,15 +4,15 @@ using System.IO;
 using System.Linq;
 using System.Xml;
 using ColossalFramework;
-using CSL.ExtensionFramework;
-using CSL.ExtensionFramework.ModParts;
+using CSL.NetworkExtensions.Framework;
+using CSL.NetworkExtensions.Framework.ModParts;
 using UnityEngine;
 
 #if DEBUG
-using Debug = CSL.ExtensionFramework.Debug;
+using Debug = CSL.NetworkExtensions.Framework.Debug;
 #endif
 
-namespace NetworkExtensions
+namespace CSL.RoadExtensions
 {
     public class Options
     {
@@ -55,7 +55,7 @@ namespace NetworkExtensions
                 return;
             }
 
-            Debug.Log(string.Format("NExt: Saving config at {0}", FILENAME));
+            Debug.Log(string.Format("REx: Saving config at {0}", FILENAME));
 
             try
             {
@@ -76,7 +76,7 @@ namespace NetworkExtensions
             }
             catch (Exception ex)
             {
-                Debug.Log(string.Format("NExt: Crashed saving config at {0} {1}", FILENAME, ex));
+                Debug.Log(string.Format("REx: Crashed saving config at {0} {1}", FILENAME, ex));
             }
         }
 
@@ -87,7 +87,7 @@ namespace NetworkExtensions
                 return new Options();
             }
 
-            Debug.Log(string.Format("NExt: Loading config at {0}", FILENAME));
+            Debug.Log(string.Format("REx: Loading config at {0}", FILENAME));
 
             if (!File.Exists(FILENAME))
             {
@@ -121,7 +121,7 @@ namespace NetworkExtensions
             }
             catch (Exception ex)
             {
-                Debug.Log(string.Format("NExt: Crashed load config at {0} {1}", FILENAME, ex));
+                Debug.Log(string.Format("REx: Crashed load config at {0} {1}", FILENAME, ex));
                 return new Options();
             }
         }

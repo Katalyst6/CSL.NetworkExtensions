@@ -1,11 +1,10 @@
-﻿using System;
+﻿using CSL.NetworkExtensions.Framework;
+using CSL.RoadExtensions.Install;
 using ICities;
-using CSL.ExtensionFramework;
-using NetworkExtensions.Install;
 using UnityEngine;
 using Object = UnityEngine.Object;
 
-namespace NetworkExtensions
+namespace CSL.RoadExtensions
 {
     public partial class Mod : LoadingExtensionBase
     {
@@ -27,7 +26,7 @@ namespace NetworkExtensions
             {
                 if (GetPath() != PATH_NOT_FOUND)
                 {
-                    _container = new GameObject(NEXT_OBJECT_NAME);
+                    _container = new GameObject(REX_OBJECT_NAME);
 
                     _newRoads = _container.AddComponent<NetCollection>();
                     _newRoads.name = NEWROADS_NETCOLLECTION;

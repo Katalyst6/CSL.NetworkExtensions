@@ -3,11 +3,11 @@ using System.IO;
 using System.Xml.Serialization;
 using ColossalFramework;
 using ColossalFramework.Plugins;
-using CSL.ExtensionFramework;
-using CSL.ExtensionFramework.ModParts;
+using CSL.NetworkExtensions.Framework;
+using CSL.NetworkExtensions.Framework.ModParts;
 using UnityEngine;
 
-namespace NetworkExtensions.Compatibility
+namespace CSL.RoadExtensions.Compatibility
 {
     public class RoadColorChanger : ICompatibilityPart
     {
@@ -16,7 +16,7 @@ namespace NetworkExtensions.Compatibility
 
         public string Name
         {
-            get { return "RoadColorChanger for NetworkExtensions"; }
+            get { return "RoadColorChanger for RoadExtensions"; }
         }
 
         public bool IsPluginActive

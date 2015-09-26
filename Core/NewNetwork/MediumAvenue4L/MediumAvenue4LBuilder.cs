@@ -3,17 +3,17 @@ using System.Collections.Generic;
 using System.Linq;
 using ColossalFramework;
 using ColossalFramework.Globalization;
-using CSL.ExtensionFramework;
-using CSL.ExtensionFramework.ModParts;
+using CSL.NetworkExtensions.Framework;
+using CSL.NetworkExtensions.Framework.ModParts;
 
-namespace NetworkExtensions.NewNetwork.MediumAvenue4L
+namespace CSL.RoadExtensions.NewNetwork.MediumAvenue4L
 {
     public class MediumAvenue4LBuilder : ActivablePart, INetInfoBuilder, INetInfoModifier
     {
         public int OptionsPriority { get { return 20; } }
         public int Priority { get { return 4; } }
 
-        public string PrefabName { get { return NetInfos.Vanilla.ROAD_6L; } }
+        public string TemplatePrefabName { get { return NetInfos.Vanilla.ROAD_6L; } }
         public string Name { get { return "Medium Avenue"; } }
         public string DisplayName { get { return "Four-Lane Road"; } }
         public string CodeName { get { return "MEDIUMAVENUE_4L"; } }
