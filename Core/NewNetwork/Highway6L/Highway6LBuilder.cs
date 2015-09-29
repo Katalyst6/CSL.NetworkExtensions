@@ -31,8 +31,7 @@ namespace NetworkExtensions.NewNetwork.Highway6L
             // Template              //
             ///////////////////////////
             var highwayInfo = ToolsCSL.FindPrefab<NetInfo>(VanillaNetInfos.HIGHWAY_3L);
-
-
+            var defaultMaterial = highwayInfo.m_nodes[0].m_material;
             ///////////////////////////
             // 3DModeling            //
             ///////////////////////////
@@ -126,11 +125,17 @@ namespace NetworkExtensions.NewNetwork.Highway6L
                 segments0.m_forwardForbidden = NetSegment.Flags.None;
                 segments0.m_forwardRequired = NetSegment.Flags.None;
 
-                segments0.m_backwardForbidden = NetSegment.Flags.None;
-                segments0.m_backwardRequired = NetSegment.Flags.None;
+                segments1.m_backwardForbidden = NetSegment.Flags.None;
+                segments1.m_backwardRequired = NetSegment.Flags.None;
 
-                segments0.m_forwardForbidden = NetSegment.Flags.None;
-                segments0.m_forwardRequired = NetSegment.Flags.None;
+                segments1.m_forwardForbidden = NetSegment.Flags.None;
+                segments1.m_forwardRequired = NetSegment.Flags.None;
+
+                segments2.m_backwardForbidden = NetSegment.Flags.None;
+                segments2.m_backwardRequired = NetSegment.Flags.None;
+
+                segments2.m_forwardForbidden = NetSegment.Flags.None;
+                segments2.m_forwardRequired = NetSegment.Flags.None;
 
                 nodes0.m_flagsForbidden = NetNode.Flags.Transition;
                 nodes0.m_flagsRequired = NetNode.Flags.Underground;
@@ -155,16 +160,67 @@ namespace NetworkExtensions.NewNetwork.Highway6L
                     (@"NewNetwork\Highway6L\Meshes\Slope_U_Node.obj",
                      @"NewNetwork\Highway6L\Meshes\Ground_LOD.obj");
                 nodes1.SetMeshes
-                    (@"NewNetwork\Highway6L\Meshes\Slope_Node.obj");
+                    (@"NewNetwork\Highway6L\Meshes\Ground.obj");
                 nodes2.SetMeshes
-                    (@"NewNetwork\Highway6L\Meshes\Slope_U_Trans.obj");
+                    (@"NewNetwork\Highway6L\Meshes\Slope_U_Node.obj");
                 nodes3.SetMeshes
-                    (@"NewNetwork\Highway6L\Meshes\Slope_Trans.obj",
+                    (@"NewNetwork\Highway6L\Meshes\Ground_Trans.obj",
                      @"NewNetwork\Highway6L\Meshes\Ground_Trans_LOD.obj");
+
+                nodes0.m_material = defaultMaterial;
+                nodes2.m_material = defaultMaterial;
 
                 info.m_segments = new[] { segments0, segments1, segments2 };
                 info.m_nodes = new[] { nodes0, nodes1, nodes2, nodes3 };
             }
+            else if (version == NetInfoVersion.Tunnel)
+            {
+                var segments0 = info.m_segments[0];
+                var segments1 = segments0.ShallowClone();
+                var nodes0 = info.m_nodes[0];
+                var nodes1 = nodes0.ShallowClone();
+                var nodes2 = nodes1.ShallowClone();
+
+                segments1.m_backwardForbidden = NetSegment.Flags.None;
+                segments1.m_backwardRequired = NetSegment.Flags.None;
+
+                segments1.m_forwardForbidden = NetSegment.Flags.None;
+                segments1.m_forwardRequired = NetSegment.Flags.None;
+
+                nodes1.m_flagsForbidden = NetNode.Flags.Transition;
+                nodes1.m_flagsRequired = NetNode.Flags.Underground;
+
+                nodes2.m_flagsForbidden = NetNode.Flags.None;
+                nodes2.m_flagsRequired = NetNode.Flags.UndergroundTransition;
+
+                segments0.SetMeshes
+                    (@"NewNetwork\Highway6L\Meshes\Tunnel.obj",
+                     @"NewNetwork\Highway6L\Meshes\Ground_LOD.obj");
+                segments1.SetMeshes
+                    (@"NewNetwork\Highway6L\Meshes\Tunnel.obj",
+                     @"NewNetwork\Highway6L\Meshes\Ground_LOD.obj");
+                nodes0.SetMeshes
+                     (@"NewNetwork\Highway6L\Meshes\Tunnel_Node.obj",
+                     @"NewNetwork\Highway6L\Meshes\Ground_LOD.obj");
+                nodes1.SetMeshes
+                    (@"NewNetwork\Highway6L\Meshes\Tunnel_Node.obj",
+                     @"NewNetwork\Highway6L\Meshes\Ground_LOD.obj");
+                nodes2.SetMeshes
+                    (@"NewNetwork\Highway6L\Meshes\Tunnel_Node.obj",
+                     @"NewNetwork\Highway6L\Meshes\Ground_LOD.obj");
+
+                segments1.m_material = defaultMaterial;
+                nodes1.m_material = defaultMaterial;
+                nodes2.m_material = defaultMaterial;
+
+                segments1.m_surfaceMapping = new UnityEngine.Vector4(0, 0, 0, 0);
+                nodes1.m_surfaceMapping = new UnityEngine.Vector4(0, 0, 0, 0);
+                nodes2.m_surfaceMapping = new UnityEngine.Vector4(0, 0, 0, 0);
+
+                info.m_segments = new[] { segments0, segments1 };
+                info.m_nodes = new[] { nodes0, nodes1, nodes2 };
+            }
+
             ///////////////////////////
             // Texturing             //
             ///////////////////////////
@@ -207,15 +263,24 @@ namespace NetworkExtensions.NewNetwork.Highway6L
                     break;
 
                 case NetInfoVersion.Slope:
-                case NetInfoVersion.Tunnel:
                     info.SetSegmentsTexture(
                         new TexturesSet
                            (@"NewNetwork\Highway6L\Textures\Slope_Tunnel_Segment__MainTex.png",
-                            @"NewNetwork\Highway6L\Textures\Slope_Tunnel_Segment__APRMap.png"));
+                            @"NewNetwork\Highway6L\Textures\Slope_Tunnel_Segment_Open__APRMap.png"));
                     info.SetNodesTexture(
                         new TexturesSet
                            (@"NewNetwork\Highway6L\Textures\Slope_Tunnel_Node__MainTex.png",
                             @"NewNetwork\Highway6L\Textures\Slope_Tunnel_Node__APRMap.png"));
+                    break;
+                case NetInfoVersion.Tunnel:
+                    info.SetSegmentsTexture(
+                        new TexturesSet
+                           (@"NewNetwork\Highway6L\Textures\Tunnel_Segment__MainTex.png",
+                            @"NewNetwork\Highway6L\Textures\Tunnel_Segment__APRMap.png"));
+                    info.SetNodesTexture(
+                        new TexturesSet
+                           (@"NewNetwork\Highway6L\Textures\Tunnel_Node__MainTex.png",
+                            @"NewNetwork\Highway6L\Textures\Tunnel_Segment__APRMap.png"));
                     break;
             }
 
@@ -223,11 +288,9 @@ namespace NetworkExtensions.NewNetwork.Highway6L
             ///////////////////////////
             // Set up                //
             ///////////////////////////
-            if (version == NetInfoVersion.Slope)
-            {
-
-            }
+            info.m_setVehicleFlags = Vehicle.Flags.None;
             info.m_availableIn = ItemClass.Availability.All;
+            info.m_surfaceLevel = (version == NetInfoVersion.Slope) ? 0.1f : 0;
             info.m_createPavement = false; //(version == NetInfoVersion.Slope);
             info.m_createGravel = !(version == NetInfoVersion.Tunnel);
             info.m_averageVehicleLaneSpeed = 2f;
@@ -236,7 +299,6 @@ namespace NetworkExtensions.NewNetwork.Highway6L
             info.m_halfWidth = 16f;
             info.m_UnlockMilestone = highwayInfo.m_UnlockMilestone;
             info.m_pavementWidth = 2f;
-
             // Disabling Parkings and Peds
             foreach (var l in info.m_lanes)
             {
@@ -342,7 +404,7 @@ namespace NetworkExtensions.NewNetwork.Highway6L
                     }
                 }
 
-                if (streetLightLeft != null && version != NetInfoVersion.Slope && version != NetInfoVersion.Tunnel)
+                if (streetLightLeft != null && version != NetInfoVersion.Tunnel)
                 {
                     streetLightRight.m_repeatDistance = 80;
                     streetLightLeft.m_repeatDistance = 80;
@@ -362,11 +424,33 @@ namespace NetworkExtensions.NewNetwork.Highway6L
                     }
 
                     leftHwProps.Add(streetLightLeft);
-                    leftHwLane.m_laneProps.m_props = leftHwProps.ToArray();
+
 
                     rightHwProps.Add(streetLightRight);
-                    rightHwLane.m_laneProps.m_props = rightHwProps.ToArray();
+
                 }
+                //if (version == NetInfoVersion.Slope || version == NetInfoVersion.Tunnel)
+                //{
+                //    var wallLightPropInfo = ToolsCSL.FindPrefab<PropInfo>("Flood Light Down White");
+                //    var wallLightProp = new NetLaneProps.Prop();
+                //    var floodLightEffectInfo = ToolsCSL.FindEffect<EffectInfo>("Flood Light White");
+
+                //    wallLightProp.m_prop = wallLightPropInfo;
+                //    wallLightProp.m_finalProp = wallLightPropInfo;
+
+                //    wallLightProp.m_probability = 100;
+                //    wallLightProp.m_repeatDistance = 40;
+                //    wallLightProp.m_segmentOffset = 20;
+                //    var wallLightPropLeft = wallLightProp.ShallowClone();
+                //    var wallLightPropRight = wallLightProp.ShallowClone();
+
+                //    wallLightPropLeft.m_position = new UnityEngine.Vector3(-1, 6.9f, 0);
+                //    wallLightPropRight.m_position = new UnityEngine.Vector3(1, 6.9f, 0);
+                //    leftHwProps.Add(wallLightPropLeft);
+                //    rightHwProps.Add(wallLightPropRight);
+                //}
+                //leftHwLane.m_laneProps.m_props = leftHwProps.ToArray();
+                //rightHwLane.m_laneProps.m_props = rightHwProps.ToArray();
             }
         }
 
