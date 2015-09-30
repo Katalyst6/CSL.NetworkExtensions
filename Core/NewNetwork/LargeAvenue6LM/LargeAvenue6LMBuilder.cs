@@ -2,8 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using ColossalFramework;
+using ColossalFramework.Globalization;
 using CSL.NetworkExtensions.Framework;
 using CSL.NetworkExtensions.Framework.ModParts;
+using UnityEngine;
+
+#if DEBUG
+using Debug = CSL.NetworkExtensions.Framework.Debug;
+#endif
 
 namespace CSL.RoadExtensions.NewNetwork.LargeAvenue6LM
 {
@@ -12,7 +18,7 @@ namespace CSL.RoadExtensions.NewNetwork.LargeAvenue6LM
         public int OptionsPriority { get { return 25; } }
         public int Priority { get { return 25; } }
 
-        public string TemplatePrefabName { get { return NetInfos.Vanilla.AVENUE_4L; } }
+        public string TemplatePrefabName { get { return NetInfos.Vanilla.ROAD_6L; } }
         public string Name { get { return "Large Avenue M"; } }
         public string DisplayName { get { return "Six-Lane Road with Median"; } }
         public string CodeName { get { return "LARGEAVENUE_6LM"; } }
@@ -29,83 +35,33 @@ namespace CSL.RoadExtensions.NewNetwork.LargeAvenue6LM
 
         public void BuildUp(NetInfo info, NetInfoVersion version)
         {
-            #region Template
+            ///////////////////////////
+            // Template              //
+            ///////////////////////////
+            var largeRoadInfo = Prefabs.Find<NetInfo>(NetInfos.Vanilla.ROAD_6L);
 
-            var largeRoadInfo = ToolsCSL.FindPrefab<NetInfo>("Large Road");
-
-            #endregion
-
-            // no need for 3DModeling I guess
-
-            #region Texturing
-
+            ///////////////////////////
+            // Texturing             //
+            ///////////////////////////
             switch (version)
             {
                 case NetInfoVersion.Ground:
-                    info.SetSegmentsTexture(
+                    info.SetAllSegmentsTexture(
                         new TexturesSet
                            (@"NewNetwork\LargeAvenue6LM\Textures\Ground_Segment__MainTex.png",
                             @"NewNetwork\LargeAvenue6LM\Textures\Ground_Segment__AlphaMap.png"));
                     break;
-
-/*				case NetInfoVersion.Elevated:
-				case NetInfoVersion.Bridge:
-					info.SetNodesTexture(
-						new TexturesSet
-							(@"NewNetwork\LargeAvenue6LM\Textures\Elevated_Node__MainTex.png",
-							@"NewNetwork\LargeAvenue6LM\Textures\Elevated_Node__APRMap.png"));
-						new TexturesSet
-							(@"NewNetwork\LargeAvenue6LM\Textures\Elevated_NodeLOD__MainTex.png",
-							@"NewNetwork\LargeAvenue6LM\Textures\Elevated_NodeLOD__APRMap.png",
-							@"NewNetwork\LargeAvenue6LM\Textures\Elevated_NodeLOD__XYSMap.png"));
-                                    break;
-
-				case NetInfoVersion.Slope:
-					info.SetNodesTexture(
-						new TexturesSet
-							(@"NewNetwork\LargeAvenue6LM\Textures\Slope_Node__MainTex.png",
-							@"NewNetwork\LargeAvenue6LM\Textures\Slope_Node__APRMap.png"),
-						new TexturesSet
-							(@"NewNetwork\LargeAvenue6LM\Textures\Slope_NodeLOD__MainTex.png",
-							@"NewNetwork\LargeAvenue6LM\Textures\Slope_NodeLOD__APRMap.png",
-							@"NewNetwork\LargeAvenue6LM\Textures\Slope_NodeLOD__XYSMap.png"));
-				break;
-
-				case NetInfoVersion.Tunnel:
-				break;
-*/
             }
 
-            #endregion
-
-			#region Set up
-
-			info.m_availableIn = ItemClass.Availability.All;
-//			info.m_createPavement = (version == NetInfoVersion.Slope);
-//			info.m_createGravel = (version == NetInfoVersion.Ground);
-//			info.m_averageVehicleLaneSpeed = 2f;
+            ///////////////////////////
+            // Set up                //
+            ///////////////////////////
+            info.m_class = largeRoadInfo.m_class.Clone(NetInfoClasses.NEXT_LARGE_ROAD);
+            info.m_UnlockMilestone = largeRoadInfo.m_UnlockMilestone;
 			info.m_hasParkingSpaces = false;
-			info.m_hasPedestrianLanes = true;
 
-			info.m_UnlockMilestone = largeRoadInfo.m_UnlockMilestone;
-
-			#region Disabling Parkings
-
-			foreach (var l in info.m_lanes)
-			{
-				switch (l.m_laneType)
-				{
-					case NetInfo.LaneType.Parking:
-						l.m_laneType = NetInfo.LaneType.None;
-						break;
-				}
-			}
-
-			#endregion
-
-			#region Setting up lanes
-
-			var vehicleLaneTypes = new[]
+            // Setting up lanes
+            var vehicleLaneTypes = new[]
             {
                 NetInfo.LaneType.Vehicle,
                 NetInfo.LaneType.PublicTransport,
@@ -118,63 +74,75 @@ namespace CSL.RoadExtensions.NewNetwork.LargeAvenue6LM
 				.OrderBy(l => l.m_position)
 				.ToArray();
 
-			for (var i = 0; i < vehicleLanes.Length; i++)
+            var nonVehicleLanes = info.m_lanes
+                .Where(l => !vehicleLaneTypes.Contains(l.m_laneType))
+                .ToArray();
+
+            info.m_lanes = vehicleLanes
+                .Union(nonVehicleLanes)
+                .ToArray();
+
+
+            Debug.Log(vehicleLanes.Length.ToString());
+
+            for (var i = 0; i < vehicleLanes.Length; i++)
 			{
 				var lane = vehicleLanes[i];
-
-				// I think this part is totally wrong
 				switch (i)
 				{
-					case 1:
-					case 2:
-					case 3:
-						if (lane.m_position < 0)
-						{
-							lane.m_position += 0.5f;
-						}
-						else
-						{
-							lane.m_position += -0.5f;
-						}
-						break;
-
-					case 4:
-					case 5:
-					case 6:
-						if (lane.m_position < 0)
-						{
-							lane.m_position += 0.5f;
-						}
-						else
-						{
-							lane.m_position += -0.5f;
-						}
-						break;
-				}
+                    default:
+                        if (lane.m_position < 0)
+                        {
+                            lane.m_position += -2.0f;
+                        }
+                        else
+                        {
+                            lane.m_position += 2.0f;
+                        }
+                        break;
+                }
 			}
 
 			info.Setup50LimitProps(); // traffic sign I guess? so there would be need for a new one?
 
-			#endregion
+            if (version == NetInfoVersion.Ground)
+            {
+                var lrPlayerNetAI = largeRoadInfo.GetComponent<PlayerNetAI>();
+                var playerNetAI = info.GetComponent<PlayerNetAI>();
 
-			#region Modify Cost
+                if (lrPlayerNetAI != null && playerNetAI != null)
+                {
+                    playerNetAI.m_constructionCost = lrPlayerNetAI.m_constructionCost * 9 / 10; // 10% decrease
+                    playerNetAI.m_maintenanceCost = lrPlayerNetAI.m_maintenanceCost * 9 / 10; // 10% decrease
+                }
 
-			if (version == NetInfoVersion.Ground)
-			{
-				var lrPlayerNetAI = largeRoadInfo.GetComponent<PlayerNetAI>();
-				var playerNetAI = info.GetComponent<PlayerNetAI>();
+                var lrRoadBaseAI = largeRoadInfo.GetComponent<RoadBaseAI>();
+                var roadBaseAI = info.GetComponent<RoadBaseAI>();
 
-				if (lrPlayerNetAI != null && playerNetAI != null)
-				{
-					playerNetAI.m_constructionCost = lrPlayerNetAI.m_constructionCost * 11 / 10; // 10% increase
-					playerNetAI.m_maintenanceCost = lrPlayerNetAI.m_maintenanceCost * 11 / 10; // 10% increase
-				}
-			}
+                if (lrRoadBaseAI != null && roadBaseAI != null)
+                {
+                    roadBaseAI.m_noiseAccumulation = lrRoadBaseAI.m_noiseAccumulation;
+                    roadBaseAI.m_noiseRadius = lrRoadBaseAI.m_noiseRadius;
+                }
+            }
+        }
 
-			#endregion
+        public void ModifyExistingNetInfo()
+        {
+            var localizedStringsField = typeof(Locale).GetFieldByName("m_LocalizedStrings");
+            var locale = SingletonLite<LocaleManager>.instance.GetLocale();
+            var localizedStrings = (Dictionary<Locale.Key, string>)localizedStringsField.GetValue(locale);
 
-			#endregion
+            var kvp =
+                localizedStrings
+                .FirstOrDefault(kvpInternal =>
+                    kvpInternal.Key.m_Identifier == "NET_TITLE" &&
+                    kvpInternal.Key.m_Key == NetInfos.Vanilla.ROAD_6L);
 
-		}
+            if (!Equals(kvp, default(KeyValuePair<Locale.Key, string>)))
+            {
+                localizedStrings[kvp.Key] = "Six-Lane Road with Median";
+            }
+        }
     }
 }
