@@ -41,19 +41,6 @@ namespace CSL.RoadExtensions.NewNetwork.LargeAvenue6LM
             var largeRoadInfo = Prefabs.Find<NetInfo>(NetInfos.Vanilla.ROAD_6L);
 
             ///////////////////////////
-            // Texturing             //
-            ///////////////////////////
-            switch (version)
-            {
-                case NetInfoVersion.Ground:
-                    info.SetAllSegmentsTexture(
-                        new TexturesSet
-                           (@"NewNetwork\LargeAvenue6LM\Textures\Ground_Segment__MainTex.png",
-                            @"NewNetwork\LargeAvenue6LM\Textures\Ground_Segment__AlphaMap.png"));
-                    break;
-            }
-
-            ///////////////////////////
             // 3DModeling            //
             ///////////////////////////
             if (version == NetInfoVersion.Ground)
@@ -71,6 +58,19 @@ namespace CSL.RoadExtensions.NewNetwork.LargeAvenue6LM
 
                 info.m_segments = new[] { segments0 };
                 //info.m_nodes = new[] { nodes0 };
+            }
+
+            ///////////////////////////
+            // Texturing             //
+            ///////////////////////////
+            switch (version)
+            {
+                case NetInfoVersion.Ground:
+                    info.SetAllSegmentsTexture(
+                        new TexturesSet
+                           (@"NewNetwork\LargeAvenue6LM\Textures\Ground_Segment__MainTex.png",
+                            @"NewNetwork\LargeAvenue6LM\Textures\Ground_Segment__AlphaMap.png"));
+                    break;
             }
 
             ///////////////////////////
