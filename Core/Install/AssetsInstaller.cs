@@ -1,6 +1,5 @@
 ﻿using System;
 using CSL.NetworkExtensions.Framework;
-using CSL.NetworkExtensions.Framework;
 using UnityEngine;
 
 #if DEBUG
