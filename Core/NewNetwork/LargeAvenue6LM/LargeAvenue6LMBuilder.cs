@@ -53,8 +53,7 @@ namespace CSL.RoadExtensions.NewNetwork.LargeAvenue6LM
                     (@"NewNetwork\LargeAvenue6LM\Meshes\Ground.obj");
 
                 //nodes0.SetMeshes
-                //    (@"NewNetwork\OneWayMedium4L\Meshes\Ground.obj",
-                //     @"NewNetwork\OneWayMedium4L\Meshes\Ground_Node_LOD.obj");
+                //    (@"NewNetwork\LargeAvenue6LM\Meshes\Ground_Node.obj");
 
                 info.m_segments = new[] { segments0 };
                 //info.m_nodes = new[] { nodes0 };

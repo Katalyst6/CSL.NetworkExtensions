@@ -496,6 +496,9 @@
     <None Include="NewNetwork\LargeAvenue6LM\Meshes\Ground.obj">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="NewNetwork\LargeAvenue6LM\Meshes\Ground_Node.obj">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="NewNetwork\SmallHeavyRoads\Meshes\Ground.obj">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
