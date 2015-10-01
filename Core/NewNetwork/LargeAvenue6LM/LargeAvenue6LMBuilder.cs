@@ -54,6 +54,26 @@ namespace CSL.RoadExtensions.NewNetwork.LargeAvenue6LM
             }
 
             ///////////////////////////
+            // 3DModeling            //
+            ///////////////////////////
+            if (version == NetInfoVersion.Ground)
+            {
+
+                var segments0 = info.m_segments[0];
+                //var nodes0 = info.m_nodes[0];
+
+                segments0.SetMeshes
+                    (@"NewNetwork\LargeAvenue6LM\Meshes\Ground.obj");
+
+                //nodes0.SetMeshes
+                //    (@"NewNetwork\OneWayMedium4L\Meshes\Ground.obj",
+                //     @"NewNetwork\OneWayMedium4L\Meshes\Ground_Node_LOD.obj");
+
+                info.m_segments = new[] { segments0 };
+                //info.m_nodes = new[] { nodes0 };
+            }
+
+            ///////////////////////////
             // Set up                //
             ///////////////////////////
             info.m_class = largeRoadInfo.m_class.Clone(NetInfoClasses.NEXT_LARGE_ROAD);
@@ -75,22 +95,25 @@ namespace CSL.RoadExtensions.NewNetwork.LargeAvenue6LM
 				.ToArray();
 
             var nonVehicleLanes = info.m_lanes
-                .Where(l => !vehicleLaneTypes.Contains(l.m_laneType))
+                .Where(l => !vehicleLaneTypes.Contains(l.m_laneType) && NetInfo.LaneType.Parking != l.m_laneType)
                 .ToArray();
 
             info.m_lanes = vehicleLanes
                 .Union(nonVehicleLanes)
                 .ToArray();
-
-
-            Debug.Log(vehicleLanes.Length.ToString());
-
+            
             for (var i = 0; i < vehicleLanes.Length; i++)
 			{
 				var lane = vehicleLanes[i];
-				switch (i)
-				{
-                    default:
+
+                switch (i)
+                {
+                    case 0:
+                    case 1:
+                    case 2:
+                    case 3:
+                    case 4:
+                    case 5:
                         if (lane.m_position < 0)
                         {
                             lane.m_position += -2.0f;
@@ -101,9 +124,12 @@ namespace CSL.RoadExtensions.NewNetwork.LargeAvenue6LM
                         }
                         break;
                 }
-			}
+            }
 
-			info.Setup50LimitProps(); // traffic sign I guess? so there would be need for a new one?
+			info.Setup50LimitProps();
+
+            // TODO: Replace leftlane traffic light to median
+            // TODO: Use custom mesh (with median)
 
             if (version == NetInfoVersion.Ground)
             {
