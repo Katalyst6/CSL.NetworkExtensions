@@ -79,7 +79,7 @@ namespace CSL.RoadExtensions.NewNetwork.LargeAvenue6LM
             info.m_UnlockMilestone = largeRoadInfo.m_UnlockMilestone;
 			info.m_hasParkingSpaces = false;
 
-            // Setting up lanes
+            // Setting up traffic lanes
             var vehicleLaneTypes = new[]
             {
                 NetInfo.LaneType.Vehicle,
@@ -125,7 +125,33 @@ namespace CSL.RoadExtensions.NewNetwork.LargeAvenue6LM
                 }
             }
 
-			info.Setup50LimitProps();
+            // Set up median lane
+            var medianLanes = Prefabs.Find<NetInfo>(NetInfos.Vanilla.AVENUE_4L).m_lanes
+                .Where(l => l.m_laneType == NetInfo.LaneType.None)
+                .ToArray();
+
+            medianLanes.First().m_laneProps.name = "Props - Large Middle";
+            medianLanes.First().m_laneProps.m_props = medianLanes.First().m_laneProps.m_props
+                .Where(p => p.m_prop.name != "Avenue Light")
+                .ToArray();
+
+            foreach (var p in medianLanes.First().m_laneProps.m_props)
+            {
+                if (p.m_position.x < 0)
+                {
+                    p.m_position.x += 1.4f;
+                }
+                else
+                {
+                    p.m_position.x -= 1.4f;
+                }
+            }
+
+            info.m_lanes = info.m_lanes    // not sure if this is a good way to 'add' a new lane to the array..
+                .Union(medianLanes)
+                .ToArray();
+
+            // info.Setup50LimitProps();
 
             // TODO: Replace leftlane traffic light to median
             // TODO: Use custom mesh (with median)
